@@ -1,0 +1,42 @@
+  git clone git@github.com:ESMG/ESMG-configs
+  cd ESMG-configs/
+  ls
+  git status
+  git branch --help
+  git branch dev/master
+  git checkout dev/master
+  mkdir src
+  git submodule init
+  history
+  git submodule add git@github.com:ESMG/MOM6 ./src/MOM6
+  git submodule add git@github.com:ESMG/SIS2 ./src/SIS2
+  git submodule add git@github.com:NOAA-GFDL/FMS ./src/FMS
+  git submodule add git@github.com:ESMG/mkmf ./src/mkmf
+  git submodule add git@github.com:NOAA-GFDL/atmos_null ./src/atmos_null
+  git submodule add git@github.com:NOAA-GFDL/land_null ./src/land_null
+  git submodule add git@github.com:NOAA-GFDL/icebergs ./src/icebergs
+  git submodule add git@github.com:NOAA-GFDL/coupler ./src/coupler
+  git status
+  git commit
+  git push
+  git push --set-upstream origin dev/master
+  git pull
+
+#---- checkout right hash of submodules
+
+  cd src/MOM6
+  git checkout 69d9e15ee2888a5b637281773b1a5c26b3a7bbe0
+  cd ../FMS
+  git checkout ac1a7aacb7699f4ed8d0544b8127d8782ad8315a
+  cd ../SIS2
+  git checkout c46fb03f97978a752f6ca1742a0ee3762e68d7cf
+  cd ../coupler
+  git checkout 8a64d19f790599a4c1987f22b03e01beeae6430c
+
+  cd ../..
+  git add src/FMS src/MOM6 src/SIS2 src/coupler
+  git commit
+
+#--- checkout CVMix
+  cd src/MOM6
+  git submodule update --init pkg/CVMix-src
