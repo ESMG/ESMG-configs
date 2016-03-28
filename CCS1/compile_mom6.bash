@@ -30,7 +30,7 @@ cp -r $MOM6_installdir/src/mkmf/bin $MOM6_rundir/build/mkmf/bin
 cp -r $MOM6_installdir/src/mkmf/templates $MOM6_rundir/build/mkmf/templates
 cp $MOM6_installdir/src/mkmf.local/triton.mk $MOM6_rundir/build/mkmf/templates
 
-compile_fms=0
+compile_fms=1
 compile_mom=1
 
 if [ $compile_fms == 1 ] ; then
