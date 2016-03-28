@@ -1,0 +1,12 @@
+[submodule "src/MOM6"]
+	path = src/MOM6
+	url = git@github.com:ESMG/MOM6
+[submodule "src/SIS2"]
+	path = src/SIS2
+	url = git@github.com:ESMG/SIS2
+[submodule "src/FMS"]
+	path = src/FMS
+	url = git@github.com:NOAA-GFDL/FMS
+[submodule "src/mkmf"]
+	path = src/mkmf
+	url = git@github.com:ESMG/mkmf
