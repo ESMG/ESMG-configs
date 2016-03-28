@@ -222,13 +222,13 @@ INIT_LAYERS_FROM_Z_FILE = True  !   [Boolean] default = False
                                 ! If true, intialize the layer thicknesses, temperatures,
                                 ! and salnities from a Z-space file on a latitude-
                                 ! longitude grid.
-TEMP_SALT_Z_INIT_FILE = "WOA05_pottemp_salt.nc" ! default = "temp_salt_z.nc"
+TEMP_SALT_Z_INIT_FILE = "WOA13-CM2.1_monthly.nc" ! default = "temp_salt_z.nc"
                                 ! The name of the z-space input file used to initialize
                                 ! the layer thicknesses, temperatures and salinities.
-Z_INIT_FILE_PTEMP_VAR = "PTEMP" ! default = "ptemp"
+Z_INIT_FILE_PTEMP_VAR = "temp" ! default = "ptemp"
                                 ! The name of the potential temperature variable in
                                 ! TEMP_SALT_Z_INIT_FILE.
-Z_INIT_FILE_SALT_VAR = "SALT"   ! default = "salt"
+Z_INIT_FILE_SALT_VAR = "salt"   ! default = "salt"
                                 ! The name of the salinity variable in
                                 ! TEMP_SALT_Z_INIT_FILE.
 Z_INIT_ALE_REMAPPING = True     !   [Boolean] default = False

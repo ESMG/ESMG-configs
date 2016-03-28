@@ -10,3 +10,15 @@
 [submodule "src/mkmf"]
 	path = src/mkmf
 	url = git@github.com:ESMG/mkmf
+[submodule "src/land_null"]
+	path = src/land_null
+	url = git@github.com:NOAA-GFDL/land_null
+[submodule "src/atmos_null"]
+	path = src/atmos_null
+	url = git@github.com:NOAA-GFDL/atmos_null
+[submodule "src/coupler"]
+	path = src/coupler
+	url = git@github.com:NOAA-GFDL/coupler
+[submodule "src/icebergs"]
+	path = src/icebergs
+	url = git@github.com:NOAA-GFDL/icebergs
