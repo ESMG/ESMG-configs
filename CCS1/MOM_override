@@ -1,0 +1,7 @@
+! Blank file in which we can put "overrides" for parameters
+!VERBOSITY = 9
+SAVE_INITIAL_CONDS = False
+override ENERGYSAVEDAYS = 30.0
+override RESOLN_SCALED_KHTR = True
+override KH_RES_FN_POWER = 100
+override VISC_RES_FN_POWER = 100

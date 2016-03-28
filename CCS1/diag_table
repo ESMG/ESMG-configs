@@ -1,0 +1,9 @@
+OM4_SIS2_cgrid_025
+1900 1 1 0 0 0
+"ocean_daily",            1, "days",   1, "days", "time"
+
+"ocean_model", "SSU",          "ssu",              "ocean_daily", "all", "mean", "none",2
+"ocean_model", "SSV",          "ssv",              "ocean_daily", "all", "mean", "none",2
+"ocean_model", "SST",          "sst",              "ocean_daily", "all", "mean", "none",2
+"ocean_model", "SSS",          "sss",              "ocean_daily", "all", "mean", "none",2
+"ocean_model", "SSH",          "ssh",              "ocean_daily", "all", "mean", "none",2
