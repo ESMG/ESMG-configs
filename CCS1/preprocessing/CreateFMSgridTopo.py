@@ -6,7 +6,7 @@
 import numpy
 import scipy.io
 import matplotlib.pyplot as plt
-get_ipython().magic(u'matplotlib inline')
+#get_ipython().magic(u'matplotlib inline')
 
 
 # In[11]:
@@ -148,27 +148,28 @@ rg.createDimension('ntiles',1)
 hdepth = rg.createVariable('depth','float32',('ny','nx',))
 hdepth.units = 'm'
 # Values
-hdepth[:] = nc.variables['hraw'][0,1:-1,1:-1]
+hmask = nc.variables['mask_rho'][1:-1,1:-1]
+hdepth[:] = nc.variables['h'][1:-1,1:-1] * hmask
 rg.close()
 
 
 # In[17]:
 
-plt.pcolormesh(hdepth[:])
+#plt.pcolormesh(hdepth[:])
 
 
 # In[22]:
 
-import sys
-sys.argv=['--output topog.nc','ocean_topog.nc']
-execfile('ice9.py')
+#import sys
+#sys.argv=['--output topog.nc','ocean_topog.nc']
+#execfile('ice9.py')
 
 
 # In[25]:
 
-nc2=scipy.io.netcdf_file('iced_ocean_topog.nc')
-hdepth2=nc2.variables['depth']
-plt.pcolormesh(np.ma.masked_where(hdepth2[:]<10,hdepth2[:]))
+#nc2=scipy.io.netcdf_file('iced_ocean_topog.nc')
+#hdepth2=nc2.variables['depth']
+#plt.pcolormesh(np.ma.masked_where(hdepth2[:]<10,hdepth2[:]))
 
 
 # In[ ]:
