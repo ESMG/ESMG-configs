@@ -34,7 +34,7 @@ if [ $compile_fms == 1 ] ; then
    $MOM6_rundir/build/mkmf/bin/list_paths $MOM6_installdir/src/FMS; \
    $MOM6_rundir/build/mkmf/bin/mkmf -t $MOM6_rundir/build/mkmf/templates/triton.mk -p libfms.a -c "-Duse_libMPI -Duse_netCDF -DSPMD" path_names)
 
-   (cd build/gnu/shared/repro/; source ../../env; make NETCDF=3 REPRO=1 FC=mpif90 CC=mpicc libfms.a -j 6)
+   (cd build/gnu/shared/repro/; source ../../env; make NETCDF=3 DEBUG=1 FC=mpif90 CC=mpicc libfms.a -j 6)
 
 fi
 
@@ -49,7 +49,7 @@ if [ $compile_mom == 1 ] ; then
     (cd build/gnu/ice_ocean_SIS2/repro/; \
    $MOM6_rundir/build/mkmf/bin/mkmf -t $MOM6_rundir/build/mkmf/templates/triton.mk -o '-I../../shared/repro' -p 'MOM6 -L../../shared/repro -lfms' -c '-Duse_libMPI -Duse_netCDF -DSPMD -DUSE_LOG_DIAG_FIELD_INFO' path_names )
 
-    (cd build/gnu/ice_ocean_SIS2/repro/; source ../../env; make NETCDF=4 REPRO=1 MOM6 -j)
+    (cd build/gnu/ice_ocean_SIS2/repro/; source ../../env; make NETCDF=4 DEBUG=1 MOM6 -j)
 
 fi
 
