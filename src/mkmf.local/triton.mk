@@ -11,7 +11,7 @@ LD = mpif90 $(MAIN_PROGRAM)
 #########
 # flags #
 #########
-DEBUG =
+DEBUG =  
 REPRO =
 VERBOSE =
 OPENMP =
@@ -28,7 +28,7 @@ FFLAGS += -DGFORTRAN
 FFLAGS += -I/t1/software/libs/openmpi/1.8.5/gcc/4.8.2/include
 #FFLAGS += -static
 FFLAGS_OPT = -O3
-FFLAGS_REPRO = -O2 -fbounds-check
+FFLAGS_REPRO = -O2 -fbounds-check 
 FFLAGS_DEBUG = -O0 -g -W -fbounds-check -fbacktrace -ffpe-trap=invalid,zero,overflow
 FFLAGS_OPENMP = -fopenmp
 FFLAGS_VERBOSE = 
