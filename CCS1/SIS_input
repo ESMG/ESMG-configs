@@ -1,4 +1,6 @@
 ! This file was written by the model and records the non-default parameters used at run-time.
+SPECIFIED_ICE = True            !   [Boolean] default = False
+                                ! If true, the ice is specified and there is no dynamics.
 CGRID_ICE_DYNAMICS = True       !   [Boolean] default = False
                                 ! If true, use a C-grid discretization of the sea-ice
                                 ! dynamics; if false use a B-grid discretization.
@@ -14,12 +16,13 @@ DT_ICE_DYNAMICS = 600.0         !   [seconds] default = -1.0
                                 ! stepping the continuity equation and interactions
                                 ! between the ice mass field and velocities.  If 0 or
                                 ! negative the coupling time step will be used.
+ICE_BOUNDS_CHECK = True         !   [Boolean] default = True
 ICE_BULK_SALINITY = 0.0         !   [g/kg] default = 4.0
                                 ! The fixed bulk salinity of sea ice.
 ICE_RELATIVE_SALINITY = 0.1     !   [nondim] default = 0.0
                                 ! The initial salinity of sea ice as a fraction of the
                                 ! salinity of the seawater from which it formed.
-DO_ICEBERGS = True              !   [Boolean] default = False
+DO_ICEBERGS = False              !   [Boolean] default = False
                                 ! If true, call the iceberg module.
 ICE_STATS_INTERVAL = 0.25       !   [days] default = 1.0
                                 ! The interval in units of TIMEUNIT between writes of the
@@ -35,6 +38,7 @@ NJGLOBAL = 480                  !
                                 ! The total number of thickness grid points in the
                                 ! y-direction in the physical domain. With STATIC_MEMORY_
                                 ! this is set in SIS2_memory.h at compile time.
+REENTRANT_X = False
 GRID_FILE = "ocean_hgrid.nc"    !
                                 ! Name of the file from which to read horizontal grid data.
 INPUTDIR = "INPUT"              ! default = "."
