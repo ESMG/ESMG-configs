@@ -4,7 +4,8 @@
          restart_input_dir = 'INPUT',
          restart_output_dir = 'RESTART',
          parameter_filename = 'MOM_input',
-                              'MOM_override'
+                              'MOM_override',
+                              'MOM_layout'
 /
 
  &SIS_input_nml
@@ -13,15 +14,17 @@
         restart_input_dir = 'INPUT/',
         restart_output_dir = 'RESTART/',
         parameter_filename = 'SIS_input',
-                             'SIS_override' /
+                             'SIS_override',
+                             'SIS_layout'
+ /
 
  &atmos_model_nml
            layout = 0, 0
 /
 
  &coupler_nml
-            months = 0,
-            days   = 1,
+            months = 1,
+            days   = 0,
             hours  = 0,
             current_date = 1948,1,1,0,0,0,
             calendar = 'julian',
@@ -36,11 +39,10 @@
             concurrent = .false.     
             use_lag_fluxes=.false.    
             check_stocks = 0
-            do_chksum = .true.
+            do_chksum = .false.
 /
 
  &diag_manager_nml
-            conserve_water=.false.
             max_axes = 100,
             max_files = 63,
             max_num_axis_sets = 100,
