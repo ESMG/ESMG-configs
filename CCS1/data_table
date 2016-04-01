@@ -1,18 +1,18 @@
-"ATM" , "p_surf"        , "Pair"         , "./INPUT/Pair.1948-2007.nc"      , "bilinear" ,  1.0
-"ATM" , "p_bot"         , "Pair"         , "./INPUT/Pair.1948-2007.nc"      , "bilinear" ,  1.0
-"ATM" , "t_bot"         , "Tair"         , "./INPUT/Tair.1948-2007.nc"      , "bilinear" ,  1.0
-"ATM" , "sphum_bot"     , "Qair"         , "./INPUT/Qair.1948-2007.nc"      , "bilinear" ,  1.0
-"ATM" , "u_bot"         , "Uwind"        , "./INPUT/Uwind.1948-2007.nc"     , "bicubic",   1.0
-"ATM" , "v_bot"         , "Vwind"        , "./INPUT/Vwind.1948-2007.nc"     , "bicubic",   1.0
-"ATM" , "z_bot"         , ""             , ""                               , "bilinear" , 10.0
-"ATM" , "gust"          , ""             , ""                               , "bilinear" ,  1.0e-4
-"ICE" , "lw_flux_dn"    , "lwrad_down"   , "./INPUT/lwrad.1948-2007.nc"     , "bilinear" ,  1.0
-"ICE" , "sw_flux_vis_dir_dn", "swrad"    , "./INPUT/swrad.1948-2007.nc"     , "bilinear" ,  0.285
-"ICE" , "sw_flux_vis_dif_dn", "swrad"    , "./INPUT/swrad.1948-2007.nc"     , "bilinear" ,  0.285
-"ICE" , "sw_flux_nir_dir_dn", "swrad"    , "./INPUT/swrad.1948-2007.nc"     , "bilinear" ,  0.215
-"ICE" , "sw_flux_nir_dif_dn", "swrad"    , "./INPUT/swrad.1948-2007.nc"     , "bilinear" ,  0.215
-"ICE" , "lprec"         , "rain"         , "./INPUT/rain.1948-2007.nc"      , "bilinear" ,  0.9933
-"ICE" , "fprec"         , ""             , ""                               , "bilinear" ,  0.0
+"ATM" , "p_surf"        , "SLP"         , "./INPUT/slp.1948-2007.nomads.nc"          , "bilinear" ,  1.0
+"ATM" , "p_bot"         , "SLP"         , "./INPUT/slp.1948-2007.nomads.nc"          , "bilinear" ,  1.0
+"ATM" , "t_bot"         , "T_10_MOD"    , "./INPUT/t_10_mod.1948-2007.nomads.nc"     , "bilinear" ,  1.0
+"ATM" , "sphum_bot"     , "Q_10_MOD"    , "./INPUT/q_10_mod.1948-2007.nomads.nc"     , "bilinear" ,  1.0
+"ATM" , "u_bot"         , "U_10_MOD"    , "./INPUT/u_10_mod.1948-2007.nomads.nc"     , "bicubic",   1.0
+"ATM" , "v_bot"         , "V_10_MOD"    , "./INPUT/v_10_mod.1948-2007.nomads.nc"     , "bicubic",   1.0
+"ATM" , "z_bot"         , ""            , ""                             , "bilinear" , 10.0
+"ATM" , "gust"          , ""            , ""                             , "bilinear" ,  1.0e-4
+"ICE" , "lw_flux_dn"    , "LWDN_MOD"    , "./INPUT/ncar_rad.1948-2007.nomads.nc"     , "bilinear" ,  1.0
+"ICE" , "sw_flux_vis_dir_dn", "SWDN_MOD", "./INPUT/ncar_rad.1948-2007.nomads.nc"     , "bilinear" ,  0.285
+"ICE" , "sw_flux_vis_dif_dn", "SWDN_MOD", "./INPUT/ncar_rad.1948-2007.nomads.nc"     , "bilinear" ,  0.285
+"ICE" , "sw_flux_nir_dir_dn", "SWDN_MOD", "./INPUT/ncar_rad.1948-2007.nomads.nc"     , "bilinear" ,  0.215
+"ICE" , "sw_flux_nir_dif_dn", "SWDN_MOD", "./INPUT/ncar_rad.1948-2007.nomads.nc"     , "bilinear" ,  0.215
+"ICE" , "lprec"         , "RAIN"        , "./INPUT/ncar_precip.1948-2007.nomads.nc"  , "bilinear" ,  0.9933
+"ICE" , "fprec"         , "SNOW"        , "./INPUT/ncar_precip.1948-2007.nomads.nc"  , "bilinear" ,  0.9933
 "ICE" , "runoff"        , ""      , ""            , "none" ,  0.0
 "ICE" , "calving"       , ""            , ""                             , "none"  ,  0.0
 "ICE" , "dhdt"          , ""            , ""                             , "none"  , 80.0
