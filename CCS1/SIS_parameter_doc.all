@@ -60,7 +60,7 @@ ICE_BOUNDS_CHECK = True         !   [Boolean] default = True
                                 ! temperatures and thicknesses to ensure that they are
                                 ! sensible, and issue warnings if they are not.  This
                                 ! does not change answers, but can increase model run time.
-DEBUG = True                    !   [Boolean] default = False
+DEBUG = False                   !   [Boolean] default = False
                                 ! If true, write out verbose debugging data.
 ICE_SEES_ATMOS_WINDS = True     !   [Boolean] default = True
                                 ! If true, the sea ice is being given wind stresses with
@@ -87,7 +87,7 @@ VERBOSE = False                 !   [Boolean] default = False
                                 ! If true, write out verbose diagnostics.
 DO_ICEBERGS = False             !   [Boolean] default = False
                                 ! If true, call the iceberg module.
-ADD_DIURNAL_SW = True           !   [Boolean] default = False
+ADD_DIURNAL_SW = False          !   [Boolean] default = False
                                 ! If true, add a synthetic diurnal cycle to the shortwave
                                 ! radiation.
 DO_SUN_ANGLE_FOR_ALB = False    !   [Boolean] default = False
@@ -104,7 +104,7 @@ RESTARTFILE = "ice_model.res.nc" ! default = "ice_model.res.nc"
                                 ! The name of the restart file.
 TIMEUNIT = 8.64E+04             !   [s] default = 8.64E+04
                                 ! The time unit for ICE_STATS_INTERVAL.
-ICE_STATS_INTERVAL = 0.25       !   [days] default = 1.0
+ICE_STATS_INTERVAL = 10.0       !   [days] default = 1.0
                                 ! The interval in units of TIMEUNIT between writes of the
                                 ! globally summed ice statistics and conservation checks.
 NCAT_ICE = 1                    !   [nondim] default = 1
@@ -258,7 +258,7 @@ CFL_TRUNC_DYN_ITS = False       !   [Boolean] default = False
                                 ! If true, check the CFL number for every iteration of the
                                 ! rheology solver; otherwise only the final velocities that
                                 ! are used for transport are checked.
-DEBUG_REDUNDANT = True          !   [Boolean] default = True
+DEBUG_REDUNDANT = False         !   [Boolean] default = False
                                 ! If true, debug redundant data points.
 U_TRUNC_FILE = ""               ! default = ""
                                 ! The absolute path to the file where the accelerations
