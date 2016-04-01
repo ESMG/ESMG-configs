@@ -7,3 +7,14 @@ OM4_SIS2_cgrid_025
 "ocean_model", "SST",          "sst",              "ocean_daily", "all", "mean", "none",2
 "ocean_model", "SSS",          "sss",              "ocean_daily", "all", "mean", "none",2
 "ocean_model", "SSH",          "ssh",              "ocean_daily", "all", "mean", "none",2
+"ocean_model", "thetao",       "thetao",           "ocean_daily", "all", "mean", "none",2
+"ocean_model", "so",           "so",           "ocean_daily", "all", "mean", "none",2
+"ocean_model",  "rlntds",     "rlntds",           "ocean_daily", "all", "mean", "none",2  # longwave down  
+"ocean_model",  "hfls",       "hfls",             "ocean_daily", "all", "mean", "none",2  # latent heat for evap+melt 
+"ocean_model",  "hfss",       "hfss",             "ocean_daily", "all", "mean", "none",2  # sensible from air-sea and ice-sea 
+"ocean_model",  "rsntds",     "rsntds",           "ocean_daily", "all", "mean", "none",2  # shortwave 
+"ocean_model",  "rsdo",       "rsdo",             "ocean_daily", "all", "mean", "none",2  # penetratie shortwave 
+"ocean_model",  "hfds",       "hfds",             "ocean_daily", "all", "mean", "none",2  # total heat entering ocean surface
+"ocean_model",  "ePBL_h_ML",  "ePBL_h_ML",        "ocean_daily", "all", "mean", "none",2  # boundary layer thickness
+"ocean_model",  "ustar",      "ustar",            "ocean_daily", "all", "mean", "none",2  # friction vel
+"ocean_model",  "Kd_interface",  "Kd_interface",  "ocean_daily", "all", "mean", "none",2  # friction vel

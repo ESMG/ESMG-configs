@@ -1,5 +1,5 @@
 ! This file was written by the model and records the non-default parameters used at run-time.
-SPECIFIED_ICE = True            !   [Boolean] default = False
+SPECIFIED_ICE = False           !   [Boolean] default = False
                                 ! If true, the ice is specified and there is no dynamics.
 CGRID_ICE_DYNAMICS = True       !   [Boolean] default = False
                                 ! If true, use a C-grid discretization of the sea-ice
@@ -22,6 +22,7 @@ ICE_BULK_SALINITY = 0.0         !   [g/kg] default = 4.0
 ICE_RELATIVE_SALINITY = 0.1     !   [nondim] default = 0.0
                                 ! The initial salinity of sea ice as a fraction of the
                                 ! salinity of the seawater from which it formed.
+ADD_DIURNAL_SW = True           !   [Boolean] default = False
 DO_ICEBERGS = False              !   [Boolean] default = False
                                 ! If true, call the iceberg module.
 ICE_STATS_INTERVAL = 0.25       !   [days] default = 1.0

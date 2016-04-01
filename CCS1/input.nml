@@ -23,7 +23,7 @@
 /
 
  &coupler_nml
-            months = 1,
+            months = 2,
             days   = 0,
             hours  = 0,
             current_date = 1948,1,1,0,0,0,

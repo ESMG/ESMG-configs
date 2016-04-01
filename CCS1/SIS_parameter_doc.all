@@ -1,5 +1,5 @@
 ! This file was written by the model and records all non-layout parameters used at run-time.
-SPECIFIED_ICE = True            !   [Boolean] default = False
+SPECIFIED_ICE = False           !   [Boolean] default = False
                                 ! If true, the ice is specified and there is no dynamics.
 CGRID_ICE_DYNAMICS = True       !   [Boolean] default = False
                                 ! If true, use a C-grid discretization of the sea-ice
@@ -87,7 +87,7 @@ VERBOSE = False                 !   [Boolean] default = False
                                 ! If true, write out verbose diagnostics.
 DO_ICEBERGS = False             !   [Boolean] default = False
                                 ! If true, call the iceberg module.
-ADD_DIURNAL_SW = False          !   [Boolean] default = False
+ADD_DIURNAL_SW = True           !   [Boolean] default = False
                                 ! If true, add a synthetic diurnal cycle to the shortwave
                                 ! radiation.
 DO_SUN_ANGLE_FOR_ALB = False    !   [Boolean] default = False
@@ -107,7 +107,7 @@ TIMEUNIT = 8.64E+04             !   [s] default = 8.64E+04
 ICE_STATS_INTERVAL = 10.0       !   [days] default = 1.0
                                 ! The interval in units of TIMEUNIT between writes of the
                                 ! globally summed ice statistics and conservation checks.
-NCAT_ICE = 1                    !   [nondim] default = 1
+NCAT_ICE = 5                    !   [nondim] default = 5
                                 ! The number of sea ice thickness categories.
 NK_ICE = 4                      !   [nondim] default = 4
                                 ! The number of layers within the sea ice.
@@ -213,9 +213,10 @@ ICE_DELTA_EDD_R_POND = 1.0      !   [perhaps nondimensional?] default = 0.0
                                 ! A dreadfully documented tuning parameter for the radiative
                                 ! propeties of meltwater ponds on sea ice with the delta-Eddington
                                 ! radiative transfer calculation.
-NSTEPS_DYN = 0                  !
-                                ! The number of iterations in the EVP dynamics for each
-                                ! slow time step.  With SPECIFIED_ICE this is always 0.
+DT_RHEOLOGY = 50.0              !   [seconds] default = -1.0
+                                ! The sub-cycling time step for iterating the rheology
+                                ! and ice momentum equations. If DT_RHEOLOGY is negative,
+                                ! the time step is set via NSTEPS_DYN.
 ICE_TDAMP_ELASTIC = -0.2        !   [s or nondim] default = -0.2
                                 ! The damping timescale associated with the elastic terms
                                 ! in the sea-ice dynamics equations (if positive) or the
@@ -273,9 +274,9 @@ V_TRUNC_FILE = ""               ! default = ""
 MAX_TRUNC_FILE_SIZE_PER_PE = 50 ! default = 50
                                 ! The maximum number of colums of truncations that any PE
                                 ! will write out during a run.
-NSTEPS_ADV = 0                  !
+NSTEPS_ADV = 1                  ! default = 1
                                 ! The number of advective iterations for each slow time
-                                ! step.  With SPECIFIED_ICE this is always 0.
+                                ! step.
 ICE_CHANNEL_VISCOSITY = 0.0     !   [m2 s-1] default = 0.0
                                 ! A viscosity used in one-cell wide channels to
                                 ! parameterize transport, especially with B-grid sea ice

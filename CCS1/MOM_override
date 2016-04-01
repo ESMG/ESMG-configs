@@ -4,4 +4,5 @@ SAVE_INITIAL_CONDS = False
 #override RESOLN_SCALED_KHTR = True
 #override KH_RES_FN_POWER = 100
 #override VISC_RES_FN_POWER = 100
+#override MIN_THICKNESS = 1.E-6           !   [m] default = 0.001
 DEBUG = False
