@@ -1,0 +1,6 @@
+# Other coupled components might optionally be placed here
+AM2
+LM3
+SIS
+atmos_param
+ice_param
