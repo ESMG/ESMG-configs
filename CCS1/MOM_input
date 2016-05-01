@@ -581,6 +581,19 @@ MAXTRUNC = 100000               !   [truncations save_interval-1] default = 0
 
 OCEAN_SURFACE_STAGGER = "C"
 
+! === Sponge options ===
+SPONGE = True                   !   [Boolean] default = False
+                                ! If true, sponges may be applied anywhere in the domain.
+                                ! The exact location and properties of those sponges are
+                                ! specified via SPONGE_CONFIG.
+SPONGE_CONFIG = file
+SPONGE_DAMPING_FILE = "ocean_sponge.nc" ! Name of file containing sponge
+                                ! damping rates.
+SPONGE_STATE_FILE = "WOA13-CM2.1_monthly.nc" ! Name of the file with the state
+                                ! to damp towards.
+SPONGE_PTEMP_VAR = "temp"
+SPONGE_SALT_VAR = "salt"
+
 ! === OBC options ===
 APPLY_OBC_U_FLATHER_EAST = False !   [Boolean] default = False
                                 ! Apply a Flather open boundary condition on the eastern
@@ -594,10 +607,10 @@ APPLY_OBC_V_FLATHER_NORTH = False !   [Boolean] default = False
 APPLY_OBC_V_FLATHER_SOUTH = False !   [Boolean] default = False
                                 ! Apply a Flather open boundary condition on the southern
                                 ! side of the global domain
-APPLY_OBC_U = False              !   [Boolean] default = False
+APPLY_OBC_U = False             !   [Boolean] default = False
                                 ! If true, open boundary conditions may be set at some
                                 ! u-points, with the configuration controlled by OBC_CONFIG
-APPLY_OBC_V = False              !   [Boolean] default = False
+APPLY_OBC_V = False             !   [Boolean] default = False
                                 ! If true, open boundary conditions may be set at some
                                 ! v-points, with the configuration controlled by OBC_CONFIG
 OBC_CONFIG = CCS1
