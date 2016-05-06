@@ -15,9 +15,6 @@ NJGLOBAL = 480                  !
                                 ! y-direction in the physical domain. With STATIC_MEMORY_
                                 ! this is set in MOM_memory.h at compile time.
 
-! === module MOM_hor_index ===
-! Sets the horizontal array index types.
-
 ! === module MOM_grid ===
 ! Parameters providing information about the lateral grid.
 G_EARTH = 9.8                   !   [m s-2] default = 9.8
@@ -31,6 +28,9 @@ BATHYMETRY_AT_VEL = False       !   [Boolean] default = False
                                 ! If true, there are separate values for the basin depths
                                 ! at velocity points.  Otherwise the effects of of
                                 ! topography are entirely determined from thickness points.
+
+! === module MOM_hor_index ===
+! Sets the horizontal array index types.
 
 ! === module MOM_verticalGrid ===
 ! Parameters providing information about the vertical grid.
@@ -165,6 +165,11 @@ SAVE_INITIAL_CONDS = False      !   [Boolean] default = False
                                 ! by IC_OUTPUT_FILE.
 IC_OUTPUT_FILE = "MOM_IC"       ! default = "MOM_IC"
                                 ! The file into which to write the initial conditions.
+WRITE_GEOM = 2                  ! default = 1
+                                ! If =0, never write the geometry and vertical grid files.
+                                ! If =1, write the geometry and vertical grid files only for
+                                ! a new simulation. If =2, always write the geometry and
+                                ! vertical grid files. Other values are invalid.
 
 ! === module MOM_tracer_registry ===
 EQN_OF_STATE = "WRIGHT"         ! default = "WRIGHT"
@@ -290,29 +295,7 @@ MINIMUM_DEPTH = 9.5             !   [m] default = 0.0
                                 ! If MASKING_DEPTH is unspecified, then anything shallower than
                                 ! MINIMUM_DEPTH is assumed to be land and all fluxes are masked out.
                                 ! If MASKING_DEPTH is specified, then all depths shallower than
-                                ! MINIMUM_DEPTH but depper than MASKING_DEPTH are rounded to MINIMUM_DEPTH.
-COORD_CONFIG = "file"           !
-                                ! This specifies how layers are to be defined:
-                                !     file - read coordinate information from the file
-                                !       specified by (COORD_FILE).
-                                !     linear - linear based on interfaces not layers
-                                !     layer_ref - linear based on layer densities
-                                !     ts_ref - use reference temperature and salinity
-                                !     ts_range - use range of temperature and salinity
-                                !       (T_REF and S_REF) to determine surface density
-                                !       and GINT calculate internal densities.
-                                !     gprime - use reference density (RHO_0) for surface
-                                !       density and GINT calculate internal densities.
-                                !     ts_profile - use temperature and salinity profiles
-                                !       (read from COORD_FILE) to set layer densities.
-                                !     USER - call a user modified routine.
-GFS = 9.8                       !   [m s-2] default = 9.8
-                                ! The reduced gravity at the free surface.
-COORD_FILE = "layer_coord.nc"   !
-                                ! The file from which the coordinate densities are read.
-COORD_VAR = "Layer"             ! default = "Layer"
-                                ! The variable in COORD_FILE that is to be used for the
-                                ! coordinate densities.
+                                ! MINIMUM_DEPTH but deeper than MASKING_DEPTH are rounded to MINIMUM_DEPTH.
 MASKING_DEPTH = 0.0             !   [m] default = -9999.0
                                 ! The depth below which to mask points as land points, for which all
                                 ! fluxes are zeroed out. MASKING_DEPTH is ignored if negative.
@@ -347,11 +330,28 @@ ROTATION = "2omegasinlat"       ! default = "2omegasinlat"
                                 !     USER - call a user modified routine.
 OMEGA = 7.2921E-05              !   [s-1] default = 7.2921E-05
                                 ! The rotation rate of the earth.
-WRITE_GEOM = 2                  ! default = 1
-                                ! If =0, never write the geometry and vertical grid files.
-                                ! If =1, write the geometry and vertical grid files only for
-                                ! a new simulation. If =2, always write the geometry and
-                                ! vertical grid files. Other values are invalid.
+COORD_CONFIG = "file"           !
+                                ! This specifies how layers are to be defined:
+                                !     file - read coordinate information from the file
+                                !       specified by (COORD_FILE).
+                                !     linear - linear based on interfaces not layers
+                                !     layer_ref - linear based on layer densities
+                                !     ts_ref - use reference temperature and salinity
+                                !     ts_range - use range of temperature and salinity
+                                !       (T_REF and S_REF) to determine surface density
+                                !       and GINT calculate internal densities.
+                                !     gprime - use reference density (RHO_0) for surface
+                                !       density and GINT calculate internal densities.
+                                !     ts_profile - use temperature and salinity profiles
+                                !       (read from COORD_FILE) to set layer densities.
+                                !     USER - call a user modified routine.
+GFS = 9.8                       !   [m s-2] default = 9.8
+                                ! The reduced gravity at the free surface.
+COORD_FILE = "layer_coord.nc"   !
+                                ! The file from which the coordinate densities are read.
+COORD_VAR = "Layer"             ! default = "Layer"
+                                ! The variable in COORD_FILE that is to be used for the
+                                ! coordinate densities.
 BOUNDARY_EXTRAPOLATION_PRESSURE = True !   [Boolean] default = True
                                 ! When defined, the reconstruction is extrapolated
                                 ! within boundary cells rather than assume PCM for the.
@@ -540,6 +540,8 @@ DIAG_REMAP_Z_GRID_DEF = ""      ! default = ""
                                 !                           the INPUTDIR, <variable> is
                                 !                           the name of the variable that
                                 !                           contains interface positions.
+                                !  UNIFORM                - vertical grid is uniform
+                                !                           between surface and max depth.
 
 ! === module MOM_MEKE ===
 USE_MEKE = True                 !   [Boolean] default = False
@@ -770,9 +772,12 @@ HTBL_SHELF = 10.0               !   [m] default = 10.0
                                 ! The thickness over which near-surface velocities are
                                 ! averaged for the drag law under an ice shelf.  By
                                 ! default this is the same as HBBL
-KV_BBL_MIN = 0.0                !   [m2 s-1] default = 0.0
+KV = 1.0E-04                    !   [m2 s-1]
+                                ! The background kinematic viscosity in the interior.
+                                ! The molecular value, ~1e-6 m2 s-1, may be used.
+KV_BBL_MIN = 1.0E-04            !   [m2 s-1] default = 1.0E-04
                                 ! The minimum viscosities in the bottom boundary layer.
-KV_TBL_MIN = 0.0                !   [m2 s-1] default = 0.0
+KV_TBL_MIN = 1.0E-04            !   [m2 s-1] default = 1.0E-04
                                 ! The minimum viscosities in the top boundary layer.
 SMAG_CONST_CHANNEL = 0.15       !   [nondim] default = 0.15
                                 ! The nondimensional Laplacian Smagorinsky constant used
@@ -986,9 +991,6 @@ HMIX_FIXED = 0.5                !   [m]
                                 ! The prescribed depth over which the near-surface
                                 ! viscosity and diffusivity are elevated when the bulk
                                 ! mixed layer is not used.
-KV = 1.0E-04                    !   [m2 s-1]
-                                ! The background kinematic viscosity in the interior.
-                                ! The molecular value, ~1e-6 m2 s-1, may be used.
 KVML = 1.0E-04                  !   [m2 s-1] default = 1.0E-04
                                 ! The kinematic viscosity in the mixed layer.  A typical
                                 ! value is ~1e-2 m2 s-1. KVML is not used if
