@@ -21,11 +21,10 @@ MAKEFLAGS += --jobs=$(shell grep '^processor' /proc/cpuinfo | wc -l)
 FPPFLAGS := 
 
 FFLAGS :=-fcray-pointer -fdefault-double-8 -fdefault-real-8 -Waliasing -ffree-line-length-none -fno-range-check 
-FFLAGS += -I/usr/mpi/gcc/openmpi-1.8.5/include -I/usr/include
+FFLAGS += -I/usr/include
 FFLAGS += -I$(shell nf-config --includedir)
-FFLAGS += -DGFORTRAN
-#FFLAGS += -I/usr/mpi/gcc/openmpi-1.8.5/include
-FFLAGS += -I/t1/software/libs/openmpi/1.8.5/gcc/4.8.2/include
+FFLAGS += -DGFORTRAN -Duse_netCDF3
+FFLAGS += 
 #FFLAGS += -static
 FFLAGS_OPT = -O3
 FFLAGS_REPRO = -O2 -fbounds-check 
@@ -35,8 +34,7 @@ FFLAGS_VERBOSE =
 
 CFLAGS := -D__IFC 
 CFLAGS += -I$(shell nc-config --includedir)
-CFLAGS += -I/usr/mpi/gcc/openmpi-1.8.5/include
-CFLAGS += -I/t1/software/libs/openmpi/1.8.5/gcc/4.8.2/include
+CFLAGS += 
 CFLAGS_OPT = -O2
 CFLAGS_OPENMP = -fopenmp
 CFLAGS_DEBUG = -O0 -g 
@@ -48,7 +46,7 @@ CFLAGS_TEST = -O2
 
 LDFLAGS :=
 LDFLAGS += $(shell nf-config --flibs)
-LDFLAGS += -L/t1/software/libs/openmpi/1.8.5/gcc/4.8.2/lib -lmpi
+LDFLAGS += 
 
 LDFLAGS_OPENMP := -fopenmp
 LDFLAGS_VERBOSE :=
@@ -86,9 +84,8 @@ ifeq ($(NETCDF),3)
   endif
 endif
 
-LIBS := $(shell nf-config --flibs)
-#LIBS += -L/usr/mpi/gcc/openmpi-1.8.5/lib -lmpi
-LIBS += -L/t1/software/libs/openmpi/1.8.5/gcc/4.8.2/lib -lmpi
+LIBS := $(shell nc-config --flibs)
+LIBS += 
 
 #---------------------------------------------------------------------------
 # you should never need to change any lines below.

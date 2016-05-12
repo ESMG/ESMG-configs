@@ -8,16 +8,14 @@ MOM6_rundir=/t1/scratch/raphael/tmpdir_MOM6-CCS1
 
 . /usr/share/Modules/init/bash
 
-module load gcc/4.8.2 
-module load netcdf/4.3.0-gcc4.8.2 
-module load openmpi/1.8.5_gcc4.8.2
 
-#module load netcdf/4.1.2_gcc4.4.7
-#module load openmpi/1.8.5_gcc4.4.7
+module load netcdf/4.3.0-gcc4.4.7
+module load openmpi/1.8.5_gcc4.4.7
 
 cd $MOM6_rundir
 
 # Create blanl env file
+rm -Rf $MOM6_rundir/build/gnu/shared/repro/
 mkdir -p build/gnu/shared/repro/
 echo > build/gnu/env
 
