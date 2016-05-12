@@ -582,7 +582,7 @@ MAXTRUNC = 100000               !   [truncations save_interval-1] default = 0
 OCEAN_SURFACE_STAGGER = "C"
 
 ! === Sponge options ===
-SPONGE = True                   !   [Boolean] default = False
+SPONGE = False                   !   [Boolean] default = False
                                 ! If true, sponges may be applied anywhere in the domain.
                                 ! The exact location and properties of those sponges are
                                 ! specified via SPONGE_CONFIG.
@@ -598,13 +598,13 @@ SPONGE_SALT_VAR = "salt"
 APPLY_OBC_U_FLATHER_EAST = False !   [Boolean] default = False
                                 ! Apply a Flather open boundary condition on the eastern
                                 ! side of the global domain
-APPLY_OBC_U_FLATHER_WEST = False !   [Boolean] default = False
+APPLY_OBC_U_FLATHER_WEST = True !   [Boolean] default = False
                                 ! Apply a Flather open boundary condition on the western
                                 ! side of the global domain
-APPLY_OBC_V_FLATHER_NORTH = False !   [Boolean] default = False
+APPLY_OBC_V_FLATHER_NORTH = True !   [Boolean] default = False
                                 ! Apply a Flather open boundary condition on the northern
                                 ! side of the global domain
-APPLY_OBC_V_FLATHER_SOUTH = False !   [Boolean] default = False
+APPLY_OBC_V_FLATHER_SOUTH = True !   [Boolean] default = False
                                 ! Apply a Flather open boundary condition on the southern
                                 ! side of the global domain
 APPLY_OBC_U = False             !   [Boolean] default = False
