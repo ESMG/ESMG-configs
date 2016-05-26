@@ -273,6 +273,8 @@ TOPO_CONFIG = "file"            !
                                 !     benchmark - use the benchmark test case topography.
                                 !     DOME - use a slope and channel configuration for the
                                 !       DOME sill-overflow test case.
+                                !     ISOMIP - use a slope and channel configuration for the
+                                !       ISOMIP test case.
                                 !     DOME2D - use a shelf and slope configuration for the
                                 !       DOME2D gravity current/overflow test case.
                                 !     seamount - Gaussian bump for spontaneous motion test case.
@@ -367,6 +369,10 @@ PRESSURE_RECONSTRUCTION_SCHEME = 1 ! default = 1
                                 ! Type of vertical reconstruction of T/S to use in integrals
                                 ! within the FV pressure gradient calculation. 1: PLM reconstruction.
                                 !  2: PPM reconstruction.
+REMAP_UV_USING_OLD_ALG = True   !   [Boolean] default = True
+                                ! If true, uses the old remapping-via-a-delta-z method for
+                                ! remapping u and v. If false, uses the new method that remaps
+                                ! between grids described by an old and new thickness.
 REGRIDDING_COORDINATE_MODE = "Z*" ! default = "LAYER"
                                 ! Coordinate mode for vertical regridding.
                                 ! Choose among the following possibilities:
@@ -504,6 +510,15 @@ Z_INIT_ALE_REMAPPING = True     !   [Boolean] default = False
 Z_INIT_REMAPPING_SCHEME = "PPM_IH4" ! default = "PPM_IH4"
                                 ! The remapping scheme to use if using Z_INIT_ALE_REMAPPING
                                 ! is True.
+Z_INIT_REMAP_GENERAL = False    !   [Boolean] default = False
+                                ! If false, only initializes to z* coordinates.
+                                ! If true, allows initialization directly to general coordinates.
+Z_INIT_REMAP_FULL_COLUMN = False !   [Boolean] default = False
+                                ! If false, only reconstructs profiles for valid data points.
+                                ! If true, inserts vanished layers below the valid data.
+Z_INIT_REMAP_OLD_ALG = True     !   [Boolean] default = True
+                                ! If false, uses the preferred remapping algorithm for initialization.
+                                ! If true, use an older, less robust algorithm for remapping.
 VELOCITY_CONFIG = "zero"        ! default = "zero"
                                 ! A string that determines how the initial velocities
                                 ! are specified for a new run:
@@ -522,6 +537,10 @@ CONVERT_THICKNESS_UNITS = False !   [Boolean] default = False
 DEPRESS_INITIAL_SURFACE = False !   [Boolean] default = False
                                 ! If true,  depress the initial surface to avoid huge
                                 ! tsunamis when a large surface pressure is applied.
+TRIM_IC_FOR_P_SURF = False      !   [Boolean] default = False
+                                ! If true, cuts way the top of the column for initial conditions
+                                ! at the depth where the hydrostatic presure matches the imposed
+                                ! surface pressure which is read from file.
 SPONGE = False                  !   [Boolean] default = False
                                 ! If true, sponges may be applied anywhere in the domain.
                                 ! The exact location and properties of those sponges are
@@ -540,6 +559,8 @@ DIAG_REMAP_Z_GRID_DEF = ""      ! default = ""
                                 !                           the INPUTDIR, <variable> is
                                 !                           the name of the variable that
                                 !                           contains interface positions.
+                                !  UNIFORM                - vertical grid is uniform
+                                !                           between surface and max depth.
 
 ! === module MOM_MEKE ===
 USE_MEKE = True                 !   [Boolean] default = False
@@ -982,6 +1003,11 @@ V_TRUNC_FILE = "V_velocity_truncations" ! default = ""
 HARMONIC_VISC = False           !   [Boolean] default = False
                                 ! If true, use the harmonic mean thicknesses for
                                 ! calculating the vertical viscosity.
+HARMONIC_BL_SCALE = 0.0         !   [nondim] default = 0.0
+                                ! A scale to determine when water is in the boundary
+                                ! layers based solely on harmonic mean thicknesses for
+                                ! the purpose of determining the extent to which the
+                                ! thicknesses used in the viscosities are upwinded.
 HMIX_FIXED = 0.5                !   [m]
                                 ! The prescribed depth over which the near-surface
                                 ! viscosity and diffusivity are elevated when the bulk
@@ -1558,6 +1584,8 @@ RESTORE_SALINITY = False        !   [Boolean] default = False
                                 ! If true, the coupled driver will add a globally-balanced
                                 ! fresh-water flux that drives sea-surface salinity
                                 ! toward specified values.
+ICE_SHELF = False               !   [Boolean] default = False
+                                ! If true, enables the ice shelf model.
 
 ! === module MOM_surface_forcing ===
 LATENT_HEAT_FUSION = 3.34E+05   !   [J/kg] default = 3.34E+05
@@ -1595,6 +1623,10 @@ WIND_STAGGER = "C"              ! default = "C"
                                 ! A case-insensitive character string to indicate the
                                 ! staggering of the input wind stress field.  Valid
                                 ! values are 'A', 'B', or 'C'.
+WIND_STRESS_MULTIPLIER = 1.0    !   [not defined] default = 1.0
+                                ! A factor multiplying the wind-stress given to the ocean by the
+                                ! coupler. This is used for testing and should be =1.0 for any
+                                ! production runs.
 CD_TIDES = 0.0018               !   [nondim] default = 1.0E-04
                                 ! The drag coefficient that applies to the tides.
 READ_TIDEAMP = False            !   [Boolean] default = False
