@@ -44,10 +44,16 @@ GRID_FILE = "ocean_hgrid.nc"    !
                                 ! Name of the file from which to read horizontal grid data.
 INPUTDIR = "INPUT"              ! default = "."
                                 ! The directory in which input files are found.
-!MAXIMUM_DEPTH = 9682.232421875 !   [m]
-                                ! The (diagnosed) maximum depth of the ocean.
 OMEGA = 7.292E-05               !   [s-1] default = 7.2921E-05
                                 ! The rotation rate of the earth.
+GRID_CONFIG = "mosaic"          !
+                                ! The method for defining the horizontal grid.  Valid
+                                ! entries include:
+                                !    file - read the grid from GRID_FILE
+                                !    mosaic - read the grid from a mosaic grid file
+                                !    cartesian - a Cartesian grid
+                                !    spherical - a spherical grid
+                                !    mercator  - a Mercator grid
 ICE_DELTA_EDD_R_ICE = 1.0       !   [perhaps nondimensional?] default = 0.0
                                 ! A dreadfully documented tuning parameter for the radiative
                                 ! propeties of sea ice with the delta-Eddington radiative
@@ -108,12 +114,3 @@ DOCUMENT_FILE = "SIS_parameter_doc" ! default = "MOM_parameter_doc"
                                 ! The basename for files where run-time parameters, their
                                 ! settings, units and defaults are documented. Blank will
                                 ! disable all parameter documentation.
-! === module SIS_grid_init ===
-GRID_CONFIG = "mosaic"          !
-                                ! A character string that determines the method for
-                                ! defining the horizontal grid.  Current options are:
-                                !     mosaic - read the grid from a mosaic (supergrid)
-                                !              file set by GRID_FILE.
-                                !     cartesian - use a (flat) Cartesian grid.
-                                !     spherical - use a simple spherical grid.
-                                !     mercator - use a Mercator spherical grid.
