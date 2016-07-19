@@ -52,12 +52,12 @@ DEBUG = False                   !   [Boolean] default = False
 DEBUG_TRUNCATIONS = False       !   [Boolean] default = False
                                 ! If true, calculate all diagnostics that are useful for
                                 ! debugging truncations.
-DT = 20.0                       !   [s]
+DT = 100.0                      !   [s]
                                 ! The (baroclinic) dynamics time step.  The time-step that
                                 ! is actually used will be an integer fraction of the
                                 ! forcing time-step (DT_FORCING in ocean-only mode or the
                                 ! coupling timestep in coupled mode.)
-DT_THERM = 3600.0               !   [s] default = 20.0
+DT_THERM = 3600.0               !   [s] default = 100.0
                                 ! The thermodynamic and tracer advection time step.
                                 ! Ideally DT_THERM should be an integer multiple of DT
                                 ! and less than the forcing or coupling time-step, unless
@@ -994,7 +994,7 @@ CPU_TIME_FILE = "CPU_stats"     ! default = "CPU_stats"
                                 ! The file into which CPU time is written.
 
 ! === module MOM_main (MOM_driver) ===
-DT_FORCING = 3600.0             !   [s] default = 20.0
+DT_FORCING = 3600.0             !   [s] default = 100.0
                                 ! The time step for changing forcing, coupling with other
                                 ! components, or potentially writing certain diagnostics.
                                 ! The default value is given by DT.

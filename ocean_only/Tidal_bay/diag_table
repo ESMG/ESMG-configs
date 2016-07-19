@@ -13,8 +13,6 @@
 "ocean_model","v","v","prog","all",.false.,"none",2
 "ocean_model","h","h","prog","all",.false.,"none",1
 "ocean_model","e","e","prog","all",.false.,"none",2
-"ocean_model","temp","temp","prog","all",.false.,"none",2
-#"ocean_model","salt","salt","prog","all",.false.,"none",2
 
 #"ocean_model","u","u","ave_prog_%4yr_%3dy","all",.true.,"none",2
 #"ocean_model","v","v","ave_prog_%4yr_%3dy","all",.true.,"none",2
@@ -39,17 +37,6 @@
 #"ocean_model","vhGM_rho","vhGM_rho","cont_%4yr_%3dy","all",.true.,"none",2
 
 #
-# Tracer Fluxes:
-#==================
-#"ocean_model","T_adx",  "T_adx",  "ave_prog_%4yr_%3dy","all",.true.,"none",2
-#"ocean_model","T_ady",  "T_ady",  "ave_prog_%4yr_%3dy","all",.true.,"none",2
-#"ocean_model","T_diffx","T_diffx","ave_prog_%4yr_%3dy","all",.true.,"none",2
-#"ocean_model","T_diffy","T_diffy","ave_prog_%4yr_%3dy","all",.true.,"none",2
-#"ocean_model","S_adx",  "S_adx",  "ave_prog_%4yr_%3dy","all",.true.,"none",2
-#"ocean_model","S_ady",  "S_ady",  "ave_prog_%4yr_%3dy","all",.true.,"none",2
-#"ocean_model","S_diffx","S_diffx","ave_prog_%4yr_%3dy","all",.true.,"none",2
-#"ocean_model","S_diffy","S_diffy","ave_prog_%4yr_%3dy","all",.true.,"none",2
-
 #=============================================================================================
 #
 #===- This file can be used with diag_manager/v2.0a (or higher) ====
