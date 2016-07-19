@@ -8,7 +8,7 @@
 
  &ocean_solo_nml
          months = 0
-         days = 5 /
+         days = 3 /
 
  &diag_manager_nml
  /

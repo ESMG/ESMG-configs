@@ -91,7 +91,7 @@ ADIABATIC = True                !   [Boolean] default = False
                                 ! true. This assumes that KD = KDML = 0.0 and that
                                 ! there is no buoyancy forcing, but makes the model
                                 ! faster by eliminating subroutine calls.
-DT = 100.0                      !   [s]
+DT = 20.0                       !   [s]
                                 ! The (baroclinic) dynamics time step.  The time-step that
                                 ! is actually used will be an integer fraction of the
                                 ! forcing time-step (DT_FORCING in ocean-only mode or the
@@ -160,9 +160,9 @@ AXIS_UNITS = "k"                ! default = "degrees"
                                 !     k - kilometers
 SOUTHLAT = 0.0                  !   [k]
                                 ! The southern latitude of the domain.
-LENLAT = 204.0                  !   [k]
+LENLAT = 84.0                   !   [k]
                                 ! The latitudinal length of the domain.
-LENLON = 84.0                   !   [k]
+LENLON = 204.0                  !   [k]
                                 ! The longitudinal length of the domain.
 TOPO_CONFIG = "flat"            !
                                 ! This specifies how bathymetry is specified:
@@ -369,7 +369,7 @@ DATE_STAMPED_STDOUT = False     !   [Boolean] default = True
                                 ! If true, use dates (not times) in messages to stdout
 
 ! === module MOM_main (MOM_driver) ===
-DT_FORCING = 3600.0             !   [s] default = 900.0
+!DT_FORCING = 3600.0             !   [s] default = 900.0
                                 ! The time step for changing forcing, coupling with other
                                 ! components, or potentially writing certain diagnostics.
                                 ! The default value is given by DT.

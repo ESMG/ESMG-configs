@@ -9,12 +9,12 @@ ADIABATIC = True                !   [Boolean] default = False
                                 ! true. This assumes that KD = KDML = 0.0 and that
                                 ! there is no buoyancy forcing, but makes the model
                                 ! faster by eliminating subroutine calls.
-DT = 100.0                      !   [s]
+DT = 20.0                       !   [s]
                                 ! The (baroclinic) dynamics time step.  The time-step that
                                 ! is actually used will be an integer fraction of the
                                 ! forcing time-step (DT_FORCING in ocean-only mode or the
                                 ! coupling timestep in coupled mode.)
-DT_THERM = 3600.0               !   [s] default = 100.0
+DT_THERM = 3600.0               !   [s] default = 20.0
                                 ! The thermodynamic and tracer advection time step.
                                 ! Ideally DT_THERM should be an integer multiple of DT
                                 ! and less than the forcing or coupling time-step, unless
@@ -79,9 +79,9 @@ AXIS_UNITS = "k"                ! default = "degrees"
 SOUTHLAT = 0.0                  !   [k]
                                 ! The southern latitude of the domain or the equivalent
                                 ! starting value for the y-axis.
-LENLAT = 204.0                  !   [k]
+LENLAT = 84.0                   !   [k]
                                 ! The latitudinal or y-direction length of the domain.
-LENLON = 84.0                   !   [k]
+LENLON = 204.0                  !   [k]
                                 ! The longitudinal or x-direction length of the domain.
 TOPO_CONFIG = "flat"            !
                                 ! This specifies how bathymetry is specified:
@@ -339,10 +339,6 @@ DEPTH_LIST_MIN_INC = 1.0E-06    !   [m] default = 1.0E-10
 ! === module MOM_write_cputime ===
 
 ! === module MOM_main (MOM_driver) ===
-DT_FORCING = 3600.0             !   [s] default = 100.0
-                                ! The time step for changing forcing, coupling with other
-                                ! components, or potentially writing certain diagnostics.
-                                ! The default value is given by DT.
 DAYMAX = 1.0                    !   [days]
                                 ! The final time of the whole simulation, in units of
                                 ! TIMEUNIT seconds.  This also sets the potential end
@@ -352,7 +348,7 @@ RESTINT = 365.0                 !   [days] default = 0.0
                                 ! The interval between saves of the restart file in units
                                 ! of TIMEUNIT.  Use 0 (the default) to not save
                                 ! incremental restart files at all.
-ENERGYSAVEDAYS = 0.25           !   [days] default = 0.0416666666666667
+ENERGYSAVEDAYS = 0.25           !   [days] default = 2.314814814814815E-04
                                 ! The interval in units of TIMEUNIT between saves of the
                                 ! energies of the run and other globally summed diagnostics.
 
