@@ -112,7 +112,7 @@ MAXIMUM_DEPTH = 35.0            !   [m]
 ! Controls where open boundaries are located, what kind of boundary condition to impose, and what data to apply, if any.
 OBC_NUMBER_OF_SEGMENTS = 1      ! default = 0
                                 ! The number of open boundary segments.
-OBC_SEGMENT_001 = "I=102,J=1:42,FLATHER" !
+OBC_SEGMENT_001 = "I=N,J=1:N,FLATHER" !
                                 ! Documentation needs to be dynamic?????
 
 ! === module MOM_coord_initialization ===
