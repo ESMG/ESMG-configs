@@ -118,6 +118,12 @@ OBC_SEGMENT_002 = "I=0,J=N:1,SIMPLE" !
 MASKING_DEPTH = 0.5             !   [m] default = -9999.0
                                 ! The depth below which to mask points as land points, for which all
                                 ! fluxes are zeroed out. MASKING_DEPTH is ignored if negative.
+ROTATION = "betaplane"          ! default = "2omegasinlat"
+                                ! This specifies how the Coriolis parameter is specified:
+                                !     2omegasinlat - Use twice the planetary rotation rate
+                                !       times the sine of latitude.
+                                !     betaplane - Use a beta-plane or f-plane.
+                                !     USER - call a user modified routine.
 
 ! === module MOM_coord_initialization ===
 COORD_CONFIG = "linear"         !

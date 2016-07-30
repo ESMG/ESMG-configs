@@ -267,14 +267,18 @@ CHANNEL_CONFIG = "none"         ! default = "none"
                                 !       test case.
                                 !     file - Read open face widths everywhere from a
                                 !       NetCDF file on the model grid.
-ROTATION = "2omegasinlat"       ! default = "2omegasinlat"
+ROTATION = "betaplane"          ! default = "2omegasinlat"
                                 ! This specifies how the Coriolis parameter is specified:
                                 !     2omegasinlat - Use twice the planetary rotation rate
                                 !       times the sine of latitude.
                                 !     betaplane - Use a beta-plane or f-plane.
                                 !     USER - call a user modified routine.
-OMEGA = 7.2921E-05              !   [s-1] default = 7.2921E-05
-                                ! The rotation rate of the earth.
+F_0 = 0.0                       !   [s-1] default = 0.0
+                                ! The reference value of the Coriolis parameter with the
+                                ! betaplane option.
+BETA = 0.0                      !   [m-1 s-1] default = 0.0
+                                ! The northward gradient of the Coriolis parameter with
+                                ! the betaplane option.
 
 ! === module MOM_coord_initialization ===
 COORD_CONFIG = "linear"         !
@@ -462,6 +466,8 @@ PRANDTL_TURB = 1.0              !   [nondim] default = 1.0
 DYNAMIC_VISCOUS_ML = False      !   [Boolean] default = False
                                 ! If true, use a bulk Richardson number criterion to
                                 ! determine the mixed layer thickness for viscosity.
+OMEGA = 7.2921E-05              !   [s-1] default = 7.2921E-05
+                                ! The rotation rate of the earth.
 HBBL = 10.0                     !   [m]
                                 ! The thickness of a bottom boundary layer with a
                                 ! viscosity of KVBBL if BOTTOMDRAGLAW is not defined, or

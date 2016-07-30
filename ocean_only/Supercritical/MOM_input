@@ -162,6 +162,12 @@ TOPO_CONFIG = "supercritical"   !
                                 !     supercritical - flat but with 8.95 degree land mask.
                                 !     USER - call a user modified routine.
 
+ROTATION = "betaplane"          ! default = "2omegasinlat"
+                                ! This specifies how the Coriolis parameter is specified:
+                                !     2omegasinlat - Use twice the planetary rotation rate
+                                !       times the sine of latitude.
+                                !     betaplane - Use a beta-plane or f-plane.
+                                !     USER - call a user modified routine.
 ! === module benchmark_initialize_topography ===
 MINIMUM_DEPTH = 0.0             !   [m]
                                 ! The minimum depth of the ocean.
