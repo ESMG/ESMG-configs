@@ -58,7 +58,7 @@ REENTRANT_X = False             !   [Boolean] default = True
 ! === module MOM_open ===
 OBC_NUMBER_OF_SEGMENTS = 1
 OBC_SEGMENT_001 = "I=N,J=1:N,FLATHER"
-OBC_CONFIG = tidal_bay
+OBC_VALUES_CONFIG = tidal_bay
 TIDES = False                   !   [Boolean] default = False
                                 ! If true, apply tidal momentum forcing.
 ! === module MOM_tidal_forcing === 

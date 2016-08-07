@@ -1,3 +1,7 @@
+# Name of MOM6-examples directory
+MOM6_SOURCES=/center/d/kate/ESMG/ESMG-configs
+MOM6_EXAMPLES=/center/d/kate/ESMG/MOM6-examples
+
 # ALE_EXPTS and SOLO_EXPTS are ocean-only experiments using the ocean_only executable.
 # SIS_EXPTS use the ice_ocean_SIS executable.
 # SIS2_EXPTS use the ice_ocean_SIS2 executable.
@@ -27,6 +31,8 @@ SOLO_EXPTS=$(foreach dir, \
           double_gyre DOME benchmark Phillips_2layer \
           ,ocean_only/$(dir))
 
+ESMG_EXPTS=ocean_only/Tidal_bay
+
 #ALE_EXPTS+=ocean_only/global_ALE/z0 ocean_only/global_ALE/z1
 #ALE_EXPTS+=ocean_only/global_ALE/z ocean_only/global_ALE/hycom
 #ALE_EXPTS+=ocean_only/tracer_mixing/z ocean_only/tracer_mixing/rho
@@ -44,14 +50,12 @@ LM3_SIS2_EXPTS=$(foreach dir,OM_360x320_C180,land_ice_ocean_LM3_SIS2/$(dir))
 #BGC_SIS2_EXPTS=$(foreach dir,COBALT_OM4_05,bgc_SIS2/$(dir))
 #EXPTS=$(ALE_EXPTS) $(SOLO_EXPTS) $(SYMMETRIC_EXPTS) $(SIS2_EXPTS) $(AM2_LM3_SIS_EXPTS) $(AM2_LM3_SIS2_EXPTS) $(LM3_SIS2_EXPTS)
 EXPTS=$(ALE_EXPTS) $(SOLO_EXPTS) $(SYMMETRIC_EXPTS) $(SIS2_EXPTS)
+EXPTS2=$(ESMG_EXPTS)
 #EXPTS+=$(BGC_SIS2_EXPTS)
 EXPT_EXECS=ocean_only symmetric_ocean_only ice_ocean_SIS2 symmetric_SIS2 # Executable/model configurations to build
 #EXPT_EXECS=ocean_only symmetric_ocean_only ice_ocean_SIS ice_ocean_SIS2 coupled_LM3_SIS2 coupled_AM2_LM3_SIS coupled_AM2_LM3_SIS2 # Executable/model configurations to build
 #EXPT_EXECS+=bgc_SIS2
 
-# Name of MOM6-examples directory
-MOM6_SOURCES=/center/d/kate/ESMG/ESMG-configs
-MOM6_EXAMPLES=/center/d/kate/ESMG/MOM6-examples
 # Name of FMS/shared directory
 FMS=$(MOM6_SOURCES)/src/FMS
 # Name of MOM6 directory
@@ -140,6 +144,7 @@ PMAKEOPTS=-j
 
 TIMESTATS=ocean.stats
 STATS_FILES=$(foreach dir,$(EXPTS),$(MOM6_EXAMPLES)/$(dir)/$(TIMESTATS).$(COMPILER))
+STATS2_FILES=$(foreach dir,$(EXPTS2),$(MOM6_SOURCES)/$(dir)/$(TIMESTATS).$(COMPILER))
 STDERR_LABEL=out
 # .SECONDARY stops deletion of targets that were built implicitly
 .SECONDARY:
@@ -187,7 +192,7 @@ debug: $(BUILD_DIR)/$(COMPILER)/shared/debug/libfms.a $(foreach exec,$(EXPT_EXEC
 prod: $(foreach exec,$(EXPT_EXECS),$(BUILD_DIR)/$(exec).$(COMPILER).prod/MOM6)
 ale: $(BUILD_DIR)/$(COMPILER)/ocean_only/$(EXEC_MODE)/MOM6 $(foreach dir,$(ALE_EXPTS),$(MOM6_EXAMPLES)/$(dir)/$(TIMESTATS).$(COMPILER))
 solo: $(BUILD_DIR)/$(COMPILER)/ocean_only/$(EXEC_MODE)/MOM6 $(foreach dir,$(SOLO_EXPTS),$(MOM6_EXAMPLES)/$(dir)/$(TIMESTATS).$(COMPILER))
-symmetric: $(BUILD_DIR)/$(COMPILER)/symmetric_ocean_only/$(EXEC_MODE)/MOM6 $(foreach dir,$(SYMMETRIC_EXPTS),$(MOM6_EXAMPLES)/$(dir)/$(TIMESTATS).$(COMPILER))
+symmetric: $(BUILD_DIR)/$(COMPILER)/symmetric_ocean_only/$(EXEC_MODE)/MOM6 $(foreach dir,$(SYMMETRIC_EXPTS),$(MOM6_EXAMPLES)/$(dir)/$(TIMESTATS).$(COMPILER)) $(foreach dir,$(ESMG_EXPTS),$(MOM6_SOURCES)/$(dir)/$(TIMESTATS).$(COMPILER))
 symmetric_sis2: $(BUILD_DIR)/$(COMPILER)/symmetric_SIS2/$(EXEC_MODE)/MOM6
 sis: $(BUILD_DIR)/$(COMPILER)/ice_ocean_SIS/$(EXEC_MODE)/MOM6 $(foreach dir,$(SIS_EXPTS),$(MOM6_EXAMPLES)/$(dir)/$(TIMESTATS).$(COMPILER))
 sis2: $(BUILD_DIR)/$(COMPILER)/ice_ocean_SIS2/$(EXEC_MODE)/MOM6 $(foreach dir,$(SIS2_EXPTS),$(MOM6_EXAMPLES)/$(dir)/$(TIMESTATS).$(COMPILER))
@@ -824,6 +829,9 @@ $(foreach cmp,$(COMPILERS),$(MOM6_EXAMPLES)/coupled_AM2_LM3_SIS2/AM2_SIS2_MOM6i_
 
 $(foreach cmp,$(COMPILERS),$(MOM6_EXAMPLES)/land_ice_ocean_LM3_SIS2/OM_360x320_C180/$(TIMESTATS).$(cmp)): NPES=432
 $(foreach cmp,$(COMPILERS),$(MOM6_EXAMPLES)/land_ice_ocean_LM3_SIS2/OM_360x320_C180/$(TIMESTATS).$(cmp)): $(foreach fl,input.nml MOM_input MOM_override SIS_input SIS_override,$(MOM6_EXAMPLES)/land_ice_ocean_LM3_SIS2/OM_360x320_C180/$(fl))
+
+$(foreach cmp,$(COMPILERS),$(MOM6_SOURCES)/ocean_only/Tidal_bay/$(TIMESTATS).$(cmp)): NPES=2
+$(foreach cmp,$(COMPILERS),$(MOM6_SOURCES)/ocean_only/Tidal_bay/$(TIMESTATS).$(cmp)): $(foreach fl,input.nml MOM_input MOM_override,$(MOM6_SOURCES)/ocean_only/Tidal_bay/$(fl))
 
 # Canned rule to run all experiments
 define run-model-to-make-$(TIMESTATS)
