@@ -52,6 +52,8 @@ NJGLOBAL = 150                  !
 IO_LAYOUT = 1, 1                ! default = 0
                                 ! The processor layout to be used, or 0,0 to automatically
                                 ! set the io_layout to be the same as the layout.
+REENTRANT_X = False             !   [Boolean] default = True
+                                ! If true, the domain is zonally reentrant.
 
 ! === module MOM_open ===
 OBC_NUMBER_OF_SEGMENTS = 2      ! default = 0
@@ -283,7 +285,7 @@ BBL_THICK_MIN = 0.1             !   [m] default = 0.0
                                 ! near-bottom viscosity.
 
 ! === module MOM_state_initialization ===
-VELOCITY_CONFIG = "uniform"        ! default = "zero"
+VELOCITY_CONFIG = "supercritical" ! default = "zero"
                                 ! A string that determines how the initial velocities
                                 ! are specified for a new run:
                                 !     file - read velocities from the file specified
@@ -293,8 +295,8 @@ VELOCITY_CONFIG = "uniform"        ! default = "zero"
                                 !       parameters INITIAL_U_CONST and INITIAL_V_CONST).
                                 !     rossby_front - a mixed layer front in thermal wind balance.
                                 !     USER - call a user modified routine.
-INITIAL_U_CONST = 8.57
-INITIAL_V_CONST = 0.0
+!INITIAL_U_CONST = 8.57
+!INITIAL_V_CONST = 0.0
 ! === module MOM_barotropic ===
 BOUND_BT_CORRECTION = True      !   [Boolean] default = False
                                 ! If true, the corrective pseudo mass-fluxes into the
