@@ -57,8 +57,8 @@ REENTRANT_X = False             !   [Boolean] default = True
 
 ! === module MOM_open ===
 OBC_NUMBER_OF_SEGMENTS = 2      ! default = 0
-OBC_SEGMENT_001 = "I=N,J=1:N,FLATHER"
-OBC_SEGMENT_002 = "I=0,J=N:1,SIMPLE"
+OBC_SEGMENT_001 = "I=N,J=0:N,FLATHER"
+OBC_SEGMENT_002 = "I=0,J=N:0,SIMPLE"
 OBC_VALUES_CONFIG = supercritical   ! To be replaced later...
 
 ! === module MOM_grid ===
