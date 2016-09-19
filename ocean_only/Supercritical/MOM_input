@@ -75,16 +75,11 @@ ADIABATIC = True                !   [Boolean] default = False
                                 ! true. This assumes that KD = KDML = 0.0 and that
                                 ! there is no buoyancy forcing, but makes the model
                                 ! faster by eliminating subroutine calls.
-DT = 100.0                      !   [s]
+DT = 1.0                        !   [s]
                                 ! The (baroclinic) dynamics time step.  The time-step that
                                 ! is actually used will be an integer fraction of the
                                 ! forcing time-step (DT_FORCING in ocean-only mode or the
                                 ! coupling timestep in coupled mode.)
-DT_THERM = 3600.0               !   [s] default = 900.0
-                                ! The thermodynamic and tracer advection time step.
-                                ! Ideally DT_THERM should be an integer multiple of DT
-                                ! and less than the forcing or coupling time-step.
-                                ! By default DT_THERM is set to DT.
 DTBT_RESET_PERIOD = -1.0        !   [s] default = 3600.0
                                 ! The period between recalculations of DTBT (if DTBT <= 0).
                                 ! If DTBT_RESET_PERIOD is negative, DTBT is set based
@@ -133,7 +128,7 @@ GRID_CONFIG = "cartesian"       !
                                 !     cartesian - use a (flat) Cartesian grid.
                                 !     spherical - use a simple spherical grid.
                                 !     mercator - use a Mercator spherical grid.
-AXIS_UNITS = "m"                ! default = "degrees"
+AXIS_UNITS = "k"                ! default = "degrees"
                                 ! The units for the Cartesian axes. Valid entries are:
                                 !     degrees - degrees of latitude and longitude
                                 !     m - meters
@@ -221,7 +216,7 @@ BOUND_CORIOLIS = True           !   [Boolean] default = False
                                 ! were possible to use centered difference thickness fluxes.
 
 ! === module MOM_hor_visc ===
-LAPLACIAN = True                !   [Boolean] default = False
+LAPLACIAN = False               !   [Boolean] default = False
                                 ! If true, use a Laplacian horizontal viscosity.
 BIHARMONIC = False              !   [Boolean] default = True
                                 ! If true, se a biharmonic horizontal viscosity.
@@ -251,10 +246,10 @@ HMIX_FIXED = 20.0               !   [m]
                                 ! The prescribed depth over which the near-surface
                                 ! viscosity and diffusivity are elevated when the bulk
                                 ! mixed layer is not used.
-KV = 1.0E-04                    !   [m2 s-1]
+KV = 0.0E-04                    !   [m2 s-1]
                                 ! The background kinematic viscosity in the interior.
                                 ! The molecular value, ~1e-6 m2 s-1, may be used.
-KVML = 0.01                     !   [m2 s-1] default = 1.0E-04
+KVML = 0.0                      !   [m2 s-1] default = 1.0E-04
                                 ! The kinematic viscosity in the mixed layer.  A typical
                                 ! value is ~1e-2 m2 s-1. KVML is not used if
                                 ! BULKMIXEDLAYER is true.  The default is set by KV.
@@ -266,16 +261,17 @@ HBBL = 10.0                     !   [m]
                                 ! but LINEAR_DRAG is not.
 
 ! === module MOM_set_visc ===
-LINEAR_DRAG = True              !   [Boolean] default = False
+BOTTOMDRAGLAW = False
+LINEAR_DRAG = False             !   [Boolean] default = False
                                 ! If LINEAR_DRAG and BOTTOMDRAGLAW are defined the drag
                                 ! law is cdrag*DRAG_BG_VEL*u.
-DRAG_BG_VEL = 0.1               !   [m s-1] default = 0.0
+DRAG_BG_VEL = 0.0               !   [m s-1] default = 0.0
                                 ! DRAG_BG_VEL is either the assumed bottom velocity (with
                                 ! LINEAR_DRAG) or an unresolved  velocity that is
                                 ! combined with the resolved velocity to estimate the
                                 ! velocity magnitude.  DRAG_BG_VEL is only used when
                                 ! BOTTOMDRAGLAW is defined.
-BBL_THICK_MIN = 0.1             !   [m] default = 0.0
+BBL_THICK_MIN = 0.0             !   [m] default = 0.0
                                 ! The minimum bottom boundary layer thickness that can be
                                 ! used with BOTTOMDRAGLAW. This might be
                                 ! Kv / (cdrag * drag_bg_vel) to give Kv as the minimum
@@ -370,11 +366,9 @@ DATE_STAMPED_STDOUT = False     !   [Boolean] default = True
                                 ! If true, use dates (not times) in messages to stdout
 
 ! === module MOM_main (MOM_driver) ===
-DT_FORCING = 3600.0             !   [s] default = 900.0
-                                ! The time step for changing forcing, coupling with other
-                                ! components, or potentially writing certain diagnostics.
-                                ! The default value is given by DT.
-DAYMAX = 1.0                    !   [days]
+TIMEUNIT = 1.0                  !   [s] default = 8.64E+04
+                                ! The time unit in seconds a number of input fields
+DAYMAX = 200.0                  !   [s]
                                 ! The final time of the whole simulation, in units of
                                 ! TIMEUNIT seconds.  This also sets the potential end
                                 ! time of the present run segment if the end time is
@@ -389,6 +383,6 @@ RESTINT = 365.0                 !   [days] default = 0.0
                                 ! The interval between saves of the restart file in units
                                 ! of TIMEUNIT.  Use 0 (the default) to not save
                                 ! incremental restart files at all.
-ENERGYSAVEDAYS = 0.25           !   [days] default = 3600.0
+ENERGYSAVEDAYS = 1.0            !   [days] default = 3600.0
                                 ! The interval in units of TIMEUNIT between saves of the
                                 ! energies of the run and other globally summed diagnostics.
