@@ -481,6 +481,9 @@ MAX_RINO_IT = 25                !   [nondim] default = 50
                                 ! The maximum number of iterations that may be used to
                                 ! estimate the Richardson number driven mixing.
 
+! === module MOM_CVMix_shear ===
+! Parameterization of shear-driven turbulence via CVMix (various options)
+
 ! === module MOM_diabatic_aux ===
 ! The following parameters are used for auxiliary diabatic processes.
 PRESSURE_DEPENDENT_FRAZIL = True !   [Boolean] default = False
@@ -489,6 +492,9 @@ PRESSURE_DEPENDENT_FRAZIL = True !   [Boolean] default = False
                                 ! faster but is inappropriate with ice-shelf cavities.
 
 ! === module MOM_energetic_PBL ===
+EPBL_USTAR_MIN = 1.45842E-18    !   [meter second-1]
+                                ! The (tiny) minimum friction velocity used within the
+                                ! ePBL code, derived from OMEGA and ANGSTROM.
 
 ! === module MOM_regularize_layers ===
 

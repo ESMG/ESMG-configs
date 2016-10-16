@@ -1,8 +1,8 @@
-! Blank file in which we can put "overrides" for parameters
-!VERBOSITY = 9
-SAVE_INITIAL_CONDS = False
 #override RESOLN_SCALED_KHTR = True
 #override KH_RES_FN_POWER = 100
 #override VISC_RES_FN_POWER = 100
-#override MIN_THICKNESS = 1.E-6           !   [m] default = 0.001
+#override MIN_THICKNESS = 1.e-6
+SAVE_INITIAL_CONDS = False
 DEBUG = False
+DEBUG_BT = False
+!VERBOSITY = 9
