@@ -18,3 +18,4 @@ RESTART
 .ipynb_checkpoints
 # Ignore anything labeled ignore
 *.ignore
+runmpi.chinook*

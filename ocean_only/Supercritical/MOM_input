@@ -75,7 +75,7 @@ ADIABATIC = True                !   [Boolean] default = False
                                 ! true. This assumes that KD = KDML = 0.0 and that
                                 ! there is no buoyancy forcing, but makes the model
                                 ! faster by eliminating subroutine calls.
-DT = 1.0                        !   [s]
+DT = 5.0                        !   [s]
                                 ! The (baroclinic) dynamics time step.  The time-step that
                                 ! is actually used will be an integer fraction of the
                                 ! forcing time-step (DT_FORCING in ocean-only mode or the
@@ -120,7 +120,7 @@ COORD_CONFIG = "linear"         !
                                 !     USER - call a user modified routine.
 
 ! === module MOM_grid_init ===
-GRID_CONFIG = "cartesian"       !
+GRID_CONFIG = "mosaic"          !
                                 ! A character string that determines the method for
                                 ! defining the horizontal grid.  Current options are:
                                 !     mosaic - read the grid from a mosaic (supergrid)
@@ -128,6 +128,7 @@ GRID_CONFIG = "cartesian"       !
                                 !     cartesian - use a (flat) Cartesian grid.
                                 !     spherical - use a simple spherical grid.
                                 !     mercator - use a Mercator spherical grid.
+GRID_FILE = "ocean_hgrid.nc"
 AXIS_UNITS = "k"                ! default = "degrees"
                                 ! The units for the Cartesian axes. Valid entries are:
                                 !     degrees - degrees of latitude and longitude
@@ -135,11 +136,11 @@ AXIS_UNITS = "k"                ! default = "degrees"
                                 !     k - kilometers
 SOUTHLAT = 0.0                  !   [k]
                                 ! The southern latitude of the domain.
-LENLAT = 30.0                  !   [k]
+LENLAT = 30.0                   !   [k]
                                 ! The latitudinal length of the domain.
 LENLON = 40.0                   !   [k]
                                 ! The longitudinal length of the domain.
-TOPO_CONFIG = "supercritical"   !
+TOPO_CONFIG = "flat"            !
                                 ! This specifies how bathymetry is specified:
                                 !     file - read bathymetric information from the file
                                 !       specified by (TOPO_FILE).
@@ -216,19 +217,19 @@ BOUND_CORIOLIS = True           !   [Boolean] default = False
                                 ! were possible to use centered difference thickness fluxes.
 
 ! === module MOM_hor_visc ===
-LAPLACIAN = False               !   [Boolean] default = False
+LAPLACIAN = True                !   [Boolean] default = False
                                 ! If true, use a Laplacian horizontal viscosity.
 BIHARMONIC = False              !   [Boolean] default = True
                                 ! If true, se a biharmonic horizontal viscosity.
                                 ! BIHARMONIC may be used with LAPLACIAN.
-KH = 1.0E+04                    !   [m2 s-1] default = 0.0
+KH = 200.0                      !   [m2 s-1] default = 0.0
                                 ! The background Laplacian horizontal viscosity.
 KH_VEL_SCALE = 0.003            !   [m s-1] default = 0.0
                                 ! The velocity scale which is multiplied by the grid
                                 ! spacing to calculate the Laplacian viscosity.
                                 ! The final viscosity is the largest of this scaled
                                 ! viscosity, the Smagorinsky viscosity and KH.
-SMAGORINSKY_KH = True           !   [Boolean] default = False
+SMAGORINSKY_KH = False          !   [Boolean] default = False
                                 ! If true, use a Smagorinsky nonlinear eddy viscosity.
 SMAG_LAP_CONST = 0.15           !   [nondim] default = 0.0
                                 ! The nondimensional Laplacian Smagorinsky constant,
@@ -346,7 +347,7 @@ VARIABLE_WINDS = False          !   [Boolean] default = True
 VARIABLE_BUOYFORCE = False      !   [Boolean] default = True
                                 ! If true, the buoyancy forcing varies in time after the
                                 ! initialization of the model.
-BUOY_CONFIG = "zero"           !
+BUOY_CONFIG = "zero"            !
                                 ! The character string that indicates how buoyancy forcing
                                 ! is specified. Valid options include (file), (zero),
                                 ! (linear), (USER), and (NONE).
@@ -368,7 +369,7 @@ DATE_STAMPED_STDOUT = False     !   [Boolean] default = True
 ! === module MOM_main (MOM_driver) ===
 TIMEUNIT = 1.0                  !   [s] default = 8.64E+04
                                 ! The time unit in seconds a number of input fields
-DAYMAX = 200.0                  !   [s]
+DAYMAX = 8000.0                 !   [s]
                                 ! The final time of the whole simulation, in units of
                                 ! TIMEUNIT seconds.  This also sets the potential end
                                 ! time of the present run segment if the end time is
