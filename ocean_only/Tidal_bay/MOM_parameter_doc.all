@@ -245,7 +245,6 @@ TOPO_CONFIG = "flat"            !
                                 !     DOME2D - use a shelf and slope configuration for the
                                 !       DOME2D gravity current/overflow test case.
                                 !     seamount - Gaussian bump for spontaneous motion test case.
-                                !     supercritical - flat but with 8.95 degree land mask.
                                 !     Phillips - ACC-like idealized topography used in the Phillips config.
                                 !     USER - call a user modified routine.
 MINIMUM_DEPTH = 1.0             !   [m] default = 0.0
@@ -257,12 +256,6 @@ MAXIMUM_DEPTH = 35.0            !   [m]
 ! Controls where open boundaries are located, what kind of boundary condition to impose, and what data to apply, if any.
 OBC_NUMBER_OF_SEGMENTS = 1      ! default = 0
                                 ! The number of open boundary segments.
-OBC_CONFIG = "None"             ! default = "None"
-                                ! A string that sets how the open boundary conditions are
-                                !  configured:
-OBC_VALUES_CONFIG = "tidal_bay" ! default = "None"
-                                ! A string that sets how the open boundary values are
-                                !  configured:
 OBC_SEGMENT_001 = "I=N,J=0:N,FLATHER" !
                                 ! Documentation needs to be dynamic?????
 MASKING_DEPTH = -9999.0         !   [m] default = -9999.0
@@ -405,21 +398,33 @@ READ_OBC_TS = False             !   [Boolean] default = False
                                 ! If true, read the values for the temperature and
                                 ! salinity open boundary conditions from the file
                                 ! specified by OBC_FILE.
+
+! === module MOM_diag_mediator ===
+NUM_DIAG_COORDS = 1             ! default = 1
+                                ! The number of diagnostic vertical coordinates to use.
+                                ! For each coordinate, an entry in DIAG_COORDS must be provided.
+DIAG_COORDS = "z Z ZSTAR"       ! default = "z Z ZSTAR"
+                                ! A list of string tuples associating diag_table modules to
+                                ! a coordinate definition used for diagnostics. Each string
+                                ! is of the form "MODULE_SUFFIX PARAMETER_SUFFIX COORDINATE_NAME".
 AVAILABLE_DIAGS_FILE = "available_diags.000000" ! default = "available_diags.000000"
                                 ! A file into which to write a list of all available
                                 ! ocean diagnostics that can be included in a diag_table.
-
-! === module MOM_diag_mediator ===
-DIAG_REMAP_Z_GRID_DEF = ""      ! default = ""
-                                ! This sets the file and variable names that define the
-                                ! vertical grid used for diagnostic output remapping to
-                                ! Z space. It should look like:
-                                !  FILE:<file>,<variable> - where <file> is a file within
-                                !                           the INPUTDIR, <variable> is
-                                !                           the name of the variable that
-                                !                           contains interface positions.
-                                !  UNIFORM                - vertical grid is uniform
-                                !                           between surface and max depth.
+DIAG_COORD_DEF_Z = "UNIFORM"    ! default = "UNIFORM"
+                                ! Determines how to specify the coordinate
+                                ! resolution. Valid options are:
+                                !  PARAM       - use the vector-parameter DIAG_COORD_RES_Z
+                                !  UNIFORM[:N] - uniformly distributed
+                                !  FILE:string - read from a file. The string specifies
+                                !                the filename and variable name, separated
+                                !                by a comma or space, e.g. FILE:lev.nc,dz
+                                !                or FILE:lev.nc,interfaces=zw
+                                !  WOA09[:N]   - the WOA09 vertical grid (approximately)
+                                !  FNC1:string - FNC1:dz_min,H_total,power,precision
+                                !  HYBRID:string - read from a file. The string specifies
+                                !                the filename and two variable names, separated
+                                !                by a comma or space, for sigma-2 and dz. e.g.
+                                !                HYBRID:vgrid.nc,sigma2,dz
 
 ! === module MOM_MEKE ===
 USE_MEKE = False                !   [Boolean] default = False
