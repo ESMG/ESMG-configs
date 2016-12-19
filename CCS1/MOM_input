@@ -596,7 +596,12 @@ SPONGE_SALT_VAR = "salt"
 
 ! === OBC options ===
 OBC_NUMBER_OF_SEGMENTS = 3      ! [Integer] The number of open boundary segments.
-OBC_SEGMENT_001 = "J=N,I=N:-1,FLATHER" ! Don't need to go to N+1 because it's in the land.
-OBC_SEGMENT_002 = "J=0,I=-1:N,FLATHER" ! Don't need to go to N+1 because it's in the land.
+!OBC_SEGMENT_001 = "J=N,I=N:0,FLATHER,ORLANSKI,NUDGED"
+!OBC_SEGMENT_002 = "J=0,I=0:N,FLATHER,ORLANSKI,NUDGED"
+!OBC_SEGMENT_003 = "I=0,J=N:0,FLATHER,ORLANSKI,NUDGED"
+OBC_SEGMENT_001 = "J=N,I=N:0,FLATHER"
+OBC_SEGMENT_002 = "J=0,I=0:N,FLATHER"
 OBC_SEGMENT_003 = "I=0,J=N:0,FLATHER"
-!OBC_CONFIG = CCS1
+OBC_SEGMENT_001_DATA = "U=file:obc_monthly_CCS1.nc(u),V=file:obc_monthly_CCS1.nc(v),SSH=file:obc_monthly_CCS1.nc(zeta)"
+OBC_SEGMENT_002_DATA = "U=file:obc_monthly_CCS1.nc(u),V=file:obc_monthly_CCS1.nc(v),SSH=file:obc_monthly_CCS1.nc(zeta)"
+OBC_SEGMENT_003_DATA = "U=file:obc_monthly_CCS1.nc(u),V=file:obc_monthly_CCS1.nc(v),SSH=file:obc_monthly_CCS1.nc(zeta)"
