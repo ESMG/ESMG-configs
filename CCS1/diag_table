@@ -1,7 +1,6 @@
 OM4_SIS2_cgrid_025
 1900 1 1 0 0 0
-"ocean_daily",            1, "days",   1, "days", "time"
-"ocean_month",            1, "months",   1, "days", "time"
+"ocean_daily",            1, "hours",   1, "hours", "time"
 
 "ocean_model", "SSU",          "ssu",              "ocean_daily", "all", "mean", "none",2
 "ocean_model", "SSV",          "ssv",              "ocean_daily", "all", "mean", "none",2
@@ -19,7 +18,3 @@ OM4_SIS2_cgrid_025
 "ocean_model",  "ePBL_h_ML",  "ePBL_h_ML",        "ocean_daily", "all", "mean", "none",2  # boundary layer thickness
 "ocean_model",  "ustar",      "ustar",            "ocean_daily", "all", "mean", "none",2  # friction vel
 "ocean_model",  "Kd_interface",  "Kd_interface",  "ocean_daily", "all", "mean", "none",2  # friction vel
-
-"ocean_model", "thetao",          "thetao",              "ocean_month", "all", "mean", "none",2
-"ocean_model", "so",                  "so",              "ocean_month", "all", "mean", "none",2
-"ocean_model", "e",                    "e",              "ocean_month", "all", "mean", "none",2
