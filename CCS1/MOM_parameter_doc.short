@@ -132,9 +132,9 @@ MINIMUM_DEPTH = 9.5             !   [m] default = 0.0
 ! Controls where open boundaries are located, what kind of boundary condition to impose, and what data to apply, if any.
 OBC_NUMBER_OF_SEGMENTS = 3      ! default = 0
                                 ! The number of open boundary segments.
-OBC_SEGMENT_001 = "J=N,I=N:-1,FLATHER" !
+OBC_SEGMENT_001 = "J=N,I=N:0,FLATHER" !
                                 ! Documentation needs to be dynamic?????
-OBC_SEGMENT_002 = "J=0,I=-1:N,FLATHER" !
+OBC_SEGMENT_002 = "J=0,I=0:N,FLATHER" !
                                 ! Documentation needs to be dynamic?????
 OBC_SEGMENT_003 = "I=0,J=N:0,FLATHER" !
                                 ! Documentation needs to be dynamic?????
@@ -175,10 +175,12 @@ ALE_COORDINATE_CONFIG = "FILE:vgrid_75_2m.nc,dz" ! default = "UNIFORM"
                                 ! Determines how to specify the coordinate
                                 ! resolution. Valid options are:
                                 !  PARAM       - use the vector-parameter ALE_RESOLUTION
-                                !  UNIFORM     - uniformly distributed
+                                !  UNIFORM[:N] - uniformly distributed
                                 !  FILE:string - read from a file. The string specifies
                                 !                the filename and variable name, separated
-                                !                by a comma or space, e.g. FILE:lev.nc,Z
+                                !                by a comma or space, e.g. FILE:lev.nc,dz
+                                !                or FILE:lev.nc,interfaces=zw
+                                !  WOA09[:N]   - the WOA09 vertical grid (approximately)
                                 !  FNC1:string - FNC1:dz_min,H_total,power,precision
                                 !  HYBRID:string - read from a file. The string specifies
                                 !                the filename and two variable names, separated
@@ -239,8 +241,6 @@ MEKE_GMCOEFF = 1.0              !   [nondim] default = -1.0
                                 ! used or calculated.
 MEKE_BGSRC = 1.0E-13            !   [W kg-1] default = 0.0
                                 ! A background energy source for MEKE.
-
-! === module MOM_wave_speed ===
 
 ! === module MOM_lateral_mixing_coeffs ===
 USE_VARIABLE_MIXING = True      !   [Boolean] default = False

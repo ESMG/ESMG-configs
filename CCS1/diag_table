@@ -1,6 +1,6 @@
 OM4_SIS2_cgrid_025
 1900 1 1 0 0 0
-"ocean_daily",            1, "days",   1, "days", "time"
+"ocean_daily",            1, "hours",   1, "hours", "time"
 
 "ocean_model", "SSU",          "ssu",              "ocean_daily", "all", "mean", "none",2
 "ocean_model", "SSV",          "ssv",              "ocean_daily", "all", "mean", "none",2

@@ -8,6 +8,16 @@ CGRID_ICE_DYNAMICS = True       !   [Boolean] default = False
                                 ! dynamics; if false use a B-grid discretization.
 USE_SLAB_ICE = False            !   [Boolean] default = False
                                 ! If true, use the very old slab-style ice.
+SINGLE_ICE_STATE_TYPE = True    !   [Boolean] default = True
+                                ! If true, the fast and slow portions of the ice use a
+                                ! single common ice_state_type.  Otherwise they point to
+                                ! different ice_state_types that need to be explicitly
+                                ! copied back and forth.
+EULERIAN_TSURF = True           !   [Boolean] default = True
+                                ! If true, use previous calculations of the ice-top surface
+                                ! skin temperature for tsurf at the start of atmospheric
+                                ! time stepping, including interpolating between tsurf
+                                ! values from other categories in the same location.
 ICE_OCEAN_STRESS_STAGGER = "C"  ! default = "C"
                                 ! A case-insensitive character string to indicate the
                                 ! staggering of the stress field on the ocean that is
@@ -82,6 +92,9 @@ DO_RIDGING = False              !   [Boolean] default = False
                                 ! If true, call the ridging routines.
 RESTARTFILE = "ice_model.res.nc" ! default = "ice_model.res.nc"
                                 ! The name of the restart file.
+FAST_ICE_RESTARTFILE = "ice_model.res.nc" ! default = "ice_model.res.nc"
+                                ! The name of the restart file for those elements of the
+                                ! the sea ice that are handled by the fast ice PEs.
 WRITE_GEOM = 1                  ! default = 1
                                 ! If =0, never write the geometry and vertical grid files.
                                 ! If =1, write the geometry and vertical grid files only for
@@ -187,9 +200,9 @@ PARALLEL_RESTARTFILES = False   !   [Boolean] default = False
 
 ! === module MOM_hor_index ===
 ! Sets the horizontal array index types.
-AVAILABLE_DIAGS_FILE = "SIS.available_diags" ! default = "SIS.available_diags"
+SIS_AVAILABLE_DIAGS_FILE = "SIS.available_diags" ! default = "SIS.available_diags"
                                 ! A file into which to write a list of all available
-                                ! ocean diagnostics that can be included in a diag_table.
+                                ! sea ice diagnostics that can be included in a diag_table.
 
 ! === module SIS2_ice_thm (thermo) ===
 ! This sub-module calculates ice thermodynamic quantities.
@@ -203,16 +216,11 @@ CP_ICE = 2100.0                 !   [J kg-1 K-1] default = 2100.0
 CP_SEAWATER = 4200.0            !   [J kg-1 K-1] default = 4200.0
                                 ! The heat capacity of sea water, approximated as a
                                 ! constant.
-CP_WATER = 4200.0               !   [J kg-1 K-1] default = 4200.0
-                                ! The heat capacity of water in sea-ice, approximated as
-                                ! a constant.  CP_WATER and CP_SEAWATER should be equal,
-                                ! but for computational convenience CP_WATER has often
-                                ! been set equal to CP_ICE instead.
-CP_BRINE = 2100.0               !   [J kg-1 K-1] default = 2100.0
+CP_BRINE = 4200.0               !   [J kg-1 K-1] default = 4200.0
                                 ! The heat capacity of water in brine pockets within the
                                 ! sea-ice, approximated as a constant.  CP_BRINE and
-                                ! CP_WATER should be equal, but for computational
-                                ! convenience CP_BRINE has often been set equal to CP_ICE.
+                                ! CP_SEAWATER should be equal, but for computational
+                                ! convenience CP_BRINE can be set equal to CP_ICE.
 DTFREEZE_DS = -0.054            !   [deg C PSU-1] default = -0.054
                                 ! The derivative of the freezing temperature with salinity.
 ENTHALPY_LIQUID_0 = 0.0         !   [J kg-1] default = 0.0
@@ -231,9 +239,28 @@ ENTHALPY_UNITS = 1.0            !   [J kg-1] default = 1.0
 ! === module SIS_tracer_flow_control ===
 USE_ICE_AGE_TRACER = False      !   [Boolean] default = False
                                 ! If true, use the concentration based age tracer package.
+SIS_FAST_AVAILABLE_DIAGS_FILE = "SIS_fast.available_diags" ! default = "SIS_fast.available_diags"
+                                ! A file into which to write a list of all available
+                                ! sea ice diagnostics that can be included in a diag_table.
 
-! === module SIS_fast_thermo ===
-! This module applies rapidly varying heat fluxes to the ice and does an implicit surface temperature calculation.
+! === module SIS_slow_thermo ===
+! This module calculates the slow evolution of the ice mass, heat, and salt budgets.
+ICE_BULK_SALINITY = 0.0         !   [g/kg] default = 4.0
+                                ! The fixed bulk salinity of sea ice.
+ICE_RELATIVE_SALINITY = 0.1     !   [nondim] default = 0.0
+                                ! The initial salinity of sea ice as a fraction of the
+                                ! salinity of the seawater from which it formed.
+SIS2_FILLING_FRAZIL = False     !   [Boolean] default = False
+                                ! If true, apply frazil to fill as many categories as
+                                ! possible to fill in a uniform (minimum) amount of ice
+                                ! in all the thinnest categories. Otherwise the frazil is
+                                ! always assigned to a single category.
+APPLY_ICE_LIMIT = False         !   [Boolean] default = False
+                                ! If true, restore the sea ice state toward climatology.
+DO_ICE_RESTORE = False          !   [Boolean] default = False
+                                ! If true, restore the sea ice state toward climatology.
+NUDGE_SEA_ICE = False           !   [Boolean] default = False
+                                ! If true, constrain the sea ice concentrations using observations.
 
 ! === module SIS2_ice_thm (updates) ===
 ! This sub-module does updates of the sea-ice due to thermodynamic changes.
@@ -266,50 +293,6 @@ ICE_TEMP_RANGE_ESTIMATE = 40.0  !   [degC] default = 40.0
                                 ! layer heat budget is more likely to be more accurate.
                                 ! Setting this to 0 causes the explicit diffusive form.
                                 ! to always be used.
-OLD_ICE_HEAT_CAPACITY = False   !   [Boolean] default = False
-                                ! If true, use an older linearization of the sea ice heat
-                                ! capacity for temperatures above the freezing point in the
-                                ! calculation of the initial ice temperature estimate.
-
-! === module SIS_optics ===
-! This module calculates the albedo and absorption profiles for shortwave radiation.
-DO_DELTA_EDDINGTON_SW = True    !   [Boolean] default = True
-                                ! If true, a delta-Eddington radiative transfer calculation
-                                ! for the shortwave radiation within the sea-ice.
-ICE_DELTA_EDD_R_ICE = 1.0       !   [nondimensional] default = 0.0
-                                ! A dreadfully documented tuning parameter for the radiative
-                                ! propeties of sea ice with the delta-Eddington radiative
-                                ! transfer calculation.
-ICE_DELTA_EDD_R_SNOW = 1.0      !   [nondimensional] default = 0.0
-                                ! A dreadfully documented tuning parameter for the radiative
-                                ! propeties of snow on sea ice with the delta-Eddington
-                                ! radiative transfer calculation.
-ICE_DELTA_EDD_R_POND = 1.0      !   [nondimensional] default = 0.0
-                                ! A dreadfully documented tuning parameter for the radiative
-                                ! propeties of meltwater ponds on sea ice with the delta-Eddington
-                                ! radiative transfer calculation.
-
-! === module SIS_slow_thermo ===
-! This module calculates the slow evolution of the ice mass, heat, and salt budgets.
-ICE_BULK_SALINITY = 0.0         !   [g/kg] default = 4.0
-                                ! The fixed bulk salinity of sea ice.
-ICE_RELATIVE_SALINITY = 0.1     !   [nondim] default = 0.0
-                                ! The initial salinity of sea ice as a fraction of the
-                                ! salinity of the seawater from which it formed.
-SIS2_FILLING_FRAZIL = False     !   [Boolean] default = False
-                                ! If true, apply frazil to fill as many categories as
-                                ! possible to fill in a uniform (minimum) amount of ice
-                                ! in all the thinnest categories. Otherwise the frazil is
-                                ! always assigned to a single category.
-APPLY_ICE_LIMIT = False         !   [Boolean] default = False
-                                ! If true, restore the sea ice state toward climatology.
-DO_ICE_RESTORE = False          !   [Boolean] default = False
-                                ! If true, restore the sea ice state toward climatology.
-NUDGE_SEA_ICE = False           !   [Boolean] default = False
-                                ! If true, constrain the sea ice concentrations using observations.
-
-! === module SIS2_ice_thm (updates) ===
-! This sub-module does updates of the sea-ice due to thermodynamic changes.
 
 ! === module SIS_dyn_trans ===
 ! This module updates the ice momentum and does ice transport.
@@ -318,6 +301,11 @@ DT_ICE_DYNAMICS = 600.0         !   [seconds] default = -1.0
                                 ! stepping the continuity equation and interactions
                                 ! between the ice mass field and velocities.  If 0 or
                                 ! negative the coupling time step will be used.
+ICEBERG_WINDSTRESS_BUG = False  !   [Boolean] default = False
+                                ! If true, use older code that applied an old ice-ocean
+                                ! stress to the icebergs in place of the current air-ocean
+                                ! stress.  This option is here for backward compatibility,
+                                ! but should be avoided.
 TIMEUNIT = 8.64E+04             !   [s] default = 8.64E+04
                                 ! The time unit for ICE_STATS_INTERVAL.
 ICE_STATS_INTERVAL = 10.0       !   [days] default = 1.0
@@ -389,15 +377,9 @@ MAX_TRUNC_FILE_SIZE_PER_PE = 50 ! default = 50
 NSTEPS_ADV = 1                  ! default = 1
                                 ! The number of advective iterations for each slow time
                                 ! step.
-ICE_CHANNEL_VISCOSITY = 0.0     !   [m2 s-1] default = 0.0
-                                ! A viscosity used in one-cell wide channels to
-                                ! parameterize transport, especially with B-grid sea ice
-                                ! coupled to a C-grid ocean model.
-ICE_CHANNEL_SMAG_COEF = 0.15    !   [Nondim] default = 0.15
-                                ! A Smagorinsky coefficient for viscosity in channels.
-ICE_CHANNEL_CFL_LIMIT = 0.25    !   [Nondim] default = 0.25
-                                ! The CFL limit that is applied to the parameterized
-                                ! viscous transport in single-point channels.
+RECATEGORIZE_ICE = True         !   [Boolean] default = True
+                                ! If true, readjust the distribution into ice thickness
+                                ! categories after advection.
 SEA_ICE_ROLL_FACTOR = 1.0       !   [Nondim] default = 1.0
                                 ! A factor by which the propensity of small amounts of
                                 ! thick sea-ice to become thinner by rolling is increased
@@ -449,6 +431,30 @@ MAXTRUNC = 200                  !   [truncations save_interval-1] default = 0
 STATISTICS_FILE = "seaice.stats" ! default = "seaice.stats"
                                 ! The file to use to write the globally integrated
                                 ! statistics.
+
+! === module SIS_fast_thermo ===
+! This module applies rapidly varying heat fluxes to the ice and does an implicit surface temperature calculation.
+
+! === module SIS2_ice_thm (updates) ===
+! This sub-module does updates of the sea-ice due to thermodynamic changes.
+
+! === module SIS_optics ===
+! This module calculates the albedo and absorption profiles for shortwave radiation.
+DO_DELTA_EDDINGTON_SW = True    !   [Boolean] default = True
+                                ! If true, a delta-Eddington radiative transfer calculation
+                                ! for the shortwave radiation within the sea-ice.
+ICE_DELTA_EDD_R_ICE = 1.0       !   [nondimensional] default = 0.0
+                                ! A dreadfully documented tuning parameter for the radiative
+                                ! propeties of sea ice with the delta-Eddington radiative
+                                ! transfer calculation.
+ICE_DELTA_EDD_R_SNOW = 1.0      !   [nondimensional] default = 0.0
+                                ! A dreadfully documented tuning parameter for the radiative
+                                ! propeties of snow on sea ice with the delta-Eddington
+                                ! radiative transfer calculation.
+ICE_DELTA_EDD_R_POND = 1.0      !   [nondimensional] default = 0.0
+                                ! A dreadfully documented tuning parameter for the radiative
+                                ! propeties of meltwater ponds on sea ice with the delta-Eddington
+                                ! radiative transfer calculation.
 
 ! === module MOM_file_parser ===
 SEND_LOG_TO_STDOUT = False      !   [Boolean] default = False
