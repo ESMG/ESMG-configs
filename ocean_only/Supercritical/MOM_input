@@ -57,8 +57,10 @@ REENTRANT_X = False             !   [Boolean] default = True
 
 ! === module MOM_open ===
 OBC_NUMBER_OF_SEGMENTS = 2      ! default = 0
-OBC_SEGMENT_001 = "I=N,J=0:N,FLATHER"
+OBC_SEGMENT_001 = "I=N,J=0:N,GRADIENT"
 OBC_SEGMENT_002 = "I=0,J=N:0,SIMPLE"
+OBC_SEGMENT_001_DATA = "U=value:-8.57,V=value:0.0,SSH=value:0.0"   ! Should be ignored with GRADIENT
+OBC_SEGMENT_002_DATA = "U=value:8.57,V=value:0.0,SSH=value:0.0"
 OBC_VALUES_CONFIG = supercritical   ! To be replaced later...
 
 ! === module MOM_grid ===
@@ -279,7 +281,7 @@ BBL_THICK_MIN = 0.0             !   [m] default = 0.0
                                 ! near-bottom viscosity.
 
 ! === module MOM_state_initialization ===
-VELOCITY_CONFIG = "supercritical" ! default = "zero"
+!VELOCITY_CONFIG = "supercritical" ! default = "zero"
                                 ! A string that determines how the initial velocities
                                 ! are specified for a new run:
                                 !     file - read velocities from the file specified
@@ -289,8 +291,8 @@ VELOCITY_CONFIG = "supercritical" ! default = "zero"
                                 !       parameters INITIAL_U_CONST and INITIAL_V_CONST).
                                 !     rossby_front - a mixed layer front in thermal wind balance.
                                 !     USER - call a user modified routine.
-!INITIAL_U_CONST = 8.57
-!INITIAL_V_CONST = 0.0
+INITIAL_U_CONST = 8.57
+INITIAL_V_CONST = 0.0
 ! === module MOM_barotropic ===
 BOUND_BT_CORRECTION = True      !   [Boolean] default = False
                                 ! If true, the corrective pseudo mass-fluxes into the
@@ -357,7 +359,7 @@ WIND_CONFIG = "zero"            !
                                 ! (1gyre), (gyres), (zero), and (USER).
 
 ! === module MOM_sum_output ===
-READ_DEPTH_LIST = True          !   [Boolean] default = False
+READ_DEPTH_LIST = False         !   [Boolean] default = False
                                 ! Read the depth list from a file if it exists or
                                 ! create that file otherwise.
 DEPTH_LIST_MIN_INC = 1.0E-06    !   [m] default = 1.0E-10
