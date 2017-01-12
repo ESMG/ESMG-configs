@@ -25,11 +25,11 @@ DTBT_RESET_PERIOD = -1.0        !   [s] default = 5.0
 ! === module MOM_domains ===
 REENTRANT_X = False             !   [Boolean] default = True
                                 ! If true, the domain is zonally reentrant.
-NIGLOBAL = 200                  !
+NIGLOBAL = 20                   !
                                 ! The total number of thickness grid points in the
                                 ! x-direction in the physical domain. With STATIC_MEMORY_
                                 ! this is set in MOM_memory.h at compile time.
-NJGLOBAL = 150                  !
+NJGLOBAL = 15                   !
                                 ! The total number of thickness grid points in the
                                 ! y-direction in the physical domain. With STATIC_MEMORY_
                                 ! this is set in MOM_memory.h at compile time.
@@ -55,7 +55,7 @@ INPUTDIR = "INPUT"              ! default = "."
                                 ! The directory in which input files are found.
 
 ! === module MOM_grid_init ===
-GRID_CONFIG = "mosaic"          !
+GRID_CONFIG = "cartesian"       !
                                 ! A character string that determines the method for
                                 ! defining the horizontal grid.  Current options are:
                                 !     mosaic - read the grid from a mosaic (supergrid)
@@ -63,8 +63,18 @@ GRID_CONFIG = "mosaic"          !
                                 !     cartesian - use a (flat) Cartesian grid.
                                 !     spherical - use a simple spherical grid.
                                 !     mercator - use a Mercator spherical grid.
-GRID_FILE = "ocean_hgrid.nc"    !
-                                ! Name of the file from which to read horizontal grid data.
+AXIS_UNITS = "k"                ! default = "degrees"
+                                ! The units for the Cartesian axes. Valid entries are:
+                                !     degrees - degrees of latitude and longitude
+                                !     m - meters
+                                !     k - kilometers
+SOUTHLAT = 0.0                  !   [k]
+                                ! The southern latitude of the domain or the equivalent
+                                ! starting value for the y-axis.
+LENLAT = 30.0                   !   [k]
+                                ! The latitudinal or y-direction length of the domain.
+LENLON = 40.0                   !   [k]
+                                ! The longitudinal or x-direction length of the domain.
 TOPO_CONFIG = "flat"            !
                                 ! This specifies how bathymetry is specified:
                                 !     file - read bathymetric information from the file
@@ -154,6 +164,21 @@ THICKNESS_CONFIG = "uniform"    !
                                 !     soliton - Equatorial Rossby soliton.
                                 !     rossby_front - a mixed layer front in thermal wind balance.
                                 !     USER - call a user modified routine.
+VELOCITY_CONFIG = "uniform"     ! default = "zero"
+                                ! A string that determines how the initial velocities
+                                ! are specified for a new run:
+                                !     file - read velocities from the file specified
+                                !       by (VELOCITY_FILE).
+                                !     zero - the fluid is initially at rest.
+                                !     uniform - the flow is uniform (determined by
+                                !       parameters INITIAL_U_CONST and INITIAL_V_CONST).
+                                !     rossby_front - a mixed layer front in thermal wind balance.
+                                !     soliton - Equatorial Rossby soliton.
+                                !     USER - call a user modified routine.
+INITIAL_U_CONST = 8.57          !   [m s-1]
+                                ! A initial uniform value for the zonal flow.
+INITIAL_V_CONST = 0.0           !   [m s-1]
+                                ! A initial uniform value for the meridional flow.
 
 ! === module MOM_diag_mediator ===
 NUM_DIAG_COORDS = 0             ! default = 1
@@ -309,7 +334,7 @@ DEPTH_LIST_MIN_INC = 1.0E-06    !   [m] default = 1.0E-10
 ! === module MOM_write_cputime ===
 
 ! === module MOM_main (MOM_driver) ===
-DAYMAX = 8000.0                 !   [seconds]
+DAYMAX = 100.0                  !   [seconds]
                                 ! The final time of the whole simulation, in units of
                                 ! TIMEUNIT seconds.  This also sets the potential end
                                 ! time of the present run segment if the end time is
