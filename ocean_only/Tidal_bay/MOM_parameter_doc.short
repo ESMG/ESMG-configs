@@ -171,6 +171,13 @@ THICKNESS_CONFIG = "uniform"    !
                                 !     soliton - Equatorial Rossby soliton.
                                 !     rossby_front - a mixed layer front in thermal wind balance.
                                 !     USER - call a user modified routine.
+OBC_USER_CONFIG = "tidal_bay"   ! default = "none"
+                                ! A string that sets how the user code is invoked to set open
+                                !  boundary data:
+                                !    DOME - specified inflow on northern boundary
+                                !    tidal_bay - Flather with tidal forcing on eastern boundary
+                                !    supercritical - now only needed here for the allocations
+                                !    USER - user specified
 
 ! === module MOM_diag_mediator ===
 NUM_DIAG_COORDS = 0             ! default = 1

@@ -179,6 +179,13 @@ INITIAL_U_CONST = 8.57          !   [m s-1]
                                 ! A initial uniform value for the zonal flow.
 INITIAL_V_CONST = 0.0           !   [m s-1]
                                 ! A initial uniform value for the meridional flow.
+OBC_USER_CONFIG = "supercritical" ! default = "none"
+                                ! A string that sets how the user code is invoked to set open
+                                !  boundary data:
+                                !    DOME - specified inflow on northern boundary
+                                !    tidal_bay - Flather with tidal forcing on eastern boundary
+                                !    supercritical - now only needed here for the allocations
+                                !    USER - user specified
 
 ! === module MOM_diag_mediator ===
 NUM_DIAG_COORDS = 0             ! default = 1

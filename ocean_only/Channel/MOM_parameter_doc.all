@@ -269,9 +269,6 @@ OBC_SEGMENT_001 = "I=N,J=0:N,GRADIENT" !
                                 ! Documentation needs to be dynamic?????
 OBC_SEGMENT_002 = "I=0,J=N:0,SIMPLE" !
                                 ! Documentation needs to be dynamic?????
-OBC_CONFIG = "none"             ! default = "none"
-                                ! A string that sets how the open boundary conditions are
-                                !  configured:
 MASKING_DEPTH = 0.5             !   [m] default = -9999.0
                                 ! The depth below which to mask points as land points, for which all
                                 ! fluxes are zeroed out. MASKING_DEPTH is ignored if negative.
@@ -389,6 +386,13 @@ SPONGE = False                  !   [Boolean] default = False
                                 ! If true, sponges may be applied anywhere in the domain.
                                 ! The exact location and properties of those sponges are
                                 ! specified via SPONGE_CONFIG.
+OBC_USER_CONFIG = "supercritical" ! default = "none"
+                                ! A string that sets how the user code is invoked to set open
+                                !  boundary data:
+                                !    DOME - specified inflow on northern boundary
+                                !    tidal_bay - Flather with tidal forcing on eastern boundary
+                                !    supercritical - now only needed here for the allocations
+                                !    USER - user specified
 
 ! === module MOM_diag_mediator ===
 NUM_DIAG_COORDS = 0             ! default = 1
