@@ -9,7 +9,7 @@ _read_error.nml
 available_diags.0*
 SIS.available_diags
 exitcode
-fort.20
+fort.*
 *.nc
 *.nc.*
 RESTART
