@@ -59,10 +59,27 @@ REENTRANT_X = False             !   [Boolean] default = True
 OBC_NUMBER_OF_SEGMENTS = 2      ! default = 0
 OBC_SEGMENT_001 = "I=N,J=0:N,GRADIENT"
 OBC_SEGMENT_002 = "I=0,J=N:0,SIMPLE"
+OBC_SEGMENT_003 = "J=N,I=N:0,FLATHER,ORLANSKI"
 OBC_SEGMENT_001_DATA = "U=value:-8.57,V=value:0.0,SSH=value:0.0"   ! Should be ignored with GRADIENT
 OBC_SEGMENT_002_DATA = "U=value:8.57,V=value:0.0,SSH=value:0.0"
+OBC_SEGMENT_003_DATA = "U=value:8.57,V=value:0.0,SSH=value:0.0"
 OBC_USER_CONFIG = supercritical   ! To be replaced later...
 
+OBC_ZERO_VORTICITY = False      !   [Boolean] default = False
+                                ! If true, sets relative vorticity to zero on open boundaries.
+OBC_FREESLIP_VORTICITY = True   !   [Boolean] default = False
+                                ! If true, sets the normal gradient of tangential velocity to
+                                ! zero in the relative vorticity on open boundaries. This cannot
+                                ! be true if OBC_ZERO_VORTICITY is True.
+OBC_ZERO_STRAIN = False         !   [Boolean] default = False
+                                ! If true, sets the strain used in the stress tensor to zero on open boundaries.
+OBC_FREESLIP_STRAIN = True      !   [Boolean] default = False
+                                ! If true, sets the normal gradient of tangential velocity to
+                                ! zero in the strain use in the stress tensor on open boundaries. This cannot
+                                ! be true if OBC_ZERO_STRAIN is True.
+OBC_ZERO_BIHARMONIC = False     !   [Boolean] default = False
+                                ! If true, zeros the Laplacian of flow on open boundaries in the biharmonic
+                                ! viscosity term.
 ! === module MOM_grid ===
 ! Parameters providing information about the vertical grid.
 NK = 1                          !   [nondim]
