@@ -265,6 +265,21 @@ MAXIMUM_DEPTH = 1.0             !   [m]
 ! Controls where open boundaries are located, what kind of boundary condition to impose, and what data to apply, if any.
 OBC_NUMBER_OF_SEGMENTS = 2      ! default = 0
                                 ! The number of open boundary segments.
+OBC_ZERO_VORTICITY = False      !   [Boolean] default = False
+                                ! If true, sets relative vorticity to zero on open boundaries.
+OBC_FREESLIP_VORTICITY = True   !   [Boolean] default = False
+                                ! If true, sets the normal gradient of tangential velocity to
+                                ! zero in the relative vorticity on open boundaries. This cannot
+                                ! be true if OBC_ZERO_VORTICITY is True.
+OBC_ZERO_STRAIN = False         !   [Boolean] default = False
+                                ! If true, sets the strain used in the stress tensor to zero on open boundaries.
+OBC_FREESLIP_STRAIN = True      !   [Boolean] default = False
+                                ! If true, sets the normal gradient of tangential velocity to
+                                ! zero in the strain use in the stress tensor on open boundaries. This cannot
+                                ! be true if OBC_ZERO_STRAIN is True.
+OBC_ZERO_BIHARMONIC = False     !   [Boolean] default = False
+                                ! If true, zeros the Laplacian of flow on open boundaries in the biharmonic
+                                ! viscosity term.
 OBC_SEGMENT_001 = "I=N,J=0:N,GRADIENT" !
                                 ! Documentation needs to be dynamic?????
 OBC_SEGMENT_002 = "I=0,J=N:0,SIMPLE" !
@@ -393,6 +408,17 @@ OBC_USER_CONFIG = "supercritical" ! default = "none"
                                 !    tidal_bay - Flather with tidal forcing on eastern boundary
                                 !    supercritical - now only needed here for the allocations
                                 !    USER - user specified
+READ_OBC_UV = False             !   [Boolean] default = False
+                                ! If true, read the values for the velocity open boundary
+                                ! conditions from the file specified by OBC_FILE.
+READ_OBC_ETA = False            !   [Boolean] default = False
+                                ! If true, read the values for the sea surface height
+                                ! open boundary conditions from the file specified by
+                                ! OBC_FILE.
+READ_OBC_TS = False             !   [Boolean] default = False
+                                ! If true, read the values for the temperature and
+                                ! salinity open boundary conditions from the file
+                                ! specified by OBC_FILE.
 
 ! === module MOM_diag_mediator ===
 NUM_DIAG_COORDS = 0             ! default = 1
