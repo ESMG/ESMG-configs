@@ -56,7 +56,7 @@ REENTRANT_X = False             !   [Boolean] default = True
                                 ! If true, the domain is zonally reentrant.
 
 ! === module MOM_open ===
-OBC_NUMBER_OF_SEGMENTS = 2      ! default = 0
+OBC_NUMBER_OF_SEGMENTS = 3      ! default = 0
 OBC_SEGMENT_001 = "I=N,J=0:N,GRADIENT"
 OBC_SEGMENT_002 = "I=0,J=N:0,SIMPLE"
 OBC_SEGMENT_003 = "J=N,I=N:0,FLATHER,ORLANSKI"
