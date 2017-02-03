@@ -26,11 +26,22 @@ DIABATIC_FIRST = True           !   [Boolean] default = False
                                 ! If true, apply diabatic and thermodynamic processes,
                                 ! including buoyancy forcing and mass gain or loss,
                                 ! before stepping the dynamics forward.
+USE_CONTEMP_ABSSAL = False      !   [Boolean] default = False
+                                ! If true, , the prognostics T&S are the conservative temperature
+                                ! and absolute salinity. Care should be taken to convert them
+                                ! to potential temperature and practical salinity before
+                                ! exchanging them with the coupler and/or reporting T&S diagnostics.
 ADIABATIC = False               !   [Boolean] default = False
                                 ! There are no diapycnal mass fluxes if ADIABATIC is
                                 ! true. This assumes that KD = KDML = 0.0 and that
                                 ! there is no buoyancy forcing, but makes the model
                                 ! faster by eliminating subroutine calls.
+OFFLINE_TRACER_MODE = False     !   [Boolean] default = False
+                                ! If true, barotropic and baroclinic dynamics, thermodynamics
+                                ! are all bypassed with all the fields necessary to integrate
+                                ! the tracer advection and diffusion equation are read in from
+                                ! files stored from a previous integration of the prognostic model.
+                                ! NOTE: This option only used in the ocean_solo_driver.
 USE_REGRIDDING = True           !   [Boolean] default = False
                                 ! If True, use the ALE algorithm (regridding/remapping).
                                 ! If False, use the layered isopycnal algorithm.
@@ -153,6 +164,12 @@ NJGLOBAL = 480                  !
                                 ! The total number of thickness grid points in the
                                 ! y-direction in the physical domain. With STATIC_MEMORY_
                                 ! this is set in MOM_memory.h at compile time.
+DEBUG_CHKSUMS = False           !   [Boolean] default = False
+                                ! If true, checksums are performed on arrays in the
+                                ! various vec_chksum routines.
+DEBUG_REDUNDANT = False         !   [Boolean] default = False
+                                ! If true, debug redundant data points during calls to
+                                ! the various vec_chksum routines.
 
 ! === module MOM_hor_index ===
 ! Sets the horizontal array index types.
@@ -182,7 +199,7 @@ NK = 75                         !   [nondim]
 EQN_OF_STATE = "WRIGHT"         ! default = "WRIGHT"
                                 ! EQN_OF_STATE determines which ocean equation of state
                                 ! should be used.  Currently, the valid choices are
-                                ! "LINEAR", "UNESCO", and "WRIGHT".
+                                ! "LINEAR", "UNESCO", "WRIGHT", "NEMO" and "TEOS10".
                                 ! This is only used if USE_EOS is true.
 EOS_QUADRATURE = False          !   [Boolean] default = False
                                 ! If true, always use the generic (quadrature) code
@@ -302,7 +319,6 @@ TOPO_CONFIG = "file"            !
                                 !     DOME2D - use a shelf and slope configuration for the
                                 !       DOME2D gravity current/overflow test case.
                                 !     seamount - Gaussian bump for spontaneous motion test case.
-                                !     supercritical - flat but with 8.95 degree land mask.
                                 !     Phillips - ACC-like idealized topography used in the Phillips config.
                                 !     USER - call a user modified routine.
 TOPO_FILE = "topog.nc"          ! default = "topog.nc"
@@ -323,11 +339,26 @@ MINIMUM_DEPTH = 9.5             !   [m] default = 0.0
 ! Controls where open boundaries are located, what kind of boundary condition to impose, and what data to apply, if any.
 OBC_NUMBER_OF_SEGMENTS = 3      ! default = 0
                                 ! The number of open boundary segments.
-OBC_SEGMENT_001 = "J=N,I=N:0,FLATHER" !
+OBC_ZERO_VORTICITY = False      !   [Boolean] default = False
+                                ! If true, sets relative vorticity to zero on open boundaries.
+OBC_FREESLIP_VORTICITY = True   !   [Boolean] default = False
+                                ! If true, sets the normal gradient of tangential velocity to
+                                ! zero in the relative vorticity on open boundaries. This cannot
+                                ! be true if OBC_ZERO_VORTICITY is True.
+OBC_ZERO_STRAIN = False         !   [Boolean] default = False
+                                ! If true, sets the strain used in the stress tensor to zero on open boundaries.
+OBC_FREESLIP_STRAIN = True      !   [Boolean] default = False
+                                ! If true, sets the normal gradient of tangential velocity to
+                                ! zero in the strain use in the stress tensor on open boundaries. This cannot
+                                ! be true if OBC_ZERO_STRAIN is True.
+OBC_ZERO_BIHARMONIC = False     !   [Boolean] default = False
+                                ! If true, zeros the Laplacian of flow on open boundaries in the biharmonic
+                                ! viscosity term.
+OBC_SEGMENT_001 = "J=N,I=N:0,LEGACY" !
                                 ! Documentation needs to be dynamic?????
-OBC_SEGMENT_002 = "J=0,I=0:N,FLATHER" !
+OBC_SEGMENT_002 = "J=0,I=0:N,LEGACY" !
                                 ! Documentation needs to be dynamic?????
-OBC_SEGMENT_003 = "I=0,J=N:0,FLATHER" !
+OBC_SEGMENT_003 = "I=0,J=N:0,LEGACY" !
                                 ! Documentation needs to be dynamic?????
 MASKING_DEPTH = 0.0             !   [m] default = -9999.0
                                 ! The depth below which to mask points as land points, for which all
@@ -551,6 +582,13 @@ OBC_RAD_THICK_WT = 0.2          !   [nondim] default = 0.2
                                 ! time level (1) or the running mean (0) for thicknesses.
                                 ! Valid values range from 0 to 1. This is only used if
                                 ! one of the open boundary segments is using Orlanski.
+OBC_USER_CONFIG = "none"        ! default = "none"
+                                ! A string that sets how the user code is invoked to set open
+                                !  boundary data:
+                                !    DOME - specified inflow on northern boundary
+                                !    tidal_bay - Flather with tidal forcing on eastern boundary
+                                !    supercritical - now only needed here for the allocations
+                                !    USER - user specified
 READ_OBC_UV = False             !   [Boolean] default = False
                                 ! If true, read the values for the velocity open boundary
                                 ! conditions from the file specified by OBC_FILE.
@@ -1536,6 +1574,21 @@ USE_CALVING_HEAT_CONTENT = False !   [Boolean] default = False
 MSTAR = 1.2                     !   [units=nondim] default = 1.2
                                 ! The ratio of the friction velocity cubed to the TKE
                                 ! input to the mixed layer.
+MIX_LEN_EXPONENT = 2.0          !   [units=nondim] default = 2.0
+                                ! The exponent applied to the ratio of the distance to the MLD
+                                ! and the MLD depth which determines the shape of the mixing length.
+MSTAR_SLOPE = 1.0               !   [units=nondim] default = 1.0
+                                ! The slope of the linear relationship between mstar
+                                ! and the length scale ratio (used if MSTAR_FIXED=false).
+MSTAR_XINT = -0.25              !   [units=nondim] default = -0.25
+                                ! The value of the length scale ratio where the mstar
+                                ! is linear above (used if MSTAR_FIXED=false).
+MSTAR_AT_XINT = 0.13            !   [units=nondim] default = 0.13
+                                ! The value of mstar at MSTAR_XINT
+                                ! (used if MSTAR_FIXED=false).
+MSTAR_FIXED = True              !   [units=nondim] default = True
+                                ! True to use a fixed value of mstar, if false mstar depends
+                                ! on the composite Obhukov length and Ekman length.
 NSTAR = 0.2                     !   [nondim] default = 0.2
                                 ! The portion of the buoyant potential energy imparted by
                                 ! surface fluxes that is available to drive entrainment
@@ -1568,6 +1621,10 @@ USE_MLD_ITERATION = False       !   [Boolean] default = False
                                 ! A logical that specifies whether or not to use the
                                 ! distance to the bottom of the actively turblent boundary
                                 ! layer to help set the EPBL length scale.
+ORIG_MLD_ITERATION = True       !   [Boolean] default = True
+                                ! A logical that specifies whether or not to use the
+                                ! old method for determining MLD depth in iteration, which
+                                ! is limited to resolution.
 MLD_ITERATION_GUESS = False     !   [Boolean] default = False
                                 ! A logical that specifies whether or not to use the
                                 ! previous timestep MLD as a first guess in the MLD iteration.
@@ -1595,10 +1652,15 @@ N2_DISSIPATION_NEG = 0.0        !   [nondim] default = 0.0
                                 ! A scale for the dissipation of TKE due to stratification
                                 ! in the boundary layer, applied when local stratification
                                 ! is negative.  The default is 0, but should probably be ~1.
-USE_LT_LI2016 = False           !   [nondim] default = False
+USE_LA_LI2016 = False           !   [nondim] default = False
                                 ! A logical to use the Li et al. 2016 (submitted) formula to
-                                !  determine the enhancement of velocity due to Langmuir
-                                !  turbulence.
+                                !  determine the Langmuir number.
+LT_ENHANCE = 0                  !   [nondim] default = 0
+                                ! Integer for LT enhancement function mode.
+                                !  *Requires USE_LA_LI2016 to be set to True.
+                                ! Options: 0 - no LT enhancement
+                                !          1 - Van Roekel et al. 2014/Li et al., 2016
+                                !          2 - New LES net mixing based derivation
 EPBL_USTAR_MIN = 1.45842E-18    !   [meter second-1]
                                 ! The (tiny) minimum friction velocity used within the
                                 ! ePBL code, derived from OMEGA and ANGSTROM.
