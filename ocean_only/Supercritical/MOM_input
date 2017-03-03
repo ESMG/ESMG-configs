@@ -57,9 +57,9 @@ REENTRANT_X = False             !   [Boolean] default = True
 
 ! === module MOM_open ===
 OBC_NUMBER_OF_SEGMENTS = 2      ! default = 0
-OBC_SEGMENT_001 = "I=N,J=0:N,LEGACY"
+OBC_SEGMENT_001 = "I=N,J=0:N,OBLIQUE"
 OBC_SEGMENT_002 = "I=0,J=N:0,SIMPLE"
-OBC_SEGMENT_001_DATA = "U=value:8.57,V=value:0.0,SSH=value:0.0"   ! Should be ignored with GRADIENT
+!OBC_SEGMENT_001_DATA = "U=value:8.57,V=value:0.0,SSH=value:0.0"   ! Should be ignored with GRADIENT
 OBC_SEGMENT_002_DATA = "U=value:8.57,V=value:0.0,SSH=value:0.0"
 OBC_USER_CONFIG = supercritical   ! To be replaced later...
 
