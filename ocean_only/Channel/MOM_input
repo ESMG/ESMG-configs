@@ -63,7 +63,9 @@ OBC_SEGMENT_003 = "J=N,I=N:0,FLATHER,ORLANSKI"
 OBC_SEGMENT_001_DATA = "U=value:-8.57,V=value:0.0,SSH=value:0.0"   ! Should be ignored with GRADIENT
 OBC_SEGMENT_002_DATA = "U=value:8.57,V=value:0.0,SSH=value:0.0"
 OBC_SEGMENT_003_DATA = "U=value:8.57,V=value:0.0,SSH=value:0.0"
-OBC_USER_CONFIG = supercritical   ! To be replaced later...
+OBC_USER_CONFIG = supercritical ! To be replaced later...
+EXTEND_OBC_SEGMENTS = True      !   [Boolean] default = False
+                                ! If true, extend OBC segments.
 
 OBC_ZERO_VORTICITY = False      !   [Boolean] default = False
                                 ! If true, sets relative vorticity to zero on open boundaries.
