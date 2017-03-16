@@ -120,6 +120,18 @@ OBC_SEGMENT_003 = "I=N,J=0:N,FLATHER,ORLANSKI" !
 OBC_SEGMENT_004 = "I=0,J=N:0,FLATHER,ORLANSKI" !
                                 ! Documentation needs to be dynamic?????
 
+! === module MOM_tidal_forcing ===
+TIDES = True                    !   [Boolean] default = False
+                                ! If true, apply tidal momentum forcing.
+TIDE_M2 = True                  !   [Boolean] default = False
+                                ! If true, apply tidal momentum forcing at the M2
+                                ! frequency. This is only used if TIDES is true.
+TIDE_SAL_SCALAR_VALUE = 0.094   !   [m m-1]
+                                ! The constant of proportionality between sea surface
+                                ! height (really it should be bottom pressure) anomalies
+                                ! and bottom geopotential anomalies. This is only used if
+                                ! TIDES and TIDE_USE_SAL_SCALAR are true.
+
 ! === module MOM_tracer_flow_control ===
 INPUTDIR = "INPUT/"             ! default = "."
                                 ! The directory in which input files are found.
@@ -156,7 +168,7 @@ TS_RANGE_S_DENSE = 35.95        !   [PSU] default = 35.0
                                 ! is set to ts_range.
 
 ! === module MOM_grid_init ===
-GRID_CONFIG = "cartesian"       !
+GRID_CONFIG = "mercator"        !
                                 ! A character string that determines the method for
                                 ! defining the horizontal grid.  Current options are:
                                 !     mosaic - read the grid from a mosaic (supergrid)
@@ -164,17 +176,20 @@ GRID_CONFIG = "cartesian"       !
                                 !     cartesian - use a (flat) Cartesian grid.
                                 !     spherical - use a simple spherical grid.
                                 !     mercator - use a Mercator spherical grid.
-AXIS_UNITS = "k"                ! default = "degrees"
+!AXIS_UNITS = "k"                ! default = "degrees"
                                 ! The units for the Cartesian axes. Valid entries are:
                                 !     degrees - degrees of latitude and longitude
                                 !     m - meters
                                 !     k - kilometers
-SOUTHLAT = 30.0                 !   [k]
+SOUTHLAT = 3.0                  !   [d]
                                 ! The southern latitude of the domain or the equivalent
                                 ! starting value for the y-axis.
-LENLAT = 200.0                  !   [k]
+WESTLON = 180.0                 !   [degrees] default = 0.0
+                                ! The western longitude of the domain or the equivalent
+                                ! starting value for the x-axis.
+LENLAT = 20.0                   !   [d]
                                 ! The latitudinal or y-direction length of the domain.
-LENLON = 200.0                  !   [k]
+LENLON = 20.0                   !   [d]
                                 ! The longitudinal or x-direction length of the domain.
 TOPO_CONFIG = "seamount"        !
                                 ! This specifies how bathymetry is specified:
@@ -194,9 +209,14 @@ TOPO_CONFIG = "seamount"        !
                                 !       DOME2D gravity current/overflow test case.
                                 !     seamount - Gaussian bump for spontaneous motion test case.
                                 !     USER - call a user modified routine.
-SEAMOUNT_DELTA = 0.9            !
-SEAMOUNT_X_LENGTH_SCALE = 20
-SEAMOUNT_Y_LENGTH_SCALE = 20
+SEAMOUNT_DELTA = 0.9            !   [non-dim] default = 0.5
+                                ! Non-dimensional height of seamount.
+SEAMOUNT_X_LENGTH_SCALE = 2.0   !   [Same as x,y] default = 0.0
+                                ! Length scale of seamount in x-direction.
+                                ! Set to zero make topography uniform in the x-direction.
+SEAMOUNT_Y_LENGTH_SCALE = 2.0   !   [Same as x,y] default = 0.0
+                                ! Length scale of seamount in y-direction.
+                                ! Set to zero make topography uniform in the y-direction.
 MAXIMUM_DEPTH = 4000.0          !   [m]
                                 ! The maximum depth of the ocean.
 MINIMUM_DEPTH = 1.0             !   [m] default = 0.0

@@ -64,7 +64,7 @@ INPUTDIR = "INPUT/"             ! default = "."
                                 ! The directory in which input files are found.
 
 ! === module MOM_grid_init ===
-GRID_CONFIG = "cartesian"       !
+GRID_CONFIG = "mercator"        !
                                 ! A character string that determines the method for
                                 ! defining the horizontal grid.  Current options are:
                                 !     mosaic - read the grid from a mosaic (supergrid)
@@ -72,18 +72,14 @@ GRID_CONFIG = "cartesian"       !
                                 !     cartesian - use a (flat) Cartesian grid.
                                 !     spherical - use a simple spherical grid.
                                 !     mercator - use a Mercator spherical grid.
-AXIS_UNITS = "k"                ! default = "degrees"
-                                ! The units for the Cartesian axes. Valid entries are:
-                                !     degrees - degrees of latitude and longitude
-                                !     m - meters
-                                !     k - kilometers
-SOUTHLAT = 30.0                 !   [k]
-                                ! The southern latitude of the domain or the equivalent
-                                ! starting value for the y-axis.
-LENLAT = 200.0                  !   [k]
-                                ! The latitudinal or y-direction length of the domain.
-LENLON = 200.0                  !   [k]
-                                ! The longitudinal or x-direction length of the domain.
+SOUTHLAT = 3.0                  !   [degrees]
+                                ! The southern latitude of the domain.
+LENLAT = 20.0                   !   [degrees]
+                                ! The latitudinal length of the domain.
+WESTLON = 180.0                 !   [degrees] default = 0.0
+                                ! The western longitude of the domain.
+LENLON = 20.0                   !   [degrees]
+                                ! The longitudinal length of the domain.
 TOPO_CONFIG = "seamount"        !
                                 ! This specifies how bathymetry is specified:
                                 !     file - read bathymetric information from the file
@@ -107,7 +103,10 @@ TOPO_CONFIG = "seamount"        !
                                 !     USER - call a user modified routine.
 SEAMOUNT_DELTA = 0.9            !   [non-dim] default = 0.5
                                 ! Non-dimensional height of seamount.
-SEAMOUNT_Y_LENGTH_SCALE = 20.0  !   [Same as x,y] default = 0.0
+SEAMOUNT_X_LENGTH_SCALE = 2.0   !   [Same as x,y] default = 20.0
+                                ! Length scale of seamount in x-direction.
+                                ! Set to zero make topography uniform in the x-direction.
+SEAMOUNT_Y_LENGTH_SCALE = 2.0   !   [Same as x,y] default = 0.0
                                 ! Length scale of seamount in y-direction.
                                 ! Set to zero make topography uniform in the y-direction.
 MAXIMUM_DEPTH = 4000.0          !   [m]
@@ -293,6 +292,8 @@ BBL_THICK_MIN = 0.1             !   [m] default = 0.0
 KV = 1.0E-04                    !   [m2 s-1]
                                 ! The background kinematic viscosity in the interior.
                                 ! The molecular value, ~1e-6 m2 s-1, may be used.
+TIDES = True                    !   [Boolean] default = False
+                                ! If true, apply tidal momentum forcing.
 BE = 0.7                        !   [nondim] default = 0.6
                                 ! If SPLIT is true, BE determines the relative weighting
                                 ! of a  2nd-order Runga-Kutta baroclinic time stepping
@@ -324,6 +325,16 @@ BOUND_CORIOLIS = True           !   [Boolean] default = False
                                 ! v-points, and similarly at v-points.  This option is
                                 ! always effectively false with CORIOLIS_EN_DIS defined and
                                 ! CORIOLIS_SCHEME set to SADOURNY75_ENERGY.
+
+! === module MOM_tidal_forcing ===
+TIDE_M2 = True                  !   [Boolean] default = False
+                                ! If true, apply tidal momentum forcing at the M2
+                                ! frequency. This is only used if TIDES is true.
+TIDE_SAL_SCALAR_VALUE = 0.094   !   [m m-1]
+                                ! The constant of proportionality between sea surface
+                                ! height (really it should be bottom pressure) anomalies
+                                ! and bottom geopotential anomalies. This is only used if
+                                ! TIDES and TIDE_USE_SAL_SCALAR are true.
 
 ! === module MOM_PressureForce ===
 
@@ -498,7 +509,7 @@ DT_FORCING = 1800.0             !   [s] default = 900.0
                                 ! The time step for changing forcing, coupling with other
                                 ! components, or potentially writing certain diagnostics.
                                 ! The default value is given by DT.
-DAYMAX = 5.0                    !   [days]
+DAYMAX = 3.0                    !   [days]
                                 ! The final time of the whole simulation, in units of
                                 ! TIMEUNIT seconds.  This also sets the potential end
                                 ! time of the present run segment if the end time is

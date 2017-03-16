@@ -274,7 +274,7 @@ INPUTDIR = "INPUT/"             ! default = "."
                                 ! The directory in which input files are found.
 
 ! === module MOM_grid_init ===
-GRID_CONFIG = "cartesian"       !
+GRID_CONFIG = "mercator"        !
                                 ! A character string that determines the method for
                                 ! defining the horizontal grid.  Current options are:
                                 !     mosaic - read the grid from a mosaic (supergrid)
@@ -282,23 +282,33 @@ GRID_CONFIG = "cartesian"       !
                                 !     cartesian - use a (flat) Cartesian grid.
                                 !     spherical - use a simple spherical grid.
                                 !     mercator - use a Mercator spherical grid.
-AXIS_UNITS = "k"                ! default = "degrees"
-                                ! The units for the Cartesian axes. Valid entries are:
-                                !     degrees - degrees of latitude and longitude
-                                !     m - meters
-                                !     k - kilometers
-SOUTHLAT = 30.0                 !   [k]
-                                ! The southern latitude of the domain or the equivalent
-                                ! starting value for the y-axis.
-LENLAT = 200.0                  !   [k]
-                                ! The latitudinal or y-direction length of the domain.
-WESTLON = 0.0                   !   [k] default = 0.0
-                                ! The western longitude of the domain or the equivalent
-                                ! starting value for the x-axis.
-LENLON = 200.0                  !   [k]
-                                ! The longitudinal or x-direction length of the domain.
+SOUTHLAT = 3.0                  !   [degrees]
+                                ! The southern latitude of the domain.
+LENLAT = 20.0                   !   [degrees]
+                                ! The latitudinal length of the domain.
+WESTLON = 180.0                 !   [degrees] default = 0.0
+                                ! The western longitude of the domain.
+LENLON = 20.0                   !   [degrees]
+                                ! The longitudinal length of the domain.
 RAD_EARTH = 6.378E+06           !   [m] default = 6.378E+06
                                 ! The radius of the Earth.
+ISOTROPIC = False               !   [Boolean] default = False
+                                ! If true, an isotropic grid on a sphere (also known as
+                                ! a Mercator grid) is used. With an isotropic grid, the
+                                ! meridional extent of the domain (LENLAT), the zonal
+                                ! extent (LENLON), and the number of grid points in each
+                                ! direction are _not_ independent. In MOM the meridional
+                                ! extent is determined to fit the zonal extent and the
+                                ! number of grid points, while grid is perfectly isotropic.
+EQUATOR_REFERENCE = True        !   [Boolean] default = True
+                                ! If true, the grid is defined to have the equator at the
+                                ! nearest q- or h- grid point to (-LOWLAT*NJGLOBAL/LENLAT).
+LAT_ENHANCE_FACTOR = 1.0        !   [nondim] default = 1.0
+                                ! The amount by which the meridional resolution is
+                                ! enhanced within LAT_EQ_ENHANCE of the equator.
+LAT_EQ_ENHANCE = 0.0            !   [degrees] default = 0.0
+                                ! The latitude range to the north and south of the equator
+                                ! over which the resolution is enhanced.
 TOPO_CONFIG = "seamount"        !
                                 ! This specifies how bathymetry is specified:
                                 !     file - read bathymetric information from the file
@@ -322,10 +332,10 @@ TOPO_CONFIG = "seamount"        !
                                 !     USER - call a user modified routine.
 SEAMOUNT_DELTA = 0.9            !   [non-dim] default = 0.5
                                 ! Non-dimensional height of seamount.
-SEAMOUNT_X_LENGTH_SCALE = 20.0  !   [Same as x,y] default = 20.0
+SEAMOUNT_X_LENGTH_SCALE = 2.0   !   [Same as x,y] default = 20.0
                                 ! Length scale of seamount in x-direction.
                                 ! Set to zero make topography uniform in the x-direction.
-SEAMOUNT_Y_LENGTH_SCALE = 20.0  !   [Same as x,y] default = 0.0
+SEAMOUNT_Y_LENGTH_SCALE = 2.0   !   [Same as x,y] default = 0.0
                                 ! Length scale of seamount in y-direction.
                                 ! Set to zero make topography uniform in the y-direction.
 MAXIMUM_DEPTH = 4000.0          !   [m]
@@ -697,7 +707,7 @@ KV_BBL_MIN = 1.0E-04            !   [m2 s-1] default = 1.0E-04
                                 ! The minimum viscosities in the bottom boundary layer.
 KV_TBL_MIN = 1.0E-04            !   [m2 s-1] default = 1.0E-04
                                 ! The minimum viscosities in the top boundary layer.
-TIDES = False                   !   [Boolean] default = False
+TIDES = True                    !   [Boolean] default = False
                                 ! If true, apply tidal momentum forcing.
 BE = 0.7                        !   [nondim] default = 0.6
                                 ! If SPLIT is true, BE determines the relative weighting
@@ -821,6 +831,63 @@ PV_ADV_SCHEME = "PV_ADV_CENTERED" ! default = "PV_ADV_CENTERED"
                                 ! advection. Valid values are:
                                 !    PV_ADV_CENTERED - centered (aka Sadourny, 75)
                                 !    PV_ADV_UPWIND1  - upwind, first order
+
+! === module MOM_tidal_forcing ===
+TIDE_M2 = True                  !   [Boolean] default = False
+                                ! If true, apply tidal momentum forcing at the M2
+                                ! frequency. This is only used if TIDES is true.
+TIDE_S2 = False                 !   [Boolean] default = False
+                                ! If true, apply tidal momentum forcing at the S2
+                                ! frequency. This is only used if TIDES is true.
+TIDE_N2 = False                 !   [Boolean] default = False
+                                ! If true, apply tidal momentum forcing at the N2
+                                ! frequency. This is only used if TIDES is true.
+TIDE_K2 = False                 !   [Boolean] default = False
+                                ! If true, apply tidal momentum forcing at the K2
+                                ! frequency. This is only used if TIDES is true.
+TIDE_K1 = False                 !   [Boolean] default = False
+                                ! If true, apply tidal momentum forcing at the K1
+                                ! frequency. This is only used if TIDES is true.
+TIDE_O1 = False                 !   [Boolean] default = False
+                                ! If true, apply tidal momentum forcing at the O1
+                                ! frequency. This is only used if TIDES is true.
+TIDE_P1 = False                 !   [Boolean] default = False
+                                ! If true, apply tidal momentum forcing at the P1
+                                ! frequency. This is only used if TIDES is true.
+TIDE_Q1 = False                 !   [Boolean] default = False
+                                ! If true, apply tidal momentum forcing at the Q1
+                                ! frequency. This is only used if TIDES is true.
+TIDE_MF = False                 !   [Boolean] default = False
+                                ! If true, apply tidal momentum forcing at the MF
+                                ! frequency. This is only used if TIDES is true.
+TIDE_MM = False                 !   [Boolean] default = False
+                                ! If true, apply tidal momentum forcing at the MM
+                                ! frequency. This is only used if TIDES is true.
+TIDAL_SAL_FROM_FILE = False     !   [Boolean] default = False
+                                ! If true, read the tidal self-attraction and loading
+                                ! from input files, specified by TIDAL_INPUT_FILE.
+                                ! This is only used if TIDES is true.
+USE_PREVIOUS_TIDES = False      !   [Boolean] default = False
+                                ! If true, use the SAL from the previous iteration of the
+                                ! tides to facilitate convergent iteration.
+                                ! This is only used if TIDES is true.
+TIDE_USE_SAL_SCALAR = True      !   [Boolean] default = True
+                                ! If true and TIDES is true, use the scalar approximation
+                                ! when calculating self-attraction and loading.
+TIDE_SAL_SCALAR_VALUE = 0.094   !   [m m-1]
+                                ! The constant of proportionality between sea surface
+                                ! height (really it should be bottom pressure) anomalies
+                                ! and bottom geopotential anomalies. This is only used if
+                                ! TIDES and TIDE_USE_SAL_SCALAR are true.
+TIDE_M2_FREQ = 1.405189E-04     !   [s-1] default = 1.405189E-04
+                                ! Frequency of the M2 tidal constituent.
+                                ! This is only used if TIDES and TIDE_M2 are true.
+TIDE_M2_AMP = 0.242334          !   [m] default = 0.242334
+                                ! Amplitude of the M2 tidal constituent.
+                                ! This is only used if TIDES and TIDE_M2 are true.
+TIDE_M2_PHASE_T0 = 0.0          !   [radians] default = 0.0
+                                ! Phase of the M2 tidal constituent at time 0.
+                                ! This is only used if TIDES and TIDE_M2 are true.
 
 ! === module MOM_PressureForce ===
 ANALYTIC_FV_PGF = True          !   [Boolean] default = True
@@ -1515,7 +1582,7 @@ DT_FORCING = 1800.0             !   [s] default = 900.0
                                 ! The time step for changing forcing, coupling with other
                                 ! components, or potentially writing certain diagnostics.
                                 ! The default value is given by DT.
-DAYMAX = 5.0                    !   [days]
+DAYMAX = 3.0                    !   [days]
                                 ! The final time of the whole simulation, in units of
                                 ! TIMEUNIT seconds.  This also sets the potential end
                                 ! time of the present run segment if the end time is
