@@ -230,6 +230,12 @@ ROTATION = "betaplane"          ! default = "2omegasinlat"
                                 !       times the sine of latitude.
                                 !     betaplane - Use a beta-plane or f-plane.
                                 !     USER - call a user modified routine.
+F_0 = 0.0001                    !   [s-1] default = 0.0
+                                ! The reference value of the Coriolis parameter with the
+                                ! betaplane option.
+BETA = 0.0                      !   [m-1 s-1] default = 0.0
+                                ! The northward gradient of the Coriolis parameter with
+                                ! the betaplane option.
 THICKNESS_CONFIG = "seamount"   !
                                 ! A string that determines how the initial layer
                                 ! thicknesses are specified for a new run:
