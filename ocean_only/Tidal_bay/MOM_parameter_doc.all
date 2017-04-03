@@ -271,6 +271,10 @@ MAXIMUM_DEPTH = 35.0            !   [m]
 ! Controls where open boundaries are located, what kind of boundary condition to impose, and what data to apply, if any.
 OBC_NUMBER_OF_SEGMENTS = 1      ! default = 0
                                 ! The number of open boundary segments.
+EXTEND_OBC_SEGMENTS = False     !   [Boolean] default = False
+                                ! If true, extend OBC segments. This option is used to recover
+                                ! legacy solutions dependent on an incomplete implementaion of OBCs.
+                                ! This option will be obsoleted in the future.
 OBC_ZERO_VORTICITY = False      !   [Boolean] default = False
                                 ! If true, sets relative vorticity to zero on open boundaries.
 OBC_FREESLIP_VORTICITY = True   !   [Boolean] default = False
@@ -423,6 +427,7 @@ OBC_USER_CONFIG = "tidal_bay"   ! default = "none"
                                 !    DOME - specified inflow on northern boundary
                                 !    tidal_bay - Flather with tidal forcing on eastern boundary
                                 !    supercritical - now only needed here for the allocations
+                                !    Kelvin - barotropic Kelvin wave forcing on the western boundary
                                 !    USER - user specified
 READ_OBC_UV = False             !   [Boolean] default = False
                                 ! If true, read the values for the velocity open boundary
@@ -440,6 +445,8 @@ READ_OBC_TS = False             !   [Boolean] default = False
 NUM_DIAG_COORDS = 0             ! default = 1
                                 ! The number of diagnostic vertical coordinates to use.
                                 ! For each coordinate, an entry in DIAG_COORDS must be provided.
+DIAG_MISVAL = -1.0E+34          !   [not defined] default = -1.0E+34
+                                ! Set the default missing value to use for diagnostics.
 AVAILABLE_DIAGS_FILE = "available_diags.000000" ! default = "available_diags.000000"
                                 ! A file into which to write a list of all available
                                 ! ocean diagnostics that can be included in a diag_table.
@@ -938,6 +945,10 @@ KHTH_SLOPE_MAX = 0.01           !   [nondim] default = 0.01
 KD_SMOOTH = 1.0E-06             !   [not defined] default = 1.0E-06
                                 ! A diapycnal diffusivity that is used to interpolate
                                 ! more sensible values of T & S into thin layers.
+KHTH_USE_FGNV_STREAMFUNCTION = False !   [Boolean] default = False
+                                ! If true, use the streamfunction formulation of
+                                ! Ferrari et al., 2010, which effectively emphasizes
+                                ! graver vertical modes by smoothing in the vertical.
 
 ! === module MOM_mixed_layer_restrat ===
 MIXEDLAYER_RESTRAT = False      !   [Boolean] default = False
@@ -966,6 +977,7 @@ TRACER_ADVECTION_SCHEME = "PLM" ! default = "PLM"
                                 ! The horizontal transport scheme for tracers:
                                 !   PLM    - Piecewise Linear Method
                                 !   PPM:H3 - Piecewise Parabolic Method (Huyhn 3rd order)
+                                !   PPM    - Piecewise Parabolic Method (Colella-Woodward)
 
 ! === module MOM_tracer_hor_diff ===
 KHTR = 0.0                      !   [m2 s-1] default = 0.0
