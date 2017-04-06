@@ -292,6 +292,28 @@ OBC_ZERO_BIHARMONIC = True      !   [Boolean] default = False
                                 ! viscosity term.
 OBC_SEGMENT_001 = "I=N,J=0:N,FLATHER" !
                                 ! Documentation needs to be dynamic?????
+REMAPPING_SCHEME = "PLM"        ! default = "PLM"
+                                ! This sets the reconstruction scheme used
+                                ! for vertical remapping for all variables.
+                                ! It can be one of the following schemes:
+                                ! PCM         (1st-order accurate)
+                                ! PLM         (2nd-order accurate)
+                                ! PPM_H4      (3rd-order accurate)
+                                ! PPM_IH4     (3rd-order accurate)
+                                ! PQM_IH4IH3  (4th-order accurate)
+                                ! PQM_IH6IH5  (5th-order accurate)
+FATAL_CHECK_RECONSTRUCTIONS = False !   [Boolean] default = False
+                                ! If true, cell-by-cell reconstructions are checked for
+                                ! consistency and if non-monotonicity or an inconsistency is
+                                ! detected then a FATAL error is issued.
+FATAL_CHECK_REMAPPING = False   !   [Boolean] default = False
+                                ! If true, the results of remapping are checked for
+                                ! conservation and new extrema and if an inconsistency is
+                                ! detected then a FATAL error is issued.
+REMAP_BOUND_INTERMEDIATE_VALUES = False !   [Boolean] default = False
+                                ! If true, the values on the intermediate grid used for remapping
+                                ! are forced to be bounded, which might not be the case due to
+                                ! round off.
 MASKING_DEPTH = -9999.0         !   [m] default = -9999.0
                                 ! The depth below which to mask points as land points, for which all
                                 ! fluxes are zeroed out. MASKING_DEPTH is ignored if negative.
