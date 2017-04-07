@@ -140,16 +140,6 @@ OBC_SEGMENT_003 = "I=N,J=0:N,FLATHER" !
                                 ! Documentation needs to be dynamic?????
 OBC_SEGMENT_004 = "I=0,J=N:0,FLATHER" !
                                 ! Documentation needs to be dynamic?????
-REMAPPING_SCHEME = "PPM_IH4"    ! default = "PLM"
-                                ! This sets the reconstruction scheme used
-                                ! for vertical remapping for all variables.
-                                ! It can be one of the following schemes:
-                                ! PCM         (1st-order accurate)
-                                ! PLM         (2nd-order accurate)
-                                ! PPM_H4      (3rd-order accurate)
-                                ! PPM_IH4     (3rd-order accurate)
-                                ! PQM_IH4IH3  (4th-order accurate)
-                                ! PQM_IH6IH5  (5th-order accurate)
 ROTATION = "betaplane"          ! default = "2omegasinlat"
                                 ! This specifies how the Coriolis parameter is specified:
                                 !     2omegasinlat - Use twice the planetary rotation rate
@@ -207,6 +197,16 @@ REGRIDDING_COORDINATE_MODE = "Z*" ! default = "LAYER"
 MIN_THICKNESS = 0.1             !   [m] default = 0.001
                                 ! When regridding, this is the minimum layer
                                 ! thickness allowed.
+REMAPPING_SCHEME = "PPM_IH4"    ! default = "PLM"
+                                ! This sets the reconstruction scheme used
+                                ! for vertical remapping for all variables.
+                                ! It can be one of the following schemes:
+                                ! PCM         (1st-order accurate)
+                                ! PLM         (2nd-order accurate)
+                                ! PPM_H4      (3rd-order accurate)
+                                ! PPM_IH4     (3rd-order accurate)
+                                ! PQM_IH4IH3  (4th-order accurate)
+                                ! PQM_IH6IH5  (5th-order accurate)
 
 ! === module MOM_grid ===
 ! Parameters providing information about the lateral grid.
