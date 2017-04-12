@@ -57,7 +57,7 @@ REENTRANT_X = False             !   [Boolean] default = True
 
 ! === module MOM_open ===
 OBC_NUMBER_OF_SEGMENTS = 2      ! default = 0
-OBC_SEGMENT_001 = "I=N,J=0:N,ORLANSKI, OBLIQUE"
+OBC_SEGMENT_001 = "I=N,J=0:N,OBLIQUE"
 OBC_SEGMENT_002 = "I=0,J=N:0,FLATHER"
 OBC_USER_CONFIG = Kelvin        ! Kelvin wave
 OBC_ZERO_VORTICITY = False      !   [Boolean] default = False
@@ -150,9 +150,9 @@ AXIS_UNITS = "k"                ! default = "degrees"
                                 !     k - kilometers
 SOUTHLAT = 0.0                  !   [k]
                                 ! The southern latitude of the domain.
-LENLAT = 1000.0                 !   [k]
+LENLAT = 600.0                  !   [k]
                                 ! The latitudinal length of the domain.
-LENLON = 600.0                  !   [k]
+LENLON = 1000.0                 !   [k]
                                 ! The longitudinal length of the domain.
 TOPO_CONFIG = "flat"            !
                                 ! This specifies how bathymetry is specified:
