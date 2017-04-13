@@ -1,2 +1,4 @@
 ! Blank file in which we can put "overrides" for parameters
 !SUPERCRITICAL_COAST_ANGLE = 0.
+#override OBC_SEGMENT_003 = "J=N,I=N:0,GRADIENT"
+#override INITIAL_U_CONST = 0.0          !   [m s-1]
