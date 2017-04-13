@@ -404,6 +404,8 @@ OBC_USER_CONFIG = "supercritical" ! default = "none"
                                 !    supercritical - now only needed here for the allocations
                                 !    Kelvin - barotropic Kelvin wave forcing on the western boundary
                                 !    USER - user specified
+SUPERCRITICAL_ZONAL_FLOW = 8.57 !   [m/s] default = 8.57
+                                ! Constant zonal flow imposed at upstream open boundary.
 READ_OBC_UV = False             !   [Boolean] default = False
                                 ! If true, read the values for the velocity open boundary
                                 ! conditions from the file specified by OBC_FILE.
