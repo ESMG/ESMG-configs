@@ -1,6 +1,6 @@
 "MOM benchmark Experiment"
 1 1 1 0 0 0
-"prog",      10,"seconds",1,"seconds","time",
+"prog",      400,"seconds",1,"seconds","time",
 #"ave_prog", 5,"days",1,"days","Time",365,"days"
 #"cont",     5,"days",1,"days","Time",365,"days"
 

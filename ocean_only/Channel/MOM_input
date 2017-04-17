@@ -57,12 +57,12 @@ REENTRANT_X = False             !   [Boolean] default = True
 
 ! === module MOM_open ===
 OBC_NUMBER_OF_SEGMENTS = 3      ! default = 0
-OBC_SEGMENT_001 = "I=N,J=0:N,GRADIENT"
+OBC_SEGMENT_001 = "I=N,J=0:N,FLATHER"
 OBC_SEGMENT_002 = "I=0,J=N:0,SIMPLE"
-OBC_SEGMENT_003 = "J=N,I=N:0,FLATHER,ORLANSKI"
-OBC_SEGMENT_001_DATA = "U=value:-8.57,V=value:0.0,SSH=value:0.0"   ! Should be ignored with GRADIENT
-OBC_SEGMENT_002_DATA = "U=value:8.57,V=value:0.0,SSH=value:0.0"
-OBC_SEGMENT_003_DATA = "U=value:8.57,V=value:0.0,SSH=value:0.0"
+OBC_SEGMENT_003 = "J=N,I=N:0,GRADIENT"
+OBC_SEGMENT_001_DATA = "U=value:0.0,V=value:0.0,SSH=value:0.0"
+!OBC_SEGMENT_002_DATA = "U=value:8.57,V=value:0.0,SSH=value:0.0"
+!OBC_SEGMENT_003_DATA = "U=value:8.57,V=value:0.0,SSH=value:0.0"
 OBC_USER_CONFIG = supercritical ! To be replaced later...
 
 OBC_ZERO_VORTICITY = False      !   [Boolean] default = False
@@ -94,7 +94,7 @@ ADIABATIC = True                !   [Boolean] default = False
                                 ! true. This assumes that KD = KDML = 0.0 and that
                                 ! there is no buoyancy forcing, but makes the model
                                 ! faster by eliminating subroutine calls.
-DT = 5.0                        !   [s]
+DT = 50.0                       !   [s]
                                 ! The (baroclinic) dynamics time step.  The time-step that
                                 ! is actually used will be an integer fraction of the
                                 ! forcing time-step (DT_FORCING in ocean-only mode or the
@@ -308,7 +308,7 @@ VELOCITY_CONFIG = "uniform"     ! default = "zero"
                                 !     rossby_front - a mixed layer front in thermal wind balance.
                                 !     soliton - Equatorial Rossby soliton.
                                 !     USER - call a user modified routine.
-INITIAL_U_CONST = 8.57
+INITIAL_U_CONST = 0.0
 INITIAL_V_CONST = 0.0
 ! === module MOM_barotropic ===
 BOUND_BT_CORRECTION = True      !   [Boolean] default = False
@@ -388,7 +388,7 @@ DATE_STAMPED_STDOUT = False     !   [Boolean] default = True
 ! === module MOM_main (MOM_driver) ===
 TIMEUNIT = 1.0                  !   [s] default = 8.64E+04
                                 ! The time unit in seconds a number of input fields
-DAYMAX = 100.0                  !   [s]
+DAYMAX = 400.0                  !   [s]
                                 ! The final time of the whole simulation, in units of
                                 ! TIMEUNIT seconds.  This also sets the potential end
                                 ! time of the present run segment if the end time is
