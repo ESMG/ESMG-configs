@@ -1,2 +1,3 @@
 ! Blank file in which we can put "overrides" for parameters
 !SUPERCRITICAL_COAST_ANGLE = 0.
+! #override DAYMAX = 8000.0                !   [s] For convergence...

@@ -63,6 +63,8 @@ DRHO_DS = 1.0                   !   [kg m-3 PSU-1] default = 0.8
 
 ! === module MOM_tracer_flow_control ===
 
+! === module MOM_boundary_update ===
+
 ! === module MOM_fixed_initialization ===
 INPUTDIR = "INPUT/"             ! default = "."
                                 ! The directory in which input files are found.

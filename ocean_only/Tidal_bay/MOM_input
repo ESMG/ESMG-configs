@@ -59,6 +59,8 @@ REENTRANT_X = False             !   [Boolean] default = True
 OBC_NUMBER_OF_SEGMENTS = 1
 OBC_SEGMENT_001 = "I=N,J=0:N,FLATHER"
 OBC_USER_CONFIG = tidal_bay
+USE_TIDAL_BAY_OBC = True        !   [Boolean] default = False
+                                ! If true, use the tidal_bay open boundary.
 TIDES = False                   !   [Boolean] default = False
                                 ! If true, apply tidal momentum forcing.
 OBC_ZERO_VORTICITY = False      !   [Boolean] default = False
