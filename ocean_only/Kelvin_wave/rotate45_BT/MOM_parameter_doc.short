@@ -25,11 +25,11 @@ DTBT_RESET_PERIOD = -1.0        !   [s] default = 900.0
 ! === module MOM_domains ===
 REENTRANT_X = False             !   [Boolean] default = True
                                 ! If true, the domain is zonally reentrant.
-NIGLOBAL = 60                   !
+NIGLOBAL = 56                   !
                                 ! The total number of thickness grid points in the
                                 ! x-direction in the physical domain. With STATIC_MEMORY_
                                 ! this is set in MOM_memory.h at compile time.
-NJGLOBAL = 40                   !
+NJGLOBAL = 56                   !
                                 ! The total number of thickness grid points in the
                                 ! y-direction in the physical domain. With STATIC_MEMORY_
                                 ! this is set in MOM_memory.h at compile time.
@@ -77,9 +77,9 @@ AXIS_UNITS = "k"                ! default = "degrees"
 SOUTHLAT = 0.0                  !   [k]
                                 ! The southern latitude of the domain or the equivalent
                                 ! starting value for the y-axis.
-LENLAT = 800.0                  !   [k]
+LENLAT = 1120.0                 !   [k]
                                 ! The latitudinal or y-direction length of the domain.
-LENLON = 1200.0                 !   [k]
+LENLON = 1120.0                 !   [k]
                                 ! The longitudinal or x-direction length of the domain.
 TOPO_CONFIG = "Kelvin"          !
                                 ! This specifies how bathymetry is specified:
@@ -108,12 +108,17 @@ TOPO_CONFIG = "Kelvin"          !
 ! === module Kelvin_initialize_topography ===
 MINIMUM_DEPTH = 1.0             !   [m] default = 0.0
                                 ! The minimum depth of the ocean.
+KELVIN_COAST_OFFSET = 420.0     !   [km] default = 100.0
+                                ! The distance along the southern and northern boundaries
+                                ! at which the coasts angle in.
+KELVIN_COAST_ANGLE = 45.0       !   [degrees] default = 11.3
+                                ! The angle of the southern bondary beyond X=KELVIN_COAST_OFFSET.
 MAXIMUM_DEPTH = 100.0           !   [m]
                                 ! The maximum depth of the ocean.
 
 ! === module MOM_open_boundary ===
 ! Controls where open boundaries are located, what kind of boundary condition to impose, and what data to apply, if any.
-OBC_NUMBER_OF_SEGMENTS = 22     ! default = 0
+OBC_NUMBER_OF_SEGMENTS = 82     ! default = 0
                                 ! The number of open boundary segments.
 OBC_FREESLIP_VORTICITY = True   !   [Boolean] default = False
                                 ! If true, sets the normal gradient of tangential velocity to
@@ -123,49 +128,169 @@ OBC_FREESLIP_STRAIN = True      !   [Boolean] default = False
                                 ! If true, sets the normal gradient of tangential velocity to
                                 ! zero in the strain use in the stress tensor on open boundaries. This cannot
                                 ! be true if OBC_ZERO_STRAIN is True.
-OBC_SEGMENT_001 = "I=0,J=30:25,FLATHER" !
+OBC_SEGMENT_001 = "I=0,J=21:20,FLATHER" !
                                 ! Documentation needs to be dynamic?????
-OBC_SEGMENT_002 = "I=1,J=25:20,FLATHER" !
+OBC_SEGMENT_002 = "I=1,J=20:19,FLATHER" !
                                 ! Documentation needs to be dynamic?????
-OBC_SEGMENT_003 = "I=2,J=20:15,FLATHER" !
+OBC_SEGMENT_003 = "I=2,J=19:18,FLATHER" !
                                 ! Documentation needs to be dynamic?????
-OBC_SEGMENT_004 = "I=3,J=15:10,FLATHER" !
+OBC_SEGMENT_004 = "I=3,J=18:17,FLATHER" !
                                 ! Documentation needs to be dynamic?????
-OBC_SEGMENT_005 = "I=4,J=10:5,FLATHER" !
+OBC_SEGMENT_005 = "I=4,J=17:16,FLATHER" !
                                 ! Documentation needs to be dynamic?????
-OBC_SEGMENT_006 = "I=5,J=5:0,FLATHER" !
+OBC_SEGMENT_006 = "I=5,J=16:15,FLATHER" !
                                 ! Documentation needs to be dynamic?????
-OBC_SEGMENT_007 = "J=25,I=0:1,FLATHER" !
+OBC_SEGMENT_007 = "I=6,J=15:14,FLATHER" !
                                 ! Documentation needs to be dynamic?????
-OBC_SEGMENT_008 = "J=20,I=1:2,FLATHER" !
+OBC_SEGMENT_008 = "I=7,J=14:13,FLATHER" !
                                 ! Documentation needs to be dynamic?????
-OBC_SEGMENT_009 = "J=15,I=2:3,FLATHER" !
+OBC_SEGMENT_009 = "I=8,J=13:12,FLATHER" !
                                 ! Documentation needs to be dynamic?????
-OBC_SEGMENT_010 = "J=10,I=3:4,FLATHER" !
+OBC_SEGMENT_010 = "I=9,J=12:11,FLATHER" !
                                 ! Documentation needs to be dynamic?????
-OBC_SEGMENT_011 = "J=5,I=4:5,FLATHER" !
+OBC_SEGMENT_011 = "I=10,J=11:10,FLATHER" !
                                 ! Documentation needs to be dynamic?????
-OBC_SEGMENT_012 = "I=55,J=35:40,FLATHER" !
+OBC_SEGMENT_012 = "I=11,J=10:9,FLATHER" !
                                 ! Documentation needs to be dynamic?????
-OBC_SEGMENT_013 = "I=56,J=30:35,FLATHER" !
+OBC_SEGMENT_013 = "I=12,J=9:8,FLATHER" !
                                 ! Documentation needs to be dynamic?????
-OBC_SEGMENT_014 = "I=57,J=25:30,FLATHER" !
+OBC_SEGMENT_014 = "I=13,J=8:7,FLATHER" !
                                 ! Documentation needs to be dynamic?????
-OBC_SEGMENT_015 = "I=58,J=20:25,FLATHER" !
+OBC_SEGMENT_015 = "I=14,J=7:6,FLATHER" !
                                 ! Documentation needs to be dynamic?????
-OBC_SEGMENT_016 = "I=59,J=15:20,FLATHER" !
+OBC_SEGMENT_016 = "I=15,J=6:5,FLATHER" !
                                 ! Documentation needs to be dynamic?????
-OBC_SEGMENT_017 = "I=60,J=10:15,FLATHER" !
+OBC_SEGMENT_017 = "I=16,J=5:4,FLATHER" !
                                 ! Documentation needs to be dynamic?????
-OBC_SEGMENT_018 = "J=35,I=56:55,FLATHER" !
+OBC_SEGMENT_018 = "I=17,J=4:3,FLATHER" !
                                 ! Documentation needs to be dynamic?????
-OBC_SEGMENT_019 = "J=30,I=57:56,FLATHER" !
+OBC_SEGMENT_019 = "I=18,J=3:2,FLATHER" !
                                 ! Documentation needs to be dynamic?????
-OBC_SEGMENT_020 = "J=25,I=58:57,FLATHER" !
+OBC_SEGMENT_020 = "I=19,J=2:1,FLATHER" !
                                 ! Documentation needs to be dynamic?????
-OBC_SEGMENT_021 = "J=20,I=59:58,FLATHER" !
+OBC_SEGMENT_021 = "I=20,J=1:0,FLATHER" !
                                 ! Documentation needs to be dynamic?????
-OBC_SEGMENT_022 = "J=15,I=60:59,FLATHER" !
+OBC_SEGMENT_022 = "J=20,I=0:1,FLATHER" !
+                                ! Documentation needs to be dynamic?????
+OBC_SEGMENT_023 = "J=19,I=1:2,FLATHER" !
+                                ! Documentation needs to be dynamic?????
+OBC_SEGMENT_024 = "J=18,I=2:3,FLATHER" !
+                                ! Documentation needs to be dynamic?????
+OBC_SEGMENT_025 = "J=17,I=3:4,FLATHER" !
+                                ! Documentation needs to be dynamic?????
+OBC_SEGMENT_026 = "J=16,I=4:5,FLATHER" !
+                                ! Documentation needs to be dynamic?????
+OBC_SEGMENT_027 = "J=15,I=5:6,FLATHER" !
+                                ! Documentation needs to be dynamic?????
+OBC_SEGMENT_028 = "J=14,I=6:7,FLATHER" !
+                                ! Documentation needs to be dynamic?????
+OBC_SEGMENT_029 = "J=13,I=7:8,FLATHER" !
+                                ! Documentation needs to be dynamic?????
+OBC_SEGMENT_030 = "J=12,I=8:9,FLATHER" !
+                                ! Documentation needs to be dynamic?????
+OBC_SEGMENT_031 = "J=11,I=9:10,FLATHER" !
+                                ! Documentation needs to be dynamic?????
+OBC_SEGMENT_032 = "J=10,I=10:11,FLATHER" !
+                                ! Documentation needs to be dynamic?????
+OBC_SEGMENT_033 = "J=9,I=11:12,FLATHER" !
+                                ! Documentation needs to be dynamic?????
+OBC_SEGMENT_034 = "J=8,I=12:13,FLATHER" !
+                                ! Documentation needs to be dynamic?????
+OBC_SEGMENT_035 = "J=7,I=13:14,FLATHER" !
+                                ! Documentation needs to be dynamic?????
+OBC_SEGMENT_036 = "J=6,I=14:15,FLATHER" !
+                                ! Documentation needs to be dynamic?????
+OBC_SEGMENT_037 = "J=5,I=15:16,FLATHER" !
+                                ! Documentation needs to be dynamic?????
+OBC_SEGMENT_038 = "J=4,I=16:17,FLATHER" !
+                                ! Documentation needs to be dynamic?????
+OBC_SEGMENT_039 = "J=3,I=17:18,FLATHER" !
+                                ! Documentation needs to be dynamic?????
+OBC_SEGMENT_040 = "J=2,I=18:19,FLATHER" !
+                                ! Documentation needs to be dynamic?????
+OBC_SEGMENT_041 = "J=1,I=19:20,FLATHER" !
+                                ! Documentation needs to be dynamic?????
+OBC_SEGMENT_042 = "I=36,J=55:56,FLATHER" !
+                                ! Documentation needs to be dynamic?????
+OBC_SEGMENT_043 = "I=37,J=54:55,FLATHER" !
+                                ! Documentation needs to be dynamic?????
+OBC_SEGMENT_044 = "I=38,J=53:54,FLATHER" !
+                                ! Documentation needs to be dynamic?????
+OBC_SEGMENT_045 = "I=39,J=52:53,FLATHER" !
+                                ! Documentation needs to be dynamic?????
+OBC_SEGMENT_046 = "I=40,J=51:52,FLATHER" !
+                                ! Documentation needs to be dynamic?????
+OBC_SEGMENT_047 = "I=41,J=50:51,FLATHER" !
+                                ! Documentation needs to be dynamic?????
+OBC_SEGMENT_048 = "I=42,J=49:50,FLATHER" !
+                                ! Documentation needs to be dynamic?????
+OBC_SEGMENT_049 = "I=43,J=48:49,FLATHER" !
+                                ! Documentation needs to be dynamic?????
+OBC_SEGMENT_050 = "I=44,J=47:48,FLATHER" !
+                                ! Documentation needs to be dynamic?????
+OBC_SEGMENT_051 = "I=45,J=46:47,FLATHER" !
+                                ! Documentation needs to be dynamic?????
+OBC_SEGMENT_052 = "I=46,J=45:46,FLATHER" !
+                                ! Documentation needs to be dynamic?????
+OBC_SEGMENT_053 = "I=47,J=44:45,FLATHER" !
+                                ! Documentation needs to be dynamic?????
+OBC_SEGMENT_054 = "I=48,J=43:44,FLATHER" !
+                                ! Documentation needs to be dynamic?????
+OBC_SEGMENT_055 = "I=49,J=42:43,FLATHER" !
+                                ! Documentation needs to be dynamic?????
+OBC_SEGMENT_056 = "I=50,J=41:42,FLATHER" !
+                                ! Documentation needs to be dynamic?????
+OBC_SEGMENT_057 = "I=51,J=40:41,FLATHER" !
+                                ! Documentation needs to be dynamic?????
+OBC_SEGMENT_058 = "I=52,J=39:40,FLATHER" !
+                                ! Documentation needs to be dynamic?????
+OBC_SEGMENT_059 = "I=53,J=38:39,FLATHER" !
+                                ! Documentation needs to be dynamic?????
+OBC_SEGMENT_060 = "I=54,J=37:38,FLATHER" !
+                                ! Documentation needs to be dynamic?????
+OBC_SEGMENT_061 = "I=55,J=36:37,FLATHER" !
+                                ! Documentation needs to be dynamic?????
+OBC_SEGMENT_062 = "I=56,J=35:36,FLATHER" !
+                                ! Documentation needs to be dynamic?????
+OBC_SEGMENT_063 = "J=55,I=37:36,FLATHER" !
+                                ! Documentation needs to be dynamic?????
+OBC_SEGMENT_064 = "J=54,I=38:37,FLATHER" !
+                                ! Documentation needs to be dynamic?????
+OBC_SEGMENT_065 = "J=53,I=39:38,FLATHER" !
+                                ! Documentation needs to be dynamic?????
+OBC_SEGMENT_066 = "J=52,I=40:39,FLATHER" !
+                                ! Documentation needs to be dynamic?????
+OBC_SEGMENT_067 = "J=51,I=41:40,FLATHER" !
+                                ! Documentation needs to be dynamic?????
+OBC_SEGMENT_068 = "J=50,I=42:41,FLATHER" !
+                                ! Documentation needs to be dynamic?????
+OBC_SEGMENT_069 = "J=49,I=43:42,FLATHER" !
+                                ! Documentation needs to be dynamic?????
+OBC_SEGMENT_070 = "J=48,I=44:43,FLATHER" !
+                                ! Documentation needs to be dynamic?????
+OBC_SEGMENT_071 = "J=47,I=45:44,FLATHER" !
+                                ! Documentation needs to be dynamic?????
+OBC_SEGMENT_072 = "J=46,I=46:45,FLATHER" !
+                                ! Documentation needs to be dynamic?????
+OBC_SEGMENT_073 = "J=45,I=47:46,FLATHER" !
+                                ! Documentation needs to be dynamic?????
+OBC_SEGMENT_074 = "J=44,I=48:47,FLATHER" !
+                                ! Documentation needs to be dynamic?????
+OBC_SEGMENT_075 = "J=43,I=49:48,FLATHER" !
+                                ! Documentation needs to be dynamic?????
+OBC_SEGMENT_076 = "J=42,I=50:49,FLATHER" !
+                                ! Documentation needs to be dynamic?????
+OBC_SEGMENT_077 = "J=41,I=51:50,FLATHER" !
+                                ! Documentation needs to be dynamic?????
+OBC_SEGMENT_078 = "J=40,I=52:51,FLATHER" !
+                                ! Documentation needs to be dynamic?????
+OBC_SEGMENT_079 = "J=39,I=53:52,FLATHER" !
+                                ! Documentation needs to be dynamic?????
+OBC_SEGMENT_080 = "J=38,I=54:53,FLATHER" !
+                                ! Documentation needs to be dynamic?????
+OBC_SEGMENT_081 = "J=37,I=55:54,FLATHER" !
+                                ! Documentation needs to be dynamic?????
+OBC_SEGMENT_082 = "J=36,I=56:55,FLATHER" !
                                 ! Documentation needs to be dynamic?????
 MASKING_DEPTH = 1.5             !   [m] default = -9999.0
                                 ! The depth below which to mask points as land points, for which all
