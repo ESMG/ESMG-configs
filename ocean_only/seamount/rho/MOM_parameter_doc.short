@@ -100,7 +100,9 @@ TOPO_CONFIG = "seamount"        !
                                 !       ISOMIP test case.
                                 !     DOME2D - use a shelf and slope configuration for the
                                 !       DOME2D gravity current/overflow test case.
+                                !     Kelvin - flat but with rotated land mask.
                                 !     seamount - Gaussian bump for spontaneous motion test case.
+                                !     supercritical - flat but with 8.95 degree land mask.
                                 !     Phillips - ACC-like idealized topography used in the Phillips config.
                                 !     USER - call a user modified routine.
 SEAMOUNT_DELTA = 0.9            !   [non-dim] default = 0.5
@@ -190,6 +192,7 @@ REGRIDDING_COORDINATE_MODE = "RHO" ! default = "LAYER"
                                 !  RHO   - continuous isopycnal
                                 !  HYCOM1 - HyCOM-like hybrid coordinate
                                 !  SLIGHT - stretched coordinates above continuous isopycnal
+                                !  ADAPTIVE - optimize for smooth neutral density surfaces
 INTERPOLATION_SCHEME = "P3M_IH4IH3" ! default = "P1M_H2"
                                 ! This sets the interpolation scheme to use to
                                 ! determine the new grid. These parameters are

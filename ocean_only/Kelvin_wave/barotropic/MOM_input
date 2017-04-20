@@ -190,11 +190,11 @@ F_0 = 1.e-4                     !   [s-1] default = 0.0
 BETA = 0.0                      !   [m-1 s-1] default = 0.0
                                 ! The northward gradient of the Coriolis parameter with
 ! === module benchmark_initialize_topography ===
-MINIMUM_DEPTH = 0.0             !   [m]
+MINIMUM_DEPTH = 1.0             !   [m]
                                 ! The minimum depth of the ocean.
 MAXIMUM_DEPTH = 100.0           !   [m]
                                 ! The maximum depth of the ocean.
-MASKING_DEPTH = 0.5             !   [m]
+MASKING_DEPTH = 1.5             !   [m]
                                 ! The depth of the masked points.
 THICKNESS_CONFIG = "uniform"    !
                                 ! A string that determines how the initial layer

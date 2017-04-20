@@ -6,6 +6,8 @@ VERBOSITY = 2                   ! default = 2
                                 !   0 = Only FATAL messages
                                 !   2 = Only FATAL, WARNING, NOTE [default]
                                 !   9 = All)
+DO_UNIT_TESTS = False           !   [Boolean] default = False
+                                ! If True, exercises unit tests at model start up.
 SPLIT = True                    !   [Boolean] default = True
                                 ! Use the split time stepping if true.
 USE_LEGACY_SPLIT = False        !   [Boolean] default = False
@@ -269,10 +271,12 @@ TOPO_CONFIG = "flat"            !
                                 !       ISOMIP test case.
                                 !     DOME2D - use a shelf and slope configuration for the
                                 !       DOME2D gravity current/overflow test case.
+                                !     Kelvin - flat but with rotated land mask.
                                 !     seamount - Gaussian bump for spontaneous motion test case.
+                                !     supercritical - flat but with 8.95 degree land mask.
                                 !     Phillips - ACC-like idealized topography used in the Phillips config.
                                 !     USER - call a user modified routine.
-MINIMUM_DEPTH = 0.0             !   [m] default = 0.0
+MINIMUM_DEPTH = 1.0             !   [m] default = 0.0
                                 ! The minimum depth of the ocean.
 MAXIMUM_DEPTH = 100.0           !   [m]
                                 ! The maximum depth of the ocean.
@@ -304,7 +308,7 @@ OBC_SEGMENT_001 = "I=N,J=0:N,FLATHER" !
                                 ! Documentation needs to be dynamic?????
 OBC_SEGMENT_002 = "I=0,J=N:0,FLATHER" !
                                 ! Documentation needs to be dynamic?????
-MASKING_DEPTH = 0.5             !   [m] default = -9999.0
+MASKING_DEPTH = 1.5             !   [m] default = -9999.0
                                 ! The depth below which to mask points as land points, for which all
                                 ! fluxes are zeroed out. MASKING_DEPTH is ignored if negative.
 CHANNEL_CONFIG = "none"         ! default = "none"
