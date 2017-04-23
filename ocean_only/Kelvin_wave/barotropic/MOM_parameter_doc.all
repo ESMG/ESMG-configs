@@ -214,10 +214,14 @@ USE_BOUNDARY_IMPULSE_TRACER = False !   [Boolean] default = False
                                 ! If true, use the boundary impulse tracer.
 
 ! === module MOM_boundary_update ===
+USE_FILE_OBC = False            !   [Boolean] default = False
+                                ! If true, use external files for the open boundary.
 USE_TIDAL_BAY_OBC = False       !   [Boolean] default = False
                                 ! If true, use the tidal_bay open boundary.
 USE_KELVIN_WAVE_OBC = True      !   [Boolean] default = False
                                 ! If true, use the Kelvin wave open boundary.
+USE_SHELFWAVE_OBC = False       !   [Boolean] default = False
+                                ! If true, use the shelfwave open boundary.
 
 ! === module register_Kelvin_OBC ===
 KELVIN_WAVE_MODE = 0            ! default = 0
@@ -273,6 +277,7 @@ TOPO_CONFIG = "flat"            !
                                 !       DOME2D gravity current/overflow test case.
                                 !     Kelvin - flat but with rotated land mask.
                                 !     seamount - Gaussian bump for spontaneous motion test case.
+                                !     shelfwave - exponential slope for shelfwave test case.
                                 !     supercritical - flat but with 8.95 degree land mask.
                                 !     Phillips - ACC-like idealized topography used in the Phillips config.
                                 !     USER - call a user modified routine.
@@ -444,6 +449,7 @@ OBC_USER_CONFIG = "Kelvin"      ! default = "none"
                                 !    tidal_bay - Flather with tidal forcing on eastern boundary
                                 !    supercritical - now only needed here for the allocations
                                 !    Kelvin - barotropic Kelvin wave forcing on the western boundary
+                                !    shelfwave - Flather with shelf wave forcing on western boundary
                                 !    USER - user specified
 READ_OBC_UV = False             !   [Boolean] default = False
                                 ! If true, read the values for the velocity open boundary

@@ -87,6 +87,7 @@ TOPO_CONFIG = "flat"            !
                                 !       DOME2D gravity current/overflow test case.
                                 !     Kelvin - flat but with rotated land mask.
                                 !     seamount - Gaussian bump for spontaneous motion test case.
+                                !     shelfwave - exponential slope for shelfwave test case.
                                 !     supercritical - flat but with 8.95 degree land mask.
                                 !     Phillips - ACC-like idealized topography used in the Phillips config.
                                 !     USER - call a user modified routine.
@@ -188,6 +189,7 @@ OBC_USER_CONFIG = "supercritical" ! default = "none"
                                 !    tidal_bay - Flather with tidal forcing on eastern boundary
                                 !    supercritical - now only needed here for the allocations
                                 !    Kelvin - barotropic Kelvin wave forcing on the western boundary
+                                !    shelfwave - Flather with shelf wave forcing on western boundary
                                 !    USER - user specified
 
 ! === module MOM_diag_mediator ===
