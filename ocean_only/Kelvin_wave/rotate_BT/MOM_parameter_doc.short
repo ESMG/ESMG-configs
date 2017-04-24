@@ -50,12 +50,6 @@ NK = 1                          !   [nondim]
 
 ! === module MOM_tracer_flow_control ===
 
-! === module MOM_boundary_update ===
-USE_KELVIN_WAVE_OBC = True      !   [Boolean] default = False
-                                ! If true, use the Kelvin wave open boundary.
-
-! === module register_Kelvin_OBC ===
-
 ! === module MOM_fixed_initialization ===
 INPUTDIR = "INPUT"              ! default = "."
                                 ! The directory in which input files are found.
@@ -180,6 +174,12 @@ ROTATION = "betaplane"          ! default = "2omegasinlat"
 F_0 = 1.0E-04                   !   [s-1] default = 0.0
                                 ! The reference value of the Coriolis parameter with the
                                 ! betaplane option.
+
+! === module MOM_boundary_update ===
+USE_KELVIN_WAVE_OBC = True      !   [Boolean] default = False
+                                ! If true, use the Kelvin wave open boundary.
+
+! === module register_Kelvin_OBC ===
 
 ! === module MOM_coord_initialization ===
 COORD_CONFIG = "linear"         !

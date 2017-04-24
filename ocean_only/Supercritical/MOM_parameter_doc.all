@@ -213,16 +213,6 @@ USE_PSEUDO_SALT_TRACER = False  !   [Boolean] default = False
 USE_BOUNDARY_IMPULSE_TRACER = False !   [Boolean] default = False
                                 ! If true, use the boundary impulse tracer.
 
-! === module MOM_boundary_update ===
-USE_FILE_OBC = False            !   [Boolean] default = False
-                                ! If true, use external files for the open boundary.
-USE_TIDAL_BAY_OBC = False       !   [Boolean] default = False
-                                ! If true, use the tidal_bay open boundary.
-USE_KELVIN_WAVE_OBC = False     !   [Boolean] default = False
-                                ! If true, use the Kelvin wave open boundary.
-USE_SHELFWAVE_OBC = False       !   [Boolean] default = False
-                                ! If true, use the shelfwave open boundary.
-
 ! === module MOM_fixed_initialization ===
 INPUTDIR = "INPUT"              ! default = "."
                                 ! The directory in which input files are found.
@@ -320,6 +310,16 @@ F_0 = 0.0                       !   [s-1] default = 0.0
 BETA = 0.0                      !   [m-1 s-1] default = 0.0
                                 ! The northward gradient of the Coriolis parameter with
                                 ! the betaplane option.
+
+! === module MOM_boundary_update ===
+USE_FILE_OBC = False            !   [Boolean] default = False
+                                ! If true, use external files for the open boundary.
+USE_TIDAL_BAY_OBC = False       !   [Boolean] default = False
+                                ! If true, use the tidal_bay open boundary.
+USE_KELVIN_WAVE_OBC = False     !   [Boolean] default = False
+                                ! If true, use the Kelvin wave open boundary.
+USE_SHELFWAVE_OBC = False       !   [Boolean] default = False
+                                ! If true, use the shelfwave open boundary.
 
 ! === module MOM_coord_initialization ===
 COORD_CONFIG = "linear"         !
@@ -422,17 +422,6 @@ OBC_USER_CONFIG = "supercritical" ! default = "none"
                                 !    USER - user specified
 SUPERCRITICAL_ZONAL_FLOW = 8.57 !   [m/s] default = 8.57
                                 ! Constant zonal flow imposed at upstream open boundary.
-READ_OBC_UV = False             !   [Boolean] default = False
-                                ! If true, read the values for the velocity open boundary
-                                ! conditions from the file specified by OBC_FILE.
-READ_OBC_ETA = False            !   [Boolean] default = False
-                                ! If true, read the values for the sea surface height
-                                ! open boundary conditions from the file specified by
-                                ! OBC_FILE.
-READ_OBC_TS = False             !   [Boolean] default = False
-                                ! If true, read the values for the temperature and
-                                ! salinity open boundary conditions from the file
-                                ! specified by OBC_FILE.
 
 ! === module MOM_diag_mediator ===
 NUM_DIAG_COORDS = 0             ! default = 1

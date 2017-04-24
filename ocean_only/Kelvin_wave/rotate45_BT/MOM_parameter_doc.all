@@ -213,20 +213,6 @@ USE_PSEUDO_SALT_TRACER = False  !   [Boolean] default = False
 USE_BOUNDARY_IMPULSE_TRACER = False !   [Boolean] default = False
                                 ! If true, use the boundary impulse tracer.
 
-! === module MOM_boundary_update ===
-USE_FILE_OBC = False            !   [Boolean] default = False
-                                ! If true, use external files for the open boundary.
-USE_TIDAL_BAY_OBC = False       !   [Boolean] default = False
-                                ! If true, use the tidal_bay open boundary.
-USE_KELVIN_WAVE_OBC = True      !   [Boolean] default = False
-                                ! If true, use the Kelvin wave open boundary.
-USE_SHELFWAVE_OBC = False       !   [Boolean] default = False
-                                ! If true, use the shelfwave open boundary.
-
-! === module register_Kelvin_OBC ===
-KELVIN_WAVE_MODE = 0            ! default = 0
-                                ! Vertical Kelvin wave mode imposed at upstream open boundary.
-
 ! === module MOM_fixed_initialization ===
 INPUTDIR = "INPUT"              ! default = "."
                                 ! The directory in which input files are found.
@@ -507,6 +493,20 @@ BETA = 0.0                      !   [m-1 s-1] default = 0.0
                                 ! The northward gradient of the Coriolis parameter with
                                 ! the betaplane option.
 
+! === module MOM_boundary_update ===
+USE_FILE_OBC = False            !   [Boolean] default = False
+                                ! If true, use external files for the open boundary.
+USE_TIDAL_BAY_OBC = False       !   [Boolean] default = False
+                                ! If true, use the tidal_bay open boundary.
+USE_KELVIN_WAVE_OBC = True      !   [Boolean] default = False
+                                ! If true, use the Kelvin wave open boundary.
+USE_SHELFWAVE_OBC = False       !   [Boolean] default = False
+                                ! If true, use the shelfwave open boundary.
+
+! === module register_Kelvin_OBC ===
+KELVIN_WAVE_MODE = 0            ! default = 0
+                                ! Vertical Kelvin wave mode imposed at upstream open boundary.
+
 ! === module MOM_coord_initialization ===
 COORD_CONFIG = "linear"         !
                                 ! This specifies how layers are to be defined:
@@ -618,17 +618,6 @@ OBC_USER_CONFIG = "Kelvin"      ! default = "none"
                                 !    Kelvin - barotropic Kelvin wave forcing on the western boundary
                                 !    shelfwave - Flather with shelf wave forcing on western boundary
                                 !    USER - user specified
-READ_OBC_UV = False             !   [Boolean] default = False
-                                ! If true, read the values for the velocity open boundary
-                                ! conditions from the file specified by OBC_FILE.
-READ_OBC_ETA = False            !   [Boolean] default = False
-                                ! If true, read the values for the sea surface height
-                                ! open boundary conditions from the file specified by
-                                ! OBC_FILE.
-READ_OBC_TS = False             !   [Boolean] default = False
-                                ! If true, read the values for the temperature and
-                                ! salinity open boundary conditions from the file
-                                ! specified by OBC_FILE.
 
 ! === module MOM_diag_mediator ===
 NUM_DIAG_COORDS = 0             ! default = 1
