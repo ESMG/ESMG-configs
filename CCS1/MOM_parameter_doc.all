@@ -6,6 +6,8 @@ VERBOSITY = 2                   ! default = 2
                                 !   0 = Only FATAL messages
                                 !   2 = Only FATAL, WARNING, NOTE [default]
                                 !   9 = All)
+DO_UNIT_TESTS = False           !   [Boolean] default = False
+                                ! If True, exercises unit tests at model start up.
 SPLIT = True                    !   [Boolean] default = True
                                 ! Use the split time stepping if true.
 USE_LEGACY_SPLIT = False        !   [Boolean] default = False
@@ -318,7 +320,10 @@ TOPO_CONFIG = "file"            !
                                 !       ISOMIP test case.
                                 !     DOME2D - use a shelf and slope configuration for the
                                 !       DOME2D gravity current/overflow test case.
+                                !     Kelvin - flat but with rotated land mask.
                                 !     seamount - Gaussian bump for spontaneous motion test case.
+                                !     shelfwave - exponential slope for shelfwave test case.
+                                !     supercritical - flat but with 8.95 degree land mask.
                                 !     Phillips - ACC-like idealized topography used in the Phillips config.
                                 !     USER - call a user modified routine.
 TOPO_FILE = "topog.nc"          ! default = "topog.nc"
@@ -387,6 +392,16 @@ ROTATION = "2omegasinlat"       ! default = "2omegasinlat"
 OMEGA = 7.2921E-05              !   [s-1] default = 7.2921E-05
                                 ! The rotation rate of the earth.
 
+! === module MOM_boundary_update ===
+USE_FILE_OBC = False            !   [Boolean] default = False
+                                ! If true, use external files for the open boundary.
+USE_TIDAL_BAY_OBC = False       !   [Boolean] default = False
+                                ! If true, use the tidal_bay open boundary.
+USE_KELVIN_WAVE_OBC = False     !   [Boolean] default = False
+                                ! If true, use the Kelvin wave open boundary.
+USE_SHELFWAVE_OBC = False       !   [Boolean] default = False
+                                ! If true, use the shelfwave open boundary.
+
 ! === module MOM_coord_initialization ===
 COORD_CONFIG = "file"           !
                                 ! This specifies how layers are to be defined:
@@ -441,6 +456,7 @@ REGRIDDING_COORDINATE_MODE = "Z*" ! default = "LAYER"
                                 !  RHO   - continuous isopycnal
                                 !  HYCOM1 - HyCOM-like hybrid coordinate
                                 !  SLIGHT - stretched coordinates above continuous isopycnal
+                                !  ADAPTIVE - optimize for smooth neutral density surfaces
 REGRIDDING_COORDINATE_UNITS = "m" ! default = "m"
                                 ! Units of the regridding coordinuate.
 ALE_COORDINATE_CONFIG = "FILE:vgrid_75_2m.nc,dz" ! default = "UNIFORM"
@@ -593,18 +609,8 @@ OBC_USER_CONFIG = "none"        ! default = "none"
                                 !    tidal_bay - Flather with tidal forcing on eastern boundary
                                 !    supercritical - now only needed here for the allocations
                                 !    Kelvin - barotropic Kelvin wave forcing on the western boundary
+                                !    shelfwave - Flather with shelf wave forcing on western boundary
                                 !    USER - user specified
-READ_OBC_UV = False             !   [Boolean] default = False
-                                ! If true, read the values for the velocity open boundary
-                                ! conditions from the file specified by OBC_FILE.
-READ_OBC_ETA = False            !   [Boolean] default = False
-                                ! If true, read the values for the sea surface height
-                                ! open boundary conditions from the file specified by
-                                ! OBC_FILE.
-READ_OBC_TS = False             !   [Boolean] default = False
-                                ! If true, read the values for the temperature and
-                                ! salinity open boundary conditions from the file
-                                ! specified by OBC_FILE.
 
 ! === module MOM_diag_mediator ===
 NUM_DIAG_COORDS = 1             ! default = 1
@@ -1602,6 +1608,9 @@ MIX_LEN_EXPONENT = 2.0          !   [units=nondim] default = 2.0
 MSTAR_CAP = -1.0                !   [units=nondim] default = -1.0
                                 ! Maximum value of mstar allowed in model if non-negative
                                 ! (used if MSTAR_MODE>0).
+MSTAR_CONV_ADJ = 0.0            !   [units=nondim] default = 0.0
+                                ! Factor used for reducing mstar during convection
+                                !  due to reduction of stable density gradient.
 MSTAR_SLOPE = 0.85              !   [units=nondim] default = 0.85
                                 ! The slope of the linear relationship between mstar
                                 ! and the length scale ratio (used if MSTAR_MODE=1).
@@ -1690,11 +1699,12 @@ LA_DEPTH_RATIO = 0.04           !   [nondim] default = 0.04
                                 ! The depth (normalized by BLD) to average Stokes drift over in
                                 !  Lanmguir number calculation, where La = sqrt(ust/Stokes).
 LT_ENHANCE = 0                  !   [nondim] default = 0
-                                ! Integer for LT enhancement function mode.
+                                ! Integer for Langmuir number mode.
                                 !  *Requires USE_LA_LI2016 to be set to True.
-                                ! Options: 0 - no LT enhancement
+                                ! Options: 0 - No Langmuir
                                 !          1 - Van Roekel et al. 2014/Li et al., 2016
-                                !          2 - New LES net mixing based derivation (requires coefficients)
+                                !          2 - Multiplied w/ adjusted La.
+                                !          3 - Added w/ adjusted La.
 LT_ENHANCE_COEF = 0.447         !   [nondim] default = 0.447
                                 ! Coefficient for Langmuir enhancement if LT_ENHANCE > 1
 LT_ENHANCE_EXP = -1.33          !   [nondim] default = -1.33

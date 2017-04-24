@@ -599,9 +599,9 @@ OBC_NUMBER_OF_SEGMENTS = 3      ! [Integer] The number of open boundary segments
 OBC_SEGMENT_001 = "J=N,I=N:0,FLATHER,ORLANSKI,NUDGED"
 OBC_SEGMENT_002 = "J=0,I=0:N,FLATHER,ORLANSKI,NUDGED"
 OBC_SEGMENT_003 = "I=0,J=N:0,FLATHER,ORLANSKI,NUDGED"
-OBC_SEGMENT_001_DATA = "U=file:obc_daily_CCS1.nc(u),V=file:obc_daily_CCS1.nc(v),SSH=file:obc_daily_CCS1.nc(zeta)"
-OBC_SEGMENT_002_DATA = "U=file:obc_daily_CCS1.nc(u),V=file:obc_daily_CCS1.nc(v),SSH=file:obc_daily_CCS1.nc(zeta)"
-OBC_SEGMENT_003_DATA = "U=file:obc_daily_CCS1.nc(u),V=file:obc_daily_CCS1.nc(v),SSH=file:obc_daily_CCS1.nc(zeta)"
+OBC_SEGMENT_001_DATA = "U=file:obc_daily_5day_CCS1.nc(u),V=file:obc_daily_5day_CCS1.nc(v),SSH=file:obc_daily_5day_CCS1.nc(zeta)"
+OBC_SEGMENT_002_DATA = "U=file:obc_daily_5day_CCS1.nc(u),V=file:obc_daily_5day_CCS1.nc(v),SSH=file:obc_daily_5day_CCS1.nc(zeta)"
+OBC_SEGMENT_003_DATA = "U=file:obc_daily_5day_CCS1.nc(u),V=file:obc_daily_5day_CCS1.nc(v),SSH=file:obc_daily_5day_CCS1.nc(zeta)"
 OBC_ZERO_VORTICITY = False      !   [Boolean] default = False
                                 ! If true, sets relative vorticity to zero on open boundaries.
 OBC_FREESLIP_VORTICITY = True   !   [Boolean] default = False
