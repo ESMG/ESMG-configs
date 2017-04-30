@@ -99,8 +99,6 @@ TOPO_CONFIG = "Kelvin"          !
                                 !     supercritical - flat but with 8.95 degree land mask.
                                 !     Phillips - ACC-like idealized topography used in the Phillips config.
                                 !     USER - call a user modified routine.
-
-! === module Kelvin_initialize_topography ===
 MINIMUM_DEPTH = 1.0             !   [m] default = 0.0
                                 ! The minimum depth of the ocean.
 MAXIMUM_DEPTH = 100.0           !   [m]
