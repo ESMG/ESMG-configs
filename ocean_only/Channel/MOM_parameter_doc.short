@@ -9,12 +9,12 @@ ADIABATIC = True                !   [Boolean] default = False
                                 ! true. This assumes that KD = KDML = 0.0 and that
                                 ! there is no buoyancy forcing, but makes the model
                                 ! faster by eliminating subroutine calls.
-DT = 5.0                        !   [s]
+DT = 50.0                       !   [s]
                                 ! The (baroclinic) dynamics time step.  The time-step that
                                 ! is actually used will be an integer fraction of the
                                 ! forcing time-step (DT_FORCING in ocean-only mode or the
                                 ! coupling timestep in coupled mode.)
-DTBT_RESET_PERIOD = -1.0        !   [s] default = 5.0
+DTBT_RESET_PERIOD = -1.0        !   [s] default = 50.0
                                 ! The period between recalculations of DTBT (if DTBT <= 0).
                                 ! If DTBT_RESET_PERIOD is negative, DTBT is set based
                                 ! only on information available at initialization.  If
@@ -93,8 +93,12 @@ TOPO_CONFIG = "flat"            !
                                 !       ISOMIP test case.
                                 !     DOME2D - use a shelf and slope configuration for the
                                 !       DOME2D gravity current/overflow test case.
+                                !     Kelvin - flat but with rotated land mask.
                                 !     seamount - Gaussian bump for spontaneous motion test case.
+                                !     shelfwave - exponential slope for shelfwave test case.
+                                !     supercritical - flat but with 8.95 degree land mask.
                                 !     Phillips - ACC-like idealized topography used in the Phillips config.
+                                !     dense - Denmark Strait-like dense water formation and overflow.
                                 !     USER - call a user modified routine.
 MAXIMUM_DEPTH = 1.0             !   [m]
                                 ! The maximum depth of the ocean.
@@ -111,11 +115,11 @@ OBC_FREESLIP_STRAIN = True      !   [Boolean] default = False
                                 ! If true, sets the normal gradient of tangential velocity to
                                 ! zero in the strain use in the stress tensor on open boundaries. This cannot
                                 ! be true if OBC_ZERO_STRAIN is True.
-OBC_SEGMENT_001 = "I=N,J=0:N,GRADIENT" !
+OBC_SEGMENT_001 = "I=N,J=0:N,FLATHER" !
                                 ! Documentation needs to be dynamic?????
 OBC_SEGMENT_002 = "I=0,J=N:0,SIMPLE" !
                                 ! Documentation needs to be dynamic?????
-OBC_SEGMENT_003 = "J=N,I=N:0,FLATHER,ORLANSKI" !
+OBC_SEGMENT_003 = "J=N,I=N:0,GRADIENT" !
                                 ! Documentation needs to be dynamic?????
 MASKING_DEPTH = 0.5             !   [m] default = -9999.0
                                 ! The depth below which to mask points as land points, for which all
@@ -126,6 +130,8 @@ ROTATION = "betaplane"          ! default = "2omegasinlat"
                                 !       times the sine of latitude.
                                 !     betaplane - Use a beta-plane or f-plane.
                                 !     USER - call a user modified routine.
+
+! === module MOM_boundary_update ===
 
 ! === module MOM_coord_initialization ===
 COORD_CONFIG = "linear"         !
@@ -185,7 +191,7 @@ VELOCITY_CONFIG = "uniform"     ! default = "zero"
                                 !     rossby_front - a mixed layer front in thermal wind balance.
                                 !     soliton - Equatorial Rossby soliton.
                                 !     USER - call a user modified routine.
-INITIAL_U_CONST = 8.57          !   [m s-1]
+INITIAL_U_CONST = 0.0           !   [m s-1]
                                 ! A initial uniform value for the zonal flow.
 INITIAL_V_CONST = 0.0           !   [m s-1]
                                 ! A initial uniform value for the meridional flow.
@@ -196,6 +202,7 @@ OBC_USER_CONFIG = "supercritical" ! default = "none"
                                 !    tidal_bay - Flather with tidal forcing on eastern boundary
                                 !    supercritical - now only needed here for the allocations
                                 !    Kelvin - barotropic Kelvin wave forcing on the western boundary
+                                !    shelfwave - Flather with shelf wave forcing on western boundary
                                 !    USER - user specified
 
 ! === module MOM_diag_mediator ===
@@ -352,7 +359,7 @@ DEPTH_LIST_MIN_INC = 1.0E-06    !   [m] default = 1.0E-10
 ! === module MOM_write_cputime ===
 
 ! === module MOM_main (MOM_driver) ===
-DAYMAX = 100.0                  !   [seconds]
+DAYMAX = 400.0                  !   [seconds]
                                 ! The final time of the whole simulation, in units of
                                 ! TIMEUNIT seconds.  This also sets the potential end
                                 ! time of the present run segment if the end time is
@@ -361,7 +368,7 @@ RESTINT = 365.0                 !   [seconds] default = 0.0
                                 ! The interval between saves of the restart file in units
                                 ! of TIMEUNIT.  Use 0 (the default) to not save
                                 ! incremental restart files at all.
-ENERGYSAVEDAYS = 1.0            !   [seconds] default = 5.0
+ENERGYSAVEDAYS = 1.0            !   [seconds] default = 50.0
                                 ! The interval in units of TIMEUNIT between saves of the
                                 ! energies of the run and other globally summed diagnostics.
 

@@ -2,7 +2,7 @@
    the Modular Ocean Model (MOM6), a numerical ocean model developed at NOAA-GFDL.
    Where appropriate, parameters use usually given in MKS units.
 
-   This particular file is for the example in tide_bay.
+   This particular file is for the example in shelfwave.
 
    This MOM_input file typically contains only the non-default values that are
    needed to reproduce this example.  A full list of parameters for this example
@@ -57,9 +57,10 @@ REENTRANT_X = False             !   [Boolean] default = True
 
 ! === module MOM_open ===
 OBC_NUMBER_OF_SEGMENTS = 2      ! default = 0
-OBC_SEGMENT_001 = "I=N,J=0:N,OBLIQUE"
+OBC_SEGMENT_001 = "I=N,J=0:N,FLATHER"
 OBC_SEGMENT_002 = "I=0,J=N:0,FLATHER"
-OBC_USER_CONFIG = Kelvin        ! Kelvin wave
+OBC_USER_CONFIG = shelfwave     ! shelfwave
+USE_SHELFWAVE_OBC = True
 OBC_ZERO_VORTICITY = False      !   [Boolean] default = False
                                 ! If true, sets relative vorticity to zero on open boundaries.
 OBC_FREESLIP_VORTICITY = True   !   [Boolean] default = False
@@ -81,6 +82,13 @@ OBC_ZERO_BIHARMONIC = False     !   [Boolean] default = False
 NK = 1                          !   [nondim]
                                 ! The number of model layers.
 
+SHELFWAVE_X_WAVELENGTH = 100.   !   [Same as x,y] default = 100.0
+                                ! Length scale of shelfwave in x-direction.
+SHELFWAVE_Y_LENGTH_SCALE = 50.  !   [Same as x,y] default = 10.0
+                                ! Length scale of exponential dropoff of topography
+				! in the y-direction.
+SHELFWAVE_Y_MODE = 2            !   [Same as x,y] default = 1
+                                ! Mode of shelfwave in y-direction.
 ! === module MOM ===
 ENABLE_THERMODYNAMICS = False   !   [Boolean] default = True
                                 ! If true, Temperature and salinity are used as state
@@ -150,11 +158,11 @@ AXIS_UNITS = "k"                ! default = "degrees"
                                 !     k - kilometers
 SOUTHLAT = 0.0                  !   [k]
                                 ! The southern latitude of the domain.
-LENLAT = 600.0                  !   [k]
+LENLAT = 60.0                   !   [k]
                                 ! The latitudinal length of the domain.
-LENLON = 1000.0                 !   [k]
+LENLON = 100.0                  !   [k]
                                 ! The longitudinal length of the domain.
-TOPO_CONFIG = "flat"            !
+TOPO_CONFIG = "shelfwave"       !
                                 ! This specifies how bathymetry is specified:
                                 !     file - read bathymetric information from the file
                                 !       specified by (TOPO_FILE).
@@ -185,10 +193,10 @@ F_0 = 1.e-4                     !   [s-1] default = 0.0
                                 ! betaplane option.
 BETA = 0.0                      !   [m-1 s-1] default = 0.0
                                 ! The northward gradient of the Coriolis parameter with
-! === module benchmark_initialize_topography ===
-MINIMUM_DEPTH = 0.0             !   [m]
+! === module shelfwave_initialize_topography ===
+MINIMUM_DEPTH = 10.0            !   [m]
                                 ! The minimum depth of the ocean.
-MAXIMUM_DEPTH = 100.0           !   [m]
+MAXIMUM_DEPTH = 120.0           !   [m]
                                 ! The maximum depth of the ocean.
 MASKING_DEPTH = 0.5             !   [m]
                                 ! The depth of the masked points.
@@ -375,7 +383,7 @@ DATE_STAMPED_STDOUT = False     !   [Boolean] default = True
 ! === module MOM_main (MOM_driver) ===
 TIMEUNIT = 86400                !   [s] default = 8.64E+04
                                 ! The time unit in seconds a number of input fields
-DAYMAX = 2.0                    !   [s]
+DAYMAX = 8.0                    !   [s]
                                 ! The final time of the whole simulation, in units of
                                 ! TIMEUNIT seconds.  This also sets the potential end
                                 ! time of the present run segment if the end time is

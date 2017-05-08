@@ -1,0 +1,4 @@
+! Blank file in which we can put "overrides" for parameters
+#override NK = 10                         !   [nondim]
+#override COORD_CONFIG = "layer_ref"      !
+#override LIGHTEST_DENSITY = 1030.0       !   [kg m-3] default = 1031.0
