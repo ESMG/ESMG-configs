@@ -25,7 +25,7 @@ DTBT_RESET_PERIOD = -1.0        !   [s] default = 900.0
 ! === module MOM_domains ===
 REENTRANT_X = False             !   [Boolean] default = True
                                 ! If true, the domain is zonally reentrant.
-NIGLOBAL = 50                   !
+NIGLOBAL = 80                   !
                                 ! The total number of thickness grid points in the
                                 ! x-direction in the physical domain. With STATIC_MEMORY_
                                 ! this is set in MOM_memory.h at compile time.
@@ -71,9 +71,9 @@ AXIS_UNITS = "k"                ! default = "degrees"
 SOUTHLAT = 0.0                  !   [k]
                                 ! The southern latitude of the domain or the equivalent
                                 ! starting value for the y-axis.
-LENLAT = 600.0                  !   [k]
+LENLAT = 100.0                  !   [k]
                                 ! The latitudinal or y-direction length of the domain.
-LENLON = 1000.0                 !   [k]
+LENLON = 200.0                  !   [k]
                                 ! The longitudinal or x-direction length of the domain.
 TOPO_CONFIG = "flat"            !
                                 ! This specifies how bathymetry is specified:
@@ -102,7 +102,7 @@ TOPO_CONFIG = "flat"            !
                                 !     USER - call a user modified routine.
 MINIMUM_DEPTH = 1.0             !   [m] default = 0.0
                                 ! The minimum depth of the ocean.
-MAXIMUM_DEPTH = 100.0           !   [m]
+MAXIMUM_DEPTH = 1000.0          !   [m]
                                 ! The maximum depth of the ocean.
 
 ! === module MOM_open_boundary ===
@@ -139,6 +139,8 @@ USE_KELVIN_WAVE_OBC = True      !   [Boolean] default = False
                                 ! If true, use the Kelvin wave open boundary.
 
 ! === module register_Kelvin_OBC ===
+KELVIN_WAVE_MODE = 2            ! default = 0
+                                ! Vertical Kelvin wave mode imposed at upstream open boundary.
 
 ! === module MOM_coord_initialization ===
 COORD_CONFIG = "layer_ref"      !
@@ -160,6 +162,8 @@ COORD_CONFIG = "layer_ref"      !
                                 !     USER - call a user modified routine.
 LIGHTEST_DENSITY = 1030.0       !   [kg m-3] default = 1035.0
                                 ! The reference potential density used for layer 1.
+DENSITY_RANGE = 4.0             !   [kg m-3] default = 2.0
+                                ! The range of reference potential densities in the layers.
 
 ! === module MOM_grid ===
 ! Parameters providing information about the lateral grid.

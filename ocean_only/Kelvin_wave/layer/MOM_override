@@ -2,3 +2,9 @@
 #override NK = 10                         !   [nondim]
 #override COORD_CONFIG = "layer_ref"      !
 #override LIGHTEST_DENSITY = 1030.0       !   [kg m-3] default = 1031.0
+#override DENSITY_RANGE = 4.0             !   [kg m-3] default = 2.0
+#override KELVIN_WAVE_MODE = 2            !   [Integer] default = 0
+#override LENLAT = 100.0                  !   [k]
+#override LENLON = 200.0                  !   [k]
+#override MAXIMUM_DEPTH = 1000.0          !   [m]
+#override NIGLOBAL = 80                   !
