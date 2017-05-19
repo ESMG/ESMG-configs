@@ -1,2 +1,2 @@
 ! Blank file in which we can put "overrides" for parameters
-!! #override DAYMAX = 60000.0                  !   [s]
+!! #override DAYMAX = 24000.0                  !   [s]

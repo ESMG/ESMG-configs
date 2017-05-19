@@ -325,6 +325,7 @@ TOPO_CONFIG = "file"            !
                                 !     shelfwave - exponential slope for shelfwave test case.
                                 !     supercritical - flat but with 8.95 degree land mask.
                                 !     Phillips - ACC-like idealized topography used in the Phillips config.
+                                !     dense - Denmark Strait-like dense water formation and overflow.
                                 !     USER - call a user modified routine.
 TOPO_FILE = "topog.nc"          ! default = "topog.nc"
                                 ! The file from which the bathymetry is read.
@@ -582,6 +583,10 @@ TRIM_IC_FOR_P_SURF = False      !   [Boolean] default = False
                                 ! If true, cuts way the top of the column for initial conditions
                                 ! at the depth where the hydrostatic presure matches the imposed
                                 ! surface pressure which is read from file.
+REGRID_ACCELERATE_INIT = False  !   [Boolean] default = False
+                                ! If true, runs REGRID_ACCELERATE_ITERATIONS iterations of the regridding
+                                ! algorithm to push the initial grid to be consistent with the initial
+                                ! condition. Useful only for state-based and iterative coordinates.
 SPONGE = False                  !   [Boolean] default = False
                                 ! If true, sponges may be applied anywhere in the domain.
                                 ! The exact location and properties of those sponges are
