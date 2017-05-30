@@ -10,7 +10,6 @@
  /
 
  &diag_manager_nml
-         conserve_water = .false.
  /
 
  &fms_nml

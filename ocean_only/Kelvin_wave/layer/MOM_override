@@ -1,4 +1,22 @@
 ! Blank file in which we can put "overrides" for parameters
-#override NK = 10                         !   [nondim]
+#override NK = 20                         !   [nondim]
 #override COORD_CONFIG = "layer_ref"      !
 #override LIGHTEST_DENSITY = 1030.0       !   [kg m-3] default = 1031.0
+#override DENSITY_RANGE = 4.0             !   [kg m-3] default = 2.0
+#override KELVIN_WAVE_MODE = 2            !   [Integer] default = 0
+#override LENLAT = 100.0                  !   [k]
+#override LENLON = 200.0                  !   [k]
+#override MAXIMUM_DEPTH = 1000.0          !   [m]
+#override NIGLOBAL = 80                   !
+#override OBC_SEGMENT_001 = "I=N,J=0:N,FLATHER,ORLANSKI"
+#override OBC_SEGMENT_002 = "I=0,J=N:0,FLATHER,ORLANSKI,NUDGED"
+#override LAPLACIAN = True                !   [Boolean] default = False
+#override KH = 2000.0                     !   [m2 s-1] default = 0.0
+! === module MOM_vert_friction ===
+#override DIRECT_STRESS = True            !   [Boolean] default = False
+#override HARMONIC_VISC = True            !   [Boolean] default = False
+#override HMIX_FIXED = 20.0               !   [m]
+#override KV = 1.0E-04                    !   [m2 s-1]
+#override KVML = 1.0E-04                  !   [m2 s-1] default = 1.0E-04
+#override HBBL = 10.0                     !   [m]
+

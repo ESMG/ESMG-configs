@@ -220,7 +220,7 @@ EOS_QUADRATURE = False          !   [Boolean] default = False
 TFREEZE_FORM = "LINEAR"         ! default = "LINEAR"
                                 ! TFREEZE_FORM determines which expression should be
                                 ! used for the freezing point.  Currently, the valid
-                                ! choices are "LINEAR", "MILLERO_78".
+                                ! choices are "LINEAR", "MILLERO_78", "TEOS10"
 TFREEZE_S0_P0 = 0.0             !   [deg C] default = 0.0
                                 ! When TFREEZE_FORM=LINEAR,
                                 ! this is the freezing potential temperature at
@@ -375,13 +375,13 @@ OBC_FREESLIP_STRAIN = True      !   [Boolean] default = False
 OBC_ZERO_BIHARMONIC = True      !   [Boolean] default = False
                                 ! If true, zeros the Laplacian of flow on open boundaries in the biharmonic
                                 ! viscosity term.
-OBC_SEGMENT_001 = "J=N,I=N:0,FLATHER, ORLANSKI" !
+OBC_SEGMENT_001 = "J=N,I=N:0,FLATHER, OBLIQUE" !
                                 ! Documentation needs to be dynamic?????
-OBC_SEGMENT_002 = "J=0,I=0:N,FLATHER, ORLANSKI" !
+OBC_SEGMENT_002 = "J=0,I=0:N,FLATHER, OBLIQUE" !
                                 ! Documentation needs to be dynamic?????
-OBC_SEGMENT_003 = "I=N,J=0:N,FLATHER, ORLANSKI" !
+OBC_SEGMENT_003 = "I=N,J=0:N,FLATHER, OBLIQUE" !
                                 ! Documentation needs to be dynamic?????
-OBC_SEGMENT_004 = "I=0,J=N:0,FLATHER, ORLANSKI" !
+OBC_SEGMENT_004 = "I=0,J=N:0,FLATHER, OBLIQUE" !
                                 ! Documentation needs to be dynamic?????
 MASKING_DEPTH = -9999.0         !   [m] default = -9999.0
                                 ! The depth below which to mask points as land points, for which all
