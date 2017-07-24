@@ -153,7 +153,7 @@ MINIMUM_DEPTH = 9.5             !   [m] default = 0.0
                                 ! MINIMUM_DEPTH is assumed to be land and all fluxes are masked out.
                                 ! If MASKING_DEPTH is specified, then all depths shallower than
                                 ! MINIMUM_DEPTH but depper than MASKING_DEPTH are rounded to MINIMUM_DEPTH.
-COORD_CONFIG = "file"           !
+COORD_CONFIG = "gprime"          !
                                 ! This specifies how layers are to be defined:
                                 !     file - read coordinate information from the file
                                 !       specified by (COORD_FILE).
@@ -168,9 +168,9 @@ COORD_CONFIG = "file"           !
                                 !     ts_profile - use temperature and salinity profiles
                                 !       (read from COORD_FILE) to set layer densities.
                                 !     USER - call a user modified routine.
-COORD_FILE = "layer_coord.nc"   !
-                                ! The file from which the coordinate densities are read.
-MASKING_DEPTH = 0.0             !   [m] default = -9999.0
+GINT = 0.0098                   !   [m s-2]
+                                ! The reduced gravity across internal interfaces.
+MASKING_DEPTH = 1.0             !   [m] default = -9999.0
                                 ! The depth below which to mask points as land points, for which all
                                 ! fluxes are zeroed out. MASKING_DEPTH is ignored if negative.
 CHANNEL_CONFIG = "none"         ! default = "none"
@@ -220,11 +220,82 @@ REMAPPING_SCHEME = "PPM_H4"     ! default = "PLM"
                                 ! PPM_IH4     (3rd-order accurate)
                                 ! PQM_IH4IH3  (4th-order accurate)
                                 ! PQM_IH6IH5  (5th-order accurate)
-INIT_LAYERS_FROM_Z_FILE = True  !   [Boolean] default = False
+INIT_LAYERS_FROM_Z_FILE = False !   [Boolean] default = False
                                 ! If true, intialize the layer thicknesses, temperatures,
                                 ! and salnities from a Z-space file on a latitude-
                                 ! longitude grid.
-TEMP_SALT_Z_INIT_FILE = "WOA05_pottemp_salt.nc" ! default = "temp_salt_z.nc"
+THICKNESS_CONFIG = "file"       !
+                                ! A string that determines how the initial layer
+                                ! thicknesses are specified for a new run:
+                                !     file - read interface heights from the file specified
+                                !     thickness_file - read thicknesses from the file specified
+                                !       by (THICKNESS_FILE).
+                                !     coord - determined by ALE coordinate.
+                                !     uniform - uniform thickness layers evenly distributed
+                                !       between the surface and MAXIMUM_DEPTH.
+                                !     DOME - use a slope and channel configuration for the
+                                !       DOME sill-overflow test case.
+                                !     ISOMIP - use a configuration for the
+                                !       ISOMIP test case.
+                                !     benchmark - use the benchmark test case thicknesses.
+                                !     search - search a density profile for the interface
+                                !       densities. This is not yet implemented.
+                                !     circle_obcs - the circle_obcs test case is used.
+                                !     DOME2D - 2D version of DOME initialization.
+                                !     adjustment2d - TBD AJA.
+                                !     sloshing - TBD AJA.
+                                !     seamount - TBD AJA.
+                                !     soliton - Equatorial Rossby soliton.
+                                !     rossby_front - a mixed layer front in thermal wind balance.
+                                !     USER - call a user modified routine.
+THICKNESS_FILE = "CCS1_IC.nc"   !
+                                ! The name of the thickness file.
+ADJUST_THICKNESS = True         !   [Boolean] default = False
+                                ! If true, all mass below the bottom removed if the
+                                ! topography is shallower than the thickness input file
+                                ! would indicate.
+TS_CONFIG = "file"              !
+                                ! A string that determines how the initial tempertures
+                                ! and salinities are specified for a new run:
+                                !     file - read velocities from the file specified
+                                !       by (TS_FILE).
+                                !     fit - find the temperatures that are consistent with
+                                !       the layer densities and salinity S_REF.
+                                !     TS_profile - use temperature and salinity profiles
+                                !       (read from TS_FILE) to set layer densities.
+                                !     benchmark - use the benchmark test case T & S.
+                                !     linear - linear in logical layer space.
+                                !     DOME2D - 2D DOME initialization.
+                                !     ISOMIP - ISOMIP initialization.
+                                !     adjustment2d - TBD AJA.
+                                !     sloshing - TBD AJA.
+                                !     seamount - TBD AJA.
+                                !     rossby_front - a mixed layer front in thermal wind balance.
+                                !     SCM_ideal_hurr - used in the SCM idealized hurricane test.
+                                !     SCM_CVmix_tests - used in the SCM CVmix tests.
+                                !     USER - call a user modified routine.
+
+TS_FILE = "CCS1_IC.nc"          !
+                                ! The initial condition file for temperature.
+TEMP_IC_VAR = "temp"            ! default = "PTEMP"
+                                ! The initial condition variable for potential temperature.
+SALT_IC_VAR = "salt"            ! default = "SALT"
+                                ! The initial condition variable for salinity.
+SALT_FILE = "CCS1_IC.nc"        ! default = "IC.nc"
+                                ! The initial condition file for salinity.
+VELOCITY_CONFIG = "zero"        ! default = "zero"
+                                ! A string that determines how the initial velocities
+                                ! are specified for a new run:
+                                !     file - read velocities from the file specified
+                                !       by (VELOCITY_FILE).
+                                !     zero - the fluid is initially at rest.
+                                !     uniform - the flow is uniform (determined by
+                                !       parameters INITIAL_U_CONST and INITIAL_V_CONST).
+                                !     rossby_front - a mixed layer front in thermal wind balance.
+                                !     soliton - Equatorial Rossby soliton.
+                                !     USER - call a user modified routine.
+
+!TEMP_SALT_Z_INIT_FILE = "WOA05_pottemp_salt.nc" ! default = "temp_salt_z.nc"
                                 ! The name of the z-space input file used to initialize
                                 ! the layer thicknesses, temperatures and salinities.
 Z_INIT_FILE_PTEMP_VAR = "PTEMP" ! default = "ptemp"
@@ -596,12 +667,15 @@ SPONGE_SALT_VAR = "salt"
 
 ! === OBC options ===
 OBC_NUMBER_OF_SEGMENTS = 3      ! [Integer] The number of open boundary segments.
-OBC_SEGMENT_001 = "J=N,I=N:0,FLATHER,ORLANSKI,NUDGED"
-OBC_SEGMENT_002 = "J=0,I=0:N,FLATHER,ORLANSKI,NUDGED"
-OBC_SEGMENT_003 = "I=0,J=N:0,FLATHER,ORLANSKI,NUDGED"
-OBC_SEGMENT_001_DATA = "U=file:obc_daily_5day_CCS1.nc(u),V=file:obc_daily_5day_CCS1.nc(v),SSH=file:obc_daily_5day_CCS1.nc(zeta)"
-OBC_SEGMENT_002_DATA = "U=file:obc_daily_5day_CCS1.nc(u),V=file:obc_daily_5day_CCS1.nc(v),SSH=file:obc_daily_5day_CCS1.nc(zeta)"
-OBC_SEGMENT_003_DATA = "U=file:obc_daily_5day_CCS1.nc(u),V=file:obc_daily_5day_CCS1.nc(v),SSH=file:obc_daily_5day_CCS1.nc(zeta)"
+OBC_SEGMENT_001 = "J=N,I=N:0,FLATHER"
+OBC_SEGMENT_002 = "J=0,I=0:N,FLATHER"
+OBC_SEGMENT_003 = "I=0,J=N:0,FLATHER"
+!OBC_SEGMENT_001_DATA = "U=file:obc_daily_5day_CCS1.nc(u),V=file:obc_daily_5day_CCS1.nc(v),SSH=file:obc_daily_5day_CCS1.nc(zeta)"
+!OBC_SEGMENT_002_DATA = "U=file:obc_daily_5day_CCS1.nc(u),V=file:obc_daily_5day_CCS1.nc(v),SSH=file:obc_daily_5day_CCS1.nc(zeta)"
+!OBC_SEGMENT_003_DATA = "U=file:obc_daily_5day_CCS1.nc(u),V=file:obc_daily_5day_CCS1.nc(v),SSH=file:obc_daily_5day_CCS1.nc(zeta)"
+OBC_SEGMENT_001_DATA = "U=file:obc_monthly_CCS1.nc(u),V=file:obc_monthly_CCS1.nc(v),SSH=file:obc_monthly_CCS1.nc(zeta)"
+OBC_SEGMENT_002_DATA = "U=file:obc_monthly_CCS1.nc(u),V=file:obc_monthly_CCS1.nc(v),SSH=file:obc_monthly_CCS1.nc(zeta)"
+OBC_SEGMENT_003_DATA = "U=file:obc_monthly_CCS1.nc(u),V=file:obc_monthly_CCS1.nc(v),SSH=file:obc_monthly_CCS1.nc(zeta)"
 OBC_ZERO_VORTICITY = False      !   [Boolean] default = False
                                 ! If true, sets relative vorticity to zero on open boundaries.
 OBC_FREESLIP_VORTICITY = True   !   [Boolean] default = False
@@ -614,6 +688,6 @@ OBC_FREESLIP_STRAIN = True      !   [Boolean] default = False
                                 ! If true, sets the normal gradient of tangential velocity to
                                 ! zero in the strain use in the stress tensor on open boundaries. This cannot
                                 ! be true if OBC_ZERO_STRAIN is True.
-OBC_ZERO_BIHARMONIC = False     !   [Boolean] default = False
+OBC_ZERO_BIHARMONIC = True      !   [Boolean] default = False
                                 ! If true, zeros the Laplacian of flow on open boundaries in the biharmonic
                                 ! viscosity term.
