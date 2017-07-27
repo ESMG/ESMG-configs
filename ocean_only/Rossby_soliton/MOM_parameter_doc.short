@@ -101,9 +101,12 @@ TOPO_CONFIG = "flat"            !
                                 !       ISOMIP test case.
                                 !     DOME2D - use a shelf and slope configuration for the
                                 !       DOME2D gravity current/overflow test case.
+                                !     Kelvin - flat but with rotated land mask.
                                 !     seamount - Gaussian bump for spontaneous motion test case.
+                                !     shelfwave - exponential slope for shelfwave test case.
                                 !     supercritical - flat but with 8.95 degree land mask.
                                 !     Phillips - ACC-like idealized topography used in the Phillips config.
+                                !     dense - Denmark Strait-like dense water formation and overflow.
                                 !     USER - call a user modified routine.
 MAXIMUM_DEPTH = 1.0             !   [m]
                                 ! The maximum depth of the ocean.
@@ -182,8 +185,6 @@ VELOCITY_CONFIG = "soliton"     ! default = "zero"
 ! === module MOM_diag_mediator ===
 
 ! === module MOM_MEKE ===
-
-! === module MOM_wave_speed ===
 
 ! === module MOM_lateral_mixing_coeffs ===
 
