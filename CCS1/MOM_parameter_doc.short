@@ -123,6 +123,8 @@ TOPO_CONFIG = "file"            !
                                 !     Phillips - ACC-like idealized topography used in the Phillips config.
                                 !     dense - Denmark Strait-like dense water formation and overflow.
                                 !     USER - call a user modified routine.
+TOPO_FILE = "ocean_topog.nc"    ! default = "topog.nc"
+                                ! The file from which the bathymetry is read.
 MAXIMUM_DEPTH = 6500.0          !   [m]
                                 ! The maximum depth of the ocean.
 MINIMUM_DEPTH = 9.5             !   [m] default = 0.0
@@ -146,11 +148,11 @@ OBC_FREESLIP_STRAIN = True      !   [Boolean] default = False
 OBC_ZERO_BIHARMONIC = True      !   [Boolean] default = False
                                 ! If true, zeros the Laplacian of flow on open boundaries in the biharmonic
                                 ! viscosity term.
-OBC_SEGMENT_001 = "J=N,I=N:0,FLATHER" !
+OBC_SEGMENT_001 = "J=N,I=N:0,FLATHER,ORLANSKI" !
                                 ! Documentation needs to be dynamic?????
-OBC_SEGMENT_002 = "J=0,I=0:N,FLATHER" !
+OBC_SEGMENT_002 = "J=0,I=0:N,FLATHER,ORLANSKI" !
                                 ! Documentation needs to be dynamic?????
-OBC_SEGMENT_003 = "I=0,J=N:0,FLATHER" !
+OBC_SEGMENT_003 = "I=0,J=N:0,FLATHER,ORLANSKI" !
                                 ! Documentation needs to be dynamic?????
 MASKING_DEPTH = 1.0             !   [m] default = -9999.0
                                 ! The depth below which to mask points as land points, for which all
@@ -161,6 +163,7 @@ MASKING_DEPTH = 1.0             !   [m] default = -9999.0
 ! === module MOM_coord_initialization ===
 COORD_CONFIG = "gprime"         !
                                 ! This specifies how layers are to be defined:
+                                !     ALE or none - used to avoid defining layers in ALE mode
                                 !     file - read coordinate information from the file
                                 !       specified by (COORD_FILE).
                                 !     BFB - Custom coords for buoyancy-forced basin case
