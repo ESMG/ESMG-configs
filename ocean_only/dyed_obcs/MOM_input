@@ -93,10 +93,6 @@ IC_OUTPUT_FILE = "GOLD_IC"      ! default = "MOM_IC"
 ! === module MOM_tracer_registry ===
 USE_DYED_OBC_TRACER = True
 
-! === module MOM_tracer_flow_control ===
-USE_DOME_TRACER = True          !   [Boolean] default = False
-                                ! If true, use the DOME_tracer tracer package.
-
 ! === module DOME_tracer ===
 INPUTDIR = "INPUT"              ! default = "."
                                 ! The directory in which input files are found.

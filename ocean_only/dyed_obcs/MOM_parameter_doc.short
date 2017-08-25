@@ -52,12 +52,8 @@ NK = 10                         !   [nondim]
 ! === module MOM_restart ===
 
 ! === module MOM_tracer_flow_control ===
-USE_DOME_TRACER = True          !   [Boolean] default = False
-                                ! If true, use the DOME_tracer tracer package.
 USE_DYED_OBC_TRACER = True      !   [Boolean] default = False
                                 ! If true, use the dyed_obc_tracer tracer package.
-
-! === module DOME_tracer ===
 
 ! === module dyed_obc_tracer ===
 
