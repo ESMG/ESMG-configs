@@ -46,10 +46,6 @@ NK = 1                          !   [nondim]
 
 ! === module MOM_tracer_registry ===
 
-! === module MOM_restart ===
-
-! === module MOM_tracer_flow_control ===
-
 ! === module MOM_fixed_initialization ===
 INPUTDIR = "INPUT"              ! default = "."
                                 ! The directory in which input files are found.
@@ -143,6 +139,10 @@ USE_SHELFWAVE_OBC = True        !   [Boolean] default = False
                                 ! If true, use the shelfwave open boundary.
 SHELFWAVE_Y_MODE = 2.0          !   [nondim] default = 1.0
                                 ! Cross-shore wave mode.
+
+! === module MOM_restart ===
+
+! === module MOM_tracer_flow_control ===
 
 ! === module MOM_coord_initialization ===
 COORD_CONFIG = "linear"         !

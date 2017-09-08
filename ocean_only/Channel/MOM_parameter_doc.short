@@ -46,10 +46,6 @@ NK = 1                          !   [nondim]
 
 ! === module MOM_tracer_registry ===
 
-! === module MOM_restart ===
-
-! === module MOM_tracer_flow_control ===
-
 ! === module MOM_fixed_initialization ===
 INPUTDIR = "INPUT"              ! default = "."
                                 ! The directory in which input files are found.
@@ -133,6 +129,10 @@ ROTATION = "betaplane"          ! default = "2omegasinlat"
                                 !     USER - call a user modified routine.
 
 ! === module MOM_boundary_update ===
+
+! === module MOM_restart ===
+
+! === module MOM_tracer_flow_control ===
 
 ! === module MOM_coord_initialization ===
 COORD_CONFIG = "linear"         !

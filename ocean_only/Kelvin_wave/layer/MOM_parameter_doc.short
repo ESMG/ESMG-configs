@@ -46,10 +46,6 @@ NK = 20                         !   [nondim]
 
 ! === module MOM_tracer_registry ===
 
-! === module MOM_restart ===
-
-! === module MOM_tracer_flow_control ===
-
 ! === module MOM_fixed_initialization ===
 INPUTDIR = "INPUT"              ! default = "."
                                 ! The directory in which input files are found.
@@ -142,6 +138,10 @@ USE_KELVIN_WAVE_OBC = True      !   [Boolean] default = False
 ! === module register_Kelvin_OBC ===
 KELVIN_WAVE_MODE = 2            ! default = 0
                                 ! Vertical Kelvin wave mode imposed at upstream open boundary.
+
+! === module MOM_restart ===
+
+! === module MOM_tracer_flow_control ===
 
 ! === module MOM_coord_initialization ===
 COORD_CONFIG = "layer_ref"      !

@@ -49,14 +49,6 @@ NK = 10                         !   [nondim]
 
 ! === module MOM_tracer_registry ===
 
-! === module MOM_restart ===
-
-! === module MOM_tracer_flow_control ===
-USE_DYED_OBC_TRACER = True      !   [Boolean] default = False
-                                ! If true, use the dyed_obc_tracer tracer package.
-
-! === module dyed_obc_tracer ===
-
 ! === module MOM_fixed_initialization ===
 INPUTDIR = "INPUT"              ! default = "."
                                 ! The directory in which input files are found.
@@ -148,6 +140,14 @@ F_0 = 1.0E-04                   !   [s-1] default = 0.0
 
 ! === module MOM_boundary_update ===
 
+! === module MOM_restart ===
+
+! === module MOM_tracer_flow_control ===
+USE_DYED_OBC_TRACER = True      !   [Boolean] default = False
+                                ! If true, use the dyed_obc_tracer tracer package.
+
+! === module dyed_obc_tracer ===
+
 ! === module MOM_coord_initialization ===
 COORD_CONFIG = "layer_ref"      !
                                 ! This specifies how layers are to be defined:
@@ -214,8 +214,6 @@ OBC_USER_CONFIG = "dyed_obcs"   ! default = "none"
                                 !    supercritical - now only needed here for the allocations
                                 !    tidal_bay - Flather with tidal forcing on eastern boundary
                                 !    USER - user specified
-
-! === module segment_tracer_registry_init ===
 
 ! === module MOM_diag_mediator ===
 

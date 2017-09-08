@@ -176,45 +176,6 @@ NK = 1                          !   [nondim]
 
 ! === module MOM_tracer_registry ===
 
-! === module MOM_restart ===
-PARALLEL_RESTARTFILES = False   !   [Boolean] default = False
-                                ! If true, each processor writes its own restart file,
-                                ! otherwise a single restart file is generated
-RESTARTFILE = "MOM.res"         ! default = "MOM.res"
-                                ! The name-root of the restart file.
-LARGE_FILE_SUPPORT = True       !   [Boolean] default = True
-                                ! If true, use the file-size limits with NetCDF large
-                                ! file support (4Gb), otherwise the limit is 2Gb.
-MAX_FIELDS = 100                ! default = 100
-                                ! The maximum number of restart fields that can be used.
-
-! === module MOM_tracer_flow_control ===
-USE_USER_TRACER_EXAMPLE = False !   [Boolean] default = False
-                                ! If true, use the USER_tracer_example tracer package.
-USE_DOME_TRACER = False         !   [Boolean] default = False
-                                ! If true, use the DOME_tracer tracer package.
-USE_ISOMIP_TRACER = False       !   [Boolean] default = False
-                                ! If true, use the ISOMIP_tracer tracer package.
-USE_IDEAL_AGE_TRACER = False    !   [Boolean] default = False
-                                ! If true, use the ideal_age_example tracer package.
-USE_REGIONAL_DYES = False       !   [Boolean] default = False
-                                ! If true, use the regional_dyes tracer package.
-USE_OIL_TRACER = False          !   [Boolean] default = False
-                                ! If true, use the oil_tracer tracer package.
-USE_ADVECTION_TEST_TRACER = False !   [Boolean] default = False
-                                ! If true, use the advection_test_tracer tracer package.
-USE_OCMIP2_CFC = False          !   [Boolean] default = False
-                                ! If true, use the MOM_OCMIP2_CFC tracer package.
-USE_generic_tracer = False      !   [Boolean] default = False
-                                ! If true and _USE_GENERIC_TRACER is defined as a
-                                ! preprocessor macro, use the MOM_generic_tracer packages.
-USE_PSEUDO_SALT_TRACER = False  !   [Boolean] default = False
-                                ! If true, use the pseudo salt tracer, typically run as a diagnostic.
-USE_BOUNDARY_IMPULSE_TRACER = False !   [Boolean] default = False
-                                ! If true, use the boundary impulse tracer.
-USE_DYED_OBC_TRACER = False     !   [Boolean] default = False
-                                ! If true, use the dyed_obc_tracer tracer package.
-
 ! === module MOM_fixed_initialization ===
 INPUTDIR = "INPUT"              ! default = "."
                                 ! The directory in which input files are found.
@@ -306,6 +267,22 @@ OBC_SEGMENT_001 = "I=N,J=0:N,FLATHER" !
                                 ! Documentation needs to be dynamic?????
 OBC_SEGMENT_002 = "I=0,J=N:0,FLATHER" !
                                 ! Documentation needs to be dynamic?????
+OBC_RADIATION_MAX = 10.0        !   [m s-1] default = 10.0
+                                ! The maximum magnitude of the baroclinic radiation
+                                ! velocity (or speed of characteristics).  This is only
+                                ! used if one of the open boundary segments is using Orlanski.
+OBC_RAD_VEL_WT = 0.3            !   [nondim] default = 0.3
+                                ! The relative weighting for the baroclinic radiation
+                                ! velocities (or speed of characteristics) at the new
+                                ! time level (1) or the running mean (0) for velocities.
+                                ! Valid values range from 0 to 1. This is only used if
+                                ! one of the open boundary segments is using Orlanski.
+OBC_RAD_THICK_WT = 0.2          !   [nondim] default = 0.2
+                                ! The relative weighting for the baroclinic radiation
+                                ! velocities (or speed of characteristics) at the new
+                                ! time level (1) or the running mean (0) for thicknesses.
+                                ! Valid values range from 0 to 1. This is only used if
+                                ! one of the open boundary segments is using Orlanski.
 MASKING_DEPTH = 0.5             !   [m] default = -9999.0
                                 ! The depth below which to mask points as land points, for which all
                                 ! fluxes are zeroed out. MASKING_DEPTH is ignored if negative.
@@ -332,6 +309,9 @@ F_0 = 1.0E-04                   !   [s-1] default = 0.0
 BETA = 0.0                      !   [m-1 s-1] default = 0.0
                                 ! The northward gradient of the Coriolis parameter with
                                 ! the betaplane option.
+PARALLEL_RESTARTFILES = False   !   [Boolean] default = False
+                                ! If true, each processor writes its own restart file,
+                                ! otherwise a single restart file is generated
 
 ! === module MOM_boundary_update ===
 USE_FILE_OBC = False            !   [Boolean] default = False
@@ -349,6 +329,42 @@ SHELFWAVE_Y_LENGTH_SCALE = 50.0 !   [Same as x,y] default = 50.0
                                 ! in the y-direction.
 SHELFWAVE_Y_MODE = 2.0          !   [nondim] default = 1.0
                                 ! Cross-shore wave mode.
+
+! === module MOM_restart ===
+RESTARTFILE = "MOM.res"         ! default = "MOM.res"
+                                ! The name-root of the restart file.
+LARGE_FILE_SUPPORT = True       !   [Boolean] default = True
+                                ! If true, use the file-size limits with NetCDF large
+                                ! file support (4Gb), otherwise the limit is 2Gb.
+MAX_FIELDS = 100                ! default = 100
+                                ! The maximum number of restart fields that can be used.
+
+! === module MOM_tracer_flow_control ===
+USE_USER_TRACER_EXAMPLE = False !   [Boolean] default = False
+                                ! If true, use the USER_tracer_example tracer package.
+USE_DOME_TRACER = False         !   [Boolean] default = False
+                                ! If true, use the DOME_tracer tracer package.
+USE_ISOMIP_TRACER = False       !   [Boolean] default = False
+                                ! If true, use the ISOMIP_tracer tracer package.
+USE_IDEAL_AGE_TRACER = False    !   [Boolean] default = False
+                                ! If true, use the ideal_age_example tracer package.
+USE_REGIONAL_DYES = False       !   [Boolean] default = False
+                                ! If true, use the regional_dyes tracer package.
+USE_OIL_TRACER = False          !   [Boolean] default = False
+                                ! If true, use the oil_tracer tracer package.
+USE_ADVECTION_TEST_TRACER = False !   [Boolean] default = False
+                                ! If true, use the advection_test_tracer tracer package.
+USE_OCMIP2_CFC = False          !   [Boolean] default = False
+                                ! If true, use the MOM_OCMIP2_CFC tracer package.
+USE_generic_tracer = False      !   [Boolean] default = False
+                                ! If true and _USE_GENERIC_TRACER is defined as a
+                                ! preprocessor macro, use the MOM_generic_tracer packages.
+USE_PSEUDO_SALT_TRACER = False  !   [Boolean] default = False
+                                ! If true, use the pseudo salt tracer, typically run as a diagnostic.
+USE_BOUNDARY_IMPULSE_TRACER = False !   [Boolean] default = False
+                                ! If true, use the boundary impulse tracer.
+USE_DYED_OBC_TRACER = False     !   [Boolean] default = False
+                                ! If true, use the dyed_obc_tracer tracer package.
 
 ! === module MOM_coord_initialization ===
 COORD_CONFIG = "linear"         !
@@ -438,22 +454,6 @@ SPONGE = False                  !   [Boolean] default = False
                                 ! If true, sponges may be applied anywhere in the domain.
                                 ! The exact location and properties of those sponges are
                                 ! specified via SPONGE_CONFIG.
-OBC_RADIATION_MAX = 10.0        !   [m s-1] default = 10.0
-                                ! The maximum magnitude of the baroclinic radiation
-                                ! velocity (or speed of characteristics).  This is only
-                                ! used if one of the open boundary segments is using Orlanski.
-OBC_RAD_VEL_WT = 0.3            !   [nondim] default = 0.3
-                                ! The relative weighting for the baroclinic radiation
-                                ! velocities (or speed of characteristics) at the new
-                                ! time level (1) or the running mean (0) for velocities.
-                                ! Valid values range from 0 to 1. This is only used if
-                                ! one of the open boundary segments is using Orlanski.
-OBC_RAD_THICK_WT = 0.2          !   [nondim] default = 0.2
-                                ! The relative weighting for the baroclinic radiation
-                                ! velocities (or speed of characteristics) at the new
-                                ! time level (1) or the running mean (0) for thicknesses.
-                                ! Valid values range from 0 to 1. This is only used if
-                                ! one of the open boundary segments is using Orlanski.
 OBC_USER_CONFIG = "shelfwave"   ! default = "none"
                                 ! A string that sets how the user code is invoked to set open
                                 !  boundary data:
