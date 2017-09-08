@@ -215,6 +215,8 @@ OBC_USER_CONFIG = "dyed_obcs"   ! default = "none"
                                 !    tidal_bay - Flather with tidal forcing on eastern boundary
                                 !    USER - user specified
 
+! === module segment_tracer_registry_init ===
+
 ! === module MOM_diag_mediator ===
 
 ! === module MOM_MEKE ===

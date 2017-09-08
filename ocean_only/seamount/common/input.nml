@@ -7,6 +7,7 @@
                               'MOM_override' /
 
  &diag_manager_nml
+         flush_nc_files = .true.
  /
 
  &fms_nml
@@ -15,7 +16,7 @@
 
  &ocean_domains_nml
  /
- 
+
  &ocean_solo_nml
             months = 0
             date_init = 1,1,1,0,0,0
