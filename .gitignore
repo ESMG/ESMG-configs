@@ -14,6 +14,7 @@ fort.*
 *.nc
 *.nc.*
 RESTART
+INPUT
 # Ignore python .pyc files
 *.pyc
 .ipynb_checkpoints
