@@ -641,6 +641,8 @@ INITIAL_S_RANGE = 2.0           !   [1e-3] default = 2.0
                                 ! Initial salinity range (bottom - surface)
 INITIAL_T_RANGE = 0.0           !   [C] default = 0.0
                                 ! Initial temperature range (bottom - surface)
+
+! === module segment_tracer_registry_init ===
 VELOCITY_CONFIG = "zero"        ! default = "zero"
                                 ! A string that determines how the initial velocities
                                 ! are specified for a new run:

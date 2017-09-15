@@ -243,6 +243,8 @@ TS_CONFIG = "seamount"          !
                                 !     SCM_CVmix_tests - used in the SCM CVmix tests.
                                 !     USER - call a user modified routine.
 
+! === module segment_tracer_registry_init ===
+
 ! === module MOM_diag_mediator ===
 
 ! === module MOM_MEKE ===

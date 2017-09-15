@@ -58,9 +58,6 @@ NK = 20                         !   [nondim]
 ! Parameters providing information about the vertical grid.
 
 ! === module MOM ===
-!ENABLE_THERMODYNAMICS = False   !   [Boolean] default = True
-                                ! If true, Temperature and salinity are used as state
-                                ! variables.
 BULKMIXEDLAYER = False          !   [Boolean] default = True
                                 ! If true, use a Kraus-Turner-like bulk mixed layer
                                 ! with transitional buffer layers.  Layers 1 through
