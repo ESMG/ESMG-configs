@@ -51,8 +51,6 @@ NJGLOBAL = 42                   !
 NK = 1                          !   [nondim]
                                 ! The number of model layers.
 
-! === module MOM_tracer_registry ===
-
 ! === module MOM_fixed_initialization ===
 INPUTDIR = "INPUT"              ! default = "."
                                 ! The directory in which input files are found.
@@ -139,6 +137,8 @@ F_0 = 1.0E-04                   !   [s-1] default = 0.0
 ! === module MOM_boundary_update ===
 USE_TIDAL_BAY_OBC = True        !   [Boolean] default = False
                                 ! If true, use the tidal_bay open boundary.
+
+! === module MOM_tracer_registry ===
 
 ! === module MOM_restart ===
 

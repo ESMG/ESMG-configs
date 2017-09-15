@@ -44,8 +44,6 @@ G_EARTH = 9.81                  !   [m s-2] default = 9.8
 NK = 1                          !   [nondim]
                                 ! The number of model layers.
 
-! === module MOM_tracer_registry ===
-
 ! === module MOM_fixed_initialization ===
 INPUTDIR = "INPUT"              ! default = "."
                                 ! The directory in which input files are found.
@@ -301,6 +299,8 @@ KELVIN_COAST_OFFSET = 420.0     !   [km] default = 100.0
                                 ! at which the coasts angle in.
 KELVIN_COAST_ANGLE = 45.0       !   [degrees] default = 11.3
                                 ! The angle of the southern bondary beyond X=KELVIN_COAST_OFFSET.
+
+! === module MOM_tracer_registry ===
 
 ! === module MOM_restart ===
 

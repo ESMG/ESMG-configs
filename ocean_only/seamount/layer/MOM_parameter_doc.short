@@ -42,8 +42,6 @@ NJGLOBAL = 40                   !
 NK = 20                         !   [nondim]
                                 ! The number of model layers.
 
-! === module MOM_tracer_registry ===
-
 ! === module MOM_fixed_initialization ===
 INPUTDIR = "INPUT/"             ! default = "."
                                 ! The directory in which input files are found.
@@ -141,6 +139,8 @@ F_0 = 1.0E-04                   !   [s-1] default = 0.0
                                 ! betaplane option.
 
 ! === module MOM_boundary_update ===
+
+! === module MOM_tracer_registry ===
 
 ! === module MOM_EOS ===
 EQN_OF_STATE = "LINEAR"         ! default = "WRIGHT"

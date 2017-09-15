@@ -44,8 +44,6 @@ G_EARTH = 9.81                  !   [m s-2] default = 9.8
 NK = 1                          !   [nondim]
                                 ! The number of model layers.
 
-! === module MOM_tracer_registry ===
-
 ! === module MOM_fixed_initialization ===
 INPUTDIR = "INPUT"              ! default = "."
                                 ! The directory in which input files are found.
@@ -136,6 +134,8 @@ USE_KELVIN_WAVE_OBC = True      !   [Boolean] default = False
                                 ! If true, use the Kelvin wave open boundary.
 
 ! === module register_Kelvin_OBC ===
+
+! === module MOM_tracer_registry ===
 
 ! === module MOM_restart ===
 

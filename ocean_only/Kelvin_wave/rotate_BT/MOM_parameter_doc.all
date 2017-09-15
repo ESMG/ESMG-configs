@@ -10,9 +10,6 @@ DO_UNIT_TESTS = False           !   [Boolean] default = False
                                 ! If True, exercises unit tests at model start up.
 SPLIT = True                    !   [Boolean] default = True
                                 ! Use the split time stepping if true.
-USE_LEGACY_SPLIT = False        !   [Boolean] default = False
-                                ! If true, use the full range of options available from
-                                ! the older GOLD-derived split time stepping code.
 CALC_RHO_FOR_SEA_LEVEL = False  !   [Boolean] default = False
                                 ! If true, the in-situ density is used to calculate the
                                 ! effective sea level that is returned to the coupler. If false,
@@ -173,8 +170,6 @@ H_TO_M = 1.0                    !   [m H-1] default = 1.0
                                 ! units of thickness into m.
 NK = 1                          !   [nondim]
                                 ! The number of model layers.
-
-! === module MOM_tracer_registry ===
 
 ! === module MOM_fixed_initialization ===
 INPUTDIR = "INPUT"              ! default = "."
@@ -368,6 +363,8 @@ KELVIN_COAST_OFFSET = 100.0     !   [km] default = 100.0
                                 ! at which the coasts angle in.
 KELVIN_COAST_ANGLE = 11.3       !   [degrees] default = 11.3
                                 ! The angle of the southern bondary beyond X=KELVIN_COAST_OFFSET.
+
+! === module MOM_tracer_registry ===
 
 ! === module MOM_restart ===
 RESTARTFILE = "MOM.res"         ! default = "MOM.res"

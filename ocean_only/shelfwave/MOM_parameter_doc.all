@@ -10,9 +10,6 @@ DO_UNIT_TESTS = False           !   [Boolean] default = False
                                 ! If True, exercises unit tests at model start up.
 SPLIT = True                    !   [Boolean] default = True
                                 ! Use the split time stepping if true.
-USE_LEGACY_SPLIT = False        !   [Boolean] default = False
-                                ! If true, use the full range of options available from
-                                ! the older GOLD-derived split time stepping code.
 CALC_RHO_FOR_SEA_LEVEL = False  !   [Boolean] default = False
                                 ! If true, the in-situ density is used to calculate the
                                 ! effective sea level that is returned to the coupler. If false,
@@ -174,8 +171,6 @@ H_TO_M = 1.0                    !   [m H-1] default = 1.0
 NK = 1                          !   [nondim]
                                 ! The number of model layers.
 
-! === module MOM_tracer_registry ===
-
 ! === module MOM_fixed_initialization ===
 INPUTDIR = "INPUT"              ! default = "."
                                 ! The directory in which input files are found.
@@ -329,6 +324,8 @@ SHELFWAVE_Y_LENGTH_SCALE = 50.0 !   [Same as x,y] default = 50.0
                                 ! in the y-direction.
 SHELFWAVE_Y_MODE = 2.0          !   [nondim] default = 1.0
                                 ! Cross-shore wave mode.
+
+! === module MOM_tracer_registry ===
 
 ! === module MOM_restart ===
 RESTARTFILE = "MOM.res"         ! default = "MOM.res"
