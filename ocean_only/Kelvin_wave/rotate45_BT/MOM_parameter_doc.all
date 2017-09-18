@@ -625,7 +625,7 @@ OBC_USER_CONFIG = "Kelvin"      ! default = "none"
 NUM_DIAG_COORDS = 0             ! default = 1
                                 ! The number of diagnostic vertical coordinates to use.
                                 ! For each coordinate, an entry in DIAG_COORDS must be provided.
-DIAG_MISVAL = -1.0E+34          !   [not defined] default = -1.0E+34
+DIAG_MISVAL = 1.0E+20           !   [not defined] default = 1.0E+20
                                 ! Set the default missing value to use for diagnostics.
 AVAILABLE_DIAGS_FILE = "available_diags.000000" ! default = "available_diags.000000"
                                 ! A file into which to write a list of all available
