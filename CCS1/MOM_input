@@ -107,7 +107,7 @@ PARALLEL_RESTARTFILES = True    !   [Boolean] default = False
                                 ! otherwise a single restart file is generated
 
 ! === module MOM_tracer_flow_control ===
-USE_IDEAL_AGE_TRACER = True     !   [Boolean] default = False
+USE_IDEAL_AGE_TRACER = False    !   [Boolean] default = False
                                 ! If true, use the ideal_age_example tracer package.
 
 ! === module ideal_age_example ===

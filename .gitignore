@@ -21,3 +21,5 @@ INPUT
 # Ignore anything labeled ignore
 *.ignore
 runmpi.chinook*
+CCS1*
+nodes

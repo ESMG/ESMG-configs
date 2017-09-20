@@ -1,18 +1,18 @@
 "ATM" , "p_surf"        , "slp"         , "./INPUT/slp.nc"          , "bilinear" ,  1.0
 "ATM" , "p_bot"         , "slp"         , "./INPUT/slp.nc"          , "bilinear" ,  1.0
-"ATM" , "t_bot"         , "t10"         , "./INPUT/t10.nc"     , "bilinear" ,  1.0
-"ATM" , "sphum_bot"     , "q10"         , "./INPUT/q10.nc"     , "bilinear" ,  1.0
-"ATM" , "u_bot"         , "u10"         , "./INPUT/uv10.nc"     , "bicubic",   1.0
-"ATM" , "v_bot"         , "v10"         , "./INPUT/uv10.nc"     , "bicubic",   1.0
+"ATM" , "t_bot"         , "t10"    , "./INPUT/t10.nc"     , "bilinear" ,  1.0
+"ATM" , "sphum_bot"     , "q10"    , "./INPUT/q10.nc"     , "bilinear" ,  1.0
+"ATM" , "u_bot"         , "u10"    , "./INPUT/uv10.nc"     , "bicubic",   1.0
+"ATM" , "v_bot"         , "v10"    , "./INPUT/uv10.nc"     , "bicubic",   1.0
 "ATM" , "z_bot"         , ""            , ""                             , "bilinear" , 10.0
 "ATM" , "gust"          , ""            , ""                             , "bilinear" ,  1.0e-4
-"ICE" , "lw_flux_dn"    , "lwdn"        , "./INPUT/lwdn.nc"     , "bilinear" ,  1.0
-"ICE" , "sw_flux_vis_dir_dn", "swdn"    , "./INPUT/swdn.nc"     , "bilinear" ,  0.285
-"ICE" , "sw_flux_vis_dif_dn", "swdn"    , "./INPUT/swdn.nc"     , "bilinear" ,  0.285
-"ICE" , "sw_flux_nir_dir_dn", "swdn"    , "./INPUT/swdn.nc"     , "bilinear" ,  0.215
-"ICE" , "sw_flux_nir_dif_dn", "swdn"    , "./INPUT/swdn.nc"     , "bilinear" ,  0.215
-"ICE" , "lprec"         , "precip"      , "./INPUT/precip.nc"  , "bilinear" ,  0.9933
-"ICE" , "fprec"         , "precip"      , "./INPUT/precip.nc"  , "bilinear" ,  0.9933
+"ICE" , "lw_flux_dn"    , "lwdn"    , "./INPUT/lwdn.nc"     , "bilinear" ,  1.0
+"ICE" , "sw_flux_vis_dir_dn", "swdn", "./INPUT/swdn.nc"     , "bilinear" ,  0.285
+"ICE" , "sw_flux_vis_dif_dn", "swdn", "./INPUT/swdn.nc"     , "bilinear" ,  0.285
+"ICE" , "sw_flux_nir_dir_dn", "swdn", "./INPUT/swdn.nc"     , "bilinear" ,  0.215
+"ICE" , "sw_flux_nir_dif_dn", "swdn", "./INPUT/swdn.nc"     , "bilinear" ,  0.215
+"ICE" , "lprec"         , "precip"        , "./INPUT/precip.nc"  , "bilinear" ,  1.0
+"ICE" , "fprec"         , ""        , ""  , "none" ,  0.0
 "ICE" , "runoff"        , ""      , ""            , "none" ,  0.0
 "ICE" , "calving"       , ""            , ""                             , "none"  ,  0.0
 "ICE" , "dhdt"          , ""            , ""                             , "none"  , 80.0

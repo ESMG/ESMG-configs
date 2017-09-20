@@ -49,7 +49,7 @@
             max_input_fields = 699
             max_output_fields = 699
             mix_snapshot_average_fields = .false.
-            flush_nc_files = .false.
+            flush_nc_files = .true.
 /
 
  &flux_exchange_nml

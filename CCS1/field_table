@@ -1,5 +1,5 @@
 # specific humidity for moist runs
- "TRACER", "atmos_mod", "sphum" 
+ "TRACER", "atmos_mod", "sphum"
            "longname",     "specific humidity"
            "units",        "kg/kg" /
 ##	   "profile_type", "fixed", "surface_value=3.e-6" /
@@ -21,5 +21,5 @@
 #
 # "TRACER", "atmos_mod", "radon"
 #           "longname",     "radon test tracer"
-#           "units",        "kg/kg" /      
+#           "units",        "kg/kg" /
 ###.................................................
