@@ -327,6 +327,8 @@ USE_SHELFWAVE_OBC = False       !   [Boolean] default = False
 
 ! === module MOM_tracer_registry ===
 
+! === module segment_tracer_registry_init ===
+
 ! === module MOM_EOS ===
 EQN_OF_STATE = "WRIGHT"         ! default = "WRIGHT"
                                 ! EQN_OF_STATE determines which ocean equation of state
@@ -389,6 +391,8 @@ USE_PSEUDO_SALT_TRACER = False  !   [Boolean] default = False
                                 ! If true, use the pseudo salt tracer, typically run as a diagnostic.
 USE_BOUNDARY_IMPULSE_TRACER = False !   [Boolean] default = False
                                 ! If true, use the boundary impulse tracer.
+USE_DYED_OBC_TRACER = False     !   [Boolean] default = False
+                                ! If true, use the dyed_obc_tracer tracer package.
 
 ! === module MOM_coord_initialization ===
 COORD_CONFIG = "gprime"         !
@@ -611,10 +615,11 @@ OBC_USER_CONFIG = "none"        ! default = "none"
                                 ! A string that sets how the user code is invoked to set open
                                 !  boundary data:
                                 !    DOME - specified inflow on northern boundary
-                                !    tidal_bay - Flather with tidal forcing on eastern boundary
-                                !    supercritical - now only needed here for the allocations
+                                !    dyed_obcs - circle_obcs with dyes on the open boundaries
                                 !    Kelvin - barotropic Kelvin wave forcing on the western boundary
                                 !    shelfwave - Flather with shelf wave forcing on western boundary
+                                !    supercritical - now only needed here for the allocations
+                                !    tidal_bay - Flather with tidal forcing on eastern boundary
                                 !    USER - user specified
 
 ! === module MOM_diag_mediator ===
@@ -1272,6 +1277,10 @@ DTBT = -0.9                     !   [s or nondim] default = -0.98
                                 ! Setting DTBT to 0 is the same as setting it to -0.98.
                                 ! The value of DTBT that will actually be used is an
                                 ! integer fraction of DT, rounding down.
+BT_USE_OLD_CORIOLIS_BRACKET_BUG = False !   [Boolean] default = False
+                                ! If True, use an order of operations that is not bitwise
+                                ! rotationally symmetric in the meridional Coriolis term of
+                                ! the barotropic solver.
 
 ! === module MOM_thickness_diffuse ===
 KHTH = 0.0                      !   [m2 s-1] default = 0.0
@@ -1743,7 +1752,7 @@ LT_MOD_LAC4 = 0.95              !   [nondim] default = 0.95
 LT_MOD_LAC5 = 0.95              !   [nondim] default = 0.95
                                 ! Coefficient for modification of Langmuir number due to
                                 !  ratio of Ekman to unstable Obukhov depth if LT_ENHANCE=2.
-EPBL_USTAR_MIN = 1.45842E-18    !   [meter second-1]
+EPBL_USTAR_MIN = 1.45842E-18    !   [m s-1]
                                 ! The (tiny) minimum friction velocity used within the
                                 ! ePBL code, derived from OMEGA and ANGSTROM.
 
