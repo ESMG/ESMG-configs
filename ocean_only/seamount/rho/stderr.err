@@ -1,0 +1,25 @@
+
+WARNING from PE     0: MOM_file_parser : MIN_THICKNESS over-ridden.  Line: 'MIN_THICKNESS = 1.E-9' in file MOM_override.
+
+
+Program received signal SIGFPE: Floating-point exception - erroneous arithmetic operation.
+
+Backtrace for this error:
+#0  0x7F74BD004D87
+#1  0x7F74BD003F80
+#2  0x7F74B904C65F
+#3  0xEA783D in __regrid_solvers_MOD_solve_linear_system at regrid_solvers.F90:116 (discriminator 16)
+#4  0xF51D16 in __regrid_edge_slopes_MOD_edge_slopes_implicit_h3 at regrid_edge_slopes.F90:156
+#5  0xCB8F98 in __mom_regridding_MOD_regridding_set_ppolys at MOM_regridding.F90:2616 (discriminator 24)
+#6  0xCD6F4D in __mom_regridding_MOD_build_rho_column at MOM_regridding.F90:1583 (discriminator 24)
+#7  0xCD96DB in __mom_regridding_MOD_build_rho_grid at MOM_regridding.F90:1414 (discriminator 24)
+#8  0xCE07BF in __mom_regridding_MOD_regridding_main at MOM_regridding.F90:848
+#9  0xF6AA1D in __mom_ale_MOD_ale_main at MOM_ALE.F90:405
+#10  0x10CD972 in __mom_MOD_step_mom at MOM.F90:1152
+#11  0xB49AD6 in MAIN__ at MOM_driver.F90:469
+[chinook01:09187] 3 more processes have sent help message help-mpi-btl-openib-cpc-base.txt / no cpcs for port
+[chinook01:09187] Set MCA parameter "orte_base_help_aggregate" to 0 to see all help / error messages
+
+real	0m2.706s
+user	0m7.846s
+sys	0m0.798s
