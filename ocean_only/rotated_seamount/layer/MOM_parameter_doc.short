@@ -1,35 +1,35 @@
 ! This file was written by the model and records the non-default parameters used at run-time.
 
 ! === module MOM ===
-ENABLE_THERMODYNAMICS = False   !   [Boolean] default = True
-                                ! If true, Temperature and salinity are used as state
-                                ! variables.
-ADIABATIC = True                !   [Boolean] default = False
-                                ! There are no diapycnal mass fluxes if ADIABATIC is
-                                ! true. This assumes that KD = KDML = 0.0 and that
-                                ! there is no buoyancy forcing, but makes the model
-                                ! faster by eliminating subroutine calls.
+BULKMIXEDLAYER = False          !   [Boolean] default = True
+                                ! If true, use a Kraus-Turner-like bulk mixed layer
+                                ! with transitional buffer layers.  Layers 1 through
+                                ! NKML+NKBL have variable densities. There must be at
+                                ! least NKML+NKBL+1 layers if BULKMIXEDLAYER is true.
+                                ! BULKMIXEDLAYER can not be used with USE_REGRIDDING.
+                                ! The default is influenced by ENABLE_THERMODYNAMICS.
 DT = 900.0                      !   [s]
                                 ! The (baroclinic) dynamics time step.  The time-step that
                                 ! is actually used will be an integer fraction of the
                                 ! forcing time-step (DT_FORCING in ocean-only mode or the
                                 ! coupling timestep in coupled mode.)
-DTBT_RESET_PERIOD = -1.0        !   [s] default = 900.0
-                                ! The period between recalculations of DTBT (if DTBT <= 0).
-                                ! If DTBT_RESET_PERIOD is negative, DTBT is set based
-                                ! only on information available at initialization.  If
-                                ! dynamic, DTBT will be set at least every forcing time
-                                ! step, and if 0, every dynamics time step.  The default is
-                                ! set by DT_THERM.  This is only used if SPLIT is true.
+C_P = 3925.0                    !   [J kg-1 K-1] default = 3991.86795711963
+                                ! The heat capacity of sea water, approximated as a
+                                ! constant. This is only used if ENABLE_THERMODYNAMICS is
+                                ! true. The default value is from the TEOS-10 definition
+                                ! of conservative temperature.
+SAVE_INITIAL_CONDS = True       !   [Boolean] default = False
+                                ! If true, write the initial conditions to a file given
+                                ! by IC_OUTPUT_FILE.
 
 ! === module MOM_domains ===
 REENTRANT_X = False             !   [Boolean] default = True
                                 ! If true, the domain is zonally reentrant.
-NIGLOBAL = 56                   !
+NIGLOBAL = 44                   !
                                 ! The total number of thickness grid points in the
                                 ! x-direction in the physical domain. With STATIC_MEMORY_
                                 ! this is set in MOM_memory.h at compile time.
-NJGLOBAL = 56                   !
+NJGLOBAL = 44                   !
                                 ! The total number of thickness grid points in the
                                 ! y-direction in the physical domain. With STATIC_MEMORY_
                                 ! this is set in MOM_memory.h at compile time.
@@ -39,17 +39,15 @@ NJGLOBAL = 56                   !
 
 ! === module MOM_verticalGrid ===
 ! Parameters providing information about the vertical grid.
-G_EARTH = 9.81                  !   [m s-2] default = 9.8
-                                ! The gravitational acceleration of the Earth.
-NK = 1                          !   [nondim]
+NK = 20                         !   [nondim]
                                 ! The number of model layers.
 
 ! === module MOM_fixed_initialization ===
-INPUTDIR = "INPUT"              ! default = "."
+INPUTDIR = "INPUT/"             ! default = "."
                                 ! The directory in which input files are found.
 
 ! === module MOM_grid_init ===
-GRID_CONFIG = "cartesian"       !
+GRID_CONFIG = "mercator"        !
                                 ! A character string that determines the method for
                                 ! defining the horizontal grid.  Current options are:
                                 !     mosaic - read the grid from a mosaic (supergrid)
@@ -57,19 +55,15 @@ GRID_CONFIG = "cartesian"       !
                                 !     cartesian - use a (flat) Cartesian grid.
                                 !     spherical - use a simple spherical grid.
                                 !     mercator - use a Mercator spherical grid.
-AXIS_UNITS = "k"                ! default = "degrees"
-                                ! The units for the Cartesian axes. Valid entries are:
-                                !     degrees - degrees of latitude and longitude
-                                !     m - meters
-                                !     k - kilometers
-SOUTHLAT = 0.0                  !   [k]
-                                ! The southern latitude of the domain or the equivalent
-                                ! starting value for the y-axis.
-LENLAT = 1120.0                 !   [k]
-                                ! The latitudinal or y-direction length of the domain.
-LENLON = 1120.0                 !   [k]
-                                ! The longitudinal or x-direction length of the domain.
-TOPO_CONFIG = "Kelvin"          !
+SOUTHLAT = 35.0                 !   [degrees]
+                                ! The southern latitude of the domain.
+LENLAT = 7.0                    !   [degrees]
+                                ! The latitudinal length of the domain.
+WESTLON = 180.0                 !   [degrees] default = 0.0
+                                ! The western longitude of the domain.
+LENLON = 7.0                    !   [degrees]
+                                ! The longitudinal length of the domain.
+TOPO_CONFIG = "seamount"        !
                                 ! This specifies how bathymetry is specified:
                                 !     file - read bathymetric information from the file
                                 !       specified by (TOPO_FILE).
@@ -95,14 +89,25 @@ TOPO_CONFIG = "Kelvin"          !
                                 !     Phillips - ACC-like idealized topography used in the Phillips config.
                                 !     dense - Denmark Strait-like dense water formation and overflow.
                                 !     USER - call a user modified routine.
-MINIMUM_DEPTH = 1.0             !   [m] default = 0.0
-                                ! The minimum depth of the ocean.
-MAXIMUM_DEPTH = 100.0           !   [m]
+SEAMOUNT_DELTA = 0.9            !   [non-dim] default = 0.5
+                                ! Non-dimensional height of seamount.
+SEAMOUNT_X_LENGTH_SCALE = 0.5   !   [Same as x,y] default = 20.0
+                                ! Length scale of seamount in x-direction.
+                                ! Set to zero make topography uniform in the x-direction.
+SEAMOUNT_Y_LENGTH_SCALE = 0.5   !   [Same as x,y] default = 0.0
+                                ! Length scale of seamount in y-direction.
+                                ! Set to zero make topography uniform in the y-direction.
+MAXIMUM_DEPTH = 4000.0          !   [m]
                                 ! The maximum depth of the ocean.
+MINIMUM_DEPTH = 1.0             !   [m] default = 0.0
+                                ! If MASKING_DEPTH is unspecified, then anything shallower than
+                                ! MINIMUM_DEPTH is assumed to be land and all fluxes are masked out.
+                                ! If MASKING_DEPTH is specified, then all depths shallower than
+                                ! MINIMUM_DEPTH but deeper than MASKING_DEPTH are rounded to MINIMUM_DEPTH.
 
 ! === module MOM_open_boundary ===
 ! Controls where open boundaries are located, what kind of boundary condition to impose, and what data to apply, if any.
-OBC_NUMBER_OF_SEGMENTS = 82     ! default = 0
+OBC_NUMBER_OF_SEGMENTS = 36     ! default = 0
                                 ! The number of open boundary segments.
 OBC_FREESLIP_VORTICITY = True   !   [Boolean] default = False
                                 ! If true, sets the normal gradient of tangential velocity to
@@ -112,175 +117,83 @@ OBC_FREESLIP_STRAIN = True      !   [Boolean] default = False
                                 ! If true, sets the normal gradient of tangential velocity to
                                 ! zero in the strain use in the stress tensor on open boundaries. This cannot
                                 ! be true if OBC_ZERO_STRAIN is True.
+OBC_ZERO_BIHARMONIC = True      !   [Boolean] default = False
+                                ! If true, zeros the Laplacian of flow on open boundaries in the biharmonic
+                                ! viscosity term.
 MASK_OUTSIDE_OBCS = True        !   [Boolean] default = False
                                 ! If true, set the areas outside open boundaries to be land.
-OBC_SEGMENT_001 = "I=0,J=21:20,FLATHER" !
+OBC_SEGMENT_001 = "I=0,J=40:32,FLATHER, OBLIQUE" !
                                 ! Documentation needs to be dynamic?????
-OBC_SEGMENT_002 = "I=1,J=20:19,FLATHER" !
+OBC_SEGMENT_002 = "J=32,I=0:1,FLATHER, OBLIQUE" !
                                 ! Documentation needs to be dynamic?????
-OBC_SEGMENT_003 = "I=2,J=19:18,FLATHER" !
+OBC_SEGMENT_003 = "I=1,J=32:24,FLATHER, OBLIQUE" !
                                 ! Documentation needs to be dynamic?????
-OBC_SEGMENT_004 = "I=3,J=18:17,FLATHER" !
+OBC_SEGMENT_004 = "J=24,I=1:2,FLATHER, OBLIQUE" !
                                 ! Documentation needs to be dynamic?????
-OBC_SEGMENT_005 = "I=4,J=17:16,FLATHER" !
+OBC_SEGMENT_005 = "I=2,J=24:16,FLATHER, OBLIQUE" !
                                 ! Documentation needs to be dynamic?????
-OBC_SEGMENT_006 = "I=5,J=16:15,FLATHER" !
+OBC_SEGMENT_006 = "J=16,I=2:3,FLATHER, OBLIQUE" !
                                 ! Documentation needs to be dynamic?????
-OBC_SEGMENT_007 = "I=6,J=15:14,FLATHER" !
+OBC_SEGMENT_007 = "I=3,J=16:8,FLATHER, OBLIQUE" !
                                 ! Documentation needs to be dynamic?????
-OBC_SEGMENT_008 = "I=7,J=14:13,FLATHER" !
+OBC_SEGMENT_008 = "J=8,I=3:4,FLATHER, OBLIQUE" !
                                 ! Documentation needs to be dynamic?????
-OBC_SEGMENT_009 = "I=8,J=13:12,FLATHER" !
+OBC_SEGMENT_009 = "I=4,J=8:0,FLATHER, OBLIQUE" !
                                 ! Documentation needs to be dynamic?????
-OBC_SEGMENT_010 = "I=9,J=12:11,FLATHER" !
+OBC_SEGMENT_010 = "J=0,I=4:12,FLATHER, OBLIQUE" !
                                 ! Documentation needs to be dynamic?????
-OBC_SEGMENT_011 = "I=10,J=11:10,FLATHER" !
+OBC_SEGMENT_011 = "I=12,J=0:1,FLATHER, OBLIQUE" !
                                 ! Documentation needs to be dynamic?????
-OBC_SEGMENT_012 = "I=11,J=10:9,FLATHER" !
+OBC_SEGMENT_012 = "J=1,I=12:20,FLATHER, OBLIQUE" !
                                 ! Documentation needs to be dynamic?????
-OBC_SEGMENT_013 = "I=12,J=9:8,FLATHER" !
+OBC_SEGMENT_013 = "I=20,J=1:2,FLATHER, OBLIQUE" !
                                 ! Documentation needs to be dynamic?????
-OBC_SEGMENT_014 = "I=13,J=8:7,FLATHER" !
+OBC_SEGMENT_014 = "J=2,I=20:28,FLATHER, OBLIQUE" !
                                 ! Documentation needs to be dynamic?????
-OBC_SEGMENT_015 = "I=14,J=7:6,FLATHER" !
+OBC_SEGMENT_015 = "I=28,J=2:3,FLATHER, OBLIQUE" !
                                 ! Documentation needs to be dynamic?????
-OBC_SEGMENT_016 = "I=15,J=6:5,FLATHER" !
+OBC_SEGMENT_016 = "J=3,I=28:36,FLATHER, OBLIQUE" !
                                 ! Documentation needs to be dynamic?????
-OBC_SEGMENT_017 = "I=16,J=5:4,FLATHER" !
+OBC_SEGMENT_017 = "I=36,J=3:4,FLATHER, OBLIQUE" !
                                 ! Documentation needs to be dynamic?????
-OBC_SEGMENT_018 = "I=17,J=4:3,FLATHER" !
+OBC_SEGMENT_018 = "J=4,I=36:44,FLATHER, OBLIQUE" !
                                 ! Documentation needs to be dynamic?????
-OBC_SEGMENT_019 = "I=18,J=3:2,FLATHER" !
+OBC_SEGMENT_019 = "I=44,J=4:12,FLATHER, OBLIQUE" !
                                 ! Documentation needs to be dynamic?????
-OBC_SEGMENT_020 = "I=19,J=2:1,FLATHER" !
+OBC_SEGMENT_020 = "J=12,I=44:43,FLATHER, OBLIQUE" !
                                 ! Documentation needs to be dynamic?????
-OBC_SEGMENT_021 = "I=20,J=1:0,FLATHER" !
+OBC_SEGMENT_021 = "I=43,J=12:20,FLATHER, OBLIQUE" !
                                 ! Documentation needs to be dynamic?????
-OBC_SEGMENT_022 = "J=20,I=0:1,FLATHER" !
+OBC_SEGMENT_022 = "J=20,I=43:42,FLATHER, OBLIQUE" !
                                 ! Documentation needs to be dynamic?????
-OBC_SEGMENT_023 = "J=19,I=1:2,FLATHER" !
+OBC_SEGMENT_023 = "I=42,J=20:28,FLATHER, OBLIQUE" !
                                 ! Documentation needs to be dynamic?????
-OBC_SEGMENT_024 = "J=18,I=2:3,FLATHER" !
+OBC_SEGMENT_024 = "J=28,I=42:41,FLATHER, OBLIQUE" !
                                 ! Documentation needs to be dynamic?????
-OBC_SEGMENT_025 = "J=17,I=3:4,FLATHER" !
+OBC_SEGMENT_025 = "I=41,J=28:36,FLATHER, OBLIQUE" !
                                 ! Documentation needs to be dynamic?????
-OBC_SEGMENT_026 = "J=16,I=4:5,FLATHER" !
+OBC_SEGMENT_026 = "J=36,I=41:40,FLATHER, OBLIQUE" !
                                 ! Documentation needs to be dynamic?????
-OBC_SEGMENT_027 = "J=15,I=5:6,FLATHER" !
+OBC_SEGMENT_027 = "I=40,J=36:44,FLATHER, OBLIQUE" !
                                 ! Documentation needs to be dynamic?????
-OBC_SEGMENT_028 = "J=14,I=6:7,FLATHER" !
+OBC_SEGMENT_028 = "J=44,I=40:32,FLATHER, OBLIQUE" !
                                 ! Documentation needs to be dynamic?????
-OBC_SEGMENT_029 = "J=13,I=7:8,FLATHER" !
+OBC_SEGMENT_029 = "I=32,J=44:43,FLATHER, OBLIQUE" !
                                 ! Documentation needs to be dynamic?????
-OBC_SEGMENT_030 = "J=12,I=8:9,FLATHER" !
+OBC_SEGMENT_030 = "J=43,I=32:24,FLATHER, OBLIQUE" !
                                 ! Documentation needs to be dynamic?????
-OBC_SEGMENT_031 = "J=11,I=9:10,FLATHER" !
+OBC_SEGMENT_031 = "I=24,J=43:42,FLATHER, OBLIQUE" !
                                 ! Documentation needs to be dynamic?????
-OBC_SEGMENT_032 = "J=10,I=10:11,FLATHER" !
+OBC_SEGMENT_032 = "J=42,I=24:16,FLATHER, OBLIQUE" !
                                 ! Documentation needs to be dynamic?????
-OBC_SEGMENT_033 = "J=9,I=11:12,FLATHER" !
+OBC_SEGMENT_033 = "I=16,J=42:41,FLATHER, OBLIQUE" !
                                 ! Documentation needs to be dynamic?????
-OBC_SEGMENT_034 = "J=8,I=12:13,FLATHER" !
+OBC_SEGMENT_034 = "J=41,I=16:8,FLATHER, OBLIQUE" !
                                 ! Documentation needs to be dynamic?????
-OBC_SEGMENT_035 = "J=7,I=13:14,FLATHER" !
+OBC_SEGMENT_035 = "I=8,J=41:40,FLATHER, OBLIQUE" !
                                 ! Documentation needs to be dynamic?????
-OBC_SEGMENT_036 = "J=6,I=14:15,FLATHER" !
+OBC_SEGMENT_036 = "J=40,I=8:0,FLATHER, OBLIQUE" !
                                 ! Documentation needs to be dynamic?????
-OBC_SEGMENT_037 = "J=5,I=15:16,FLATHER" !
-                                ! Documentation needs to be dynamic?????
-OBC_SEGMENT_038 = "J=4,I=16:17,FLATHER" !
-                                ! Documentation needs to be dynamic?????
-OBC_SEGMENT_039 = "J=3,I=17:18,FLATHER" !
-                                ! Documentation needs to be dynamic?????
-OBC_SEGMENT_040 = "J=2,I=18:19,FLATHER" !
-                                ! Documentation needs to be dynamic?????
-OBC_SEGMENT_041 = "J=1,I=19:20,FLATHER" !
-                                ! Documentation needs to be dynamic?????
-OBC_SEGMENT_042 = "I=36,J=55:56,FLATHER" !
-                                ! Documentation needs to be dynamic?????
-OBC_SEGMENT_043 = "I=37,J=54:55,FLATHER" !
-                                ! Documentation needs to be dynamic?????
-OBC_SEGMENT_044 = "I=38,J=53:54,FLATHER" !
-                                ! Documentation needs to be dynamic?????
-OBC_SEGMENT_045 = "I=39,J=52:53,FLATHER" !
-                                ! Documentation needs to be dynamic?????
-OBC_SEGMENT_046 = "I=40,J=51:52,FLATHER" !
-                                ! Documentation needs to be dynamic?????
-OBC_SEGMENT_047 = "I=41,J=50:51,FLATHER" !
-                                ! Documentation needs to be dynamic?????
-OBC_SEGMENT_048 = "I=42,J=49:50,FLATHER" !
-                                ! Documentation needs to be dynamic?????
-OBC_SEGMENT_049 = "I=43,J=48:49,FLATHER" !
-                                ! Documentation needs to be dynamic?????
-OBC_SEGMENT_050 = "I=44,J=47:48,FLATHER" !
-                                ! Documentation needs to be dynamic?????
-OBC_SEGMENT_051 = "I=45,J=46:47,FLATHER" !
-                                ! Documentation needs to be dynamic?????
-OBC_SEGMENT_052 = "I=46,J=45:46,FLATHER" !
-                                ! Documentation needs to be dynamic?????
-OBC_SEGMENT_053 = "I=47,J=44:45,FLATHER" !
-                                ! Documentation needs to be dynamic?????
-OBC_SEGMENT_054 = "I=48,J=43:44,FLATHER" !
-                                ! Documentation needs to be dynamic?????
-OBC_SEGMENT_055 = "I=49,J=42:43,FLATHER" !
-                                ! Documentation needs to be dynamic?????
-OBC_SEGMENT_056 = "I=50,J=41:42,FLATHER" !
-                                ! Documentation needs to be dynamic?????
-OBC_SEGMENT_057 = "I=51,J=40:41,FLATHER" !
-                                ! Documentation needs to be dynamic?????
-OBC_SEGMENT_058 = "I=52,J=39:40,FLATHER" !
-                                ! Documentation needs to be dynamic?????
-OBC_SEGMENT_059 = "I=53,J=38:39,FLATHER" !
-                                ! Documentation needs to be dynamic?????
-OBC_SEGMENT_060 = "I=54,J=37:38,FLATHER" !
-                                ! Documentation needs to be dynamic?????
-OBC_SEGMENT_061 = "I=55,J=36:37,FLATHER" !
-                                ! Documentation needs to be dynamic?????
-OBC_SEGMENT_062 = "I=56,J=35:36,FLATHER" !
-                                ! Documentation needs to be dynamic?????
-OBC_SEGMENT_063 = "J=55,I=37:36,FLATHER" !
-                                ! Documentation needs to be dynamic?????
-OBC_SEGMENT_064 = "J=54,I=38:37,FLATHER" !
-                                ! Documentation needs to be dynamic?????
-OBC_SEGMENT_065 = "J=53,I=39:38,FLATHER" !
-                                ! Documentation needs to be dynamic?????
-OBC_SEGMENT_066 = "J=52,I=40:39,FLATHER" !
-                                ! Documentation needs to be dynamic?????
-OBC_SEGMENT_067 = "J=51,I=41:40,FLATHER" !
-                                ! Documentation needs to be dynamic?????
-OBC_SEGMENT_068 = "J=50,I=42:41,FLATHER" !
-                                ! Documentation needs to be dynamic?????
-OBC_SEGMENT_069 = "J=49,I=43:42,FLATHER" !
-                                ! Documentation needs to be dynamic?????
-OBC_SEGMENT_070 = "J=48,I=44:43,FLATHER" !
-                                ! Documentation needs to be dynamic?????
-OBC_SEGMENT_071 = "J=47,I=45:44,FLATHER" !
-                                ! Documentation needs to be dynamic?????
-OBC_SEGMENT_072 = "J=46,I=46:45,FLATHER" !
-                                ! Documentation needs to be dynamic?????
-OBC_SEGMENT_073 = "J=45,I=47:46,FLATHER" !
-                                ! Documentation needs to be dynamic?????
-OBC_SEGMENT_074 = "J=44,I=48:47,FLATHER" !
-                                ! Documentation needs to be dynamic?????
-OBC_SEGMENT_075 = "J=43,I=49:48,FLATHER" !
-                                ! Documentation needs to be dynamic?????
-OBC_SEGMENT_076 = "J=42,I=50:49,FLATHER" !
-                                ! Documentation needs to be dynamic?????
-OBC_SEGMENT_077 = "J=41,I=51:50,FLATHER" !
-                                ! Documentation needs to be dynamic?????
-OBC_SEGMENT_078 = "J=40,I=52:51,FLATHER" !
-                                ! Documentation needs to be dynamic?????
-OBC_SEGMENT_079 = "J=39,I=53:52,FLATHER" !
-                                ! Documentation needs to be dynamic?????
-OBC_SEGMENT_080 = "J=38,I=54:53,FLATHER" !
-                                ! Documentation needs to be dynamic?????
-OBC_SEGMENT_081 = "J=37,I=55:54,FLATHER" !
-                                ! Documentation needs to be dynamic?????
-OBC_SEGMENT_082 = "J=36,I=56:55,FLATHER" !
-                                ! Documentation needs to be dynamic?????
-MASKING_DEPTH = 1.5             !   [m] default = -9999.0
-                                ! The depth below which to mask points as land points, for which all
-                                ! fluxes are zeroed out. MASKING_DEPTH is ignored if negative.
 ROTATION = "betaplane"          ! default = "2omegasinlat"
                                 ! This specifies how the Coriolis parameter is specified:
                                 !     2omegasinlat - Use twice the planetary rotation rate
@@ -292,27 +205,32 @@ F_0 = 1.0E-04                   !   [s-1] default = 0.0
                                 ! betaplane option.
 
 ! === module MOM_boundary_update ===
-USE_KELVIN_WAVE_OBC = True      !   [Boolean] default = False
-                                ! If true, use the Kelvin wave open boundary.
-
-! === module register_Kelvin_OBC ===
-ROTATED_COAST_OFFSET_1 = 410.0  !   [km] default = 100.0
-                                ! The distance along the southern and northern boundaries
-                                ! at which the coasts angle in.
-ROTATED_COAST_OFFSET_2 = 0.0    !   [km] default = 10.0
-                                ! The distance from the southern and northern boundaries
-                                ! at which the coasts angle in.
-ROTATED_COAST_ANGLE = 45.0      !   [degrees] default = 11.3
-                                ! The angle of the southern bondary beyond X=ROTATED_COAST_OFFSET.
 
 ! === module MOM_tracer_registry ===
+
+! === module segment_tracer_registry_init ===
+
+! === module MOM_EOS ===
+EQN_OF_STATE = "LINEAR"         ! default = "WRIGHT"
+                                ! EQN_OF_STATE determines which ocean equation of state
+                                ! should be used.  Currently, the valid choices are
+                                ! "LINEAR", "UNESCO", "WRIGHT", "NEMO" and "TEOS10".
+                                ! This is only used if USE_EOS is true.
+DRHO_DT = 0.0                   !   [kg m-3 K-1] default = -0.2
+                                ! When EQN_OF_STATE=LINEAR,
+                                ! this is the partial derivative of density with
+                                ! temperature.
+DRHO_DS = 1.0                   !   [kg m-3 PSU-1] default = 0.8
+                                ! When EQN_OF_STATE=LINEAR,
+                                ! this is the partial derivative of density with
+                                ! salinity.
 
 ! === module MOM_restart ===
 
 ! === module MOM_tracer_flow_control ===
 
 ! === module MOM_coord_initialization ===
-COORD_CONFIG = "linear"         !
+COORD_CONFIG = "ts_range"       !
                                 ! This specifies how layers are to be defined:
                                 !     ALE or none - used to avoid defining layers in ALE mode
                                 !     file - read coordinate information from the file
@@ -330,12 +248,22 @@ COORD_CONFIG = "linear"         !
                                 !     ts_profile - use temperature and salinity profiles
                                 !       (read from COORD_FILE) to set layer densities.
                                 !     USER - call a user modified routine.
+T_REF = 0.0                     !   [degC] default = 10.0
+                                ! The default initial temperatures.
+S_REF = 34.0                    !   [PSU] default = 35.0
+                                ! The default initial salinities.
+TS_RANGE_S_LIGHT = 34.05        !   [PSU] default = 34.0
+                                ! The initial lightest salinities when COORD_CONFIG
+                                ! is set to ts_range.
+TS_RANGE_S_DENSE = 35.95        !   [PSU] default = 34.0
+                                ! The initial densest salinities when COORD_CONFIG
+                                ! is set to ts_range.
 
 ! === module MOM_grid ===
 ! Parameters providing information about the lateral grid.
 
 ! === module MOM_state_initialization ===
-THICKNESS_CONFIG = "uniform"    !
+THICKNESS_CONFIG = "seamount"   !
                                 ! A string that determines how the initial layer
                                 ! thicknesses are specified for a new run:
                                 !     file - read interface heights from the file specified
@@ -360,71 +288,125 @@ THICKNESS_CONFIG = "uniform"    !
                                 !     soliton - Equatorial Rossby soliton.
                                 !     rossby_front - a mixed layer front in thermal wind balance.
                                 !     USER - call a user modified routine.
-OBC_USER_CONFIG = "Kelvin"      ! default = "none"
-                                ! A string that sets how the user code is invoked to set open
-                                !  boundary data:
-                                !    DOME - specified inflow on northern boundary
-                                !    dyed_obcs - circle_obcs with dyes on the open boundaries
-                                !    Kelvin - barotropic Kelvin wave forcing on the western boundary
-                                !    shelfwave - Flather with shelf wave forcing on western boundary
-                                !    supercritical - now only needed here for the allocations
-                                !    tidal_bay - Flather with tidal forcing on eastern boundary
-                                !    USER - user specified
+MIN_THICKNESS = 0.1             !   [m] default = 0.001
+                                ! Minimum thickness for layer
+TS_CONFIG = "seamount"          !
+                                ! A string that determines how the initial tempertures
+                                ! and salinities are specified for a new run:
+                                !     file - read velocities from the file specified
+                                !       by (TS_FILE).
+                                !     fit - find the temperatures that are consistent with
+                                !       the layer densities and salinity S_REF.
+                                !     TS_profile - use temperature and salinity profiles
+                                !       (read from TS_FILE) to set layer densities.
+                                !     benchmark - use the benchmark test case T & S.
+                                !     linear - linear in logical layer space.
+                                !     DOME2D - 2D DOME initialization.
+                                !     ISOMIP - ISOMIP initialization.
+                                !     adjustment2d - TBD AJA.
+                                !     sloshing - TBD AJA.
+                                !     seamount - TBD AJA.
+                                !     rossby_front - a mixed layer front in thermal wind balance.
+                                !     SCM_ideal_hurr - used in the SCM idealized hurricane test.
+                                !     SCM_CVmix_tests - used in the SCM CVmix tests.
+                                !     USER - call a user modified routine.
 
 ! === module MOM_diag_mediator ===
-NUM_DIAG_COORDS = 0             ! default = 1
-                                ! The number of diagnostic vertical coordinates to use.
-                                ! For each coordinate, an entry in DIAG_COORDS must be provided.
 
 ! === module MOM_MEKE ===
 
 ! === module MOM_lateral_mixing_coeffs ===
 
 ! === module MOM_set_visc ===
-BOTTOMDRAGLAW = False           !   [Boolean] default = True
-                                ! If true, the bottom stress is calculated with a drag
-                                ! law of the form c_drag*|u|*u. The velocity magnitude
-                                ! may be an assumed value or it may be based on the
-                                ! actual velocity in the bottommost HBBL, depending on
-                                ! LINEAR_DRAG.
+LINEAR_DRAG = True              !   [Boolean] default = False
+                                ! If LINEAR_DRAG and BOTTOMDRAGLAW are defined the drag
+                                ! law is cdrag*DRAG_BG_VEL*u.
 HBBL = 10.0                     !   [m]
                                 ! The thickness of a bottom boundary layer with a
                                 ! viscosity of KVBBL if BOTTOMDRAGLAW is not defined, or
                                 ! the thickness over which near-bottom velocities are
                                 ! averaged for the drag law if BOTTOMDRAGLAW is defined
                                 ! but LINEAR_DRAG is not.
-KV = 0.0                        !   [m2 s-1]
+CDRAG = 0.002                   !   [nondim] default = 0.003
+                                ! CDRAG is the drag coefficient relating the magnitude of
+                                ! the velocity field to the bottom stress. CDRAG is only
+                                ! used if BOTTOMDRAGLAW is defined.
+DRAG_BG_VEL = 0.05              !   [m s-1] default = 0.0
+                                ! DRAG_BG_VEL is either the assumed bottom velocity (with
+                                ! LINEAR_DRAG) or an unresolved  velocity that is
+                                ! combined with the resolved velocity to estimate the
+                                ! velocity magnitude.  DRAG_BG_VEL is only used when
+                                ! BOTTOMDRAGLAW is defined.
+BBL_USE_EOS = True              !   [Boolean] default = False
+                                ! If true, use the equation of state in determining the
+                                ! properties of the bottom boundary layer.  Otherwise use
+                                ! the layer target potential densities.
+BBL_THICK_MIN = 0.1             !   [m] default = 0.0
+                                ! The minimum bottom boundary layer thickness that can be
+                                ! used with BOTTOMDRAGLAW. This might be
+                                ! Kv / (cdrag * drag_bg_vel) to give Kv as the minimum
+                                ! near-bottom viscosity.
+KV = 1.0E-04                    !   [m2 s-1]
                                 ! The background kinematic viscosity in the interior.
                                 ! The molecular value, ~1e-6 m2 s-1, may be used.
+TIDES = True                    !   [Boolean] default = False
+                                ! If true, apply tidal momentum forcing.
+BE = 0.7                        !   [nondim] default = 0.6
+                                ! If SPLIT is true, BE determines the relative weighting
+                                ! of a  2nd-order Runga-Kutta baroclinic time stepping
+                                ! scheme (0.5) and a backward Euler scheme (1) that is
+                                ! used for the Coriolis and inertial terms.  BE may be
+                                ! from 0.5 to 1, but instability may occur near 0.5.
+                                ! BE is also applicable if SPLIT is false and USE_RK2
+                                ! is true.
 
 ! === module MOM_continuity ===
 
 ! === module MOM_continuity_PPM ===
-ETA_TOLERANCE = 1.0E-06         !   [m] default = 5.0E-11
+ETA_TOLERANCE = 1.0E-12         !   [m] default = 1.0E-09
                                 ! The tolerance for the differences between the
                                 ! barotropic and baroclinic estimates of the sea surface
                                 ! height due to the fluxes through each face.  The total
                                 ! tolerance for SSH is 4 times this value.  The default
                                 ! is 0.5*NK*ANGSTROM, and this should not be set less x
                                 ! than about 10^-15*MAXIMUM_DEPTH.
-VELOCITY_TOLERANCE = 0.001      !   [m s-1] default = 3.0E+08
-                                ! The tolerance for barotropic velocity discrepancies
-                                ! between the barotropic solution and  the sum of the
-                                ! layer thicknesses.
 
 ! === module MOM_CoriolisAdv ===
+CORIOLIS_EN_DIS = True          !   [Boolean] default = False
+                                ! If true, two estimates of the thickness fluxes are used
+                                ! to estimate the Coriolis term, and the one that
+                                ! dissipates energy relative to the other one is used.
 BOUND_CORIOLIS = True           !   [Boolean] default = False
                                 ! If true, the Coriolis terms at u-points are bounded by
                                 ! the four estimates of (f+rv)v from the four neighboring
-                                ! v-points, and similarly at v-points.  This option would
-                                ! have no effect on the SADOURNY Coriolis scheme if it
-                                ! were possible to use centered difference thickness fluxes.
+                                ! v-points, and similarly at v-points.  This option is
+                                ! always effectively false with CORIOLIS_EN_DIS defined and
+                                ! CORIOLIS_SCHEME set to SADOURNY75_ENERGY.
+
+! === module MOM_tidal_forcing ===
+TIDE_M2 = True                  !   [Boolean] default = False
+                                ! If true, apply tidal momentum forcing at the M2
+                                ! frequency. This is only used if TIDES is true.
+TIDE_SAL_SCALAR_VALUE = 0.094   !   [m m-1]
+                                ! The constant of proportionality between sea surface
+                                ! height (really it should be bottom pressure) anomalies
+                                ! and bottom geopotential anomalies. This is only used if
+                                ! TIDES and TIDE_USE_SAL_SCALAR are true.
 
 ! === module MOM_PressureForce ===
 
 ! === module MOM_PressureForce_AFV ===
 
 ! === module MOM_hor_visc ===
+LAPLACIAN = True                !   [Boolean] default = False
+                                ! If true, use a Laplacian horizontal viscosity.
+KH = 1000.0                     !   [m2 s-1] default = 0.0
+                                ! The background Laplacian horizontal viscosity.
+KH_VEL_SCALE = 0.003            !   [m s-1] default = 0.0
+                                ! The velocity scale which is multiplied by the grid
+                                ! spacing to calculate the Laplacian viscosity.
+                                ! The final viscosity is the largest of this scaled
+                                ! viscosity, the Smagorinsky and Leith viscosities, and KH.
 BIHARMONIC = False              !   [Boolean] default = True
                                 ! If true, use a biharmonic horizontal viscosity.
                                 ! BIHARMONIC may be used with LAPLACIAN.
@@ -434,27 +416,35 @@ DIRECT_STRESS = True            !   [Boolean] default = False
                                 ! If true, the wind stress is distributed over the
                                 ! topmost HMIX_STRESS of fluid (like in HYCOM), and KVML
                                 ! may be set to a very small value.
-HARMONIC_VISC = True            !   [Boolean] default = False
-                                ! If true, use the harmonic mean thicknesses for
-                                ! calculating the vertical viscosity.
 HMIX_FIXED = 20.0               !   [m]
                                 ! The prescribed depth over which the near-surface
                                 ! viscosity and diffusivity are elevated when the bulk
                                 ! mixed layer is not used.
+KVML = 0.01                     !   [m2 s-1] default = 1.0E-04
+                                ! The kinematic viscosity in the mixed layer.  A typical
+                                ! value is ~1e-2 m2 s-1. KVML is not used if
+                                ! BULKMIXEDLAYER is true.  The default is set by KV.
+MAXVEL = 10.0                   !   [m s-1] default = 3.0E+08
+                                ! The maximum velocity allowed before the velocity
+                                ! components are truncated.
 
 ! === module MOM_barotropic ===
 BOUND_BT_CORRECTION = True      !   [Boolean] default = False
                                 ! If true, the corrective pseudo mass-fluxes into the
                                 ! barotropic solver are limited to values that require
                                 ! less than maxCFL_BT_cont to be accommodated.
-BT_PROJECT_VELOCITY = True      !   [Boolean] default = False
-                                ! If true, step the barotropic velocity first and project
-                                ! out the velocity tendancy by 1+BEBT when calculating the
-                                ! transport.  The default (false) is to use a predictor
-                                ! continuity step to find the pressure field, and then
-                                ! to do a corrector continuity step using a weighted
-                                ! average of the old and new velocities, with weights
-                                ! of (1-BEBT) and BEBT.
+BT_THICK_SCHEME = "HYBRID"      ! default = "FROM_BT_CONT"
+                                ! A string describing the scheme that is used to set the
+                                ! open face areas used for barotropic transport and the
+                                ! relative weights of the accelerations. Valid values are:
+                                !    ARITHMETIC - arithmetic mean layer thicknesses
+                                !    HARMONIC - harmonic mean layer thicknesses
+                                !    HYBRID (the default) - use arithmetic means for
+                                !       layers above the shallowest bottom, the harmonic
+                                !       mean for layers below, and a weighted average for
+                                !       layers that straddle that depth
+                                !    FROM_BT_CONT - use the average thicknesses kept
+                                !       in the h_u and h_v fields of the BT_cont_type
 BEBT = 0.2                      !   [nondim] default = 0.1
                                 ! BEBT determines whether the barotropic time stepping
                                 ! uses the forward-backward time-stepping scheme or a
@@ -462,7 +452,7 @@ BEBT = 0.2                      !   [nondim] default = 0.1
                                 ! 0 (for a forward-backward treatment of nonrotating
                                 ! gravity waves) to 1 (for a backward Euler treatment).
                                 ! In practice, BEBT must be greater than about 0.05.
-DTBT = -0.9                     !   [s or nondim] default = -0.98
+DTBT = 10.0                     !   [s or nondim] default = -0.98
                                 ! The barotropic time step, in s. DTBT is only used with
                                 ! the split explicit time stepping. To set the time step
                                 ! automatically based the maximum stable value use 0, or
@@ -472,6 +462,8 @@ DTBT = -0.9                     !   [s or nondim] default = -0.98
                                 ! integer fraction of DT, rounding down.
 
 ! === module MOM_thickness_diffuse ===
+KHTH = 500.0                    !   [m2 s-1] default = 0.0
+                                ! The background horizontal thickness diffusivity.
 
 ! === module MOM_mixed_layer_restrat ===
 
@@ -479,6 +471,51 @@ DTBT = -0.9                     !   [s or nondim] default = -0.98
 
 ! === module MOM_diabatic_driver ===
 ! The following parameters are used for diabatic processes.
+
+! === module MOM_KPP ===
+! This is the MOM wrapper to CVmix:KPP
+! See http://code.google.com/p/cvmix/
+
+! === module MOM_diffConvection ===
+! This module implements enhanced diffusivity as a
+! function of static stability, N^2.
+CONVECTION%
+%CONVECTION
+
+! === module MOM_entrain_diffusive ===
+CORRECT_DENSITY = False         !   [Boolean] default = True
+                                ! If true, and USE_EOS is true, the layer densities are
+                                ! restored toward their target values by the diapycnal
+                                ! mixing, as described in Hallberg (MWR, 2000).
+
+! === module MOM_set_diffusivity ===
+BBL_EFFIC = 0.0                 !   [nondim] default = 0.2
+                                ! The efficiency with which the energy extracted by
+                                ! bottom drag drives BBL diffusion.  This is only
+                                ! used if BOTTOMDRAGLAW is true.
+KD = 0.0                        !   [m2 s-1]
+                                ! The background diapycnal diffusivity of density in the
+                                ! interior. Zero or the molecular value, ~1e-7 m2 s-1,
+                                ! may be used.
+
+! === module MOM_kappa_shear ===
+! Parameterization of shear-driven turbulence following Jackson, Hallberg and Legg, JPO 2008
+
+! === module MOM_CVMix_shear ===
+! Parameterization of shear-driven turbulence via CVMix (various options)
+
+! === module MOM_diabatic_aux ===
+! The following parameters are used for auxiliary diabatic processes.
+
+! === module MOM_regularize_layers ===
+
+! === module MOM_opacity ===
+PEN_SW_SCALE = 15.0             !   [m] default = 0.0
+                                ! The vertical absorption e-folding depth of the
+                                ! penetrating shortwave radiation.
+PEN_SW_FRAC = 0.42              !   [nondim] default = 0.0
+                                ! The fraction of the shortwave radiation that penetrates
+                                ! below the surface.
 
 ! === module MOM_tracer_advect ===
 
@@ -493,7 +530,7 @@ VARIABLE_WINDS = False          !   [Boolean] default = True
 VARIABLE_BUOYFORCE = False      !   [Boolean] default = True
                                 ! If true, the buoyancy forcing varies in time after the
                                 ! initialization of the model.
-BUOY_CONFIG = "zero"            !
+BUOY_CONFIG = "NONE"            !
                                 ! The character string that indicates how buoyancy forcing
                                 ! is specified. Valid options include (file), (zero),
                                 ! (linear), (USER), (BFB) and (NONE).
@@ -505,21 +542,38 @@ WIND_CONFIG = "zero"            !
 ! === module MOM_restart ===
 
 ! === module MOM_sum_output ===
+MAXTRUNC = 5000                 !   [truncations save_interval-1] default = 0
+                                ! The run will be stopped, and the day set to a very
+                                ! large value if the velocity is truncated more than
+                                ! MAXTRUNC times between energy saves.  Set MAXTRUNC to 0
+                                ! to stop if there is any truncation of velocities.
 DATE_STAMPED_STDOUT = False     !   [Boolean] default = True
                                 ! If true, use dates (not times) in messages to stdout
-DEPTH_LIST_MIN_INC = 1.0E-06    !   [m] default = 1.0E-10
-                                ! The minimum increment between the depths of the
-                                ! entries in the depth-list file.
 
 ! === module MOM_write_cputime ===
+MAXCPU = 2.88E+04               !   [wall-clock seconds] default = -1.0
+                                ! The maximum amount of cpu time per processor for which
+                                ! MOM should run before saving a restart file and
+                                ! quitting with a return value that indicates that a
+                                ! further run is required to complete the simulation.
+                                ! If automatic restarts are not desired, use a negative
+                                ! value for MAXCPU.  MAXCPU has units of wall-clock
+                                ! seconds, so the actual CPU time used is larger by a
+                                ! factor of the number of processors used.
 
 ! === module MOM_main (MOM_driver) ===
-DAYMAX = 2.0                    !   [days]
+DAYMAX = 3.0                    !   [days]
                                 ! The final time of the whole simulation, in units of
                                 ! TIMEUNIT seconds.  This also sets the potential end
                                 ! time of the present run segment if the end time is
                                 ! not set via ocean_solo_nml in input.nml.
-RESTINT = 365.0                 !   [days] default = 0.0
+RESTART_CONTROL = 3             ! default = 1
+                                ! An integer whose bits encode which restart files are
+                                ! written. Add 2 (bit 1) for a time-stamped file, and odd
+                                ! (bit 0) for a non-time-stamped file. A non-time-stamped
+                                ! restart file is saved at the end of the run segment
+                                ! for any non-negative value.
+RESTINT = 10.0                  !   [days] default = 0.0
                                 ! The interval between saves of the restart file in units
                                 ! of TIMEUNIT.  Use 0 (the default) to not save
                                 ! incremental restart files at all.
