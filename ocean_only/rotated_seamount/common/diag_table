@@ -1,6 +1,7 @@
 "GOLD Experiment"
 1 1 1 0 0 0
-"prog",     1,"hours",1,"days","Time"
+"prog",     15,"minutes",1,"days","Time"
+#"prog",     1,"hours",1,"days","Time"
 #"ave_prog", 5,"days",1,"days","Time",365,"days"
 #"cont_%4yr_%3dy",     5,"days",1,"days","Time",365,"days"
 #"mom_%4yr_%3dy",      5,"days",1,"days","Time",10,"days"
