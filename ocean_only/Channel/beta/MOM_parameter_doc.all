@@ -257,11 +257,11 @@ OBC_ZERO_BIHARMONIC = False     !   [Boolean] default = False
                                 ! viscosity term.
 MASK_OUTSIDE_OBCS = False       !   [Boolean] default = False
                                 ! If true, set the areas outside open boundaries to be land.
-OBC_SEGMENT_001 = "I=N,J=0:N,FLATHER" !
+OBC_SEGMENT_001 = "I=0,J=N:0,SIMPLE" !
                                 ! Documentation needs to be dynamic?????
-OBC_SEGMENT_002 = "I=0,J=N:0,SIMPLE" !
+OBC_SEGMENT_002 = "J=N,I=N:0,GRADIENT" !
                                 ! Documentation needs to be dynamic?????
-OBC_SEGMENT_003 = "J=N,I=N:0,GRADIENT" !
+OBC_SEGMENT_003 = "I=N,J=0:N,FLATHER" !
                                 ! Documentation needs to be dynamic?????
 OBC_RADIATION_MAX = 10.0        !   [m s-1] default = 10.0
                                 ! The maximum magnitude of the baroclinic radiation
@@ -299,7 +299,7 @@ ROTATION = "betaplane"          ! default = "2omegasinlat"
                                 !       times the sine of latitude.
                                 !     betaplane - Use a beta-plane or f-plane.
                                 !     USER - call a user modified routine.
-F_0 = 0.0                       !   [s-1] default = 0.0
+F_0 = 1.0E-04                   !   [s-1] default = 0.0
                                 ! The reference value of the Coriolis parameter with the
                                 ! betaplane option.
 BETA = 0.0                      !   [m-1 s-1] default = 0.0
@@ -354,8 +354,17 @@ USE_PSEUDO_SALT_TRACER = False  !   [Boolean] default = False
                                 ! If true, use the pseudo salt tracer, typically run as a diagnostic.
 USE_BOUNDARY_IMPULSE_TRACER = False !   [Boolean] default = False
                                 ! If true, use the boundary impulse tracer.
-USE_DYED_OBC_TRACER = False     !   [Boolean] default = False
+USE_DYED_OBC_TRACER = True      !   [Boolean] default = False
                                 ! If true, use the dyed_obc_tracer tracer package.
+
+! === module dyed_obc_tracer ===
+NUM_DYE_TRACERS = 2             ! default = 0
+                                ! The number of dye tracers in this run. Each tracer
+                                ! should have a separate boundary segment.
+dyed_obc_TRACER_IC_FILE = ""    ! default = ""
+                                ! The name of a file from which to read the initial
+                                ! conditions for the dyed_obc tracers, or blank to initialize
+                                ! them internally.
 
 ! === module MOM_coord_initialization ===
 COORD_CONFIG = "linear"         !
@@ -450,18 +459,21 @@ SPONGE = False                  !   [Boolean] default = False
                                 ! If true, sponges may be applied anywhere in the domain.
                                 ! The exact location and properties of those sponges are
                                 ! specified via SPONGE_CONFIG.
-OBC_USER_CONFIG = "supercritical" ! default = "none"
+OBC_USER_CONFIG = "dyed_channel" ! default = "none"
                                 ! A string that sets how the user code is invoked to set open
                                 !  boundary data:
                                 !    DOME - specified inflow on northern boundary
+                                !    dyed_channel - supercritical with dye on the inflow boundary
                                 !    dyed_obcs - circle_obcs with dyes on the open boundaries
                                 !    Kelvin - barotropic Kelvin wave forcing on the western boundary
                                 !    shelfwave - Flather with shelf wave forcing on western boundary
                                 !    supercritical - now only needed here for the allocations
                                 !    tidal_bay - Flather with tidal forcing on eastern boundary
                                 !    USER - user specified
-SUPERCRITICAL_ZONAL_FLOW = 8.57 !   [m/s] default = 8.57
+SUPERCRITICAL_ZONAL_FLOW = 1.0  !   [m/s] default = 8.57
                                 ! Constant zonal flow imposed at upstream open boundary.
+
+! === module segment_tracer_registry_init ===
 
 ! === module MOM_diag_mediator ===
 NUM_DIAG_COORDS = 0             ! default = 1
@@ -1089,7 +1101,7 @@ DT_FORCING = 50.0               !   [s] default = 50.0
                                 ! The time step for changing forcing, coupling with other
                                 ! components, or potentially writing certain diagnostics.
                                 ! The default value is given by DT.
-DAYMAX = 400.0                  !   [seconds]
+DAYMAX = 1600.0                 !   [seconds]
                                 ! The final time of the whole simulation, in units of
                                 ! TIMEUNIT seconds.  This also sets the potential end
                                 ! time of the present run segment if the end time is

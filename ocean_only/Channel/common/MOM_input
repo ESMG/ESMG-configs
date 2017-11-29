@@ -41,12 +41,6 @@ NJGLOBAL = 15                   !
                                 ! The total number of thickness grid points in the
                                 ! y-direction in the physical domain. With STATIC_MEMORY_
                                 ! this is set in MOM_memory.h at compile time.
-!NIPROC = 12                    !
-                                ! The number of processors in the x-direction. With
-                                ! STATIC_MEMORY_ this is set in MOM_memory.h at compile time.
-!NJPROC = 6                     !
-                                ! The number of processors in the x-direction. With
-                                ! STATIC_MEMORY_ this is set in MOM_memory.h at compile time.
 !LAYOUT = 12, 6                 !
                                 ! The processor layout that was actually used.
 IO_LAYOUT = 1, 1                ! default = 0
@@ -57,13 +51,13 @@ REENTRANT_X = False             !   [Boolean] default = True
 
 ! === module MOM_open ===
 OBC_NUMBER_OF_SEGMENTS = 3      ! default = 0
-OBC_SEGMENT_001 = "I=N,J=0:N,FLATHER"
-OBC_SEGMENT_002 = "I=0,J=N:0,SIMPLE"
-OBC_SEGMENT_003 = "J=N,I=N:0,GRADIENT"
+OBC_SEGMENT_001 = "I=0,J=N:0,SIMPLE"
+OBC_SEGMENT_002 = "J=N,I=N:0,GRADIENT"
+OBC_SEGMENT_003 = "I=N,J=0:N,FLATHER"
 OBC_SEGMENT_001_DATA = "U=value:0.0,V=value:0.0,SSH=value:0.0"
-!OBC_SEGMENT_002_DATA = "U=value:8.57,V=value:0.0,SSH=value:0.0"
-!OBC_SEGMENT_003_DATA = "U=value:8.57,V=value:0.0,SSH=value:0.0"
-OBC_USER_CONFIG = supercritical ! To be replaced later...
+USE_DYED_OBC_TRACER = True
+NUM_DYE_TRACERS = 1
+OBC_USER_CONFIG = dyed_channel
 
 OBC_ZERO_VORTICITY = False      !   [Boolean] default = False
                                 ! If true, sets relative vorticity to zero on open boundaries.
@@ -388,7 +382,7 @@ DATE_STAMPED_STDOUT = False     !   [Boolean] default = True
 ! === module MOM_main (MOM_driver) ===
 TIMEUNIT = 1.0                  !   [s] default = 8.64E+04
                                 ! The time unit in seconds a number of input fields
-DAYMAX = 400.0                  !   [s]
+DAYMAX = 1600.0                  !   [s]
                                 ! The final time of the whole simulation, in units of
                                 ! TIMEUNIT seconds.  This also sets the potential end
                                 ! time of the present run segment if the end time is

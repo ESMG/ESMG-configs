@@ -441,6 +441,9 @@ USE_DYED_OBC_TRACER = True      !   [Boolean] default = False
                                 ! If true, use the dyed_obc_tracer tracer package.
 
 ! === module dyed_obc_tracer ===
+NUM_DYE_TRACERS = 4             ! default = 0
+                                ! The number of dye tracers in this run. Each tracer
+                                ! should have a separate boundary segment.
 dyed_obc_TRACER_IC_FILE = ""    ! default = ""
                                 ! The name of a file from which to read the initial
                                 ! conditions for the dyed_obc tracers, or blank to initialize
@@ -587,6 +590,7 @@ OBC_USER_CONFIG = "dyed_obcs"   ! default = "none"
                                 ! A string that sets how the user code is invoked to set open
                                 !  boundary data:
                                 !    DOME - specified inflow on northern boundary
+                                !    dyed_channel - supercritical with dye on the inflow boundary
                                 !    dyed_obcs - circle_obcs with dyes on the open boundaries
                                 !    Kelvin - barotropic Kelvin wave forcing on the western boundary
                                 !    shelfwave - Flather with shelf wave forcing on western boundary

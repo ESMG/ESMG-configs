@@ -1,0 +1,5 @@
+! Blank file in which we can put "overrides" for parameters
+!! #override DAYMAX = 48000.0                  !   [s]
+F_0 = 0.0001                    !   [s-1] default = 0.0
+#override NUM_DYE_TRACERS = 2             ! default = 0
+SUPERCRITICAL_ZONAL_FLOW = 1.0  !   [m s-1]

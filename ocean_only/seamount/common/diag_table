@@ -21,10 +21,10 @@
 "ocean_model","e","e","prog","all",.false.,"none",2
 "ocean_model","temp","temp","prog","all",.false.,"none",2
 "ocean_model","salt","salt","prog","all",.false.,"none",2
-"ocean_model","dye_1","dye_1","prog","all",.false.,"none",2
-"ocean_model","dye_2","dye_2","prog","all",.false.,"none",2
-"ocean_model","dye_3","dye_3","prog","all",.false.,"none",2
-"ocean_model","dye_4","dye_4","prog","all",.false.,"none",2
+"ocean_model","dye_01","dye_01","prog","all",.false.,"none",2
+"ocean_model","dye_02","dye_02","prog","all",.false.,"none",2
+"ocean_model","dye_03","dye_03","prog","all",.false.,"none",2
+"ocean_model","dye_04","dye_04","prog","all",.false.,"none",2
 #"ocean_model","Rml","Rml","prog","all",.false.,"none",2
 #"ocean_model","tr1","tr1","prog","all",.false.,"none",1
 
