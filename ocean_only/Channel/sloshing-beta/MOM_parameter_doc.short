@@ -125,10 +125,17 @@ ROTATION = "betaplane"          ! default = "2omegasinlat"
                                 !       times the sine of latitude.
                                 !     betaplane - Use a beta-plane or f-plane.
                                 !     USER - call a user modified routine.
+F_0 = 1.0E-04                   !   [s-1] default = 0.0
+                                ! The reference value of the Coriolis parameter with the
+                                ! betaplane option.
 
 ! === module MOM_boundary_update ===
 USE_DYED_CHANNEL_OBC = True     !   [Boolean] default = False
                                 ! If true, use the dyed channel open boundary.
+SUPERCRITICAL_ZONAL_FLOW = 1.0  !   [m/s] default = 8.57
+                                ! Constant zonal flow imposed at upstream open boundary.
+CHANNEL_FLOW_FREQUENCY = 1.0E-04 !   [s-1] default = 0.0
+                                ! Frequency of oscillating zonal flow.
 
 ! === module MOM_tracer_registry ===
 
@@ -139,7 +146,7 @@ USE_DYED_OBC_TRACER = True      !   [Boolean] default = False
                                 ! If true, use the dyed_obc_tracer tracer package.
 
 ! === module dyed_obc_tracer ===
-NUM_DYE_TRACERS = 1             ! default = 0
+NUM_DYE_TRACERS = 3             ! default = 0
                                 ! The number of dye tracers in this run. Each tracer
                                 ! should have a separate boundary segment.
 

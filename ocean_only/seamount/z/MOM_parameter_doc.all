@@ -362,6 +362,8 @@ USE_KELVIN_WAVE_OBC = False     !   [Boolean] default = False
                                 ! If true, use the Kelvin wave open boundary.
 USE_SHELFWAVE_OBC = False       !   [Boolean] default = False
                                 ! If true, use the shelfwave open boundary.
+USE_DYED_CHANNEL_OBC = False    !   [Boolean] default = False
+                                ! If true, use the dyed channel open boundary.
 
 ! === module MOM_tracer_registry ===
 

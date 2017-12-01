@@ -319,6 +319,8 @@ USE_KELVIN_WAVE_OBC = False     !   [Boolean] default = False
                                 ! If true, use the Kelvin wave open boundary.
 USE_SHELFWAVE_OBC = True        !   [Boolean] default = False
                                 ! If true, use the shelfwave open boundary.
+USE_DYED_CHANNEL_OBC = False    !   [Boolean] default = False
+                                ! If true, use the dyed channel open boundary.
 SHELFWAVE_X_WAVELENGTH = 100.0  !   [Same as x,y] default = 100.0
                                 ! Length scale of shelfwave in x-direction.
 SHELFWAVE_Y_LENGTH_SCALE = 50.0 !   [Same as x,y] default = 50.0

@@ -318,6 +318,12 @@ USE_KELVIN_WAVE_OBC = False     !   [Boolean] default = False
                                 ! If true, use the Kelvin wave open boundary.
 USE_SHELFWAVE_OBC = False       !   [Boolean] default = False
                                 ! If true, use the shelfwave open boundary.
+USE_DYED_CHANNEL_OBC = True     !   [Boolean] default = False
+                                ! If true, use the dyed channel open boundary.
+SUPERCRITICAL_ZONAL_FLOW = 1.0  !   [m/s] default = 8.57
+                                ! Constant zonal flow imposed at upstream open boundary.
+CHANNEL_FLOW_FREQUENCY = 0.0    !   [s-1] default = 0.0
+                                ! Frequency of oscillating zonal flow.
 
 ! === module MOM_tracer_registry ===
 
@@ -470,8 +476,6 @@ OBC_USER_CONFIG = "dyed_channel" ! default = "none"
                                 !    supercritical - now only needed here for the allocations
                                 !    tidal_bay - Flather with tidal forcing on eastern boundary
                                 !    USER - user specified
-SUPERCRITICAL_ZONAL_FLOW = 1.0  !   [m/s] default = 8.57
-                                ! Constant zonal flow imposed at upstream open boundary.
 
 ! === module segment_tracer_registry_init ===
 

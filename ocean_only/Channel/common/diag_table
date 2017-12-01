@@ -15,6 +15,7 @@
 "ocean_model","e","e","prog","all",.false.,"none",2
 "ocean_model","dye_01","dye_01","prog","all",.false.,"none",2
 "ocean_model","dye_02","dye_02","prog","all",.false.,"none",2
+"ocean_model","dye_03","dye_03","prog","all",.false.,"none",2
 
 #"ocean_model","u","u","ave_prog_%4yr_%3dy","all",.true.,"none",2
 #"ocean_model","v","v","ave_prog_%4yr_%3dy","all",.true.,"none",2
