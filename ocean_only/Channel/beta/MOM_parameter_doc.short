@@ -132,8 +132,8 @@ F_0 = 1.0E-04                   !   [s-1] default = 0.0
 ! === module MOM_boundary_update ===
 USE_DYED_CHANNEL_OBC = True     !   [Boolean] default = False
                                 ! If true, use the dyed channel open boundary.
-SUPERCRITICAL_ZONAL_FLOW = 1.0  !   [m/s] default = 8.57
-                                ! Constant zonal flow imposed at upstream open boundary.
+CHANNEL_MEAN_FLOW = 1.0         !   [m/s] default = 8.57
+                                ! Mean zonal flow imposed at upstream open boundary.
 
 ! === module MOM_tracer_registry ===
 

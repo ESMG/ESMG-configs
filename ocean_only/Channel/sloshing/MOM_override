@@ -1,5 +1,6 @@
 ! Blank file in which we can put "overrides" for parameters
 !! #override DAYMAX = 48000.0                !   [s]
-CHANNEL_FLOW_FREQUENCY = 1.e-4
 #override NUM_DYE_TRACERS = 3             ! default = 0
-SUPERCRITICAL_ZONAL_FLOW = 1.0            !   [m s-1]
+CHANNEL_MEAN_FLOW = 0.2                   !   [m s-1]
+CHANNEL_TIDAL_AMP = 1.0                   !   [m s-1]
+CHANNEL_FLOW_FREQUENCY = 1.e-4            !   [s-1] default = 0.0

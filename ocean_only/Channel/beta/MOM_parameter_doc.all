@@ -320,8 +320,10 @@ USE_SHELFWAVE_OBC = False       !   [Boolean] default = False
                                 ! If true, use the shelfwave open boundary.
 USE_DYED_CHANNEL_OBC = True     !   [Boolean] default = False
                                 ! If true, use the dyed channel open boundary.
-SUPERCRITICAL_ZONAL_FLOW = 1.0  !   [m/s] default = 8.57
-                                ! Constant zonal flow imposed at upstream open boundary.
+CHANNEL_MEAN_FLOW = 1.0         !   [m/s] default = 8.57
+                                ! Mean zonal flow imposed at upstream open boundary.
+CHANNEL_TIDAL_AMP = 0.0         !   [m/s] default = 0.0
+                                ! Sloshing amplitude imposed at upstream open boundary.
 CHANNEL_FLOW_FREQUENCY = 0.0    !   [s-1] default = 0.0
                                 ! Frequency of oscillating zonal flow.
 
