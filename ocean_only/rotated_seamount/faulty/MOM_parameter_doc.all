@@ -253,6 +253,7 @@ TOPO_CONFIG = "seamount"        !
                                 !       DOME2D gravity current/overflow test case.
                                 !     Kelvin - flat but with rotated land mask.
                                 !     seamount - Gaussian bump for spontaneous motion test case.
+                                !     dumbbell - Sloshing channel with reservoirs on both ends.
                                 !     shelfwave - exponential slope for shelfwave test case.
                                 !     supercritical - flat but with 8.95 degree land mask.
                                 !     Phillips - ACC-like idealized topography used in the Phillips config.
@@ -338,6 +339,4 @@ OBC_SEGMENT_018 = "J=4,I=36:44,FLATHER, OBLIQUE" !
 OBC_SEGMENT_019 = "I=44,J=4:12,FLATHER, OBLIQUE" !
                                 ! Documentation needs to be dynamic?????
 OBC_SEGMENT_020 = "J=12,I=44:43,FLATHER, OBLIQUE" !
-                                ! Documentation needs to be dynamic?????
-OBC_SEGMENT_021 = "I=43,J=12:20,FLATHER, OBLIQUE" !
                                 ! Documentation needs to be dynamic?????

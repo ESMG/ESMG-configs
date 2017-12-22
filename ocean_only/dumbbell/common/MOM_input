@@ -35,11 +35,11 @@ NJHALO = 3                      ! default = 2
                                 ! y-direction.  With STATIC_MEMORY_ this is set as NJHALO_
                                 ! in MOM_memory.h at compile time; without STATIC_MEMORY_
                                 ! the default is NJHALO_ in MOM_memory.h (if defined) or 2.
-NIGLOBAL = 60                   !
+NIGLOBAL = 120                   !
                                 ! The total number of thickness grid points in the
                                 ! x-direction in the physical domain. With STATIC_MEMORY_
                                 ! this is set in MOM_memory.h at compile time.
-NJGLOBAL = 10                   !
+NJGLOBAL = 20                   !
                                 ! The total number of thickness grid points in the
                                 ! y-direction in the physical domain. With STATIC_MEMORY_
                                 ! this is set in MOM_memory.h at compile time.
@@ -178,6 +178,8 @@ TOPO_CONFIG = "dumbbell"        !
                                 !       DOME2D gravity current/overflow test case.
                                 !     seamount - Gaussian bump for spontaneous motion test case.
                                 !     USER - call a user modified routine.
+DUMBBELL_FRACTION = 0.8         !   [nondim]
+                                ! Meridional fraction for narrow part of dumbbell.
 MAXIMUM_DEPTH = 2000.0          !   [m]
                                 ! The maximum depth of the ocean.
 MINIMUM_DEPTH = 1.0             !   [m] default = 0.0
@@ -271,18 +273,22 @@ BOUND_CORIOLIS = True           !   [Boolean] default = False
                                 ! CORIOLIS_SCHEME set to SADOURNY75_ENERGY.
 
 ! === module MOM_hor_visc ===
-LAPLACIAN = True                !   [Boolean] default = False
+LAPLACIAN = False                !   [Boolean] default = False
                                 ! If true, use a Laplacian horizontal viscosity.
-BIHARMONIC = False              !   [Boolean] default = True
+BIHARMONIC = True              !   [Boolean] default = True
                                 ! If true, se a biharmonic horizontal viscosity.
                                 ! BIHARMONIC may be used with LAPLACIAN.
-KH = 1000.0                     !   [m2 s-1] default = 0.0
-                                ! The background Laplacian horizontal viscosity.
 KH_VEL_SCALE = 0.003            !   [m s-1] default = 0.0
                                 ! The velocity scale which is multiplied by the grid
                                 ! spacing to calculate the Laplacian viscosity.
                                 ! The final viscosity is the largest of this scaled
                                 ! viscosity, the Smagorinsky viscosity and KH.
+SMAG_BI_CONST = 0.015           !   [nondim] default = 0.0
+                                ! The nondimensional biharmonic Smagorinsky constant,
+                                ! typically 0.015 - 0.06.
+SMAGORINSKY_AH = True           !   [Boolean] default = False
+                                ! If true, use a biharmonic Smagorinsky nonlinear eddy
+                                ! viscosity.
 
 ! === module MOM_vert_friction ===
 DIRECT_STRESS = True            !   [Boolean] default = False

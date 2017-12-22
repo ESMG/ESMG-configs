@@ -222,6 +222,7 @@ TOPO_CONFIG = "flat"            !
                                 !       DOME2D gravity current/overflow test case.
                                 !     Kelvin - flat but with rotated land mask.
                                 !     seamount - Gaussian bump for spontaneous motion test case.
+                                !     dumbbell - Sloshing channel with reservoirs on both ends.
                                 !     shelfwave - exponential slope for shelfwave test case.
                                 !     supercritical - flat but with 8.95 degree land mask.
                                 !     Phillips - ACC-like idealized topography used in the Phillips config.
@@ -261,6 +262,8 @@ OBC_SEGMENT_001 = "I=N,J=0:N,FLATHER,ORLANSKI" !
                                 ! Documentation needs to be dynamic?????
 OBC_SEGMENT_002 = "I=0,J=N:0,FLATHER,ORLANSKI,NUDGED" !
                                 ! Documentation needs to be dynamic?????
+OBC_SEGMENT_002_TNUDGE = 1.0, 10.0 !   [days] default = 0.0
+                                ! Timescales in seconds for nudging along a segment
 OBC_RADIATION_MAX = 10.0        !   [m s-1] default = 10.0
                                 ! The maximum magnitude of the baroclinic radiation
                                 ! velocity (or speed of characteristics).  This is only
@@ -418,6 +421,7 @@ THICKNESS_CONFIG = "uniform"    !
                                 !     adjustment2d - TBD AJA.
                                 !     sloshing - TBD AJA.
                                 !     seamount - TBD AJA.
+                                !     dumbbell - TBD AJA.
                                 !     soliton - Equatorial Rossby soliton.
                                 !     rossby_front - a mixed layer front in thermal wind balance.
                                 !     USER - call a user modified routine.
