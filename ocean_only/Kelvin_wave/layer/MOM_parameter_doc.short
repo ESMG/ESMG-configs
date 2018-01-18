@@ -118,7 +118,8 @@ OBC_SEGMENT_001 = "I=N,J=0:N,FLATHER,ORLANSKI" !
 OBC_SEGMENT_002 = "I=0,J=N:0,FLATHER,ORLANSKI,NUDGED" !
                                 ! Documentation needs to be dynamic?????
 OBC_SEGMENT_002_TNUDGE = 1.0, 10.0 !   [days] default = 0.0
-                                ! Timescales in seconds for nudging along a segment
+                                ! Timescales in days for nudging along a segment,
+                                ! for inflow, then outflow.
 MASKING_DEPTH = 1.5             !   [m] default = -9999.0
                                 ! The depth below which to mask points as land points, for which all
                                 ! fluxes are zeroed out. MASKING_DEPTH is ignored if negative.
