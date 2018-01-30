@@ -100,6 +100,7 @@ TOPO_CONFIG = "file"            !
                                 !       DOME2D gravity current/overflow test case.
                                 !     Kelvin - flat but with rotated land mask.
                                 !     seamount - Gaussian bump for spontaneous motion test case.
+                                !     dumbbell - Sloshing channel with reservoirs on both ends.
                                 !     shelfwave - exponential slope for shelfwave test case.
                                 !     supercritical - flat but with 8.95 degree land mask.
                                 !     Phillips - ACC-like idealized topography used in the Phillips config.
@@ -136,6 +137,11 @@ OBC_SEGMENT_002 = "J=N,I=N:0,FLATHER,ORLANSKI,NUDGED" !
                                 ! Documentation needs to be dynamic?????
 OBC_SEGMENT_003 = "I=0,J=N:0,FLATHER,ORLANSKI,NUDGED" !
                                 ! Documentation needs to be dynamic?????
+OBC_SEGMENT_003_TNUDGE = 3.0, 360.0 !   [days] default = 0.0
+                                ! Timescales in days for nudging along a segment,
+                                ! for inflow, then outflow.
+BRUSHCUTTER_MODE = True         !   [Boolean] default = False
+                                ! If true, read external OBC data on the supergrid.
 MASKING_DEPTH = 1.0             !   [m] default = -9999.0
                                 ! The depth below which to mask points as land points, for which all
                                 ! fluxes are zeroed out. MASKING_DEPTH is ignored if negative.
@@ -250,9 +256,10 @@ THICKNESS_CONFIG = "file"       !
                                 !       densities. This is not yet implemented.
                                 !     circle_obcs - the circle_obcs test case is used.
                                 !     DOME2D - 2D version of DOME initialization.
-                                !     adjustment2d - TBD AJA.
-                                !     sloshing - TBD AJA.
-                                !     seamount - TBD AJA.
+                                !     adjustment2d - 2D lock exchange thickness ICs.
+                                !     sloshing - sloshing gravity thickness ICs.
+                                !     seamount - no motion test with seamount ICs.
+                                !     dumbbell - sloshing channel ICs.
                                 !     soliton - Equatorial Rossby soliton.
                                 !     rossby_front - a mixed layer front in thermal wind balance.
                                 !     USER - call a user modified routine.
@@ -275,9 +282,10 @@ TS_CONFIG = "file"              !
                                 !     linear - linear in logical layer space.
                                 !     DOME2D - 2D DOME initialization.
                                 !     ISOMIP - ISOMIP initialization.
-                                !     adjustment2d - TBD AJA.
-                                !     sloshing - TBD AJA.
-                                !     seamount - TBD AJA.
+                                !     adjustment2d - 2d lock exchange T/S ICs.
+                                !     sloshing - sloshing mode T/S ICs.
+                                !     seamount - no motion test with seamount ICs.
+                                !     dumbbell - sloshing channel ICs.
                                 !     rossby_front - a mixed layer front in thermal wind balance.
                                 !     SCM_ideal_hurr - used in the SCM idealized hurricane test.
                                 !     SCM_CVmix_tests - used in the SCM CVmix tests.
