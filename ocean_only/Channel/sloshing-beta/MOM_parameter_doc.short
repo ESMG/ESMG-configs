@@ -358,6 +358,18 @@ DTBT = -0.9                     !   [s or nondim] default = -0.98
 ! === module MOM_neutral_diffusion ===
 ! This module implements neutral diffusion of tracers
 
+! === module MOM_sum_output ===
+DATE_STAMPED_STDOUT = False     !   [Boolean] default = True
+                                ! If true, use dates (not times) in messages to stdout
+TIMEUNIT = 1.0                  !   [s] default = 8.64E+04
+                                ! The time unit in seconds a number of input fields
+DEPTH_LIST_MIN_INC = 1.0E-06    !   [m] default = 1.0E-10
+                                ! The minimum increment between the depths of the
+                                ! entries in the depth-list file.
+ENERGYSAVEDAYS = 1.0            !   [seconds] default = 8.64E+04
+                                ! The interval in units of TIMEUNIT between saves of the
+                                ! energies of the run and other globally summed diagnostics.
+
 ! === module MOM_surface_forcing ===
 VARIABLE_WINDS = False          !   [Boolean] default = True
                                 ! If true, the winds vary in time after the initialization.
@@ -375,17 +387,6 @@ WIND_CONFIG = "zero"            !
 
 ! === module MOM_restart ===
 
-! === module MOM_sum_output ===
-DATE_STAMPED_STDOUT = False     !   [Boolean] default = True
-                                ! If true, use dates (not times) in messages to stdout
-TIMEUNIT = 1.0                  !   [s] default = 8.64E+04
-                                ! The time unit in seconds a number of input fields
-DEPTH_LIST_MIN_INC = 1.0E-06    !   [m] default = 1.0E-10
-                                ! The minimum increment between the depths of the
-                                ! entries in the depth-list file.
-
-! === module MOM_write_cputime ===
-
 ! === module MOM_main (MOM_driver) ===
 DAYMAX = 1600.0                 !   [seconds]
                                 ! The final time of the whole simulation, in units of
@@ -396,8 +397,7 @@ RESTINT = 365.0                 !   [seconds] default = 0.0
                                 ! The interval between saves of the restart file in units
                                 ! of TIMEUNIT.  Use 0 (the default) to not save
                                 ! incremental restart files at all.
-ENERGYSAVEDAYS = 1.0            !   [seconds] default = 50.0
-                                ! The interval in units of TIMEUNIT between saves of the
-                                ! energies of the run and other globally summed diagnostics.
+
+! === module MOM_write_cputime ===
 
 ! === module MOM_file_parser ===
