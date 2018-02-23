@@ -1,0 +1,321 @@
+NOTE from PE     0: MPP_DOMAINS_SET_STACK_SIZE: stack size set to    32768.
+&MPP_IO_NML
+ HEADER_BUFFER_VAL=      16384,
+ GLOBAL_FIELD_ON_ROOT_PE=T,
+ IO_CLOCKS_ON=F,
+ SHUFFLE=          0,
+ DEFLATE_LEVEL=         -1,
+ CF_COMPLIANCE=F,
+ /
+NOTE from PE     0: MPP_IO_SET_STACK_SIZE: stack size set to     131072.
+NOTE from PE     0: MPP_DOMAINS_SET_STACK_SIZE: stack size set to   710000.
+NOTE from PE     0: ======== Model being driven by MOM_driver ========
+NOTE from PE     0: callTree: o Program MOM_main, MOM_driver.F90
+NOTE from PE     0: open_param_file: MOM_input has been opened successfully.
+NOTE from PE     0: open_param_file: MOM_override has been opened successfully.
+
+WARNING from PE     0: MOM_file_parser : NIGLOBAL over-ridden.  Line: 'NIGLOBAL = 20' in file MOM_override.
+
+
+WARNING from PE     0: MOM_file_parser : NIGLOBAL over-ridden.  Line: 'NIGLOBAL = 20' in file MOM_override.
+
+ MOM domain decomposition
+whalo =    3, ehalo =    3, shalo =    3, nhalo =    3
+  X-AXIS =   10  10
+  Y-AXIS =    5   5
+NOTE from PE     0: diag_manager_mod::diag_manager_init: prepend_date only supported when diag_manager_init is called with time_init present.
+ MOM domain decomposition
+whalo =    3, ehalo =    3, shalo =    3, nhalo =    3
+  X-AXIS =   10  10
+  Y-AXIS =    5   5
+ MOM domain decomposition
+whalo =    3, ehalo =    3, shalo =    3, nhalo =    3
+  X-AXIS =   10  10
+  Y-AXIS =    5   5
+
+WARNING from PE     0: MOM_file_parser : WESTLON over-ridden.  Line: 'WESTLON = -100' in file MOM_override.
+
+
+WARNING from PE     0: MOM_file_parser : WESTLON over-ridden.  Line: 'WESTLON = -100' in file MOM_override.
+
+
+WARNING from PE     0: MOM_file_parser : LENLON over-ridden.  Line: 'LENLON = 200' in file MOM_override.
+
+
+WARNING from PE     0: MOM_file_parser : LENLON over-ridden.  Line: 'LENLON = 200' in file MOM_override.
+
+
+WARNING from PE     0: MOM_file_parser : OBC_FREESLIP_VORTICITY occurs more times than is permitted. Line: 'OBC_FREESLIP_VORTICITY = True' in file MOM_override is being ignored.
+
+
+WARNING from PE     0: MOM_file_parser : OBC_FREESLIP_VORTICITY occurs more times than is permitted. Line: 'OBC_FREESLIP_VORTICITY = True' in file MOM_override is being ignored.
+
+
+WARNING from PE     0: MOM_file_parser : OBC_FREESLIP_STRAIN occurs more times than is permitted. Line: 'OBC_FREESLIP_STRAIN = True' in file MOM_override is being ignored.
+
+
+WARNING from PE     0: MOM_file_parser : OBC_FREESLIP_STRAIN occurs more times than is permitted. Line: 'OBC_FREESLIP_STRAIN = True' in file MOM_override is being ignored.
+
+
+WARNING from PE     0: MOM_file_parser : OBC_ZERO_BIHARMONIC occurs more times than is permitted. Line: 'OBC_ZERO_BIHARMONIC = True' in file MOM_override is being ignored.
+
+
+WARNING from PE     0: MOM_file_parser : OBC_ZERO_BIHARMONIC occurs more times than is permitted. Line: 'OBC_ZERO_BIHARMONIC = True' in file MOM_override is being ignored.
+
+ segment_param_str= OBC_SEGMENT_002_TNUDGE
+ segment_param_str= OBC_SEGMENT_002_TNUDGE
+ segment_param_str= OBC_SEGMENT_001_TNUDGE
+ tnudge=   1.0000000000000000        20.000000000000000     
+ tnudge=   1.0000000000000000        20.000000000000000     
+ tnudge=   1.0000000000000000        20.000000000000000     
+ segment_param_str= OBC_SEGMENT_001_TNUDGE
+ tnudge=   1.0000000000000000        20.000000000000000     
+NOTE from PE     0: GLOBAL ATT too long - not reading this metadata
+NOTE from PE     1: GLOBAL ATT too long - not reading this metadata
+NOTE from PE     2: GLOBAL ATT too long - not reading this metadata
+NOTE from PE     3: GLOBAL ATT too long - not reading this metadata
+NOTE from PE     0: GLOBAL ATT too long - not reading this metadata
+NOTE from PE     1: GLOBAL ATT too long - not reading this metadata
+NOTE from PE     2: GLOBAL ATT too long - not reading this metadata
+NOTE from PE     3: GLOBAL ATT too long - not reading this metadata
+NOTE from PE     0: GLOBAL ATT too long - not reading this metadata
+NOTE from PE     2: GLOBAL ATT too long - not reading this metadata
+NOTE from PE     2: GLOBAL ATT too long - not reading this metadata
+NOTE from PE     0: GLOBAL ATT too long - not reading this metadata
+NOTE from PE     0: time_interp_external_mod: file ./west.nc  has only one time level
+NOTE from PE     2: time_interp_external_mod: file ./west.nc  has only one time level
+NOTE from PE     0: time_interp_external_mod: file ./west.nc  has only one time level
+NOTE from PE     2: time_interp_external_mod: file ./west.nc  has only one time level
+NOTE from PE     0: time_interp_external_mod: file ./west.nc  has only one time level
+NOTE from PE     2: time_interp_external_mod: file ./west.nc  has only one time level
+NOTE from PE     0: time_interp_external_mod: file ./west.nc  has only one time level
+NOTE from PE     2: time_interp_external_mod: file ./west.nc  has only one time level
+NOTE from PE     0: time_interp_external_mod: file ./west.nc  has only one time level
+NOTE from PE     2: time_interp_external_mod: file ./west.nc  has only one time level
+NOTE from PE     0: GLOBAL ATT too long - not reading this metadata
+NOTE from PE     1: GLOBAL ATT too long - not reading this metadata
+NOTE from PE     2: GLOBAL ATT too long - not reading this metadata
+NOTE from PE     2: GLOBAL ATT too long - not reading this metadata
+NOTE from PE     3: GLOBAL ATT too long - not reading this metadata
+NOTE from PE     0: GLOBAL ATT too long - not reading this metadata
+NOTE from PE     1: GLOBAL ATT too long - not reading this metadata
+NOTE from PE     3: GLOBAL ATT too long - not reading this metadata
+NOTE from PE     1: GLOBAL ATT too long - not reading this metadata
+NOTE from PE     3: GLOBAL ATT too long - not reading this metadata
+NOTE from PE     3: GLOBAL ATT too long - not reading this metadata
+NOTE from PE     1: GLOBAL ATT too long - not reading this metadata
+NOTE from PE     3: time_interp_external_mod: file ./east.nc  has only one time level
+NOTE from PE     1: time_interp_external_mod: file ./east.nc  has only one time level
+NOTE from PE     3: time_interp_external_mod: file ./east.nc  has only one time level
+NOTE from PE     1: time_interp_external_mod: file ./east.nc  has only one time level
+NOTE from PE     3: time_interp_external_mod: file ./east.nc  has only one time level
+NOTE from PE     1: time_interp_external_mod: file ./east.nc  has only one time level
+NOTE from PE     3: time_interp_external_mod: file ./east.nc  has only one time level
+NOTE from PE     1: time_interp_external_mod: file ./east.nc  has only one time level
+NOTE from PE     3: time_interp_external_mod: file ./east.nc  has only one time level
+NOTE from PE     1: time_interp_external_mod: file ./east.nc  has only one time level
+ MOM domain decomposition
+whalo =    3, ehalo =    3, shalo =    3, nhalo =    3
+  X-AXIS =   10  10
+  Y-AXIS =    5   5
+NOTE from PE     0: MOM_initialization.F90, initialize_thickness_uniform: setting thickness
+
+WARNING from PE     0: MOM_file_parser : DUMBBELL_S_RANGE over-ridden.  Line: 'DUMBBELL_S_RANGE = 0.0' in file MOM_override.
+
+
+WARNING from PE     0: MOM_file_parser : DUMBBELL_S_RANGE over-ridden.  Line: 'DUMBBELL_S_RANGE = 0.0' in file MOM_override.
+
+ MOM domain decomposition
+whalo =    3, ehalo =    3, shalo =    3, nhalo =    3
+  X-AXIS =   10  10
+  Y-AXIS =    5   5
+
+WARNING from PE     0: MOM_file_parser : DAYMAX over-ridden.  Line: 'DAYMAX = 30.' in file MOM_override.
+
+
+WARNING from PE     0: MOM_file_parser : DAYMAX over-ridden.  Line: 'DAYMAX = 30.' in file MOM_override.
+
+
+WARNING from PE     0: MPP_OPEN: File ./CPU_stats opened WRONLY already exists!
+
+
+WARNING from PE     0: MPP_OPEN: File ./CPU_stats opened WRONLY already exists!
+
+
+WARNING from PE     0: MPP_OPEN: File ./ocean.stats opened WRONLY already exists!
+
+
+WARNING from PE     0: MPP_OPEN: File ./ocean.stats opened WRONLY already exists!
+
+MOM Day       0.000      0: En 0.000000E+00, MaxCFL  0.00000, Mass 1.656000000000E+16, Salt  35.00000000000, Temp  20.00000000000
+    Total Energy: 0000000000000000  0.0000000000000000E+00
+    Total Mass:   1.6560000000000000E+16, Change:   0.0000000000000000E+00 Error:  0.00000E+00 ( 0.0E+00)
+    Total Salt:   5.7960000000000000E+14, Change:   0.0000000000000000E+00 Error:  0.00000E+00 ( 0.0E+00)
+    Total Heat:   1.2999600000000000E+21, Change:   0.0000000000000000E+00 Error:  0.00000E+00 ( 0.0E+00)
+MOM Day       1.000     96: En 8.453262E-02, MaxCFL  0.10411, Mass 1.655908739392E+16, Salt  34.98977156963, Temp  20.00000000000
+    Total Energy: 4313E4618E4D162A  1.3997830519699305E+15
+    Total Mass:   1.6559087393916914E+16, Change:  -9.1260608308665625E+11 Error: -9.12606E+11 (-5.5E-05)
+    Total Salt:   5.7939868531475112E+14, Change:  -2.0131468524895599E+11 Error: -2.01315E+11 (-3.5E-04)
+    Total Heat:   1.2998883604224748E+21, Change:  -7.1639577525180416E+16 Error: -7.16396E+16 (-5.5E-05)
+MOM Day       2.000    192: En 1.762942E-01, MaxCFL  0.10727, Mass 1.655906728319E+16, Salt  34.98456651823, Temp  20.00000000000
+    Total Energy: 4324BE1D83465AAA  2.9192667499840850E+15
+    Total Mass:   1.6559067283190706E+16, Change:  -2.0110726207500000E+10 Error: -2.01107E+10 (-1.2E-06)
+    Total Salt:   5.7931179084860188E+14, Change:  -8.6894466149171997E+10 Error: -8.68945E+10 (-1.5E-04)
+    Total Heat:   1.2998867817304655E+21, Change:  -1.5786920093081600E+15 Error: -1.57869E+15 (-1.2E-06)
+MOM Day       3.000    288: En 3.145741E-01, MaxCFL  0.12423, Mass 1.655895867378E+16, Salt  34.98885424075, Temp  20.00000000000
+    Total Energy: 433281935433B9D1  5.2090193536434730E+15
+    Total Mass:   1.6558958673779100E+16, Change:  -1.0860941160501562E+11 Error: -1.08609E+11 (-6.6E-06)
+    Total Salt:   5.7937899141549862E+14, Change:   6.7200566896769005E+10 Error:  6.72006E+10 ( 1.2E-04)
+    Total Heat:   1.2998782558916525E+21, Change:  -8.5258388128952320E+15 Error: -8.52584E+15 (-6.6E-06)
+MOM Day       4.000    384: En 2.906413E-01, MaxCFL  0.11216, Mass 1.655910543017E+16, Salt  34.98169711813, Temp  20.00000000000
+    Total Energy: 4331192E223555B8  4.8127605371918640E+15
+    Total Mass:   1.6559105430174516E+16, Change:   1.4675639541600000E+11 Error:  1.46756E+11 ( 8.9E-06)
+    Total Salt:   5.7926561070557775E+14, Change:  -1.1338070992095700E+11 Error: -1.13381E+11 (-2.0E-04)
+    Total Heat:   1.2998897762686911E+21, Change:   1.1520377038374912E+16 Error:  1.15204E+16 ( 8.9E-06)
+MOM Day       5.000    480: En 1.888228E-01, MaxCFL  0.08898, Mass 1.655912180253E+16, Salt  34.97105378452, Temp  20.00000000000
+    Total Energy: 43263781CC7C9D72  3.1267400543310650E+15
+    Total Mass:   1.6559121802525036E+16, Change:   1.6372350518656250E+10 Error:  1.63724E+10 ( 9.9E-07)
+    Total Salt:   5.7908993918050962E+14, Change:  -1.7567152506813400E+11 Error: -1.75672E+11 (-3.0E-04)
+    Total Heat:   1.2998910614982060E+21, Change:   1.2852295150510080E+15 Error:  1.28523E+15 ( 9.9E-07)
+MOM Day       6.000    576: En 2.176162E-01, MaxCFL  0.09605, Mass 1.655915561244E+16, Salt  34.96757972548, Temp  20.00000000000
+    Total Energy: 43299ACD40F90563  3.6035403834006255E+15
+    Total Mass:   1.6559155612444728E+16, Change:   3.3809919691671875E+10 Error:  3.38099E+10 ( 2.0E-06)
+    Total Salt:   5.7903359406472538E+14, Change:  -5.6345115784173004E+10 Error: -5.63451E+10 (-9.7E-05)
+    Total Heat:   1.2998937155769008E+21, Change:   2.6540786946539520E+15 Error:  2.65408E+15 ( 2.0E-06)
+MOM Day       7.000    672: En 2.047101E-01, MaxCFL  0.09453, Mass 1.655908014308E+16, Salt  34.96765186216, Temp  20.00000000000
+    Total Energy: 43281607676A22DE  3.3898102483234390E+15
+    Total Mass:   1.6559080143077886E+16, Change:  -7.5469366841109375E+10 Error: -7.54694E+10 (-4.6E-06)
+    Total Salt:   5.7903214960075725E+14, Change:  -1.4444639681230001E+09 Error: -1.44446E+09 (-2.5E-06)
+    Total Heat:   1.2998877912316025E+21, Change:  -5.9243452981555200E+15 Error: -5.92435E+15 (-4.6E-06)
+MOM Day       8.000    768: En 1.715891E-01, MaxCFL  0.09518, Mass 1.655920586059E+16, Salt  34.97278364891, Temp  20.00000000000
+    Total Energy: 432430707F380614  2.8413796315307620E+15
+    Total Mass:   1.6559205860593544E+16, Change:   1.2571751565860938E+11 Error:  1.25718E+11 ( 7.6E-06)
+    Total Salt:   5.7912152396024000E+14, Change:   8.9374359482712006E+10 Error:  8.93744E+10 ( 1.5E-04)
+    Total Heat:   1.2998976600565814E+21, Change:   9.8688249787944960E+15 Error:  9.86882E+15 ( 7.6E-06)
+MOM Day       9.000    864: En 1.948656E-01, MaxCFL  0.10031, Mass 1.655900047709E+16, Salt  34.97905938417, Temp  20.00000000000
+    Total Energy: 4326ED7A7A053731  3.2267798882948085E+15
+    Total Mass:   1.6559000477086906E+16, Change:  -2.0538350663873438E+11 Error: -2.05384E+11 (-1.2E-05)
+    Total Salt:   5.7921826103049412E+14, Change:   9.6737070254084000E+10 Error:  9.67371E+10 ( 1.7E-04)
+    Total Heat:   1.2998815374513099E+21, Change:  -1.6122605271332864E+16 Error: -1.61226E+16 (-1.2E-05)
+MOM Day      10.000    960: En 2.075255E-01, MaxCFL  0.11548, Mass 1.655871050889E+16, Salt  34.97352863524, Temp  20.00000000000
+    Total Energy: 43286AB10BDFDE31  3.4363540410160885E+15
+    Total Mass:   1.6558710508885876E+16, Change:  -2.8996820102943750E+11 Error: -2.89968E+11 (-1.8E-05)
+    Total Salt:   5.7911653614512925E+14, Change:  -1.0172488536484801E+11 Error: -1.01725E+11 (-1.8E-04)
+    Total Heat:   1.2998587749475295E+21, Change:  -2.2762503780458496E+16 Error: -2.27625E+16 (-1.8E-05)
+MOM Day      11.000   1056: En 2.034515E-01, MaxCFL  0.11133, Mass 1.655868285747E+16, Salt  34.97233116165, Temp  20.00000000000
+    Total Energy: 4327EFF92A314F56  3.3688889490574510E+15
+    Total Mass:   1.6558682857470528E+16, Change:  -2.7651415348968750E+10 Error: -2.76514E+10 (-1.7E-06)
+    Total Salt:   5.7909574049223112E+14, Change:  -2.0795652897985001E+10 Error: -2.07957E+10 (-3.6E-05)
+    Total Heat:   1.2998566043114246E+21, Change:  -2.1706361048616960E+15 Error: -2.17064E+15 (-1.7E-06)
+MOM Day      12.000   1152: En 2.722005E-01, MaxCFL  0.12554, Mass 1.655871404398E+16, Salt  34.98495101331, Temp  20.00000000000
+    Total Energy: 4330035B63F56048  4.5072906813031120E+15
+    Total Mass:   1.6558714043975026E+16, Change:   3.1186504499109375E+10 Error:  3.11865E+10 ( 1.9E-06)
+    Total Salt:   5.7930579967188962E+14, Change:   2.1005917965840100E+11 Error:  2.10059E+11 ( 3.6E-04)
+    Total Heat:   1.2998590524520289E+21, Change:   2.4481406040760320E+15 Error:  2.44814E+15 ( 1.9E-06)
+MOM Day      13.000   1248: En 3.067629E-01, MaxCFL  0.12585, Mass 1.655874864034E+16, Salt  34.99411753759, Temp  20.00000000000
+    Total Energy: 43320BE0FD60AB7A  5.0796105323426500E+15
+    Total Mass:   1.6558748640342842E+16, Change:   3.4596367814828125E+10 Error:  3.45964E+10 ( 2.1E-06)
+    Total Salt:   5.7945879619561012E+14, Change:   1.5299652372047000E+11 Error:  1.52997E+11 ( 2.6E-04)
+    Total Heat:   1.2998617682669032E+21, Change:   2.7158148745482240E+15 Error:  2.71581E+15 ( 2.1E-06)
+MOM Day      14.000   1344: En 3.715326E-01, MaxCFL  0.13810, Mass 1.655890679071E+16, Salt  34.98587795849, Temp  20.00000000000
+    Total Energy: 4335DB5E8D1E86EC  6.1521736519206200E+15
+    Total Mass:   1.6558906790710446E+16, Change:   1.5815036760482812E+11 Error:  1.58150E+11 ( 9.6E-06)
+    Total Salt:   5.7932789210581888E+14, Change:  -1.3090408979119901E+11 Error: -1.30904E+11 (-2.3E-04)
+    Total Heat:   1.2998741830707614E+21, Change:   1.2414803858176000E+16 Error:  1.24148E+16 ( 9.6E-06)
+MOM Day      15.000   1440: En 4.016244E-01, MaxCFL  0.13878, Mass 1.655892262783E+16, Salt  34.98032990384, Temp  20.00000000000
+    Total Energy: 4337A090820733BC  6.6504669815899480E+15
+    Total Mass:   1.6558922627829014E+16, Change:   1.5837118567218750E+10 Error:  1.58371E+10 ( 9.6E-07)
+    Total Salt:   5.7923657637362200E+14, Change:  -9.1315732196891998E+10 Error: -9.13157E+10 (-1.6E-04)
+    Total Heat:   1.2998754262845704E+21, Change:   1.2432138090209280E+15 Error:  1.24321E+15 ( 9.6E-07)
+MOM Day      16.000   1536: En 3.944855E-01, MaxCFL  0.13777, Mass 1.655863922092E+16, Salt  34.98320834442, Temp  20.00000000000
+    Total Energy: 433734F3149668E0  6.5321430914439360E+15
+    Total Mass:   1.6558639220922608E+16, Change:  -2.8340690640535938E+11 Error: -2.83407E+11 (-1.7E-05)
+    Total Salt:   5.7927432576560775E+14, Change:   3.7749391985723000E+10 Error:  3.77494E+10 ( 6.5E-05)
+    Total Heat:   1.2998531788424182E+21, Change:  -2.2247442152304640E+16 Error: -2.22474E+16 (-1.7E-05)
+MOM Day      17.000   1632: En 3.881701E-01, MaxCFL  0.13794, Mass 1.655858235759E+16, Salt  34.97536011423, Temp  20.00000000000
+    Total Energy: 4336D5D1C1FA458E  6.4275463669200780E+15
+    Total Mass:   1.6558582357587242E+16, Change:  -5.6863335365562500E+10 Error: -5.68633E+10 (-3.4E-06)
+    Total Salt:   5.7914238093774038E+14, Change:  -1.3194482786730701E+11 Error: -1.31945E+11 (-2.3E-04)
+    Total Heat:   1.2998487150705915E+21, Change:  -4.4637718267064320E+15 Error: -4.46377E+15 (-3.4E-06)
+MOM Day      18.000   1728: En 3.887457E-01, MaxCFL  0.14439, Mass 1.655857055780E+16, Salt  34.96639902710, Temp  20.00000000000
+    Total Energy: 4336DE7BF1F0FA83  6.4370734090799390E+15
+    Total Mass:   1.6558570557804530E+16, Change:  -1.1799782713015625E+10 Error: -1.17998E+10 (-7.1E-07)
+    Total Salt:   5.7899358544259488E+14, Change:  -1.4879549514555701E+11 Error: -1.48795E+11 (-2.6E-04)
+    Total Heat:   1.2998477887876482E+21, Change:  -9.2628294322995200E+14 Error: -9.26283E+14 (-7.1E-07)
+MOM Day      19.000   1824: En 3.749840E-01, MaxCFL  0.14014, Mass 1.655852050635E+16, Salt  34.97214783208, Temp  20.00000000000
+    Total Energy: 43360F374573C83A  6.2091795504681540E+15
+    Total Mass:   1.6558520506352024E+16, Change:  -5.0051452505906250E+10 Error: -5.00515E+10 (-3.0E-06)
+    Total Salt:   5.7908702702864425E+14, Change:   9.3441586049395004E+10 Error:  9.34416E+10 ( 1.6E-04)
+    Total Heat:   1.2998438597486266E+21, Change:  -3.9290390215823360E+15 Error: -3.92904E+15 (-3.0E-06)
+MOM Day      20.000   1920: En 4.054312E-01, MaxCFL  0.14634, Mass 1.655850813121E+16, Salt  34.97871837203, Temp  20.00000000000
+    Total Energy: 4337D9BE4B1EE5D3  6.7133357916748350E+15
+    Total Mass:   1.6558508131208990E+16, Change:  -1.2375143033234375E+10 Error: -1.23751E+10 (-7.5E-07)
+    Total Salt:   5.7919539258250662E+14, Change:   1.0836555386232001E+11 Error:  1.08366E+11 ( 1.9E-04)
+    Total Heat:   1.2998428882998982E+21, Change:  -9.7144872837120000E+14 Error: -9.71449E+14 (-7.5E-07)
+MOM Day      21.000   2016: En 4.302059E-01, MaxCFL  0.13988, Mass 1.655856942876E+16, Salt  34.97977948210, Temp  20.00000000000
+    Total Energy: 43394EDEDCCCFC6C  7.1235935118941240E+15
+    Total Mass:   1.6558569428763256E+16, Change:   6.1297554266156250E+10 Error:  6.12976E+10 ( 3.7E-06)
+    Total Salt:   5.7921510715713562E+14, Change:   1.9714574629035999E+10 Error:  1.97146E+10 ( 3.4E-05)
+    Total Heat:   1.2998477001579084E+21, Change:   4.8118580101324800E+15 Error:  4.81186E+15 ( 3.7E-06)
+MOM Day      22.000   2112: En 4.779390E-01, MaxCFL  0.14266, Mass 1.655854198219E+16, Salt  34.97732590539, Temp  20.00000000000
+    Total Energy: 433C1DB75A0CB12B  7.9139726749002670E+15
+    Total Mass:   1.6558541982186864E+16, Change:  -2.7446576391531250E+10 Error: -2.74466E+10 (-1.7E-06)
+    Total Salt:   5.7917351942904450E+14, Change:  -4.1587728091183998E+10 Error: -4.15877E+10 (-7.2E-05)
+    Total Heat:   1.2998455456016627E+21, Change:  -2.1545562457395200E+15 Error: -2.15456E+15 (-1.7E-06)
+MOM Day      23.000   2208: En 4.963707E-01, MaxCFL  0.14368, Mass 1.655854317351E+16, Salt  34.96551233525, Temp  20.00000000000
+    Total Energy: 433D334BF8A7CD83  8.2191757119194910E+15
+    Total Mass:   1.6558543173508428E+16, Change:   1.1913215625937500E+09 Error:  1.19132E+09 ( 7.2E-08)
+    Total Salt:   5.7897794558710662E+14, Change:  -1.9557384193781302E+11 Error: -1.95574E+11 (-3.4E-04)
+    Total Heat:   1.2998456391204054E+21, Change:   9.3518742777856000E+13 Error:  9.35187E+13 ( 7.2E-08)
+MOM Day      24.000   2304: En 4.360078E-01, MaxCFL  0.13683, Mass 1.655844983548E+16, Salt  34.95473157557, Temp  20.00000000000
+    Total Energy: 4339A6334DC59A00  7.2196136961049600E+15
+    Total Mass:   1.6558449835475778E+16, Change:  -9.3338032648796875E+10 Error: -9.33380E+10 (-5.6E-06)
+    Total Salt:   5.7879616930662325E+14, Change:  -1.8177628048333701E+11 Error: -1.81776E+11 (-3.1E-04)
+    Total Heat:   1.2998383120848422E+21, Change:  -7.3270355632988160E+15 Error: -7.32704E+15 (-5.6E-06)
+MOM Day      25.000   2400: En 2.812935E-01, MaxCFL  0.11672, Mass 1.655867512253E+16, Salt  34.96676100732, Temp  20.00000000000
+    Total Energy: 43308C498512030F  4.6578470204219030E+15
+    Total Mass:   1.6558675122534808E+16, Change:   2.2528705902834375E+11 Error:  2.25287E+11 ( 1.4E-05)
+    Total Salt:   5.7900323560759950E+14, Change:   2.0706630097618802E+11 Error:  2.07066E+11 ( 3.6E-04)
+    Total Heat:   1.2998559971189748E+21, Change:   1.7685034132484096E+16 Error:  1.76850E+16 ( 1.4E-05)
+MOM Day      26.000   2496: En 2.234486E-01, MaxCFL  0.11137, Mass 1.655887970844E+16, Salt  34.99628265217, Temp  20.00000000000
+    Total Energy: 432A4A5E33E6439A  3.7000589262934530E+15
+    Total Mass:   1.6558879708441380E+16, Change:   2.0458590657287500E+11 Error:  2.04586E+11 ( 1.2E-05)
+    Total Salt:   5.7949923467992712E+14, Change:   4.9599907232772900E+11 Error:  4.95999E+11 ( 8.6E-04)
+    Total Heat:   1.2998720571126404E+21, Change:   1.6059993665785856E+16 Error:  1.60600E+16 ( 1.2E-05)
+MOM Day      27.000   2592: En 2.636092E-01, MaxCFL  0.12703, Mass 1.655884747443E+16, Salt  35.02476861520, Temp  20.00000000000
+    Total Energy: 432F04017AA975EA  4.3650643387174290E+15
+    Total Mass:   1.6558847474433254E+16, Change:  -3.2234008125906250E+10 Error: -3.22340E+10 (-1.9E-06)
+    Total Salt:   5.7996980132645725E+14, Change:   4.7056664653006702E+11 Error:  4.70567E+11 ( 8.1E-04)
+    Total Heat:   1.2998695267430024E+21, Change:  -2.5303696381337600E+15 Error: -2.53037E+15 (-1.9E-06)
+MOM Day      28.000   2688: En 2.256454E-01, MaxCFL  0.11100, Mass 1.655895038442E+16, Salt  35.02301409222, Temp  20.00000000000
+    Total Energy: 432A8C90F58C36C1  3.7364518086316485E+15
+    Total Mass:   1.6558950384419224E+16, Change:   1.0290998597006250E+11 Error:  1.02910E+11 ( 6.2E-06)
+    Total Salt:   5.7994435266586425E+14, Change:  -2.5448660593112999E+10 Error: -2.54487E+10 (-4.4E-05)
+    Total Heat:   1.2998776051769001E+21, Change:   8.0784338977177600E+15 Error:  8.07843E+15 ( 6.2E-06)
+MOM Day      29.000   2784: En 2.188909E-01, MaxCFL  0.10753, Mass 1.655894158516E+16, Salt  35.02250677619, Temp  20.00000000000
+    Total Energy: 4329C11CD3229455  3.6246019816351145E+15
+    Total Mass:   1.6558941585159168E+16, Change:  -8.7992600569375000E+09 Error: -8.79926E+09 (-5.3E-07)
+    Total Salt:   5.7993564387269412E+14, Change:  -8.7087931700559998E+09 Error: -8.70879E+09 (-1.5E-05)
+    Total Heat:   1.2998769144349854E+21, Change:  -6.9074191457894400E+14 Error: -6.90742E+14 (-5.3E-07)
+MOM Day      30.000   2880: En 2.904283E-01, MaxCFL  0.13004, Mass 1.655901979408E+16, Salt  35.03234798141, Temp  20.00000000000
+    Total Energy: 433115F32C5FB326  4.8092087697866620E+15
+    Total Mass:   1.6559019794082290E+16, Change:   7.8208923122390625E+10 Error:  7.82089E+10 ( 4.7E-06)
+    Total Salt:   5.8010134365732175E+14, Change:   1.6569978462766101E+11 Error:  1.65700E+11 ( 2.9E-04)
+    Total Heat:   1.2998830538354508E+21, Change:   6.1394004654673920E+15 Error:  6.13940E+15 ( 4.7E-06)
+
+WARNING from PE     0: MPP_OPEN: File RESTART/ocean_solo.res opened WRONLY already exists!
+
+
+WARNING from PE     0: MPP_OPEN: File RESTART/ocean_solo.res opened WRONLY already exists!
+
+                              20171221 110137.645: Memuse(MB) at Memory HiWaterMark=  4.174E+01  4.255E+01  2.876E-01  4.218E+01
+ MPP_DOMAINS_STACK high water mark=        1104
+
+Tabulating mpp_clock statistics across      4 PEs...
+
+                                          tmin          tmax          tavg          tstd  tfrac grain pemin pemax
+Total runtime                       187.181005    187.181009    187.181008      0.000002  1.000     0     0     3
+Initialization                        1.610544      1.615440      1.611769      0.002119  0.009     0     0     3
+Main loop                           185.402052    185.406999    185.405761      0.002142  0.991     0     0     3
+Termination                           0.000514      0.004602      0.001536      0.001770  0.000     0     0     3
+ MPP_STACK high water mark=           0
