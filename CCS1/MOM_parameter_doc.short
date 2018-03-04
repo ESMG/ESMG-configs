@@ -142,6 +142,14 @@ OBC_SEGMENT_003_TNUDGE = 3.0, 360.0 !   [days] default = 0.0
                                 ! for inflow, then outflow.
 BRUSHCUTTER_MODE = True         !   [Boolean] default = False
                                 ! If true, read external OBC data on the supergrid.
+OBC_TRACER_RESERVOIR_LENGTH_SCALE_OUT = 3.0E+04 !   [m] default = 0.0
+                                ! An effective length scale for restoring the tracer concentration
+                                ! at the boundaries to externally imposed values when the flow
+                                ! is exiting the domain .
+OBC_TRACER_RESERVOIR_LENGTH_SCALE_IN = 3000.0 !   [m] default = 0.0
+                                ! An effective length scale for restoring the tracer concentration
+                                ! at the boundaries to values from the interior when the flow
+                                ! is entering the domain .
 MASKING_DEPTH = 1.0             !   [m] default = -9999.0
                                 ! The depth below which to mask points as land points, for which all
                                 ! fluxes are zeroed out. MASKING_DEPTH is ignored if negative.

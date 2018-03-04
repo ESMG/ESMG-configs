@@ -195,6 +195,14 @@ OBC_SEGMENT_035 = "I=8,J=41:40,FLATHER, OBLIQUE" !
                                 ! Documentation needs to be dynamic?????
 OBC_SEGMENT_036 = "J=40,I=8:0,FLATHER, OBLIQUE" !
                                 ! Documentation needs to be dynamic?????
+OBC_TRACER_RESERVOIR_LENGTH_SCALE_OUT = 1000.0 !   [m] default = 0.0
+                                ! An effective length scale for restoring the tracer concentration
+                                ! at the boundaries to externally imposed values when the flow
+                                ! is exiting the domain.
+OBC_TRACER_RESERVOIR_LENGTH_SCALE_IN = 1000.0 !   [m] default = 0.0
+                                ! An effective length scale for restoring the tracer concentration
+                                ! at the boundaries to values from the interior when the flow
+                                ! is entering the domain.
 ROTATION = "betaplane"          ! default = "2omegasinlat"
                                 ! This specifies how the Coriolis parameter is specified:
                                 !     2omegasinlat - Use twice the planetary rotation rate
@@ -233,7 +241,7 @@ USE_DYED_OBC_TRACER = True      !   [Boolean] default = False
                                 ! If true, use the dyed_obc_tracer tracer package.
 
 ! === module dyed_obc_tracer ===
-NUM_DYE_TRACERS = 12            ! default = 0
+NUM_DYE_TRACERS = 3             ! default = 0
                                 ! The number of dye tracers in this run. Each tracer
                                 ! should have a separate boundary segment.
 
