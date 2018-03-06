@@ -284,12 +284,12 @@ MASK_OUTSIDE_OBCS = False       !   [Boolean] default = False
                                 ! If true, set the areas outside open boundaries to be land.
 OBC_SEGMENT_001 = "I=0,J=N:0,FLATHER,ORLANSKI,NUDGED" !
                                 ! Documentation needs to be dynamic?????
-OBC_SEGMENT_001_TNUDGE = 2.0, 200.0 !   [days] default = 0.0
+OBC_SEGMENT_001_VELOCITY_NUDGING_TIMESCALES = 2.0, 200.0 !   [days] default = 0.0
                                 ! Timescales in days for nudging along a segment,
                                 ! for inflow, then outflow.
 OBC_SEGMENT_002 = "I=N,J=0:N,FLATHER,ORLANSKI,NUDGED" !
                                 ! Documentation needs to be dynamic?????
-OBC_SEGMENT_002_TNUDGE = 2.0, 200.0 !   [days] default = 0.0
+OBC_SEGMENT_002_VELOCITY_NUDGING_TIMESCALES = 2.0, 200.0 !   [days] default = 0.0
                                 ! Timescales in days for nudging along a segment,
                                 ! for inflow, then outflow.
 BRUSHCUTTER_MODE = False        !   [Boolean] default = False
