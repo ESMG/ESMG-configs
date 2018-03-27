@@ -9,7 +9,7 @@
 #override MAXIMUM_DEPTH = 1000.0          !   [m]
 #override NIGLOBAL = 80                   !
 #override OBC_SEGMENT_001 = "I=N,J=0:N,FLATHER,ORLANSKI"
-#override OBC_SEGMENT_002 = "I=0,J=N:0,FLATHER,ORLANSKI,NUDGED"
+#override OBC_SEGMENT_002 = "I=0,J=N:0,SIMPLE"
 #override LAPLACIAN = True                !   [Boolean] default = False
 #override KH = 2000.0                     !   [m2 s-1] default = 0.0
 ! === module MOM_vert_friction ===
@@ -19,4 +19,4 @@
 #override KV = 1.0E-04                    !   [m2 s-1]
 #override KVML = 1.0E-04                  !   [m2 s-1] default = 1.0E-04
 #override HBBL = 10.0                     !   [m]
-OBC_SEGMENT_002_VELOCITY_NUDGING_TIMESCALES = 1, 10
+!OBC_SEGMENT_002_VELOCITY_NUDGING_TIMESCALES = 1, 10
