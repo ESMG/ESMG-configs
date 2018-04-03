@@ -670,9 +670,9 @@ OBC_NUMBER_OF_SEGMENTS = 3      ! [Integer] The number of open boundary segments
 OBC_SEGMENT_001 = "J=0,I=0:N,FLATHER,ORLANSKI,NUDGED"
 OBC_SEGMENT_002 = "J=N,I=N:0,FLATHER,ORLANSKI,NUDGED"
 OBC_SEGMENT_003 = "I=0,J=N:0,FLATHER,ORLANSKI,NUDGED"
-OBC_SEGMENT_001_DATA = "U=file:obc_monthly_CCS1.nc(u),V=file:obc_monthly_CCS1.nc(v),SSH=file:obc_monthly_CCS1.nc(zeta)"
-OBC_SEGMENT_002_DATA = "U=file:obc_monthly_CCS1.nc(u),V=file:obc_monthly_CCS1.nc(v),SSH=file:obc_monthly_CCS1.nc(zeta)"
-OBC_SEGMENT_003_DATA = "U=file:obc_monthly_CCS1.nc(u),V=file:obc_monthly_CCS1.nc(v),SSH=file:obc_monthly_CCS1.nc(zeta)"
+OBC_SEGMENT_001_DATA = "U=file:obc_monthly_CCS1.nc(u),V=file:obc_monthly_CCS1.nc(v),SSH=file:obc_monthly_CCS1.nc(zeta),TEMP=file:obc_monthly_CCS1.nc(temp),SALT=file:obc_monthly_CCS1.nc(salt)"
+OBC_SEGMENT_002_DATA = "U=file:obc_monthly_CCS1.nc(u),V=file:obc_monthly_CCS1.nc(v),SSH=file:obc_monthly_CCS1.nc(zeta),TEMP=file:obc_monthly_CCS1.nc(temp),SALT=file:obc_monthly_CCS1.nc(salt)"
+OBC_SEGMENT_003_DATA = "U=file:obc_monthly_CCS1.nc(u),V=file:obc_monthly_CCS1.nc(v),SSH=file:obc_monthly_CCS1.nc(zeta),TEMP=file:obc_monthly_CCS1.nc(temp),SALT=file:obc_monthly_CCS1.nc(salt)"
 OBC_SEGMENT_001_VELOCITY_NUDGING_TIMESCALES = 3, 360
 OBC_SEGMENT_002_VELOCITY_NUDGING_TIMESCALES = 3, 360
 OBC_SEGMENT_003_VELOCITY_NUDGING_TIMESCALES = 3, 360
