@@ -24,7 +24,7 @@ lst_file = []
 #for year in lst_year:
 #    year = np.str(year)
 #lst = subprocess.getoutput('ls clima/*.nc')
-lst = subprocess.getoutput('ls prog.nc')
+lst = subprocess.getoutput('ls prog_new.nc')
 lst = lst.split()
 lst_file = lst_file + lst
 
@@ -51,6 +51,7 @@ for file in lst_file:
     ntim = len(time)
     for it in range(ntim):
         fig = plt.figure()
+        plt.axes().set_aspect('equal', 'datalim')
         aice = nc.variables["e"][it,0,:,:]
         time = nc.variables["time"][it]
 #       cs = m.contourf(x, y, aice, levels=levels, cmap=cmap)
