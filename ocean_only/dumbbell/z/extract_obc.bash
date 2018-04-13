@@ -1,6 +1,5 @@
-source ~/ifort
+#!/bin/bash
 
-#ncra -O -d Time,360, prog.nc prog_late.nc
 ncks -O -d Time,360, prog.nc prog_late.nc
 ncks -O -d xq,41,41 -v u prog_late.nc west.nc
 ncks -d xh,41,41 -v SSH -A  prog_late.nc west.nc
