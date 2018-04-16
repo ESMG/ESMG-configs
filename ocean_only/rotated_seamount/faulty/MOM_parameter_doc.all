@@ -1,13 +1,6 @@
 ! This file was written by the model and records all non-layout or debugging parameters used at run-time.
 
 ! === module MOM ===
-VERBOSITY = 2                   ! default = 2
-                                ! Integer controlling level of messaging
-                                !   0 = Only FATAL messages
-                                !   2 = Only FATAL, WARNING, NOTE [default]
-                                !   9 = All)
-DO_UNIT_TESTS = False           !   [Boolean] default = False
-                                ! If True, exercises unit tests at model start up.
 SPLIT = True                    !   [Boolean] default = True
                                 ! Use the split time stepping if true.
 CALC_RHO_FOR_SEA_LEVEL = False  !   [Boolean] default = False
@@ -61,11 +54,6 @@ BATHYMETRY_AT_VEL = False       !   [Boolean] default = False
                                 ! If true, there are separate values for the basin depths
                                 ! at velocity points.  Otherwise the effects of topography
                                 ! are entirely determined from thickness points.
-DEBUG = False                   !   [Boolean] default = False
-                                ! If true, write out verbose debugging data.
-DEBUG_TRUNCATIONS = False       !   [Boolean] default = False
-                                ! If true, calculate all diagnostics that are useful for
-                                ! debugging truncations.
 DT = 900.0                      !   [s]
                                 ! The (baroclinic) dynamics time step.  The time-step that
                                 ! is actually used will be an integer fraction of the
@@ -163,12 +151,6 @@ NJGLOBAL = 44                   !
                                 ! The total number of thickness grid points in the
                                 ! y-direction in the physical domain. With STATIC_MEMORY_
                                 ! this is set in MOM_memory.h at compile time.
-DEBUG_CHKSUMS = False           !   [Boolean] default = False
-                                ! If true, checksums are performed on arrays in the
-                                ! various vec_chksum routines.
-DEBUG_REDUNDANT = False         !   [Boolean] default = False
-                                ! If true, debug redundant data points during calls to
-                                ! the various vec_chksum routines.
 
 ! === module MOM_hor_index ===
 ! Sets the horizontal array index types.
@@ -342,3 +324,24 @@ OBC_SEGMENT_022 = "J=20,I=43:42,FLATHER, OBLIQUE" !
                                 ! Documentation needs to be dynamic?????
 OBC_SEGMENT_023 = "I=42,J=20:28,FLATHER, OBLIQUE" !
                                 ! Documentation needs to be dynamic?????
+OBC_SEGMENT_024 = "J=28,I=42:41,FLATHER, OBLIQUE" !
+                                ! Documentation needs to be dynamic?????
+OBC_SEGMENT_025 = "I=41,J=28:36,FLATHER, OBLIQUE" !
+                                ! Documentation needs to be dynamic?????
+OBC_SEGMENT_026 = "J=36,I=41:40,FLATHER, OBLIQUE" !
+                                ! Documentation needs to be dynamic?????
+OBC_SEGMENT_027 = "I=40,J=36:44,FLATHER, OBLIQUE" !
+                                ! Documentation needs to be dynamic?????
+OBC_SEGMENT_028 = "J=44,I=40:32,FLATHER, OBLIQUE" !
+                                ! Documentation needs to be dynamic?????
+OBC_SEGMENT_029 = "I=32,J=44:43,FLATHER, OBLIQUE" !
+                                ! Documentation needs to be dynamic?????
+OBC_SEGMENT_030 = "J=43,I=32:24,FLATHER, OBLIQUE" !
+                                ! Documentation needs to be dynamic?????
+OBC_SEGMENT_031 = "I=24,J=43:42,FLATHER, OBLIQUE" !
+                                ! Documentation needs to be dynamic?????
+OBC_SEGMENT_032 = "J=42,I=24:16,FLATHER, OBLIQUE" !
+                                ! Documentation needs to be dynamic?????
+OBC_SEGMENT_033 = "I=16,J=42:41,FLATHER, OBLIQUE" !
+                                ! Documentation needs to be dynamic?????
+OBC_SEGMENT_034 = "J=41,I=16:8,FLATHER, OBLIQUE" !
