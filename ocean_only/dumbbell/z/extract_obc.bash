@@ -1,4 +1,6 @@
 #!/bin/bash
+# Extract boundary conditions for the child domain from the output of
+# the parent domain.
 
 ncks -O -d Time,360, prog.nc prog_late.nc
 ncks -O -d xq,41,41 -v u prog_late.nc west.nc
