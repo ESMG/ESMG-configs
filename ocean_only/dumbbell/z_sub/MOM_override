@@ -15,8 +15,8 @@ DUMBBELL_SPONGE_TIME_SCALE = 8.64e4
 #override DUMBBELL_S_RANGE = 0.0
 ! === OBC options ===
 OBC_NUMBER_OF_SEGMENTS = 2      ! [Integer] The number of open boundary segments.
-OBC_SEGMENT_001 = "I=0,J=N:0,FLATHER,ORLANSKI,NUDGED"
-OBC_SEGMENT_002 = "I=N,J=0:N,FLATHER,ORLANSKI,NUDGED"
+OBC_SEGMENT_001 = "I=0,J=N:0,FLATHER,OBLIQUE,NUDGED"
+OBC_SEGMENT_002 = "I=N,J=0:N,FLATHER,OBLIQUE,NUDGED"
 OBC_SEGMENT_001_DATA = "U=file:west.nc(u),V=file:west.nc(v),SSH=file:west.nc(zeta),SALT=file:west.nc(salt)"
 OBC_SEGMENT_002_DATA = "U=file:east.nc(u),V=file:east.nc(v),SSH=file:east.nc(zeta),SALT=file:east.nc(salt)"
 OBC_SEGMENT_001_VELOCITY_NUDGING_TIMESCALES = 2, 200

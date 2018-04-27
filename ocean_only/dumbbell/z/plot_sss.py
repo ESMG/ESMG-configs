@@ -24,42 +24,65 @@ lst_file = []
 #for year in lst_year:
 #    year = np.str(year)
 #lst = subprocess.getoutput('ls clima/*.nc')
-lst = subprocess.getoutput('ls prog_new.nc')
+lst = subprocess.getoutput('ls prog.nc')
 lst = lst.split()
 lst_file = lst_file + lst
 
 #grd = pyroms_toolbox.BGrid_GFDL.get_nc_BGrid_GFDL('prog.nc')
 grd = netCDF4.Dataset('ocean_geometry.nc', "r")
+grd2 = netCDF4.Dataset('../z_sub/ocean_geometry.nc', "r")
 
 clat = grd.variables["geolat"][:]
 clon = grd.variables["geolon"][:]
+clat2 = grd2.variables["geolat"][:]
+clon2 = grd2.variables["geolon"][:]
 
 #m = Basemap(llcrnrlon=-165.5, llcrnrlat=70.3, urcrnrlon=-128.0, urcrnrlat=71.0,\
 #            rsphere=(6378137.00,6356752.3142),\
 #            resolution='h', projection='lcc',\
 #            lat_0=65., lat_1=70.0, lon_0=-162.)
 #x, y = m(clon, clat)
-levels = np.arange(-0.1, 0.6, 0.01)
-cmap = plt.cm.get_cmap("coolwarm")
+levels = np.arange(34, 36, 0.04)
+cmap = plt.cm.get_cmap("plasma_r")
 
 for file in lst_file:
     print("Plotting "+file)
 #   m.drawmapboundary(fill_color='0.3')
 #   m.drawcoastlines()
     nc = netCDF4.Dataset(file, "r")
-    time = nc.variables["time"][:]
+    nc2 = netCDF4.Dataset("../z_sub/"+file, "r")
+    nc3 = netCDF4.Dataset("../z_sub_clamp/"+file, "r")
+    time = nc.variables["Time"][:]
     ntim = len(time)
+#   for it in range(10):
     for it in range(ntim):
-        fig = plt.figure()
-        plt.axes().set_aspect('equal', 'datalim')
-        ssh = nc.variables["e"][it,0,:,:]
-        time = nc.variables["time"][it]
+        fig = plt.figure(figsize=(8,6))
+        ax = fig.add_subplot(311)
+        ax.set_aspect('equal')
+        ax.axis(xmin=-300,xmax=300)
+        ssh = nc.variables["salt"][it,0,:,:]
+        time = nc.variables["Time"][it]
 #       cs = m.contourf(x, y, ssh, levels=levels, cmap=cmap)
 #       csa = m.contour(x, y, ssh, levels=levels, linewidths=(0.5,))
-        cs = plt.contourf(clon, clat, ssh, levels=levels, cmap=cmap)
-        plt.title('Surface Elevation')
+        cs = plt.contourf(clon, clat, ssh, levels=levels, cmap=cmap, extend='both')
+        plt.title('Surface Salinity')
 #       csa = plt.contour(clon, clat, ssh, levels=levels, linewidths=(0.5,))
-        plt.colorbar(orientation='horizontal')
+
+        ax2 = fig.add_subplot(312)
+        ax2.set_aspect('equal')
+        ax2.axis(xmin=-300,xmax=300)
+        ssh2 = nc2.variables["salt"][it,0,:,:]
+        cs2 = plt.contourf(clon2, clat2, ssh2, levels=levels, cmap=cmap, extend='both')
+
+        ax3 = fig.add_subplot(313)
+        ax3.set_aspect('equal')
+        ax3.axis(xmin=-300,xmax=300)
+        ssh3 = nc3.variables["salt"][it,0,:,:]
+        cs3 = plt.contourf(clon2, clat2, ssh3, levels=levels, cmap=cmap, extend='both')
+
+        cbaxes = fig.add_axes([0.1, 0.05, 0.8, 0.03])
+        plt.colorbar(orientation='horizontal', cax=cbaxes)
+
         fig.savefig('movie/ssh_%(number)03d.png'%{'number': it})
         plt.close()
 

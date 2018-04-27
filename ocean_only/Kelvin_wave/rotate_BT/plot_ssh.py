@@ -24,7 +24,7 @@ lst_file = []
 #for year in lst_year:
 #    year = np.str(year)
 #lst = subprocess.getoutput('ls clima/*.nc')
-lst = subprocess.getoutput('ls prog_new.nc')
+lst = subprocess.getoutput('ls prog.nc')
 lst = lst.split()
 lst_file = lst_file + lst
 
@@ -39,7 +39,7 @@ clon = grd.variables["geolon"][:]
 #            resolution='h', projection='lcc',\
 #            lat_0=65., lat_1=70.0, lon_0=-162.)
 #x, y = m(clon, clat)
-levels = np.arange(-0.1, 0.6, 0.01)
+levels = np.arange(-0.7, 0.7, 0.01)
 cmap = plt.cm.get_cmap("coolwarm")
 
 for file in lst_file:
