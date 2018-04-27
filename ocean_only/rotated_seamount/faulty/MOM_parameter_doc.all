@@ -92,10 +92,9 @@ INTERPOLATE_P_SURF = False      !   [Boolean] default = False
 DTBT_RESET_PERIOD = 900.0       !   [s] default = 900.0
                                 ! The period between recalculations of DTBT (if DTBT <= 0).
                                 ! If DTBT_RESET_PERIOD is negative, DTBT is set based
-                                ! only on information available at initialization.  If
-                                ! dynamic, DTBT will be set at least every forcing time
-                                ! step, and if 0, every dynamics time step.  The default is
-                                ! set by DT_THERM.  This is only used if SPLIT is true.
+                                ! only on information available at initialization.  If 0,
+                                ! DTBT will be set every dynamics time step. The default
+                                ! is set by DT_THERM.  This is only used if SPLIT is true.
 FRAZIL = False                  !   [Boolean] default = False
                                 ! If true, water freezes if it gets too cold, and the
                                 ! the accumulated heat deficit is returned in the
@@ -134,6 +133,11 @@ WRITE_GEOM = 1                  ! default = 1
                                 ! If =1, write the geometry and vertical grid files only for
                                 ! a new simulation. If =2, always write the geometry and
                                 ! vertical grid files. Other values are invalid.
+ENSEMBLE_OCEAN = False          !   [Boolean] default = False
+                                ! If False, The model is being run in serial mode as a single realization.
+                                ! If True, The current model realization is part of a larger ensemble
+                                ! and at the end of step MOM, we will perform a gather of the ensemble
+                                ! members for statistical evaluation and/or data assimilation.
 
 ! === module MOM_domains ===
 REENTRANT_X = False             !   [Boolean] default = True
@@ -339,9 +343,3 @@ OBC_SEGMENT_029 = "I=32,J=44:43,FLATHER, OBLIQUE" !
 OBC_SEGMENT_030 = "J=43,I=32:24,FLATHER, OBLIQUE" !
                                 ! Documentation needs to be dynamic?????
 OBC_SEGMENT_031 = "I=24,J=43:42,FLATHER, OBLIQUE" !
-                                ! Documentation needs to be dynamic?????
-OBC_SEGMENT_032 = "J=42,I=24:16,FLATHER, OBLIQUE" !
-                                ! Documentation needs to be dynamic?????
-OBC_SEGMENT_033 = "I=16,J=42:41,FLATHER, OBLIQUE" !
-                                ! Documentation needs to be dynamic?????
-OBC_SEGMENT_034 = "J=41,I=16:8,FLATHER, OBLIQUE" !

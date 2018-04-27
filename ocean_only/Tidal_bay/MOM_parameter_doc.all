@@ -92,10 +92,9 @@ INTERPOLATE_P_SURF = False      !   [Boolean] default = False
 DTBT_RESET_PERIOD = -1.0        !   [s] default = 3600.0
                                 ! The period between recalculations of DTBT (if DTBT <= 0).
                                 ! If DTBT_RESET_PERIOD is negative, DTBT is set based
-                                ! only on information available at initialization.  If
-                                ! dynamic, DTBT will be set at least every forcing time
-                                ! step, and if 0, every dynamics time step.  The default is
-                                ! set by DT_THERM.  This is only used if SPLIT is true.
+                                ! only on information available at initialization.  If 0,
+                                ! DTBT will be set every dynamics time step. The default
+                                ! is set by DT_THERM.  This is only used if SPLIT is true.
 FIRST_DIRECTION = 0             ! default = 0
                                 ! An integer that indicates which direction goes first
                                 ! in parts of the code that use directionally split
@@ -113,6 +112,11 @@ WRITE_GEOM = 1                  ! default = 1
                                 ! If =1, write the geometry and vertical grid files only for
                                 ! a new simulation. If =2, always write the geometry and
                                 ! vertical grid files. Other values are invalid.
+ENSEMBLE_OCEAN = False          !   [Boolean] default = False
+                                ! If False, The model is being run in serial mode as a single realization.
+                                ! If True, The current model realization is part of a larger ensemble
+                                ! and at the end of step MOM, we will perform a gather of the ensemble
+                                ! members for statistical evaluation and/or data assimilation.
 
 ! === module MOM_domains ===
 REENTRANT_X = False             !   [Boolean] default = True
