@@ -17,10 +17,9 @@ DT = 5.0                        !   [s]
 DTBT_RESET_PERIOD = -1.0        !   [s] default = 5.0
                                 ! The period between recalculations of DTBT (if DTBT <= 0).
                                 ! If DTBT_RESET_PERIOD is negative, DTBT is set based
-                                ! only on information available at initialization.  If
-                                ! dynamic, DTBT will be set at least every forcing time
-                                ! step, and if 0, every dynamics time step.  The default is
-                                ! set by DT_THERM.  This is only used if SPLIT is true.
+                                ! only on information available at initialization.  If 0,
+                                ! DTBT will be set every dynamics time step. The default
+                                ! is set by DT_THERM.  This is only used if SPLIT is true.
 
 ! === module MOM_domains ===
 REENTRANT_X = False             !   [Boolean] default = True
@@ -80,6 +79,7 @@ TOPO_CONFIG = "flat"            !
                                 !       DOME2D gravity current/overflow test case.
                                 !     Kelvin - flat but with rotated land mask.
                                 !     seamount - Gaussian bump for spontaneous motion test case.
+                                !     dumbbell - Sloshing channel with reservoirs on both ends.
                                 !     shelfwave - exponential slope for shelfwave test case.
                                 !     supercritical - flat but with 8.95 degree land mask.
                                 !     Phillips - ACC-like idealized topography used in the Phillips config.
@@ -92,14 +92,10 @@ MAXIMUM_DEPTH = 1.0             !   [m]
 ! Controls where open boundaries are located, what kind of boundary condition to impose, and what data to apply, if any.
 OBC_NUMBER_OF_SEGMENTS = 2      ! default = 0
                                 ! The number of open boundary segments.
-OBC_FREESLIP_VORTICITY = True   !   [Boolean] default = False
-                                ! If true, sets the normal gradient of tangential velocity to
-                                ! zero in the relative vorticity on open boundaries. This cannot
-                                ! be true if OBC_ZERO_VORTICITY is True.
-OBC_FREESLIP_STRAIN = True      !   [Boolean] default = False
-                                ! If true, sets the normal gradient of tangential velocity to
-                                ! zero in the strain use in the stress tensor on open boundaries. This cannot
-                                ! be true if OBC_ZERO_STRAIN is True.
+OBC_ZERO_VORTICITY = True       !   [Boolean] default = False
+                                ! If true, sets relative vorticity to zero on open boundaries.
+OBC_ZERO_STRAIN = True          !   [Boolean] default = False
+                                ! If true, sets the strain used in the stress tensor to zero on open boundaries.
 OBC_SEGMENT_001 = "I=N,J=0:N,GRADIENT" !
                                 ! Documentation needs to be dynamic?????
 OBC_SEGMENT_002 = "I=0,J=N:0,SIMPLE" !
@@ -166,9 +162,10 @@ THICKNESS_CONFIG = "uniform"    !
                                 !       densities. This is not yet implemented.
                                 !     circle_obcs - the circle_obcs test case is used.
                                 !     DOME2D - 2D version of DOME initialization.
-                                !     adjustment2d - TBD AJA.
-                                !     sloshing - TBD AJA.
-                                !     seamount - TBD AJA.
+                                !     adjustment2d - 2D lock exchange thickness ICs.
+                                !     sloshing - sloshing gravity thickness ICs.
+                                !     seamount - no motion test with seamount ICs.
+                                !     dumbbell - sloshing channel ICs.
                                 !     soliton - Equatorial Rossby soliton.
                                 !     rossby_front - a mixed layer front in thermal wind balance.
                                 !     USER - call a user modified routine.
@@ -324,6 +321,18 @@ DTBT = -0.9                     !   [s or nondim] default = -0.98
 ! === module MOM_neutral_diffusion ===
 ! This module implements neutral diffusion of tracers
 
+! === module MOM_sum_output ===
+DATE_STAMPED_STDOUT = False     !   [Boolean] default = True
+                                ! If true, use dates (not times) in messages to stdout
+TIMEUNIT = 1.0                  !   [s] default = 8.64E+04
+                                ! The time unit in seconds a number of input fields
+DEPTH_LIST_MIN_INC = 1.0E-06    !   [m] default = 1.0E-10
+                                ! The minimum increment between the depths of the
+                                ! entries in the depth-list file.
+ENERGYSAVEDAYS = 1.0            !   [seconds] default = 8.64E+04
+                                ! The interval in units of TIMEUNIT between saves of the
+                                ! energies of the run and other globally summed diagnostics.
+
 ! === module MOM_surface_forcing ===
 VARIABLE_WINDS = False          !   [Boolean] default = True
                                 ! If true, the winds vary in time after the initialization.
@@ -341,17 +350,6 @@ WIND_CONFIG = "zero"            !
 
 ! === module MOM_restart ===
 
-! === module MOM_sum_output ===
-DATE_STAMPED_STDOUT = False     !   [Boolean] default = True
-                                ! If true, use dates (not times) in messages to stdout
-TIMEUNIT = 1.0                  !   [s] default = 8.64E+04
-                                ! The time unit in seconds a number of input fields
-DEPTH_LIST_MIN_INC = 1.0E-06    !   [m] default = 1.0E-10
-                                ! The minimum increment between the depths of the
-                                ! entries in the depth-list file.
-
-! === module MOM_write_cputime ===
-
 ! === module MOM_main (MOM_driver) ===
 DAYMAX = 180.0                  !   [seconds]
                                 ! The final time of the whole simulation, in units of
@@ -362,8 +360,7 @@ RESTINT = 365.0                 !   [seconds] default = 0.0
                                 ! The interval between saves of the restart file in units
                                 ! of TIMEUNIT.  Use 0 (the default) to not save
                                 ! incremental restart files at all.
-ENERGYSAVEDAYS = 1.0            !   [seconds] default = 5.0
-                                ! The interval in units of TIMEUNIT between saves of the
-                                ! energies of the run and other globally summed diagnostics.
+
+! === module MOM_write_cputime ===
 
 ! === module MOM_file_parser ===

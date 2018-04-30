@@ -23,3 +23,5 @@ INPUT
 runmpi.chinook*
 CCS1*
 nodes
+movie*
+*.png
