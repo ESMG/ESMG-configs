@@ -453,7 +453,7 @@ MAXCPU = 2.88E+04               !   [wall-clock seconds] default = -1.0
                                 ! factor of the number of processors used.
 
 ! === module MOM_main (MOM_driver) ===
-DT_FORCING = 1800.0             !   [s] default = 900.0
+DT_FORCING = 900.0             !   [s] default = 900.0
                                 ! The time step for changing forcing, coupling with other
                                 ! components, or potentially writing certain diagnostics.
                                 ! The default value is given by DT.
