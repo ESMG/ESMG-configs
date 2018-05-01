@@ -466,10 +466,6 @@ WIND_CONFIG = "zero"            !
 ! === module MOM_restart ===
 
 ! === module MOM_main (MOM_driver) ===
-DT_FORCING = 1800.0             !   [s] default = 900.0
-                                ! The time step for changing forcing, coupling with other
-                                ! components, or potentially writing certain diagnostics.
-                                ! The default value is given by DT.
 DAYMAX = 30.0                   !   [days]
                                 ! The final time of the whole simulation, in units of
                                 ! TIMEUNIT seconds.  This also sets the potential end

@@ -24,7 +24,7 @@ lst_file = []
 #for year in lst_year:
 #    year = np.str(year)
 #lst = subprocess.getoutput('ls clima/*.nc')
-lst = subprocess.getoutput('ls prog.nc')
+lst = subprocess.getoutput('ls prog_fine.nc')
 lst = lst.split()
 lst_file = lst_file + lst
 
@@ -50,12 +50,12 @@ for file in lst_file:
 #   m.drawmapboundary(fill_color='0.3')
 #   m.drawcoastlines()
     nc = netCDF4.Dataset(file, "r")
-    nc2 = netCDF4.Dataset("../z_sub/"+file, "r")
-    nc3 = netCDF4.Dataset("../z_sub_clamp/"+file, "r")
+    nc2 = netCDF4.Dataset("../z_sub/prog_fine_noq.nc", "r")
+    nc3 = netCDF4.Dataset("../z_sub/prog_fine_q2.nc", "r")
     time = nc.variables["Time"][:]
     ntim = len(time)
 #   for it in range(10):
-    for it in range(ntim):
+    for it in range(0,ntim,8):
         fig = plt.figure(figsize=(8,6))
         ax = fig.add_subplot(311)
         ax.set_aspect('equal')
@@ -83,7 +83,7 @@ for file in lst_file:
         cbaxes = fig.add_axes([0.1, 0.05, 0.8, 0.03])
         plt.colorbar(orientation='horizontal', cax=cbaxes)
 
-        fig.savefig('movie/ssh_%(number)03d.png'%{'number': it})
+        fig.savefig('movie/ssh_%(number)04d.png'%{'number': it})
         plt.close()
 
     nc.close()

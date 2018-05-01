@@ -271,6 +271,10 @@ OBC_FREESLIP_VORTICITY = True   !   [Boolean] default = False
                                 ! If true, sets the normal gradient of tangential velocity to
                                 ! zero in the relative vorticity on open boundaries. This cannot
                                 ! be true if OBC_ZERO_VORTICITY is True.
+OBC_COMPUTED_VORTICITY = False  !   [Boolean] default = False
+                                ! If true, uses the external values of tangential velocity
+                                ! in the relative vorticity on open boundaries. This cannot
+                                ! be true if OBC_ZERO_VORTICITY or OBC_FREESLIP_VORTICITY is True.
 OBC_ZERO_STRAIN = False         !   [Boolean] default = False
                                 ! If true, sets the strain used in the stress tensor to zero on open boundaries.
 OBC_FREESLIP_STRAIN = True      !   [Boolean] default = False
@@ -337,9 +341,3 @@ OBC_SEGMENT_026 = "J=36,I=41:40,FLATHER, OBLIQUE" !
 OBC_SEGMENT_027 = "I=40,J=36:44,FLATHER, OBLIQUE" !
                                 ! Documentation needs to be dynamic?????
 OBC_SEGMENT_028 = "J=44,I=40:32,FLATHER, OBLIQUE" !
-                                ! Documentation needs to be dynamic?????
-OBC_SEGMENT_029 = "I=32,J=44:43,FLATHER, OBLIQUE" !
-                                ! Documentation needs to be dynamic?????
-OBC_SEGMENT_030 = "J=43,I=32:24,FLATHER, OBLIQUE" !
-                                ! Documentation needs to be dynamic?????
-OBC_SEGMENT_031 = "I=24,J=43:42,FLATHER, OBLIQUE" !

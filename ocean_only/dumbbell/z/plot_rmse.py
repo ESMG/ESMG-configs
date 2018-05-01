@@ -22,20 +22,24 @@ clon = grd.variables["geolon"][:,40:80]
 clat2 = grd2.variables["geolat"][:]
 clon2 = grd2.variables["geolon"][:]
 
-file1 = 'prog.nc'
-file2 = '../z_sub/prog_default.nc'
-file3 = '../z_sub/prog_nonudge.nc'
-file4 = '../z_sub/prog_nores.nc'
-file5 = '../z_sub_clamp/prog.nc'
+file1 = 'prog_fine.nc'
+file2 = '../z_sub/prog_fine_noq.nc'
+file3 = '../z_sub/prog_fine_q.nc'
+file4 = '../z_sub/prog_fine_q2.nc'
+file5 = '../z_sub_clamp/prog_fine_noq.nc'
+file6 = '../z_sub_clamp/prog_fine_q.nc'
+file7 = '../z_sub_clamp/prog_fine_q2.nc'
 
 nc1 = netCDF4.Dataset(file1, "r")
 nc2 = netCDF4.Dataset(file2, "r")
 nc3 = netCDF4.Dataset(file3, "r")
 nc4 = netCDF4.Dataset(file4, "r")
 nc5 = netCDF4.Dataset(file5, "r")
+nc6 = netCDF4.Dataset(file6, "r")
+nc7 = netCDF4.Dataset(file7, "r")
 time = nc1.variables["Time"][:]
 ntim = len(time)
-stats = np.zeros((4, ntim))
+stats = np.zeros((6, ntim))
 #   for it in range(10):
 fig = plt.figure(figsize=(8,6))
 for it in range(ntim):
@@ -44,10 +48,14 @@ for it in range(ntim):
     ssh3 = nc3.variables["salt"][it,:,:,:]
     ssh4 = nc4.variables["salt"][it,:,:,:]
     ssh5 = nc5.variables["salt"][it,:,:,:]
+    ssh6 = nc6.variables["salt"][it,:,:,:]
+    ssh7 = nc7.variables["salt"][it,:,:,:]
     stats[0,it] = rmse(ssh2, ssh1)
     stats[1,it] = rmse(ssh3, ssh1)
     stats[2,it] = rmse(ssh4, ssh1)
     stats[3,it] = rmse(ssh5, ssh1)
+    stats[4,it] = rmse(ssh6, ssh1)
+    stats[5,it] = rmse(ssh7, ssh1)
 
 
 nc1.close()
@@ -55,12 +63,16 @@ nc2.close()
 nc3.close()
 nc4.close()
 nc5.close()
+nc6.close()
+nc7.close()
 
 plt.title('Salinity RMSE')
-plt.plot(time, stats[0,:], 'r--', label = 'default')
-plt.plot(time, stats[1,:], 'b-.', label = 'no nudging')
-plt.plot(time, stats[2,:], 'g:', label = 'no reservoirs')
-plt.plot(time, stats[3,:], 'k-', label = 'clamped')
+plt.plot(time, stats[0,:], 'r--', label = 'oblique')
+plt.plot(time, stats[1,:], 'b--', label = 'comp_q_old_init')
+plt.plot(time, stats[2,:], 'g--', label = 'comp_q')
+plt.plot(time, stats[3,:], 'r-', label = 'clamped')
+plt.plot(time, stats[4,:], 'b-', label = 'clamped_q_old_init')
+plt.plot(time, stats[5,:], 'g-', label = 'clamped_q')
 plt.legend(loc=1)
 fig.savefig('stats_plot.png')
 plt.close()
