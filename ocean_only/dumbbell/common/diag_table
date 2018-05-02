@@ -1,6 +1,6 @@
 "Dumbbell experiment"
 1 1 1 0 0 0
-"prog",     15,"minutes",1,"days","Time"
+"prog",     10,"minutes",1,"days","Time"
 
 #This is the field section of the diag_table.
 
@@ -10,8 +10,10 @@
 "ocean_model","u","u","prog","all",.false.,"none",2
 "ocean_model","v","v","prog","all",.false.,"none",2
 "ocean_model","h","h","prog","all",.false.,"none",1
+"ocean_model","p_surf","p_surf","prog","all",.false.,"none",1
 "ocean_model","e","e","prog","all",.false.,"none",2
 "ocean_model","SSH","SSH","prog","all",.false.,"none",2
+"ocean_model","RV","RV","prog","all",.false.,"none",2
 "ocean_model","salt","salt","prog","all",.false.,"none",2
 
 
