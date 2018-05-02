@@ -111,7 +111,7 @@ OBC_FREESLIP_VORTICITY = True   !   [Boolean] default = False
 OBC_FREESLIP_STRAIN = True      !   [Boolean] default = False
                                 ! If true, sets the normal gradient of tangential velocity to
                                 ! zero in the strain use in the stress tensor on open boundaries. This cannot
-                                ! be true if OBC_ZERO_STRAIN is True.
+                                ! be true if OBC_ZERO_STRAIN or OBC_COMPUTED_STRAIN is True.
 MASK_OUTSIDE_OBCS = True        !   [Boolean] default = False
                                 ! If true, set the areas outside open boundaries to be land.
 OBC_SEGMENT_001 = "I=0,J=30:25,FLATHER" !
