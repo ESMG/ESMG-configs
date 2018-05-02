@@ -50,8 +50,8 @@ for file in lst_file:
 #   m.drawmapboundary(fill_color='0.3')
 #   m.drawcoastlines()
     nc = netCDF4.Dataset(file, "r")
-    nc2 = netCDF4.Dataset("../z_sub/prog_fine_noq.nc", "r")
-    nc3 = netCDF4.Dataset("../z_sub/prog_fine_q2.nc", "r")
+    nc2 = netCDF4.Dataset("../z_sub/prog_fine_q2.nc", "r")
+    nc3 = netCDF4.Dataset("../z_sub/prog_comp_strain.nc", "r")
     time = nc.variables["Time"][:]
     ntim = len(time)
 #   for it in range(10):
@@ -65,6 +65,8 @@ for file in lst_file:
 #       cs = m.contourf(x, y, ssh, levels=levels, cmap=cmap)
 #       csa = m.contour(x, y, ssh, levels=levels, linewidths=(0.5,))
         cs = plt.contourf(clon, clat, ssh, levels=levels, cmap=cmap, extend='both')
+        plt.plot([-100,-100], [-50,50], 'b-')
+        plt.plot([100,100], [-50,50], 'b-')
         plt.title('Surface Salinity')
 #       csa = plt.contour(clon, clat, ssh, levels=levels, linewidths=(0.5,))
 
@@ -83,6 +85,7 @@ for file in lst_file:
         cbaxes = fig.add_axes([0.1, 0.05, 0.8, 0.03])
         plt.colorbar(orientation='horizontal', cax=cbaxes)
 
+        print('printing frame:', it)
         fig.savefig('movie/ssh_%(number)04d.png'%{'number': it})
         plt.close()
 
