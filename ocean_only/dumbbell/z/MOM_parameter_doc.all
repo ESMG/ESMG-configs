@@ -1578,7 +1578,7 @@ LA_DEPTH_RATIO = 0.04           !   [nondim] default = 0.04
                                 !  Lanmguir number calculation, where La = sqrt(ust/Stokes).
 
 ! === module MOM_main (MOM_driver) ===
-DT_FORCING = 1800.0             !   [s] default = 900.0
+DT_FORCING = 600.0              !   [s] default = 600.0
                                 ! The time step for changing forcing, coupling with other
                                 ! components, or potentially writing certain diagnostics.
                                 ! The default value is given by DT.
