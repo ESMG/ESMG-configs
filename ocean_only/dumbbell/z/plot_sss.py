@@ -50,12 +50,12 @@ for file in lst_file:
 #   m.drawmapboundary(fill_color='0.3')
 #   m.drawcoastlines()
     nc = netCDF4.Dataset(file, "r")
-    nc2 = netCDF4.Dataset("../z_sub/prog_comp.nc", "r")
-    nc3 = netCDF4.Dataset("../z_sub_clamp/prog_comp.nc", "r")
+    nc2 = netCDF4.Dataset("../z_sub_clamp/prog_comp.nc", "r")
+    nc3 = netCDF4.Dataset("../z_sub_clamp/prog_read_vort.nc", "r")
     time = nc.variables["Time"][:]
     ntim = len(time)
 #   for it in range(10):
-    for it in range(0,ntim,8):
+    for it in range(0,ntim,20):
         fig = plt.figure(figsize=(8,6))
         ax = fig.add_subplot(311)
         ax.set_aspect('equal')

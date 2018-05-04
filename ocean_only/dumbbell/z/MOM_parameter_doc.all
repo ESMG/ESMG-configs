@@ -54,12 +54,12 @@ BATHYMETRY_AT_VEL = False       !   [Boolean] default = False
                                 ! If true, there are separate values for the basin depths
                                 ! at velocity points.  Otherwise the effects of topography
                                 ! are entirely determined from thickness points.
-DT = 600.0                      !   [s]
+DT = 300.0                      !   [s]
                                 ! The (baroclinic) dynamics time step.  The time-step that
                                 ! is actually used will be an integer fraction of the
                                 ! forcing time-step (DT_FORCING in ocean-only mode or the
                                 ! coupling timestep in coupled mode.)
-DT_THERM = 600.0                !   [s] default = 600.0
+DT_THERM = 300.0                !   [s] default = 300.0
                                 ! The thermodynamic and tracer advection time step.
                                 ! Ideally DT_THERM should be an integer multiple of DT
                                 ! and less than the forcing or coupling time-step, unless
@@ -1578,7 +1578,7 @@ LA_DEPTH_RATIO = 0.04           !   [nondim] default = 0.04
                                 !  Lanmguir number calculation, where La = sqrt(ust/Stokes).
 
 ! === module MOM_main (MOM_driver) ===
-DT_FORCING = 600.0              !   [s] default = 600.0
+DT_FORCING = 300.0              !   [s] default = 300.0
                                 ! The time step for changing forcing, coupling with other
                                 ! components, or potentially writing certain diagnostics.
                                 ! The default value is given by DT.

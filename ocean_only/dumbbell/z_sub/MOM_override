@@ -15,14 +15,14 @@ DUMBBELL_SPONGE_TIME_SCALE = 8.64e4
 !!#override DUMBBELL_S_RANGE = 0.0
 ! === OBC options ===
 OBC_NUMBER_OF_SEGMENTS = 2      ! [Integer] The number of open boundary segments.
-OBC_SEGMENT_001 = "I=0,J=N:0,FLATHER,OBLIQUE,NUDGED"
-OBC_SEGMENT_002 = "I=N,J=0:N,FLATHER,OBLIQUE,NUDGED"
-OBC_SEGMENT_001_DATA = "U=file:west.nc(u),V=file:west.nc(v),SSH=file:west.nc(zeta),SALT=file:west.nc(salt)"
-OBC_SEGMENT_002_DATA = "U=file:east.nc(u),V=file:east.nc(v),SSH=file:east.nc(zeta),SALT=file:east.nc(salt)"
-OBC_SEGMENT_001_VELOCITY_NUDGING_TIMESCALES = 2, 200
-OBC_SEGMENT_002_VELOCITY_NUDGING_TIMESCALES = 2, 200
-OBC_TRACER_RESERVOIR_LENGTH_SCALE_OUT = 5000
-OBC_TRACER_RESERVOIR_LENGTH_SCALE_IN = 5000
+OBC_SEGMENT_001 = "I=0,J=N:0,FLATHER,ORLANSKI,NUDGED"
+OBC_SEGMENT_002 = "I=N,J=0:N,FLATHER,ORLANSKI,NUDGED"
+OBC_SEGMENT_001_DATA = "U=file:west.nc(u),V=file:west.nc(v),SSH=file:west.nc(zeta),SALT=file:west.nc(salt),DVDX=file:west.nc(dvdx)"
+OBC_SEGMENT_002_DATA = "U=file:east.nc(u),V=file:east.nc(v),SSH=file:east.nc(zeta),SALT=file:east.nc(salt),DVDX=file:east.nc(dvdx)"
+OBC_SEGMENT_001_VELOCITY_NUDGING_TIMESCALES = 0.25, 200
+OBC_SEGMENT_002_VELOCITY_NUDGING_TIMESCALES = 0.25, 200
+OBC_TRACER_RESERVOIR_LENGTH_SCALE_OUT = 0
+OBC_TRACER_RESERVOIR_LENGTH_SCALE_IN = 0
 OBC_COMPUTED_VORTICITY = True   !   [Boolean] default = False
 OBC_COMPUTED_STRAIN = True      !   [Boolean] default = False
 OBC_ZERO_BIHARMONIC = True      !   [Boolean] default = False
