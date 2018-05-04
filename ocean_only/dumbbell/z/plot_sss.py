@@ -24,7 +24,7 @@ lst_file = []
 #for year in lst_year:
 #    year = np.str(year)
 #lst = subprocess.getoutput('ls clima/*.nc')
-lst = subprocess.getoutput('ls prog_fine.nc')
+lst = subprocess.getoutput('ls prog.nc')
 lst = lst.split()
 lst_file = lst_file + lst
 
@@ -50,8 +50,8 @@ for file in lst_file:
 #   m.drawmapboundary(fill_color='0.3')
 #   m.drawcoastlines()
     nc = netCDF4.Dataset(file, "r")
-    nc2 = netCDF4.Dataset("../z_sub/prog_fine_q2.nc", "r")
-    nc3 = netCDF4.Dataset("../z_sub/prog_comp_strain.nc", "r")
+    nc2 = netCDF4.Dataset("../z_sub/prog_comp.nc", "r")
+    nc3 = netCDF4.Dataset("../z_sub_clamp/prog_comp.nc", "r")
     time = nc.variables["Time"][:]
     ntim = len(time)
 #   for it in range(10):
@@ -67,7 +67,7 @@ for file in lst_file:
         cs = plt.contourf(clon, clat, ssh, levels=levels, cmap=cmap, extend='both')
         plt.plot([-100,-100], [-50,50], 'b-')
         plt.plot([100,100], [-50,50], 'b-')
-        plt.title('Surface Salinity')
+        plt.title('Surface salt')
 #       csa = plt.contour(clon, clat, ssh, levels=levels, linewidths=(0.5,))
 
         ax2 = fig.add_subplot(312)
