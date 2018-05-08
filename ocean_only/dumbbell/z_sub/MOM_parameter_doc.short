@@ -105,7 +105,7 @@ MINIMUM_DEPTH = 1.0             !   [m] default = 0.0
 ! Controls where open boundaries are located, what kind of boundary condition to impose, and what data to apply, if any.
 OBC_NUMBER_OF_SEGMENTS = 2      ! default = 0
                                 ! The number of open boundary segments.
-OBC_COMPUTED_VORTICITY = True   !   [Boolean] default = False
+OBC_SPECIFIED_VORTICITY = True  !   [Boolean] default = False
                                 ! If true, uses the external values of tangential velocity
                                 ! in the relative vorticity on open boundaries. This cannot
                                 ! be true if another OBC_XXX_VORTICITY option is True.
