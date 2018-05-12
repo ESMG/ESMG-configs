@@ -8,7 +8,11 @@
 #=========================
 
 "ocean_model","u","u","prog","all",.false.,"none",2
+"ocean_model","uhbt","uhbt","prog","all",.false.,"none",2
+"ocean_model","uh","uh","prog","all",.false.,"none",2
+"ocean_model","uav","uav","prog","all",.false.,"none",2
 "ocean_model","v","v","prog","all",.false.,"none",2
+"ocean_model","vav","vav","prog","all",.false.,"none",2
 "ocean_model","h","h","prog","all",.false.,"none",1
 "ocean_model","p_surf","p_surf","prog","all",.false.,"none",1
 "ocean_model","e","e","prog","all",.false.,"none",2

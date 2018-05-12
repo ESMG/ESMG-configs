@@ -14,15 +14,18 @@ DUMBBELL_SPONGE_TIME_SCALE = 8.64e4
 #override WESTLON = -100
 #override LENLON = 200
 #override NIGLOBAL = 40
+#override LAPLACIAN = True               !   [Boolean] default = False
+#override KH_VEL_SCALE = 0.3             !   [m s-1] default = 0.0
+#override SMAG_BI_CONST = 3.0            !   [nondim] default = 0.0
 !!#override DUMBBELL_S_RANGE = 0.0
 ! === OBC options ===
 OBC_NUMBER_OF_SEGMENTS = 2      ! [Integer] The number of open boundary segments.
 OBC_SEGMENT_001 = "I=0,J=N:0,FLATHER,ORLANSKI,NUDGED,ORLANSKI_TAN,NUDGED_TAN,ORLANSKI_GRAD,NUDGED_GRAD"
 OBC_SEGMENT_002 = "I=N,J=0:N,FLATHER,ORLANSKI,NUDGED,ORLANSKI_TAN,NUDGED_TAN,ORLANSKI_GRAD,NUDGED_GRAD"
-!OBC_SEGMENT_001_DATA = "U=file:../z/west_new.nc(u),V=file:../z/west_new.nc(v),SSH=file:../z/west_new.nc(zeta),SALT=file:../z/west_new.nc(salt),DVDX=file:../z/west_new.nc(dvdx)"
-!OBC_SEGMENT_002_DATA = "U=file:../z/east_new.nc(u),V=file:../z/east_new.nc(v),SSH=file:../z/east_new.nc(zeta),SALT=file:../z/east_new.nc(salt),DVDX=file:../z/east_new.nc(dvdx)"
-OBC_SEGMENT_001_DATA = "U=file:west.nc(u),V=file:west.nc(v),SSH=file:west.nc(zeta),SALT=file:west.nc(salt),DVDX=file:west.nc(dvdx)"
-OBC_SEGMENT_002_DATA = "U=file:east.nc(u),V=file:east.nc(v),SSH=file:east.nc(zeta),SALT=file:east.nc(salt),DVDX=file:east.nc(dvdx)"
+OBC_SEGMENT_001_DATA = "U=file:../z_smooth/west_new.nc(u),V=file:../z_smooth/west_new.nc(v),SSH=file:../z_smooth/west_new.nc(zeta),SALT=file:../z_smooth/west_new.nc(salt),DVDX=file:../z_smooth/west_new.nc(dvdx)"
+OBC_SEGMENT_002_DATA = "U=file:../z_smooth/east_new.nc(u),V=file:../z_smooth/east_new.nc(v),SSH=file:../z_smooth/east_new.nc(zeta),SALT=file:../z_smooth/east_new.nc(salt),DVDX=file:../z_smooth/east_new.nc(dvdx)"
+!OBC_SEGMENT_001_DATA = "U=file:west.nc(u),V=file:west.nc(v),SSH=file:west.nc(zeta),SALT=file:west.nc(salt),DVDX=file:west.nc(dvdx)"
+!OBC_SEGMENT_002_DATA = "U=file:east.nc(u),V=file:east.nc(v),SSH=file:east.nc(zeta),SALT=file:east.nc(salt),DVDX=file:east.nc(dvdx)"
 OBC_SEGMENT_001_VELOCITY_NUDGING_TIMESCALES = 0.25, 200
 OBC_SEGMENT_002_VELOCITY_NUDGING_TIMESCALES = 0.25, 200
 OBC_TRACER_RESERVOIR_LENGTH_SCALE_OUT = 0

@@ -116,18 +116,10 @@ OBC_COMPUTED_STRAIN = True      !   [Boolean] default = False
 OBC_ZERO_BIHARMONIC = True      !   [Boolean] default = False
                                 ! If true, zeros the Laplacian of flow on open boundaries in the biharmonic
                                 ! viscosity term.
-OBC_SEGMENT_001 = "I=0,J=N:0,SIMPLE,ORLANSKI_TAN,NUDGED_TAN,ORLANSKI_GRAD,NUDGED_GRAD" !
+OBC_SEGMENT_001 = "I=0,J=N:0,SIMPLE,FLATHER" !
                                 ! Documentation needs to be dynamic?????
-OBC_SEGMENT_001_VELOCITY_NUDGING_TIMESCALES = 0.25, 200.0 !   [days] default = 0.0
-                                ! Timescales in days for nudging along a segment,
-                                ! for inflow, then outflow. Setting both to zero should
-                                ! behave like SIMPLE obcs for the baroclinic velocities.
-OBC_SEGMENT_002 = "I=N,J=0:N,SIMPLE,ORLANSKI_TAN,NUDGED_TAN,ORLANSKI_GRAD,NUDGED_GRAD" !
+OBC_SEGMENT_002 = "I=N,J=0:N,SIMPLE,FLATHER" !
                                 ! Documentation needs to be dynamic?????
-OBC_SEGMENT_002_VELOCITY_NUDGING_TIMESCALES = 0.25, 200.0 !   [days] default = 0.0
-                                ! Timescales in days for nudging along a segment,
-                                ! for inflow, then outflow. Setting both to zero should
-                                ! behave like SIMPLE obcs for the baroclinic velocities.
 ROTATION = "betaplane"          ! default = "2omegasinlat"
                                 ! This specifies how the Coriolis parameter is specified:
                                 !     2omegasinlat - Use twice the planetary rotation rate
@@ -346,7 +338,7 @@ BOUND_CORIOLIS = True           !   [Boolean] default = False
 SMAGORINSKY_AH = True           !   [Boolean] default = False
                                 ! If true, use a biharmonic Smagorinsky nonlinear eddy
                                 ! viscosity.
-SMAG_BI_CONST = 0.015           !   [nondim] default = 0.0
+SMAG_BI_CONST = 0.03            !   [nondim] default = 0.0
                                 ! The nondimensional biharmonic Smagorinsky constant,
                                 ! typically 0.015 - 0.06.
 

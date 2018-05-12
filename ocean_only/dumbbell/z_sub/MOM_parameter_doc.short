@@ -346,7 +346,7 @@ BOUND_CORIOLIS = True           !   [Boolean] default = False
 SMAGORINSKY_AH = True           !   [Boolean] default = False
                                 ! If true, use a biharmonic Smagorinsky nonlinear eddy
                                 ! viscosity.
-SMAG_BI_CONST = 0.015           !   [nondim] default = 0.0
+SMAG_BI_CONST = 0.03            !   [nondim] default = 0.0
                                 ! The nondimensional biharmonic Smagorinsky constant,
                                 ! typically 0.015 - 0.06.
 

@@ -1,0 +1,13 @@
+! Continuous isopycnal mode + initialization
+USE_REGRIDDING = True
+REGRIDDING_COORDINATE_MODE = "Z*"
+INTERPOLATION_SCHEME = "PPM_IH4"
+BOUNDARY_EXTRAPOLATION = True
+REMAPPING_SCHEME = "PPM_IH4"
+SPONGE = True
+SPONGE_CONFIG = "DUMBBELL"
+DUMBBELL_SPONGE_TIME_SCALE = 8.64e4
+! #override DAYMAX = 30.
+#override LAPLACIAN = True               !   [Boolean] default = False
+#override KH_VEL_SCALE = 0.3             !   [m s-1] default = 0.0
+#override SMAG_BI_CONST = 3.0            !   [nondim] default = 0.0

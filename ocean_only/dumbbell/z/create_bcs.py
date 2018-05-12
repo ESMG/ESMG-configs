@@ -43,29 +43,35 @@ for r,i,cnum in zip((e,w),(79,39),('002','001')):
     yv[:]=yh
     yqdim=r.createDimension('yq',len(yq))
     yqv=r.createVariable('yq','f8',('yq'))
-    yqv.cartesian_axis='Y'    
+    yqv.cartesian_axis='Y'
     yqv[:]=yq
-    vnam='zeta_segment_'+cnum                    
+    vnam='zeta_segment_'+cnum
     zvv=r.createVariable(vnam,'f8',('time','yh','xq'),fill_value=FillVal)
-    vnam='salt_segment_'+cnum                    
+    vnam='salt_segment_'+cnum
     sv=r.createVariable(vnam,'f8',('time','zl','yh','xq'),fill_value=FillVal)
-    vnam='dz_salt_segment_'+cnum                    
-    hsv=r.createVariable(vnam,'f8',('time','zl','yh','xq'),fill_value=FillVal)    
-    vnam='u_segment_'+cnum                    
+    vnam='dz_salt_segment_'+cnum
+    hsv=r.createVariable(vnam,'f8',('time','zl','yh','xq'),fill_value=FillVal)
+    vnam='u_segment_'+cnum
     uv=r.createVariable(vnam,'f8',('time','zl','yh','xq'),fill_value=FillVal)
-    vnam='dz_u_segment_'+cnum                    
+    vnam='uhbt_segment_'+cnum
+    uhbtv=r.createVariable(vnam,'f8',('time','yh','xq'),fill_value=FillVal)
+    vnam='dz_u_segment_'+cnum
     huv=r.createVariable(vnam,'f8',('time','zl','yh','xq'),fill_value=FillVal)
-    vnam='v_segment_'+cnum                    
+    vnam='v_segment_'+cnum
     vv=r.createVariable(vnam,'f8',('time','zl','yq','xq'),fill_value=FillVal)
-    vnam='dz_v_segment_'+cnum                    
+    vnam='dz_v_segment_'+cnum
     hvv=r.createVariable(vnam,'f8',('time','zl','yq','xq'),fill_value=FillVal)
-    vnam='dvdx_segment_'+cnum                    
+    vnam='dvdx_segment_'+cnum
     dvdxv=r.createVariable(vnam,'f8',('time','zl','yq','xq'),fill_value=FillVal)
+    vnam='dz_dvdx_segment_'+cnum
+    hdvdxv=r.createVariable(vnam,'f8',('time','zl','yq','xq'),fill_value=FillVal)
 
     zvv[0]=0.5*(ic.variables['sfc'][:,:,i]+ic.variables['sfc'][:,:,i+1])
     sv[0]=0.5*(ic.variables['Salt'][:,:,:,i]+ic.variables['Salt'][:,:,:,i+1])
     hsv[0]=0.5*(ic.variables['h'][:,:,:,i]+ic.variables['h'][:,:,:,i+1])
     uv[0]=ic.variables['u'][:,:,:,i+1]
+#   uv[0]=ic.variables['uh'][:,:,:,i+1]/hsv[0]/ (g.variables['dyCu'][:,i+1].reshape([1,1,20]))
+    uhbtv[0]=ic.variables['uhbt_IC'][:,:,i+1]
     huv[0]=0.5*(ic.variables['h'][:,:,:,i]+ic.variables['h'][:,:,:,i+1])
     vv[0]=0.5*(ic.variables['v'][:,:,:,i]+ic.variables['v'][:,:,:,i+1])
     hijp=np.roll(ic.variables['h'][:,:,:,i],shift=-1,axis=2)
@@ -76,6 +82,7 @@ for r,i,cnum in zip((e,w),(79,39),('002','001')):
     a0=a[:,:,0][:,:,np.newaxis]
     a=np.concatenate((a0,a),axis=2)
     hvv[0]=a
+    hdvdxv[0]=a
     dx=grd.variables['dxBu'][:,i+1]
     dx=np.tile(dx[np.newaxis,np.newaxis,:],(1,hvv.shape[1],1))
     a=(ic.variables['v'][:,:,:,i+1]-ic.variables['v'][:,:,:,i])
@@ -84,10 +91,12 @@ for r,i,cnum in zip((e,w),(79,39),('002','001')):
 
     zvv[1:]=0.5*(p.variables['SSH'][:,:,i]+p.variables['SSH'][:,:,i+1])
     sv[1:]=0.5*(p.variables['salt'][:,:,:,i]+p.variables['salt'][:,:,:,i+1])
-    hsv[1:]=0.5*(p.variables['h'][:,:,:,i]+p.variables['h'][:,:,:,i+1])    
-    uv[1:]=p.variables['u'][:,:,:,i+1]
+    hsv[1:]=0.5*(p.variables['h'][:,:,:,i]+p.variables['h'][:,:,:,i+1])
+    uv[1:]=p.variables['uav'][:,:,:,i+1]
+#   uv[1:]=p.variables['uh'][:,:,:,i+1]/hsv[1:]/ (g.variables['dyCu'][:,i+1].reshape([1,1,20]))
+    uhbtv[1:]=p.variables['uhbt'][:,:,i+1]
     huv[1:]=0.5*(p.variables['h'][:,:,:,i]+p.variables['h'][:,:,:,i+1])
-    vv[1:]=0.5*(p.variables['v'][:,:,:,i]+p.variables['v'][:,:,:,i+1])
+    vv[1:]=0.5*(p.variables['vav'][:,:,:,i]+p.variables['vav'][:,:,:,i+1])
     hijp=np.roll(p.variables['h'][:,:,:,i],shift=-1,axis=2)
     hipjp=np.roll(p.variables['h'][:,:,:,i+1],shift=-1,axis=2)
     hij=p.variables['h'][:,:,:,i]
@@ -96,6 +105,7 @@ for r,i,cnum in zip((e,w),(79,39),('002','001')):
     a0=a[:,:,0][:,:,np.newaxis]
     a=np.concatenate((a0,a),axis=2)
     hvv[1:]=a
+    hdvdxv[1:]=a
     dx=grd.variables['dxBu'][:,i+1]
     dx=np.tile(dx[np.newaxis,np.newaxis,:],(hvv.shape[0]-1,hvv.shape[1],1))
     a=(p.variables['v'][:,:,:,i+1]-p.variables['v'][:,:,:,i])
@@ -108,11 +118,12 @@ for r,i,cnum in zip((e,w),(79,39),('002','001')):
         sv[nt]=sv[nt-1]
         hsv[nt]=hsv[nt-1]
         uv[nt]=uv[nt-1]
+        uhbtv[nt]=uhbtv[nt-1]
         huv[nt]=huv[nt-1]
         vv[nt]=vv[nt-1]
         hvv[nt]=hvv[nt-1]
         dvdxv[nt]=dvdxv[nt-1]
         tdimv[nt]=2*tdimv[nt-1]-tdimv[nt-2]
-    
+
     r.sync()
     r.close()
