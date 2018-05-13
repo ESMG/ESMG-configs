@@ -8,7 +8,6 @@ SPONGE = False
 SPONGE_CONFIG = "DUMBBELL"
 DUMBBELL_SPONGE_TIME_SCALE = 8.64e4
 
-!#override DAYMAX = 30.
 #override WESTLON = -100
 #override LENLON = 200
 #override NIGLOBAL = 40
