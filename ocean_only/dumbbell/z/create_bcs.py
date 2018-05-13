@@ -88,7 +88,7 @@ for r,i,cnum in zip((e,w),(79,39),('002','001')):
     tdimv[0]=0.0
     hdvdxv[0]=hvv[0]
     
-    hvar='hav'
+    hvar='h'
     zvv[1:]=0.5*(p.variables['ssh'][:,:,i]+p.variables['ssh'][:,:,i+1])
     sv[1:]=0.5*(p.variables['salt'][:,:,:,i]+p.variables['salt'][:,:,:,i+1])
     hsv[1:]=0.5*(p.variables[hvar][:,:,:,i]+p.variables[hvar][:,:,:,i+1])    
