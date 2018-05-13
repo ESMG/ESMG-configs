@@ -270,13 +270,29 @@ OBC_ZERO_VORTICITY = False      !   [Boolean] default = False
 OBC_FREESLIP_VORTICITY = True   !   [Boolean] default = False
                                 ! If true, sets the normal gradient of tangential velocity to
                                 ! zero in the relative vorticity on open boundaries. This cannot
-                                ! be true if OBC_ZERO_VORTICITY is True.
+                                ! be true if another OBC_XXX_VORTICITY option is True.
+OBC_COMPUTED_VORTICITY = False  !   [Boolean] default = False
+                                ! If true, uses the external values of tangential velocity
+                                ! in the relative vorticity on open boundaries. This cannot
+                                ! be true if another OBC_XXX_VORTICITY option is True.
+OBC_SPECIFIED_VORTICITY = False !   [Boolean] default = False
+                                ! If true, uses the external values of tangential velocity
+                                ! in the relative vorticity on open boundaries. This cannot
+                                ! be true if another OBC_XXX_VORTICITY option is True.
 OBC_ZERO_STRAIN = False         !   [Boolean] default = False
                                 ! If true, sets the strain used in the stress tensor to zero on open boundaries.
 OBC_FREESLIP_STRAIN = True      !   [Boolean] default = False
                                 ! If true, sets the normal gradient of tangential velocity to
                                 ! zero in the strain use in the stress tensor on open boundaries. This cannot
-                                ! be true if OBC_ZERO_STRAIN is True.
+                                ! be true if another OBC_XXX_STRAIN option is True.
+OBC_COMPUTED_STRAIN = False     !   [Boolean] default = False
+                                ! If true, sets the normal gradient of tangential velocity to
+                                ! zero in the strain use in the stress tensor on open boundaries. This cannot
+                                ! be true if another OBC_XXX_STRAIN option is True.
+OBC_SPECIFIED_STRAIN = False    !   [Boolean] default = False
+                                ! If true, sets the normal gradient of tangential velocity to
+                                ! zero in the strain use in the stress tensor on open boundaries. This cannot
+                                ! be true if another OBC_XXX_STRAIN option is True.
 OBC_ZERO_BIHARMONIC = True      !   [Boolean] default = False
                                 ! If true, zeros the Laplacian of flow on open boundaries in the biharmonic
                                 ! viscosity term.
@@ -343,3 +359,39 @@ OBC_SEGMENT_029 = "I=32,J=44:43,FLATHER, OBLIQUE" !
 OBC_SEGMENT_030 = "J=43,I=32:24,FLATHER, OBLIQUE" !
                                 ! Documentation needs to be dynamic?????
 OBC_SEGMENT_031 = "I=24,J=43:42,FLATHER, OBLIQUE" !
+                                ! Documentation needs to be dynamic?????
+OBC_SEGMENT_032 = "J=42,I=24:16,FLATHER, OBLIQUE" !
+                                ! Documentation needs to be dynamic?????
+OBC_SEGMENT_033 = "I=16,J=42:41,FLATHER, OBLIQUE" !
+                                ! Documentation needs to be dynamic?????
+OBC_SEGMENT_034 = "J=41,I=16:8,FLATHER, OBLIQUE" !
+                                ! Documentation needs to be dynamic?????
+OBC_SEGMENT_035 = "I=8,J=41:40,FLATHER, OBLIQUE" !
+                                ! Documentation needs to be dynamic?????
+OBC_SEGMENT_036 = "J=40,I=8:0,FLATHER, OBLIQUE" !
+                                ! Documentation needs to be dynamic?????
+BRUSHCUTTER_MODE = False        !   [Boolean] default = False
+                                ! If true, read external OBC data on the supergrid.
+OBC_RADIATION_MAX = 10.0        !   [m s-1] default = 10.0
+                                ! The maximum magnitude of the baroclinic radiation
+                                ! velocity (or speed of characteristics).  This is only
+                                ! used if one of the open boundary segments is using Orlanski.
+OBC_RAD_VEL_WT = 0.3            !   [nondim] default = 0.3
+                                ! The relative weighting for the baroclinic radiation
+                                ! velocities (or speed of characteristics) at the new
+                                ! time level (1) or the running mean (0) for velocities.
+                                ! Valid values range from 0 to 1. This is only used if
+                                ! one of the open boundary segments is using Orlanski.
+OBC_RAD_THICK_WT = 0.2          !   [nondim] default = 0.2
+                                ! The relative weighting for the baroclinic radiation
+                                ! velocities (or speed of characteristics) at the new
+                                ! time level (1) or the running mean (0) for thicknesses.
+                                ! Valid values range from 0 to 1. This is only used if
+                                ! one of the open boundary segments is using Orlanski.
+OBC_TRACER_RESERVOIR_LENGTH_SCALE_OUT = 1000.0 !   [m] default = 0.0
+                                ! An effective length scale for restoring the tracer concentration
+                                ! at the boundaries to externally imposed values when the flow
+                                ! is exiting the domain.
+OBC_TRACER_RESERVOIR_LENGTH_SCALE_IN = 1000.0 !   [m] default = 0.0
+                                ! An effective length scale for restoring the tracer concentration
+                                ! at the boundaries to values from the interior when the flow

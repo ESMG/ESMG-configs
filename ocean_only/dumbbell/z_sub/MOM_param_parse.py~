@@ -1,0 +1,6 @@
+with open("MOM_parameter_doc.all") as f:
+    for line in f:
+        D.append(line)
+
+print D
+    

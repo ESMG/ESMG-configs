@@ -54,12 +54,12 @@ BATHYMETRY_AT_VEL = False       !   [Boolean] default = False
                                 ! If true, there are separate values for the basin depths
                                 ! at velocity points.  Otherwise the effects of topography
                                 ! are entirely determined from thickness points.
-DT = 900.0                      !   [s]
+DT = 300.0                      !   [s]
                                 ! The (baroclinic) dynamics time step.  The time-step that
                                 ! is actually used will be an integer fraction of the
                                 ! forcing time-step (DT_FORCING in ocean-only mode or the
                                 ! coupling timestep in coupled mode.)
-DT_THERM = 900.0                !   [s] default = 900.0
+DT_THERM = 300.0                !   [s] default = 300.0
                                 ! The thermodynamic and tracer advection time step.
                                 ! Ideally DT_THERM should be an integer multiple of DT
                                 ! and less than the forcing or coupling time-step, unless
@@ -253,30 +253,46 @@ OBC_NUMBER_OF_SEGMENTS = 2      ! default = 0
                                 ! The number of open boundary segments.
 OBC_ZERO_VORTICITY = False      !   [Boolean] default = False
                                 ! If true, sets relative vorticity to zero on open boundaries.
-OBC_FREESLIP_VORTICITY = True   !   [Boolean] default = False
+OBC_FREESLIP_VORTICITY = False  !   [Boolean] default = False
                                 ! If true, sets the normal gradient of tangential velocity to
                                 ! zero in the relative vorticity on open boundaries. This cannot
-                                ! be true if OBC_ZERO_VORTICITY is True.
+                                ! be true if another OBC_XXX_VORTICITY option is True.
+OBC_COMPUTED_VORTICITY = False  !   [Boolean] default = False
+                                ! If true, uses the external values of tangential velocity
+                                ! in the relative vorticity on open boundaries. This cannot
+                                ! be true if another OBC_XXX_VORTICITY option is True.
+OBC_SPECIFIED_VORTICITY = True  !   [Boolean] default = False
+                                ! If true, uses the external values of tangential velocity
+                                ! in the relative vorticity on open boundaries. This cannot
+                                ! be true if another OBC_XXX_VORTICITY option is True.
 OBC_ZERO_STRAIN = False         !   [Boolean] default = False
                                 ! If true, sets the strain used in the stress tensor to zero on open boundaries.
-OBC_FREESLIP_STRAIN = True      !   [Boolean] default = False
+OBC_FREESLIP_STRAIN = False     !   [Boolean] default = False
                                 ! If true, sets the normal gradient of tangential velocity to
                                 ! zero in the strain use in the stress tensor on open boundaries. This cannot
-                                ! be true if OBC_ZERO_STRAIN is True.
+                                ! be true if another OBC_XXX_STRAIN option is True.
+OBC_COMPUTED_STRAIN = True      !   [Boolean] default = False
+                                ! If true, sets the normal gradient of tangential velocity to
+                                ! zero in the strain use in the stress tensor on open boundaries. This cannot
+                                ! be true if another OBC_XXX_STRAIN option is True.
+OBC_SPECIFIED_STRAIN = False    !   [Boolean] default = False
+                                ! If true, sets the normal gradient of tangential velocity to
+                                ! zero in the strain use in the stress tensor on open boundaries. This cannot
+                                ! be true if another OBC_XXX_STRAIN option is True.
 OBC_ZERO_BIHARMONIC = True      !   [Boolean] default = False
                                 ! If true, zeros the Laplacian of flow on open boundaries in the biharmonic
                                 ! viscosity term.
 MASK_OUTSIDE_OBCS = False       !   [Boolean] default = False
                                 ! If true, set the areas outside open boundaries to be land.
-OBC_SEGMENT_001 = "I=0,J=N:0,FLATHER,OBLIQUE,NUDGED" !
+OBC_SEGMENT_001 = "I=0,J=N:0,FLATHER,ORLANSKI,NUDGED" !
                                 ! Documentation needs to be dynamic?????
-OBC_SEGMENT_001_VELOCITY_NUDGING_TIMESCALES = 2.0, 200.0 !   [days] default = 0.0
+OBC_SEGMENT_001_VELOCITY_NUDGING_TIMESCALES = 2*0.0 !   [days] default = 0.0
                                 ! Timescales in days for nudging along a segment,
                                 ! for inflow, then outflow. Setting both to zero should
                                 ! behave like SIMPLE obcs for the baroclinic velocities.
-OBC_SEGMENT_002 = "I=N,J=0:N,FLATHER,OBLIQUE,NUDGED" !
+OBC_SEGMENT_002 = "I=N,J=0:N,FLATHER,ORLANSKI,NUDGED" !
                                 ! Documentation needs to be dynamic?????
-OBC_SEGMENT_002_VELOCITY_NUDGING_TIMESCALES = 2.0, 200.0 !   [days] default = 0.0
+OBC_SEGMENT_002_VELOCITY_NUDGING_TIMESCALES = 2*0.0 !   [days] default = 0.0
                                 ! Timescales in days for nudging along a segment,
                                 ! for inflow, then outflow. Setting both to zero should
                                 ! behave like SIMPLE obcs for the baroclinic velocities.
@@ -298,11 +314,11 @@ OBC_RAD_THICK_WT = 0.2          !   [nondim] default = 0.2
                                 ! time level (1) or the running mean (0) for thicknesses.
                                 ! Valid values range from 0 to 1. This is only used if
                                 ! one of the open boundary segments is using Orlanski.
-OBC_TRACER_RESERVOIR_LENGTH_SCALE_OUT = 5000.0 !   [m] default = 0.0
+OBC_TRACER_RESERVOIR_LENGTH_SCALE_OUT = 0.0 !   [m] default = 0.0
                                 ! An effective length scale for restoring the tracer concentration
                                 ! at the boundaries to externally imposed values when the flow
                                 ! is exiting the domain.
-OBC_TRACER_RESERVOIR_LENGTH_SCALE_IN = 5000.0 !   [m] default = 0.0
+OBC_TRACER_RESERVOIR_LENGTH_SCALE_IN = 0.0 !   [m] default = 0.0
                                 ! An effective length scale for restoring the tracer concentration
                                 ! at the boundaries to values from the interior when the flow
                                 ! is entering the domain.
@@ -617,7 +633,7 @@ INITIAL_DENSITY_PROFILE = "linear" ! default = "linear"
                                 ! and "exponential".
 DUMBBELL_SREF = 35.0            !   [1e-3] default = 34.0
                                 ! DUMBBELL REFERENCE SALINITY
-DUMBBELL_S_RANGE = 0.0          !   [1e-3] default = 2.0
+DUMBBELL_S_RANGE = 2.0          !   [1e-3] default = 2.0
                                 ! DUMBBELL salinity range (right-left)
 VELOCITY_CONFIG = "zero"        ! default = "zero"
                                 ! A string that determines how the initial velocities
@@ -901,7 +917,7 @@ CORIOLIS_EN_DIS = True          !   [Boolean] default = False
                                 ! If true, two estimates of the thickness fluxes are used
                                 ! to estimate the Coriolis term, and the one that
                                 ! dissipates energy relative to the other one is used.
-CORIOLIS_SCHEME = "SADOURNY75_ENERGY" ! default = "SADOURNY75_ENERGY"
+CORIOLIS_SCHEME = "SADOURNY75_ENSTRO" ! default = "SADOURNY75_ENERGY"
                                 ! CORIOLIS_SCHEME selects the discretization for the
                                 ! Coriolis terms. Valid values are:
                                 !    SADOURNY75_ENERGY - Sadourny, 1975; energy cons.
@@ -913,9 +929,9 @@ CORIOLIS_SCHEME = "SADOURNY75_ENERGY" ! default = "SADOURNY75_ENERGY"
 BOUND_CORIOLIS = True           !   [Boolean] default = False
                                 ! If true, the Coriolis terms at u-points are bounded by
                                 ! the four estimates of (f+rv)v from the four neighboring
-                                ! v-points, and similarly at v-points.  This option is
-                                ! always effectively false with CORIOLIS_EN_DIS defined and
-                                ! CORIOLIS_SCHEME set to SADOURNY75_ENERGY.
+                                ! v-points, and similarly at v-points.  This option would
+                                ! have no effect on the SADOURNY Coriolis scheme if it
+                                ! were possible to use centered difference thickness fluxes.
 KE_SCHEME = "KE_ARAKAWA"        ! default = "KE_ARAKAWA"
                                 ! KE_SCHEME selects the discretization for acceleration
                                 ! due to the kinetic energy gradient. Valid values are:
@@ -956,8 +972,33 @@ BOUNDARY_EXTRAPOLATION_PRESSURE = True !   [Boolean] default = True
                                 ! used as is used for the interior cells.
 
 ! === module MOM_hor_visc ===
-LAPLACIAN = False               !   [Boolean] default = False
+LAPLACIAN = True                !   [Boolean] default = False
                                 ! If true, use a Laplacian horizontal viscosity.
+KH = 0.0                        !   [m2 s-1] default = 0.0
+                                ! The background Laplacian horizontal viscosity.
+KH_BG_MIN = 0.0                 !   [m2 s-1] default = 0.0
+                                ! The minimum value allowed for Laplacian horizontal viscosity, KH.
+KH_VEL_SCALE = 0.01             !   [m s-1] default = 0.0
+                                ! The velocity scale which is multiplied by the grid
+                                ! spacing to calculate the Laplacian viscosity.
+                                ! The final viscosity is the largest of this scaled
+                                ! viscosity, the Smagorinsky and Leith viscosities, and KH.
+KH_SIN_LAT = 0.0                !   [m2 s-1] default = 0.0
+                                ! The amplitude of a latidutinally-dependent background
+                                ! viscosity of the form KH_SIN_LAT*(SIN(LAT)**KH_PWR_OF_SINE).
+SMAGORINSKY_KH = False          !   [Boolean] default = False
+                                ! If true, use a Smagorinsky nonlinear eddy viscosity.
+LEITH_KH = False                !   [Boolean] default = False
+                                ! If true, use a Leith nonlinear eddy viscosity.
+MODIFIED_LEITH = False          !   [Boolean] default = False
+                                ! If true, add a term to Leith viscosity which is
+                                ! proportional to the gradient of divergence.
+BOUND_KH = True                 !   [Boolean] default = True
+                                ! If true, the Laplacian coefficient is locally limited
+                                ! to be stable.
+BETTER_BOUND_KH = True          !   [Boolean] default = True
+                                ! If true, the Laplacian coefficient is locally limited
+                                ! to be stable with a better bounding than just BOUND_KH.
 BIHARMONIC = True               !   [Boolean] default = True
                                 ! If true, use a biharmonic horizontal viscosity.
                                 ! BIHARMONIC may be used with LAPLACIAN.
@@ -980,7 +1021,7 @@ BOUND_AH = True                 !   [Boolean] default = True
 BETTER_BOUND_AH = True          !   [Boolean] default = True
                                 ! If true, the biharmonic coefficient is locally limited
                                 ! to be stable with a better bounding than just BOUND_AH.
-SMAG_BI_CONST = 0.015           !   [nondim] default = 0.0
+SMAG_BI_CONST = 0.03            !   [nondim] default = 0.0
                                 ! The nondimensional biharmonic Smagorinsky constant,
                                 ! typically 0.015 - 0.06.
 BOUND_CORIOLIS_BIHARM = True    !   [Boolean] default = True
@@ -1640,11 +1681,11 @@ LA_DEPTH_RATIO = 0.04           !   [nondim] default = 0.04
                                 !  Lanmguir number calculation, where La = sqrt(ust/Stokes).
 
 ! === module MOM_main (MOM_driver) ===
-DT_FORCING = 1800.0             !   [s] default = 900.0
+DT_FORCING = 300.0              !   [s] default = 300.0
                                 ! The time step for changing forcing, coupling with other
                                 ! components, or potentially writing certain diagnostics.
                                 ! The default value is given by DT.
-DAYMAX = 30.0                   !   [days]
+DAYMAX = 10.0                   !   [days]
                                 ! The final time of the whole simulation, in units of
                                 ! TIMEUNIT seconds.  This also sets the potential end
                                 ! time of the present run segment if the end time is
