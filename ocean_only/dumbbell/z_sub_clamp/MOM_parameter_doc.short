@@ -120,6 +120,10 @@ OBC_SEGMENT_001 = "I=0,J=N:0,SIMPLE,FLATHER" !
                                 ! Documentation needs to be dynamic?????
 OBC_SEGMENT_002 = "I=N,J=0:N,SIMPLE,FLATHER" !
                                 ! Documentation needs to be dynamic?????
+OBC_SEGMENT_001_DATA = "U=file:west.nc(u),V=file:west.nc(v),SSH=file:west.nc(zeta),SALT=file:west.nc(salt),DVDX=file:west.nc(dvdx)" !
+                                ! OBC segment docs
+OBC_SEGMENT_002_DATA = "U=file:east.nc(u),V=file:east.nc(v),SSH=file:east.nc(zeta),SALT=file:east.nc(salt),DVDX=file:east.nc(dvdx)" !
+                                ! OBC segment docs
 ROTATION = "betaplane"          ! default = "2omegasinlat"
                                 ! This specifies how the Coriolis parameter is specified:
                                 !     2omegasinlat - Use twice the planetary rotation rate
