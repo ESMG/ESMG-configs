@@ -1,0 +1,4 @@
+! Blank file in which we can put "overrides" for parameters
+!#override NK=2
+#override THICKNESS_CONFIG = "circle_obcs"
+DISK_RADIUS = 50.0              !   [k]
