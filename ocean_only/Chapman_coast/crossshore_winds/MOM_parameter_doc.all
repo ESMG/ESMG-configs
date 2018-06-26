@@ -213,21 +213,22 @@ TOPO_CONFIG = "DOME2D"          !
                                 !     seamount - Gaussian bump for spontaneous motion test case.
                                 !     dumbbell - Sloshing channel with reservoirs on both ends.
                                 !     shelfwave - exponential slope for shelfwave test case.
-                                !     supercritical - flat but with 8.95 degree land mask.
                                 !     Phillips - ACC-like idealized topography used in the Phillips config.
                                 !     dense - Denmark Strait-like dense water formation and overflow.
                                 !     USER - call a user modified routine.
 
 ! === module DOME2D_initialization ===
-DOME2D_SHELF_WIDTH = 0.05       !   [nondim] default = 0.1
+DOME2D_SHELF_WIDTH = 0.0        !   [nondim] default = 0.1
                                 ! Width of shelf, as fraction of domain, in 2d DOME configuration.
 DOME2D_BASIN_WIDTH = 0.0        !   [nondim] default = 0.3
                                 ! Width of deep ocean basin, as fraction of domain, in 2d DOME configuration.
 DOME2D_SHELF_DEPTH = 0.001      !   [nondim] default = 0.2
                                 ! Depth of shelf, as fraction of basin depth, in 2d DOME configuration.
-MAXIMUM_DEPTH = 400.0           !   [m]
+DOME2D_SHELF_ANGLE = 0          !   [degrees] default = 0
+                                ! Angle of the downslope direction. Valid choices are 0, 90, 180 and 270
+MAXIMUM_DEPTH = 200.0           !   [m]
                                 ! The maximum depth of the ocean.
-MINIMUM_DEPTH = 1.0             !   [m] default = 0.0
+MINIMUM_DEPTH = 0.0             !   [m] default = 0.0
                                 ! If MASKING_DEPTH is unspecified, then anything shallower than
                                 ! MINIMUM_DEPTH is assumed to be land and all fluxes are masked out.
                                 ! If MASKING_DEPTH is specified, then all depths shallower than
@@ -237,9 +238,9 @@ MINIMUM_DEPTH = 1.0             !   [m] default = 0.0
 ! Controls where open boundaries are located, what kind of boundary condition to impose, and what data to apply, if any.
 OBC_NUMBER_OF_SEGMENTS = 3      ! default = 0
                                 ! The number of open boundary segments.
-OBC_ZERO_VORTICITY = False      !   [Boolean] default = False
+OBC_ZERO_VORTICITY = True       !   [Boolean] default = False
                                 ! If true, sets relative vorticity to zero on open boundaries.
-OBC_FREESLIP_VORTICITY = True   !   [Boolean] default = False
+OBC_FREESLIP_VORTICITY = False  !   [Boolean] default = False
                                 ! If true, sets the normal gradient of tangential velocity to
                                 ! zero in the relative vorticity on open boundaries. This cannot
                                 ! be true if another OBC_XXX_VORTICITY option is True.
@@ -251,9 +252,9 @@ OBC_SPECIFIED_VORTICITY = False !   [Boolean] default = False
                                 ! If true, uses the external values of tangential velocity
                                 ! in the relative vorticity on open boundaries. This cannot
                                 ! be true if another OBC_XXX_VORTICITY option is True.
-OBC_ZERO_STRAIN = False         !   [Boolean] default = False
+OBC_ZERO_STRAIN = True          !   [Boolean] default = False
                                 ! If true, sets the strain used in the stress tensor to zero on open boundaries.
-OBC_FREESLIP_STRAIN = True      !   [Boolean] default = False
+OBC_FREESLIP_STRAIN = False     !   [Boolean] default = False
                                 ! If true, sets the normal gradient of tangential velocity to
                                 ! zero in the strain use in the stress tensor on open boundaries. This cannot
                                 ! be true if another OBC_XXX_STRAIN option is True.
@@ -270,11 +271,11 @@ OBC_ZERO_BIHARMONIC = True      !   [Boolean] default = False
                                 ! viscosity term.
 MASK_OUTSIDE_OBCS = False       !   [Boolean] default = False
                                 ! If true, set the areas outside open boundaries to be land.
-OBC_SEGMENT_001 = "I=N,J=0:N,FLATHER,ORLANSKI,ORLANSKI_TAN" !
+OBC_SEGMENT_001 = "I=N,J=0:N,FLATHER,ORLANSKI,ORLANSKI_TAN,ORLANSKI_GRAD" !
                                 ! Documentation needs to be dynamic?????
-OBC_SEGMENT_002 = "J=N,I=N:0,FLATHER,ORLANSKI,ORLANSKI_TAN" !
+OBC_SEGMENT_002 = "J=N,I=N:0,FLATHER,ORLANSKI,ORLANSKI_TAN,ORLANSKI_GRAD" !
                                 ! Documentation needs to be dynamic?????
-OBC_SEGMENT_003 = "J=0,I=0:N,FLATHER,ORLANSKI,ORLANSKI_TAN" !
+OBC_SEGMENT_003 = "J=0,I=0:N,FLATHER,ORLANSKI,ORLANSKI_TAN,ORLANSKI_GRAD" !
                                 ! Documentation needs to be dynamic?????
 BRUSHCUTTER_MODE = False        !   [Boolean] default = False
                                 ! If true, read external OBC data on the supergrid.
@@ -421,7 +422,7 @@ INIT_LAYERS_FROM_Z_FILE = False !   [Boolean] default = False
                                 ! If true, intialize the layer thicknesses, temperatures,
                                 ! and salnities from a Z-space file on a latitude-
                                 ! longitude grid.
-THICKNESS_CONFIG = "circle_obcs" !
+THICKNESS_CONFIG = "uniform"    !
                                 ! A string that determines how the initial layer
                                 ! thicknesses are specified for a new run:
                                 !     file - read interface heights from the file specified
@@ -448,11 +449,6 @@ THICKNESS_CONFIG = "circle_obcs" !
                                 !     soliton - Equatorial Rossby soliton.
                                 !     rossby_front - a mixed layer front in thermal wind balance.
                                 !     USER - call a user modified routine.
-
-! === module circle_obcs_initialization ===
-DISK_RADIUS = 50.0              !   [kilometers]
-                                ! The radius of the initially elevated disk in the
-                                ! circle_obcs test case.
 VELOCITY_CONFIG = "zero"        ! default = "zero"
                                 ! A string that determines how the initial velocities
                                 ! are specified for a new run:
@@ -1080,7 +1076,7 @@ BUOY_CONFIG = "zero"            !
                                 ! The character string that indicates how buoyancy forcing
                                 ! is specified. Valid options include (file), (zero),
                                 ! (linear), (USER), (BFB) and (NONE).
-WIND_CONFIG = "zero"            !
+WIND_CONFIG = "const"           !
                                 ! The character string that indicates how wind forcing
                                 ! is specified. Valid options include (file), (2gyre),
                                 ! (1gyre), (gyres), (zero), and (USER).
@@ -1097,6 +1093,12 @@ GUST_CONST = 0.02               !   [Pa] default = 0.02
 READ_GUST_2D = False            !   [Boolean] default = False
                                 ! If true, use a 2-dimensional gustiness supplied from
                                 ! an input file
+CONST_WIND_TAUX = -0.1          !   [Pa]
+                                ! With wind_config const, this is the constant zonal
+                                ! wind-stress
+CONST_WIND_TAUY = 0.0           !   [Pa]
+                                ! With wind_config const, this is the constant meridional
+                                ! wind-stress
 
 ! === module MOM_restart ===
 ICE_SHELF = False               !   [Boolean] default = False

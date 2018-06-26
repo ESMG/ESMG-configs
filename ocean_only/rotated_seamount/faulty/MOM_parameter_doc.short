@@ -86,7 +86,6 @@ TOPO_CONFIG = "seamount"        !
                                 !     seamount - Gaussian bump for spontaneous motion test case.
                                 !     dumbbell - Sloshing channel with reservoirs on both ends.
                                 !     shelfwave - exponential slope for shelfwave test case.
-                                !     supercritical - flat but with 8.95 degree land mask.
                                 !     Phillips - ACC-like idealized topography used in the Phillips config.
                                 !     dense - Denmark Strait-like dense water formation and overflow.
                                 !     USER - call a user modified routine.
@@ -184,3 +183,4 @@ OBC_SEGMENT_029 = "I=32,J=44:43,FLATHER, OBLIQUE" !
 OBC_SEGMENT_030 = "J=43,I=32:24,FLATHER, OBLIQUE" !
                                 ! Documentation needs to be dynamic?????
 OBC_SEGMENT_031 = "I=24,J=43:42,FLATHER, OBLIQUE" !
+                                ! Documentation needs to be dynamic?????

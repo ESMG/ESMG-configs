@@ -1,0 +1,6 @@
+! Blank file in which we can put "overrides" for parameters
+#override WIND_CONFIG = "const"
+CONST_WIND_TAUX = -0.1
+CONST_WIND_TAUY = 0.0
+!#override OBC_SEGMENT_001 = "I=0,J=N:0,FLATHER,ORLANSKI,ORLANSKI_TAN,ORLANSKI_GRAD"   ! offshore
+!DOME2D_SHELF_ANGLE = 180
