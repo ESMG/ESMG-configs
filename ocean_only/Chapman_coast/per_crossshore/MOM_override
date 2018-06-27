@@ -1,0 +1,6 @@
+! Blank file in which we can put "overrides" for parameters
+#override WIND_CONFIG = "const"
+CONST_WIND_TAUX = -0.1
+CONST_WIND_TAUY = 0.0
+REENTRANT_Y = True
+#override OBC_NUMBER_OF_SEGMENTS = 1      ! default = 0

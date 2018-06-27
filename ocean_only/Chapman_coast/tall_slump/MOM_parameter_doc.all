@@ -133,7 +133,7 @@ NIGLOBAL = 20                   !
                                 ! The total number of thickness grid points in the
                                 ! x-direction in the physical domain. With STATIC_MEMORY_
                                 ! this is set in MOM_memory.h at compile time.
-NJGLOBAL = 30                   !
+NJGLOBAL = 180                  !
                                 ! The total number of thickness grid points in the
                                 ! y-direction in the physical domain. With STATIC_MEMORY_
                                 ! this is set in MOM_memory.h at compile time.
@@ -181,7 +181,7 @@ AXIS_UNITS = "k"                ! default = "degrees"
 SOUTHLAT = 0.0                  !   [k]
                                 ! The southern latitude of the domain or the equivalent
                                 ! starting value for the y-axis.
-LENLAT = 120.0                  !   [k]
+LENLAT = 720.0                  !   [k]
                                 ! The latitudinal or y-direction length of the domain.
 WESTLON = 0.0                   !   [k] default = 0.0
                                 ! The western longitude of the domain or the equivalent
@@ -420,7 +420,7 @@ INIT_LAYERS_FROM_Z_FILE = False !   [Boolean] default = False
                                 ! If true, intialize the layer thicknesses, temperatures,
                                 ! and salnities from a Z-space file on a latitude-
                                 ! longitude grid.
-THICKNESS_CONFIG = "uniform"    !
+THICKNESS_CONFIG = "circle_obcs" !
                                 ! A string that determines how the initial layer
                                 ! thicknesses are specified for a new run:
                                 !     file - read interface heights from the file specified
@@ -447,6 +447,14 @@ THICKNESS_CONFIG = "uniform"    !
                                 !     soliton - Equatorial Rossby soliton.
                                 !     rossby_front - a mixed layer front in thermal wind balance.
                                 !     USER - call a user modified routine.
+
+! === module circle_obcs_initialization ===
+DISK_RADIUS = 25.0              !   [kilometers]
+                                ! The radius of the initially elevated disk in the
+                                ! circle_obcs test case.
+DISK_X_OFFSET = -50.0           !   [kilometers] default = 0.0
+                                ! The x-offset of the initially elevated disk in the
+                                ! circle_obcs test case.
 VELOCITY_CONFIG = "zero"        ! default = "zero"
                                 ! A string that determines how the initial velocities
                                 ! are specified for a new run:
@@ -1084,7 +1092,7 @@ BUOY_CONFIG = "zero"            !
                                 ! The character string that indicates how buoyancy forcing
                                 ! is specified. Valid options include (file), (zero),
                                 ! (linear), (USER), (BFB) and (NONE).
-WIND_CONFIG = "const"           !
+WIND_CONFIG = "zero"            !
                                 ! The character string that indicates how wind forcing
                                 ! is specified. Valid options include (file), (2gyre),
                                 ! (1gyre), (gyres), (zero), and (USER).
@@ -1101,12 +1109,6 @@ GUST_CONST = 0.02               !   [Pa] default = 0.02
 READ_GUST_2D = False            !   [Boolean] default = False
                                 ! If true, use a 2-dimensional gustiness supplied from
                                 ! an input file
-CONST_WIND_TAUX = -0.1          !   [Pa]
-                                ! With wind_config const, this is the constant zonal
-                                ! wind-stress
-CONST_WIND_TAUY = 0.0           !   [Pa]
-                                ! With wind_config const, this is the constant meridional
-                                ! wind-stress
 
 ! === module MOM_restart ===
 ICE_SHELF = False               !   [Boolean] default = False

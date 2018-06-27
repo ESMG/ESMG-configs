@@ -24,6 +24,8 @@ DTBT_RESET_PERIOD = -1.0        !   [s] default = 300.0
 ! === module MOM_domains ===
 REENTRANT_X = False             !   [Boolean] default = True
                                 ! If true, the domain is zonally reentrant.
+REENTRANT_Y = True              !   [Boolean] default = False
+                                ! If true, the domain is meridionally reentrant.
 NIGLOBAL = 20                   !
                                 ! The total number of thickness grid points in the
                                 ! x-direction in the physical domain. With STATIC_MEMORY_
@@ -107,7 +109,7 @@ MAXIMUM_DEPTH = 100.0           !   [m]
 
 ! === module MOM_open_boundary ===
 ! Controls where open boundaries are located, what kind of boundary condition to impose, and what data to apply, if any.
-OBC_NUMBER_OF_SEGMENTS = 3      ! default = 0
+OBC_NUMBER_OF_SEGMENTS = 1      ! default = 0
                                 ! The number of open boundary segments.
 OBC_ZERO_VORTICITY = True       !   [Boolean] default = False
                                 ! If true, sets relative vorticity to zero on open boundaries.
@@ -118,15 +120,7 @@ OBC_ZERO_BIHARMONIC = True      !   [Boolean] default = False
                                 ! viscosity term.
 OBC_SEGMENT_001 = "I=N,J=0:N,FLATHER" !
                                 ! Documentation needs to be dynamic?????
-OBC_SEGMENT_002 = "J=N,I=N:0,FLATHER" !
-                                ! Documentation needs to be dynamic?????
-OBC_SEGMENT_003 = "J=0,I=0:N,FLATHER" !
-                                ! Documentation needs to be dynamic?????
 OBC_SEGMENT_001_DATA = "U=value:0.0,V=value:0.0,SSH=value:0.0" !
-                                ! OBC segment docs
-OBC_SEGMENT_002_DATA = "U=value:0.0,V=value:0.0,SSH=value:0.0" !
-                                ! OBC segment docs
-OBC_SEGMENT_003_DATA = "U=value:0.0,V=value:0.0,SSH=value:0.0" !
                                 ! OBC segment docs
 OBC_RAD_VEL_WT = 0.8            !   [nondim] default = 0.3
                                 ! The relative weighting for the baroclinic radiation
@@ -178,7 +172,7 @@ LIGHTEST_DENSITY = 1030.0       !   [kg m-3] default = 1035.0
 ! Parameters providing information about the lateral grid.
 
 ! === module MOM_state_initialization ===
-THICKNESS_CONFIG = "circle_obcs" !
+THICKNESS_CONFIG = "uniform"    !
                                 ! A string that determines how the initial layer
                                 ! thicknesses are specified for a new run:
                                 !     file - read interface heights from the file specified
@@ -205,14 +199,6 @@ THICKNESS_CONFIG = "circle_obcs" !
                                 !     soliton - Equatorial Rossby soliton.
                                 !     rossby_front - a mixed layer front in thermal wind balance.
                                 !     USER - call a user modified routine.
-
-! === module circle_obcs_initialization ===
-DISK_RADIUS = 25.0              !   [kilometers]
-                                ! The radius of the initially elevated disk in the
-                                ! circle_obcs test case.
-DISK_X_OFFSET = -50.0           !   [kilometers] default = 0.0
-                                ! The x-offset of the initially elevated disk in the
-                                ! circle_obcs test case.
 
 ! === module MOM_diag_mediator ===
 NUM_DIAG_COORDS = 0             ! default = 1
@@ -350,10 +336,16 @@ BUOY_CONFIG = "zero"            !
                                 ! The character string that indicates how buoyancy forcing
                                 ! is specified. Valid options include (file), (zero),
                                 ! (linear), (USER), (BFB) and (NONE).
-WIND_CONFIG = "zero"            !
+WIND_CONFIG = "const"           !
                                 ! The character string that indicates how wind forcing
                                 ! is specified. Valid options include (file), (2gyre),
                                 ! (1gyre), (gyres), (zero), and (USER).
+CONST_WIND_TAUX = -0.1          !   [Pa]
+                                ! With wind_config const, this is the constant zonal
+                                ! wind-stress
+CONST_WIND_TAUY = 0.0           !   [Pa]
+                                ! With wind_config const, this is the constant meridional
+                                ! wind-stress
 
 ! === module MOM_restart ===
 
