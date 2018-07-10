@@ -119,7 +119,7 @@ MAXIMUM_DEPTH = 100.0           !   [m]
 ! Controls where open boundaries are located, what kind of boundary condition to impose, and what data to apply, if any.
 OBC_NUMBER_OF_SEGMENTS = 3      ! default = 0
                                 ! The number of open boundary segments.
-OBC_ZERO_VORTICITY = True       !   [Boolean] default = False
+OBC_ZERO_VORTICITY = False      !   [Boolean] default = False
                                 ! If true, sets relative vorticity to zero on open boundaries.
 OBC_ZERO_STRAIN = True          !   [Boolean] default = False
                                 ! If true, sets the strain used in the stress tensor to zero on open boundaries.
@@ -374,3 +374,4 @@ RESTINT = 365.0                 !   [days] default = 0.0
 ! === module MOM_write_cputime ===
 
 ! === module MOM_file_parser ===
+SAVE_INITIAL_CONDS = True       !   [Boolean] default = False
