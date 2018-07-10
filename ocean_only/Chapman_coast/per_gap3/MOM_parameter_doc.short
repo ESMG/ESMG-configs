@@ -109,7 +109,7 @@ MAXIMUM_DEPTH = 100.0           !   [m]
 
 ! === module MOM_open_boundary ===
 ! Controls where open boundaries are located, what kind of boundary condition to impose, and what data to apply, if any.
-OBC_NUMBER_OF_SEGMENTS = 1      ! default = 0
+OBC_NUMBER_OF_SEGMENTS = 2      ! default = 0
                                 ! The number of open boundary segments.
 OBC_ZERO_VORTICITY = True       !   [Boolean] default = False
                                 ! If true, sets relative vorticity to zero on open boundaries.
@@ -118,9 +118,13 @@ OBC_ZERO_STRAIN = True          !   [Boolean] default = False
 OBC_ZERO_BIHARMONIC = True      !   [Boolean] default = False
                                 ! If true, zeros the Laplacian of flow on open boundaries in the biharmonic
                                 ! viscosity term.
-OBC_SEGMENT_001 = "I=N,J=-10:N+10,FLATHER" !
+OBC_SEGMENT_001 = "I=N,J=-10:12,FLATHER" !
+                                ! Documentation needs to be dynamic?????
+OBC_SEGMENT_002 = "I=N,J=14:N+10,FLATHER" !
                                 ! Documentation needs to be dynamic?????
 OBC_SEGMENT_001_DATA = "U=value:0.0,V=value:0.0,SSH=value:0.0" !
+                                ! OBC segment docs
+OBC_SEGMENT_002_DATA = "U=value:0.0,V=value:0.0,SSH=value:0.0" !
                                 ! OBC segment docs
 OBC_RAD_VEL_WT = 0.8            !   [nondim] default = 0.3
                                 ! The relative weighting for the baroclinic radiation

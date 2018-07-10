@@ -4,3 +4,4 @@ CONST_WIND_TAUX = 0.0
 CONST_WIND_TAUY = -0.1
 REENTRANT_Y = True
 #override OBC_NUMBER_OF_SEGMENTS = 1      ! default = 0
+#override OBC_SEGMENT_001 = "I=N,J=-10:N+10,FLATHER"
