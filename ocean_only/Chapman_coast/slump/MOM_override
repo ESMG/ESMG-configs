@@ -3,3 +3,5 @@
 #override THICKNESS_CONFIG = "circle_obcs"
 DISK_RADIUS = 25.0              !   [k]
 DISK_X_OFFSET = -50.            !   [k]
+#override OBC_SEGMENT_002 = "J=N,I=N:0,FLATHER,OBLIQUE" !
+#override OBC_SEGMENT_003 = "J=0,I=0:N,FLATHER,OBLIQUE" !

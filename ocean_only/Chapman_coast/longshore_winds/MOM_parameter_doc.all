@@ -271,9 +271,9 @@ MASK_OUTSIDE_OBCS = False       !   [Boolean] default = False
                                 ! If true, set the areas outside open boundaries to be land.
 OBC_SEGMENT_001 = "I=N,J=0:N,FLATHER" !
                                 ! Documentation needs to be dynamic?????
-OBC_SEGMENT_002 = "J=N,I=N:0,FLATHER" !
+OBC_SEGMENT_002 = "J=N,I=N:0,FLATHER,OBLIQUE" !
                                 ! Documentation needs to be dynamic?????
-OBC_SEGMENT_003 = "J=0,I=0:N,FLATHER" !
+OBC_SEGMENT_003 = "J=0,I=0:N,FLATHER,OBLIQUE" !
                                 ! Documentation needs to be dynamic?????
 BRUSHCUTTER_MODE = False        !   [Boolean] default = False
                                 ! If true, read external OBC data on the supergrid.

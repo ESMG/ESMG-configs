@@ -31,7 +31,7 @@ NIGLOBAL = 20                   !
                                 ! The total number of thickness grid points in the
                                 ! x-direction in the physical domain. With STATIC_MEMORY_
                                 ! this is set in MOM_memory.h at compile time.
-NJGLOBAL = 180                  !
+NJGLOBAL = 360                  !
                                 ! The total number of thickness grid points in the
                                 ! y-direction in the physical domain. With STATIC_MEMORY_
                                 ! this is set in MOM_memory.h at compile time.
@@ -67,7 +67,7 @@ AXIS_UNITS = "k"                ! default = "degrees"
 SOUTHLAT = 0.0                  !   [k]
                                 ! The southern latitude of the domain or the equivalent
                                 ! starting value for the y-axis.
-LENLAT = 720.0                  !   [k]
+LENLAT = 1440.0                 !   [k]
                                 ! The latitudinal or y-direction length of the domain.
 LENLON = 100.0                  !   [k]
                                 ! The longitudinal or x-direction length of the domain.

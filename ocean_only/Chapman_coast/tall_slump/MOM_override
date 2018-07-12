@@ -3,5 +3,5 @@
 #override THICKNESS_CONFIG = "circle_obcs"
 DISK_RADIUS = 25.0              !   [k]
 DISK_X_OFFSET = -50.            !   [k]
-#override NJGLOBAL = 180                  !
-#override LENLAT = 720.0                  !   [k]
+#override NJGLOBAL = 360                  !
+#override LENLAT = 1440.0                  !   [k]
