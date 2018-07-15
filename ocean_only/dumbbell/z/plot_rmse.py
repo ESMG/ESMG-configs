@@ -23,12 +23,12 @@ clat2 = grd2.variables["geolat"][:]
 clon2 = grd2.variables["geolon"][:]
 
 file1 = 'prog_fine.nc'
-file2 = '../z_sub/prog_align.nc'
-file3 = '../z_sub/prog_spec_q.nc'
-file4 = '../z_sub/prog_spec_s.nc'
-file5 = '../z_sub_clamp/prog_align.nc'
-file6 = '../z_sub_clamp/prog_spec_q.nc'
-file7 = '../z_sub_clamp/prog_spec_s.nc'
+file2 = '../z_sub/prog_default.nc'
+file3 = '../z_sub/prog_oblique.nc'
+file4 = '../z_sub/prog_nonud_ob.nc'
+file5 = '../z_sub/prog_oldob.nc'
+file6 = '../z_sub/prog_nonud_or.nc'
+file7 = '../z_sub/prog_oldob_nonud.nc'
 
 nc1 = netCDF4.Dataset(file1, "r")
 nc2 = netCDF4.Dataset(file2, "r")
@@ -64,15 +64,15 @@ nc3.close()
 nc4.close()
 nc5.close()
 nc6.close()
-nc7.close()
+#nc7.close()
 
 plt.title('Salinity RMSE')
-plt.plot(time, stats[0,:], 'r-.', label = 'comp_both')
-plt.plot(time, stats[1,:], 'b-.', label = 'spec_q')
-plt.plot(time, stats[2,:], 'g-.', label = 'spec_s')
-plt.plot(time, stats[3,:], 'r-', label = 'clamped_comp_both')
-plt.plot(time, stats[4,:], 'b-', label = 'clamped_spec_q')
-plt.plot(time, stats[5,:], 'g-', label = 'clamped_spec_s')
+plt.plot(time, stats[0,:], 'r-.', label = 'orlanski+nud')
+plt.plot(time, stats[1,:], 'b-.', label = 'oblique+nud')
+plt.plot(time, stats[2,:], 'g-.', label = 'oblique')
+plt.plot(time, stats[3,:], 'r-', label = 'old_oblique+nud')
+plt.plot(time, stats[4,:], 'b-', label = 'orlanski')
+plt.plot(time, stats[5,:], 'g-', label = 'old_oblique')
 plt.legend(loc=1)
 fig.savefig('stats_plot.png')
 plt.close()

@@ -22,13 +22,13 @@ clon = grd.variables["geolon"][:,:]
 file1 = '../per_longshore/prog.nc'
 file2 = 'prog_0.nc'
 file3 = 'prog_1.nc'
-file4 = 'prog.nc'
+file4 = 'prog_2.nc'
 
 nc1 = netCDF4.Dataset(file1, "r")
 nc2 = netCDF4.Dataset(file2, "r")
 nc3 = netCDF4.Dataset(file3, "r")
 nc4 = netCDF4.Dataset(file4, "r")
-time = nc1.variables["time"][:]
+time = nc1.variables["time"][:]/3600
 ntim = len(time)
 stats = np.zeros((3, ntim))
 #   for it in range(10):
@@ -48,6 +48,8 @@ nc2.close()
 nc3.close()
 
 plt.title('v-velocity RMSE')
+ax = plt.subplot(111)
+ax.set_xlabel('Time (hours)')
 plt.plot(time, stats[0,:], 'r-.', label = 'Flather')
 plt.plot(time, stats[1,:], 'b-.', label = 'Flather, Orlanski')
 plt.plot(time, stats[2,:], 'g-.', label = 'Flather, oblique')

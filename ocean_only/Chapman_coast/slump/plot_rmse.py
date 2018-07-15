@@ -38,8 +38,6 @@ for it in range(ntim):
     ssh2 = nc2.variables["v"][it,:,:,:]
     ssh3 = nc3.variables["v"][it,:,:,:]
     ssh4 = nc4.variables["v"][it,:,:,:]
-    print("ssh1", ssh1.shape)
-    print("ssh4", ssh4.shape)
     stats[0,it] = rmse(ssh2, ssh1)
     stats[1,it] = rmse(ssh3, ssh1)
     stats[2,it] = rmse(ssh4, ssh1)

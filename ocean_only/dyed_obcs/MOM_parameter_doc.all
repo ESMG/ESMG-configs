@@ -227,7 +227,7 @@ OBC_NUMBER_OF_SEGMENTS = 4      ! default = 0
                                 ! The number of open boundary segments.
 OBC_ZERO_VORTICITY = False      !   [Boolean] default = False
                                 ! If true, sets relative vorticity to zero on open boundaries.
-OBC_FREESLIP_VORTICITY = True   !   [Boolean] default = False
+OBC_FREESLIP_VORTICITY = True   !   [Boolean] default = True
                                 ! If true, sets the normal gradient of tangential velocity to
                                 ! zero in the relative vorticity on open boundaries. This cannot
                                 ! be true if another OBC_XXX_VORTICITY option is True.
@@ -241,7 +241,7 @@ OBC_SPECIFIED_VORTICITY = False !   [Boolean] default = False
                                 ! be true if another OBC_XXX_VORTICITY option is True.
 OBC_ZERO_STRAIN = False         !   [Boolean] default = False
                                 ! If true, sets the strain used in the stress tensor to zero on open boundaries.
-OBC_FREESLIP_STRAIN = True      !   [Boolean] default = False
+OBC_FREESLIP_STRAIN = True      !   [Boolean] default = True
                                 ! If true, sets the normal gradient of tangential velocity to
                                 ! zero in the strain use in the stress tensor on open boundaries. This cannot
                                 ! be true if another OBC_XXX_STRAIN option is True.
@@ -1502,7 +1502,7 @@ DT_FORCING = 600.0              !   [s] default = 120.0
                                 ! The time step for changing forcing, coupling with other
                                 ! components, or potentially writing certain diagnostics.
                                 ! The default value is given by DT.
-DAYMAX = 20.0                   !   [hours]
+DAYMAX = 2.0                    !   [hours]
                                 ! The final time of the whole simulation, in units of
                                 ! TIMEUNIT seconds.  This also sets the potential end
                                 ! time of the present run segment if the end time is
