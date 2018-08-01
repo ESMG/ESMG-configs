@@ -23,9 +23,9 @@
 /
 
  &coupler_nml
-            months = 12,
+            months = 0,
             days   = 0,
-            hours  = 0,
+            hours  = 2,
             current_date = 1980,1,1,0,0,0,
             calendar = 'julian',
             dt_cpld = 3600,
@@ -49,7 +49,6 @@
             max_input_fields = 699
             max_output_fields = 699
             mix_snapshot_average_fields = .false.
-            flush_nc_files = .true.
 /
 
  &flux_exchange_nml

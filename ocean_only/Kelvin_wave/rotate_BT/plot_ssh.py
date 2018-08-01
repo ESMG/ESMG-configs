@@ -39,8 +39,8 @@ clon = grd.variables["geolon"][:]
 #            resolution='h', projection='lcc',\
 #            lat_0=65., lat_1=70.0, lon_0=-162.)
 #x, y = m(clon, clat)
-levels = np.arange(-0.7, 0.7, 0.01)
-cmap = plt.cm.get_cmap("coolwarm")
+levels = np.arange(-0.7, 0.7, 0.05)
+cmap = plt.cm.get_cmap("PRGn")
 
 for file in lst_file:
     print("Plotting "+file)
@@ -51,14 +51,15 @@ for file in lst_file:
     ntim = len(time)
     for it in range(ntim):
         fig = plt.figure()
+        plt.axis([0, 1200, 0, 800])
         plt.axes().set_aspect('equal', 'datalim')
         ssh = nc.variables["e"][it,0,:,:]
         time = nc.variables["time"][it]
 #       cs = m.contourf(x, y, ssh, levels=levels, cmap=cmap)
 #       csa = m.contour(x, y, ssh, levels=levels, linewidths=(0.5,))
-        cs = plt.contourf(clon, clat, ssh, levels=levels, cmap=cmap)
+        cs = plt.contourf(clon, clat, ssh, levels=levels, cmap=cmap, extend='both')
         plt.title('Surface Elevation')
-#       csa = plt.contour(clon, clat, ssh, levels=levels, linewidths=(0.5,))
+        csa = plt.contour(clon, clat, ssh, levels=levels, linewidths=(0.5,))
         plt.colorbar(orientation='horizontal')
         fig.savefig('movie/ssh_%(number)03d.png'%{'number': it})
         plt.close()

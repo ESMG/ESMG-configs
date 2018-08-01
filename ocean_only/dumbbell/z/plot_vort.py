@@ -50,13 +50,13 @@ for file in lst_file:
 #   m.drawmapboundary(fill_color='0.3')
 #   m.drawcoastlines()
     nc = netCDF4.Dataset(file, "r")
-    nc2 = netCDF4.Dataset("../z_sub/prog.nc", "r")
-    nc3 = netCDF4.Dataset("../z_sub_clamp/prog.nc", "r")
+    nc2 = netCDF4.Dataset("../z_sub/prog_big_nud_or.nc", "r")
+    nc3 = netCDF4.Dataset("../z_sub/prog_big_best.nc", "r")
     time = nc.variables["Time"][:]
     ntim = len(time)
 #   for it in range(10):
     for it in range(0,ntim,40):
-        fig = plt.figure(figsize=(8,6))
+        fig = plt.figure(figsize=(8,8))
         ax = fig.add_subplot(311)
         ax.set_aspect('equal')
         ax.axis(xmin=-300,xmax=300)
@@ -65,8 +65,8 @@ for file in lst_file:
 #       cs = m.contourf(x, y, ssh, levels=levels, cmap=cmap)
 #       csa = m.contour(x, y, ssh, levels=levels, linewidths=(0.5,))
         cs = plt.contourf(clon, clat, ssh, levels=levels, cmap=cmap, extend='both')
-        plt.plot([-100,-100], [-50,50], 'b-')
-        plt.plot([100,100], [-50,50], 'b-')
+        plt.plot([-100,-100], [-100,100], 'b-')
+        plt.plot([100,100], [-100,100], 'b-')
         plt.title('Surface RV')
 #       csa = plt.contour(clon, clat, ssh, levels=levels, linewidths=(0.5,))
 

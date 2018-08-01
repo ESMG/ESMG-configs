@@ -4,13 +4,13 @@ CONST_WIND_TAUX = 0.0
 CONST_WIND_TAUY = -0.1
 #override OBC_SEGMENT_002_DATA = "U=file:north.nc(u),V=file:north.nc(v),SSH=file:north.nc(zeta)"
 #override OBC_SEGMENT_003_DATA = "U=file:south.nc(u),V=file:south.nc(v),SSH=file:south.nc(zeta)"
-!#override OBC_SEGMENT_002 = "J=N,I=N:0,FLATHER,OBLIQUE" !
-!#override OBC_SEGMENT_003 = "J=0,I=0:N,FLATHER,OBLIQUE" !
-#override OBC_SEGMENT_002 = "J=N,I=N:0,FLATHER,ORLANSKI" !
-#override OBC_SEGMENT_003 = "J=0,I=0:N,FLATHER,ORLANSKI" !
+#override OBC_SEGMENT_002 = "J=N,I=N:0,FLATHER,OBLIQUE,OBLIQUE_TAN,OBLIQUE_GRAD" !
+#override OBC_SEGMENT_003 = "J=0,I=0:N,FLATHER,OBLIQUE,OBLIQUE_TAN,OBLIQUE_GRAD" !
+!#override OBC_SEGMENT_002 = "J=N,I=N:0,FLATHER,ORLANSKI" !
+!#override OBC_SEGMENT_003 = "J=0,I=0:N,FLATHER,ORLANSKI" !
 !OBC_SEGMENT_002_VELOCITY_NUDGING_TIMESCALES = 0.3, 360
 !OBC_SEGMENT_003_VELOCITY_NUDGING_TIMESCALES = 0.3, 360
-!#override OBC_COMPUTED_VORTICITY = True
+#override OBC_COMPUTED_VORTICITY = True
 #override OBC_FREESLIP_VORTICITY = False
-#override OBC_ZERO_VORTICITY = True
+!#override OBC_ZERO_VORTICITY = True
 !#override OBC_RAD_VEL_WT = 0.8            !   [nondim] default = 0.3

@@ -1,0 +1,37 @@
+CCS1 50 vertical levels
+1900 1 1 0 0 0
+"ocean_hourly",           1, "hours",   1, "hours", "time"
+#"ocean_daily",            1, "days",   1, "hours", "time"
+#"ocean_bt",            0, "hours",   1, "hours", "time"
+
+"ocean_model","u","u","ocean_hourly","all",.false.,"none",2
+"ocean_model","v","v","ocean_hourly","all",.false.,"none",2
+"ocean_model","h","h","ocean_hourly","all",.false.,"none",1
+"ocean_model","e","e","ocean_hourly","all",.false.,"none",2
+"ocean_model","SSH","ssh","ocean_hourly","all",.false.,"none",2
+"ocean_model","temp","temp","ocean_hourly","all",.false.,"none",2
+"ocean_model","salt","salt","ocean_hourly","all",.false.,"none",2
+
+
+#"ocean_model", "eta_hifreq",          "eta",              "ocean_bt", "all", "mean", "none",2
+#"ocean_model", "SSU",          "ssu",              "ocean_daily", "all", "mean", "none",2
+#"ocean_model", "SSV",          "ssv",              "ocean_daily", "all", "mean", "none",2
+#"ocean_model", "SST",          "sst",              "ocean_daily", "all", "mean", "none",2
+#"ocean_model", "SSS",          "sss",              "ocean_daily", "all", "mean", "none",2
+#"ocean_model", "SSH",          "ssh",              "ocean_daily", "all", "mean", "none",2
+#"ocean_model", "thetao",       "thetao",           "ocean_daily", "all", "mean", "none",2
+#"ocean_model", "so",           "so",           "ocean_daily", "all", "mean", "none",2
+#"ocean_model", "uo",           "uo",           "ocean_daily", "all", "mean", "none",2
+#"ocean_model", "vo",           "vo",           "ocean_daily", "all", "mean", "none",2
+#"ocean_model", "RV",           "RV",           "ocean_daily", "all", "mean", "none",2
+#"ocean_model",  "rlntds",     "rlntds",           "ocean_daily", "all", "mean", "none",2  # longwave down
+#"ocean_model",  "hfls",       "hfls",             "ocean_daily", "all", "mean", "none",2  # latent heat for evap+melt
+#"ocean_model",  "hfss",       "hfss",             "ocean_daily", "all", "mean", "none",2  # sensible from air-sea and ice-sea
+#"ocean_model",  "rsntds",     "rsntds",           "ocean_daily", "all", "mean", "none",2  # shortwave
+#"ocean_model",  "rsdo",       "rsdo",             "ocean_daily", "all", "mean", "none",2  # penetratie shortwave
+#"ocean_model",  "hfds",       "hfds",             "ocean_daily", "all", "mean", "none",2  # total heat entering ocean surface
+#"ocean_model",  "ePBL_h_ML",  "ePBL_h_ML",        "ocean_daily", "all", "mean", "none",2  # boundary layer thickness
+#"ocean_model",  "taux",       "taux",             "ocean_daily", "all", "mean", "none",2
+#"ocean_model",  "tauy",       "tauy",             "ocean_daily", "all", "mean", "none",2
+#"ocean_model",  "ustar",      "ustar",            "ocean_daily", "all", "mean", "none",2  # friction vel
+#"ocean_model",  "Kd_interface",  "Kd_interface",  "ocean_daily", "all", "mean", "none",2  # friction vel

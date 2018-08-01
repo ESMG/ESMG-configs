@@ -11,21 +11,21 @@
 
 REENTRANT_X = False
 
-TRIPOLAR_N = False               !   [Boolean] default = False
+TRIPOLAR_N = False              !   [Boolean] default = False
                                 ! Use tripolar connectivity at the northern edge of the
                                 ! domain.  With TRIPOLAR_N, NIGLOBAL must be even.
-NIGLOBAL = 180                 !
+NIGLOBAL = 180                  !
                                 ! The total number of thickness grid points in the
                                 ! x-direction in the physical domain. With STATIC_MEMORY_
                                 ! this is set in MOM_memory.h at compile time.
-NJGLOBAL = 480                 !
+NJGLOBAL = 480                  !
                                 ! The total number of thickness grid points in the
                                 ! y-direction in the physical domain. With STATIC_MEMORY_
                                 ! this is set in MOM_memory.h at compile time.
 
 ! === module MOM_grid ===
 ! Parameters providing information about the vertical grid.
-NK = 75                         !   [nondim]
+NK = 50                         !   [nondim]
                                 ! The number of model layers.
 
 ! === module MOM_verticalGrid ===
@@ -196,7 +196,7 @@ REGRIDDING_COORDINATE_MODE = "Z*" ! default = "LAYER"
                                 !  Z*    - stetched geopotential z*
                                 !  SIGMA - terrain following coordinates
                                 !  RHO   - continuous isopycnal
-ALE_COORDINATE_CONFIG = "FILE:vgrid_75_2m.nc,dz" ! default = "UNIFORM"
+ALE_COORDINATE_CONFIG = "FILE:vgrid_50_10m.nc,dz" ! default = "UNIFORM"
                                 ! Determines how to specify the coordinate
                                 ! resolution. Valid options are:
                                 !  PARAM       - use the vector-parameter ALE_RESOLUTION
@@ -224,7 +224,7 @@ INIT_LAYERS_FROM_Z_FILE = False !   [Boolean] default = False
                                 ! If true, intialize the layer thicknesses, temperatures,
                                 ! and salnities from a Z-space file on a latitude-
                                 ! longitude grid.
-THICKNESS_CONFIG = "file"       !
+THICKNESS_CONFIG = "coord"      !
                                 ! A string that determines how the initial layer
                                 ! thicknesses are specified for a new run:
                                 !     file - read interface heights from the file specified
@@ -248,8 +248,6 @@ THICKNESS_CONFIG = "file"       !
                                 !     soliton - Equatorial Rossby soliton.
                                 !     rossby_front - a mixed layer front in thermal wind balance.
                                 !     USER - call a user modified routine.
-THICKNESS_FILE = "CCS1_IC.nc"   !
-                                ! The name of the thickness file.
 ADJUST_THICKNESS = True         !   [Boolean] default = False
                                 ! If true, all mass below the bottom removed if the
                                 ! topography is shallower than the thickness input file
@@ -275,13 +273,13 @@ TS_CONFIG = "file"              !
                                 !     SCM_CVmix_tests - used in the SCM CVmix tests.
                                 !     USER - call a user modified routine.
 
-TS_FILE = "CCS1_IC.nc"          !
+TS_FILE = "CCS1-IC_SODA3.3.3.1_1980-01-23.nc"          !
                                 ! The initial condition file for temperature.
 TEMP_IC_VAR = "temp"            ! default = "PTEMP"
                                 ! The initial condition variable for potential temperature.
 SALT_IC_VAR = "salt"            ! default = "SALT"
                                 ! The initial condition variable for salinity.
-SALT_FILE = "CCS1_IC.nc"        ! default = "IC.nc"
+SALT_FILE = "CCS1-IC_SODA3.3.3.1_1980-01-23.nc"        ! default = "IC.nc"
                                 ! The initial condition file for salinity.
 VELOCITY_CONFIG = "zero"        ! default = "zero"
                                 ! A string that determines how the initial velocities
@@ -667,19 +665,23 @@ SPONGE_SALT_VAR = "salt"
 
 ! === OBC options ===
 OBC_NUMBER_OF_SEGMENTS = 3      ! [Integer] The number of open boundary segments.
-OBC_SEGMENT_001 = "J=0,I=0:N,FLATHER,ORLANSKI,NUDGED"
-OBC_SEGMENT_002 = "J=N,I=N:0,FLATHER,ORLANSKI,NUDGED"
-OBC_SEGMENT_003 = "I=0,J=N:0,FLATHER,ORLANSKI,NUDGED"
-OBC_SEGMENT_001_DATA = "U=file:obc_monthly_CCS1.nc(u),V=file:obc_monthly_CCS1.nc(v),SSH=file:obc_monthly_CCS1.nc(zeta),TEMP=file:obc_monthly_CCS1.nc(temp),SALT=file:obc_monthly_CCS1.nc(salt)"
-OBC_SEGMENT_002_DATA = "U=file:obc_monthly_CCS1.nc(u),V=file:obc_monthly_CCS1.nc(v),SSH=file:obc_monthly_CCS1.nc(zeta),TEMP=file:obc_monthly_CCS1.nc(temp),SALT=file:obc_monthly_CCS1.nc(salt)"
-OBC_SEGMENT_003_DATA = "U=file:obc_monthly_CCS1.nc(u),V=file:obc_monthly_CCS1.nc(v),SSH=file:obc_monthly_CCS1.nc(zeta),TEMP=file:obc_monthly_CCS1.nc(temp),SALT=file:obc_monthly_CCS1.nc(salt)"
+!OBC_SEGMENT_002 = "J=0,I=0:N,FLATHER,OBLIQUE,NUDGED"
+!OBC_SEGMENT_001 = "J=N,I=N:0,FLATHER,OBLIQUE,NUDGED"
+!OBC_SEGMENT_003 = "I=0,J=N:0,FLATHER,OBLIQUE,NUDGED"
+OBC_SEGMENT_002 = "J=0,I=0:N,FLATHER,ORLANSKI,NUDGED,ORLANSKI_TAN,NUDGED_TAN"
+OBC_SEGMENT_001 = "J=N,I=N:0,FLATHER,ORLANSKI,NUDGED,ORLANSKI_TAN,NUDGED_TAN"
+OBC_SEGMENT_003 = "I=0,J=N:0,FLATHER,ORLANSKI,NUDGED,ORLANSKI_TAN,NUDGED_TAN"
+OBC_SEGMENT_001_DATA = "U=file:obc_CCS1_1980-1990.nc(u),V=file:obc_CCS1_1980-1990.nc(v),SSH=file:obc_CCS1_1980-1990.nc(zeta),TEMP=file:obc_CCS1_1980-1990.nc(temp),SALT=file:obc_CCS1_1980-1990.nc(salt)"
+OBC_SEGMENT_002_DATA = "U=file:obc_CCS1_1980-1990.nc(u),V=file:obc_CCS1_1980-1990.nc(v),SSH=file:obc_CCS1_1980-1990.nc(zeta),TEMP=file:obc_CCS1_1980-1990.nc(temp),SALT=file:obc_CCS1_1980-1990.nc(salt)"
+OBC_SEGMENT_003_DATA = "U=file:obc_CCS1_1980-1990.nc(u),V=file:obc_CCS1_1980-1990.nc(v),SSH=file:obc_CCS1_1980-1990.nc(zeta),TEMP=file:obc_CCS1_1980-1990.nc(temp),SALT=file:obc_CCS1_1980-1990.nc(salt)"
 OBC_SEGMENT_001_VELOCITY_NUDGING_TIMESCALES = 0.3, 360
 OBC_SEGMENT_002_VELOCITY_NUDGING_TIMESCALES = 0.3, 360
 OBC_SEGMENT_003_VELOCITY_NUDGING_TIMESCALES = 0.3, 360
 OBC_TRACER_RESERVOIR_LENGTH_SCALE_OUT = 30000
 OBC_TRACER_RESERVOIR_LENGTH_SCALE_IN = 3000
 BRUSHCUTTER_MODE = True
-OBC_FREESLIP_VORTICITY = True   !   [Boolean] default = False
+OBC_FREESLIP_VORTICITY = False  !   [Boolean] default = True
+OBC_COMPUTED_VORTICITY = True   !   [Boolean] default = False
                                 ! If true, uses the external values of tangential velocity
                                 ! in the relative vorticity on open boundaries. This cannot
                                 ! be true if OBC_ZERO_VORTICITY or OBC_FREESLIP_VORTICITY is True.
