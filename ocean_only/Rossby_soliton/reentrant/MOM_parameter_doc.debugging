@@ -34,12 +34,6 @@ DEBUG_BT = False                !   [Boolean] default = False
                                 ! If true, write out verbose debugging data within the
                                 ! barotropic time-stepping loop. The data volume can be
                                 ! quite large if this is true.
-DEBUG_CONSERVATION = False      !   [Boolean] default = False
-                                ! If true, monitor conservation and extrema.
-DEBUG_KAPPA_SHEAR = False       !   [Boolean] default = False
-                                ! If true, write debugging data for the kappa-shear code.
-                                ! Caution: this option is _very_ verbose and should only
-                                ! be used in single-column mode!
 REPORT_UNUSED_PARAMS = False    !   [Boolean] default = False
                                 ! If true, report any parameter lines that are not used
                                 ! in the run.

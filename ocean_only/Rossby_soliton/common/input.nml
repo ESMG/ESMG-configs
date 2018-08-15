@@ -12,6 +12,7 @@
          minutes = 2 /
 
  &diag_manager_nml
+        flush_nc_files = .true.
  /
 
  &fms_nml
