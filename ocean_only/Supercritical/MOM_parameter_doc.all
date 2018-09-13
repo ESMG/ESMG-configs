@@ -175,6 +175,9 @@ GRID_CONFIG = "mosaic"          !
                                 !     mercator - use a Mercator spherical grid.
 GRID_FILE = "ocean_hgrid.nc"    !
                                 ! Name of the file from which to read horizontal grid data.
+USE_TRIPOLAR_GEOLONB_BUG = True !   [Boolean] default = True
+                                ! If true, use older code that incorrectly sets the longitude
+                                ! in some points along the tripolar fold to be off by 360 degrees.
 TOPO_CONFIG = "flat"            !
                                 ! This specifies how bathymetry is specified:
                                 !     file - read bathymetric information from the file
@@ -293,6 +296,10 @@ F_0 = 0.0                       !   [s-1] default = 0.0
 BETA = 0.0                      !   [m-1 s-1] default = 0.0
                                 ! The northward gradient of the Coriolis parameter with
                                 ! the betaplane option.
+GRID_ROTATION_ANGLE_BUGS = True !   [Boolean] default = True
+                                ! If true, use an older algorithm to calculate the sine and
+                                ! cosines needed rotate between grid-oriented directions and
+                                ! true north and east.  Differences arise at the tripolar fold.
 PARALLEL_RESTARTFILES = False   !   [Boolean] default = False
                                 ! If true, each processor writes its own restart file,
                                 ! otherwise a single restart file is generated
