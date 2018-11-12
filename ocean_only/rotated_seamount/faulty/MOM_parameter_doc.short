@@ -1,6 +1,9 @@
 ! This file was written by the model and records the non-default parameters used at run-time.
 
 ! === module MOM ===
+
+! === module MOM_unit_scaling ===
+! Parameters for doing unit scaling of variables.
 BULKMIXEDLAYER = False          !   [Boolean] default = True
                                 ! If true, use a Kraus-Turner-like bulk mixed layer
                                 ! with transitional buffer layers.  Layers 1 through
@@ -185,5 +188,3 @@ OBC_SEGMENT_034 = "J=41,I=16:8,FLATHER, OBLIQUE" !
 OBC_SEGMENT_035 = "I=8,J=41:40,FLATHER, OBLIQUE" !
                                 ! Documentation needs to be dynamic?????
 OBC_SEGMENT_036 = "J=40,I=8:0,FLATHER, OBLIQUE" !
-                                ! Documentation needs to be dynamic?????
-OBC_TRACER_RESERVOIR_LENGTH_SCALE_OUT = 1000.0 !   [m] default = 0.0
