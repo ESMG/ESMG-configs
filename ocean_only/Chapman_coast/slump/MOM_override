@@ -1,5 +1,7 @@
 ! Blank file in which we can put "overrides" for parameters
 !#override NK=2
+!!!DEBUG = True
+!!!DEBUG_BT = False
 #override THICKNESS_CONFIG = "circle_obcs"
 DISK_RADIUS = 25.0              !   [k]
 DISK_X_OFFSET = -50.            !   [k]
