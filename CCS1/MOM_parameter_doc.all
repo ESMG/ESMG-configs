@@ -1,6 +1,9 @@
 ! This file was written by the model and records all non-layout or debugging parameters used at run-time.
 
 ! === module MOM ===
+
+! === module MOM_unit_scaling ===
+! Parameters for doing unit scaling of variables.
 SPLIT = True                    !   [Boolean] default = True
                                 ! Use the split time stepping if true.
 CALC_RHO_FOR_SEA_LEVEL = False  !   [Boolean] default = False
@@ -29,8 +32,8 @@ ADIABATIC = False               !   [Boolean] default = False
                                 ! there is no buoyancy forcing, but makes the model
                                 ! faster by eliminating subroutine calls.
 USE_LEGACY_DIABATIC_DRIVER = True !   [Boolean] default = True
-                                ! If true, use the a legacy version of the diabatic subroutine.
-                                ! This is temporary and is needed avoid change in answers.
+                                ! If true, use a legacy version of the diabatic subroutine.
+                                ! This is temporary and is needed to avoid change in answers.
 OFFLINE_TRACER_MODE = False     !   [Boolean] default = False
                                 ! If true, barotropic and baroclinic dynamics, thermodynamics
                                 ! are all bypassed with all the fields necessary to integrate
@@ -83,6 +86,11 @@ HMIX_UV_SFC_PROP = 0.0          !   [m] default = 0.0
                                 ! If BULKMIXEDLAYER is false, HMIX_UV_SFC_PROP is the depth
                                 ! over which to average to find surface flow properties,
                                 ! SSU, SSV. A non-positive value indicates no averaging.
+HFREEZE = -1.0                  !   [m] default = -1.0
+                                ! If HFREEZE > 0, melt potential will be computed. The actual depth
+                                ! over which melt potential is computed will be min(HFREEZE, OBLD),
+                                ! where OBLD is the boundary layer depth. If HFREEZE <= 0 (default),
+                                ! melt potential will not be computed.
 MIN_Z_DIAG_INTERVAL = 2.16E+04  !   [s] default = 0.0
                                 ! The minimum amount of time in seconds between
                                 ! calculations of depth-space diagnostics. Making this
@@ -196,6 +204,9 @@ GRID_CONFIG = "mosaic"          !
                                 !     mercator - use a Mercator spherical grid.
 GRID_FILE = "ocean_hgrid.nc"    !
                                 ! Name of the file from which to read horizontal grid data.
+USE_TRIPOLAR_GEOLONB_BUG = True !   [Boolean] default = True
+                                ! If true, use older code that incorrectly sets the longitude
+                                ! in some points along the tripolar fold to be off by 360 degrees.
 TOPO_CONFIG = "file"            !
                                 ! This specifies how bathymetry is specified:
                                 !     file - read bathymetric information from the file
@@ -339,6 +350,10 @@ ROTATION = "2omegasinlat"       ! default = "2omegasinlat"
                                 !     USER - call a user modified routine.
 OMEGA = 7.2921E-05              !   [s-1] default = 7.2921E-05
                                 ! The rotation rate of the earth.
+GRID_ROTATION_ANGLE_BUGS = True !   [Boolean] default = True
+                                ! If true, use an older algorithm to calculate the sine and
+                                ! cosines needed rotate between grid-oriented directions and
+                                ! true north and east.  Differences arise at the tripolar fold.
 
 ! === module MOM_boundary_update ===
 USE_FILE_OBC = False            !   [Boolean] default = False
@@ -586,7 +601,6 @@ TS_CONFIG = "file"              !
                                 !     seamount - no motion test with seamount ICs.
                                 !     dumbbell - sloshing channel ICs.
                                 !     rossby_front - a mixed layer front in thermal wind balance.
-                                !     SCM_ideal_hurr - used in the SCM idealized hurricane test.
                                 !     SCM_CVMix_tests - used in the SCM CVMix tests.
                                 !     USER - call a user modified routine.
 TS_FILE = "CCS1-IC_SODA3.3.3.1_1980-01-23.nc" !
@@ -770,6 +784,10 @@ MEKE_ADVECTION_FACTOR = 0.0     !   [nondim] default = 0.0
                                 ! A scale factor in front of advection of eddy energy. Zero turns advection off.
                                 ! Using unity would be normal but other values could accomodate a mismatch
                                 ! between the advecting barotropic flow and the vertical structure of MEKE.
+MEKE_TOPOGRAPHIC_BETA = 0.0     !   [nondim] default = 0.0
+                                ! A scale factor to determine how much topographic beta is weighed in
+                                ! computing beta in the expression of Rhines scale. Use 1 if full
+                                ! topographic beta effect is considered; use 0 if it's completely ignored.
 CDRAG = 0.003                   !   [nondim] default = 0.003
                                 ! CDRAG is the drag coefficient relating the magnitude of
                                 ! the velocity field to the bottom stress.
@@ -1511,13 +1529,16 @@ KDML = 2.0E-05                  !   [m2 s-1] default = 2.0E-05
                                 ! If BULKMIXEDLAYER is false, KDML is the elevated
                                 ! diapycnal diffusivity in the topmost HMIX of fluid.
                                 ! KDML is only used if BULKMIXEDLAYER is false.
-PRANDTL_BKGND = 1.0             !   [nondim] default = 1.0
-                                ! Turbulent Prandtl number used to convert vertical
-                                ! background diffusivities into viscosities.
 BRYAN_LEWIS_DIFFUSIVITY = False !   [Boolean] default = False
                                 ! If true, use a Bryan & Lewis (JGR 1979) like tanh
                                 ! profile of background diapycnal diffusivity with depth.
                                 ! This is done via CVMix.
+HORIZ_VARYING_BACKGROUND = False !   [Boolean] default = False
+                                ! If true, apply vertically uniform, latitude-dependent background
+                                ! diffusivity, as described in Danabasoglu et al., 2012
+PRANDTL_BKGND = 1.0             !   [nondim] default = 1.0
+                                ! Turbulent Prandtl number used to convert vertical
+                                ! background diffusivities into viscosities.
 HENYEY_IGW_BACKGROUND = True    !   [Boolean] default = False
                                 ! If true, use a latitude-dependent scaling for the near
                                 ! surface background diffusivity, as described in
@@ -1906,14 +1927,6 @@ OCEAN_SURFACE_STAGGER = "C"     ! default = "C"
                                 ! staggering of the surface velocity field that is
                                 ! returned to the coupler.  Valid values include
                                 ! 'A', 'B', or 'C'.
-RESTORE_SALINITY = False        !   [Boolean] default = False
-                                ! If true, the coupled driver will add a globally-balanced
-                                ! fresh-water flux that drives sea-surface salinity
-                                ! toward specified values.
-RESTORE_TEMPERATURE = False     !   [Boolean] default = False
-                                ! If true, the coupled driver will add a
-                                ! heat flux that drives sea-surface temperauture
-                                ! toward specified values.
 ICE_SHELF = False               !   [Boolean] default = False
                                 ! If true, enables the ice shelf model.
 ICEBERGS_APPLY_RIGID_BOUNDARY = False !   [Boolean] default = False
@@ -1931,6 +1944,14 @@ MAX_P_SURF = 0.0                !   [Pa] default = -1.0
                                 ! limit the water that can be frozen out of the ocean and
                                 ! the ice-ocean heat fluxes are treated explicitly.  No
                                 ! limit is applied if a negative value is used.
+RESTORE_SALINITY = False        !   [Boolean] default = False
+                                ! If true, the coupled driver will add a globally-balanced
+                                ! fresh-water flux that drives sea-surface salinity
+                                ! toward specified values.
+RESTORE_TEMPERATURE = False     !   [Boolean] default = False
+                                ! If true, the coupled driver will add a
+                                ! heat flux that drives sea-surface temperauture
+                                ! toward specified values.
 ADJUST_NET_SRESTORE_TO_ZERO = False !   [Boolean] default = False
                                 ! If true, adjusts the salinity restoring seen to zero
                                 ! whether restoring is via a salt flux or virtual precip.
@@ -1951,6 +1972,11 @@ USE_LIMITED_PATM_SSH = True     !   [Boolean] default = True
                                 ! correction for the atmospheric (and sea-ice) pressure
                                 ! limited by max_p_surf instead of the full atmospheric
                                 ! pressure.
+APPROX_NET_MASS_SRC = False     !   [Boolean] default = False
+                                ! If true, use the net mass sources from the ice-ocean
+                                ! boundary type without any further adjustments to drive
+                                ! the ocean dynamics.  The actual net mass source may differ
+                                ! due to internal corrections.
 WIND_STAGGER = "C"              ! default = "C"
                                 ! A case-insensitive character string to indicate the
                                 ! staggering of the input wind stress field.  Valid
