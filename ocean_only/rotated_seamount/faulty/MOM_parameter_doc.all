@@ -7,148 +7,121 @@
 SPLIT = True                    !   [Boolean] default = True
                                 ! Use the split time stepping if true.
 CALC_RHO_FOR_SEA_LEVEL = False  !   [Boolean] default = False
-                                ! If true, the in-situ density is used to calculate the
-                                ! effective sea level that is returned to the coupler. If false,
-                                ! the Boussinesq parameter RHO_0 is used.
+                                ! If true, the in-situ density is used to calculate the effective sea level that
+                                ! is returned to the coupler. If false, the Boussinesq parameter RHO_0 is used.
 ENABLE_THERMODYNAMICS = True    !   [Boolean] default = True
-                                ! If true, Temperature and salinity are used as state
-                                ! variables.
+                                ! If true, Temperature and salinity are used as state variables.
 USE_EOS = True                  !   [Boolean] default = True
-                                ! If true,  density is calculated from temperature and
-                                ! salinity with an equation of state.  If USE_EOS is
-                                ! true, ENABLE_THERMODYNAMICS must be true as well.
+                                ! If true,  density is calculated from temperature and salinity with an equation
+                                ! of state.  If USE_EOS is true, ENABLE_THERMODYNAMICS must be true as well.
 DIABATIC_FIRST = False          !   [Boolean] default = False
-                                ! If true, apply diabatic and thermodynamic processes,
-                                ! including buoyancy forcing and mass gain or loss,
-                                ! before stepping the dynamics forward.
+                                ! If true, apply diabatic and thermodynamic processes, including buoyancy
+                                ! forcing and mass gain or loss, before stepping the dynamics forward.
 USE_CONTEMP_ABSSAL = False      !   [Boolean] default = False
-                                ! If true, the prognostics T&S are the conservative temperature
-                                ! and absolute salinity. Care should be taken to convert them
-                                ! to potential temperature and practical salinity before
-                                ! exchanging them with the coupler and/or reporting T&S diagnostics.
+                                ! If true, the prognostics T&S are the conservative temperature and absolute
+                                ! salinity. Care should be taken to convert them to potential temperature and
+                                ! practical salinity before exchanging them with the coupler and/or reporting
+                                ! T&S diagnostics.
 ADIABATIC = False               !   [Boolean] default = False
-                                ! There are no diapycnal mass fluxes if ADIABATIC is
-                                ! true. This assumes that KD = KDML = 0.0 and that
-                                ! there is no buoyancy forcing, but makes the model
-                                ! faster by eliminating subroutine calls.
+                                ! There are no diapycnal mass fluxes if ADIABATIC is true. This assumes that KD
+                                ! = KDML = 0.0 and that there is no buoyancy forcing, but makes the model faster
+                                ! by eliminating subroutine calls.
 USE_LEGACY_DIABATIC_DRIVER = True !   [Boolean] default = True
-                                ! If true, use a legacy version of the diabatic subroutine.
-                                ! This is temporary and is needed to avoid change in answers.
+                                ! If true, use a legacy version of the diabatic subroutine. This is temporary
+                                ! and is needed to avoid change in answers.
 OFFLINE_TRACER_MODE = False     !   [Boolean] default = False
-                                ! If true, barotropic and baroclinic dynamics, thermodynamics
-                                ! are all bypassed with all the fields necessary to integrate
-                                ! the tracer advection and diffusion equation are read in from
-                                ! files stored from a previous integration of the prognostic model.
-                                ! NOTE: This option only used in the ocean_solo_driver.
+                                ! If true, barotropic and baroclinic dynamics, thermodynamics are all bypassed
+                                ! with all the fields necessary to integrate the tracer advection and diffusion
+                                ! equation are read in from files stored from a previous integration of the
+                                ! prognostic model. NOTE: This option only used in the ocean_solo_driver.
 USE_REGRIDDING = False          !   [Boolean] default = False
-                                ! If True, use the ALE algorithm (regridding/remapping).
-                                ! If False, use the layered isopycnal algorithm.
+                                ! If True, use the ALE algorithm (regridding/remapping). If False, use the
+                                ! layered isopycnal algorithm.
 BULKMIXEDLAYER = False          !   [Boolean] default = True
-                                ! If true, use a Kraus-Turner-like bulk mixed layer
-                                ! with transitional buffer layers.  Layers 1 through
-                                ! NKML+NKBL have variable densities. There must be at
-                                ! least NKML+NKBL+1 layers if BULKMIXEDLAYER is true.
-                                ! BULKMIXEDLAYER can not be used with USE_REGRIDDING.
-                                ! The default is influenced by ENABLE_THERMODYNAMICS.
+                                ! If true, use a Kraus-Turner-like bulk mixed layer with transitional buffer
+                                ! layers.  Layers 1 through NKML+NKBL have variable densities. There must be at
+                                ! least NKML+NKBL+1 layers if BULKMIXEDLAYER is true. BULKMIXEDLAYER can not be
+                                ! used with USE_REGRIDDING. The default is influenced by ENABLE_THERMODYNAMICS.
 THICKNESSDIFFUSE = False        !   [Boolean] default = False
-                                ! If true, interface heights are diffused with a
-                                ! coefficient of KHTH.
+                                ! If true, interface heights are diffused with a coefficient of KHTH.
 THICKNESSDIFFUSE_FIRST = False  !   [Boolean] default = False
-                                ! If true, do thickness diffusion before dynamics.
-                                ! This is only used if THICKNESSDIFFUSE is true.
+                                ! If true, do thickness diffusion before dynamics. This is only used if
+                                ! THICKNESSDIFFUSE is true.
 BATHYMETRY_AT_VEL = False       !   [Boolean] default = False
-                                ! If true, there are separate values for the basin depths
-                                ! at velocity points.  Otherwise the effects of topography
-                                ! are entirely determined from thickness points.
+                                ! If true, there are separate values for the basin depths at velocity points.
+                                ! Otherwise the effects of topography are entirely determined from thickness
+                                ! points.
 DT = 900.0                      !   [s]
-                                ! The (baroclinic) dynamics time step.  The time-step that
-                                ! is actually used will be an integer fraction of the
-                                ! forcing time-step (DT_FORCING in ocean-only mode or the
-                                ! coupling timestep in coupled mode.)
+                                ! The (baroclinic) dynamics time step.  The time-step that is actually used will
+                                ! be an integer fraction of the forcing time-step (DT_FORCING in ocean-only mode
+                                ! or the coupling timestep in coupled mode.)
 DT_THERM = 900.0                !   [s] default = 900.0
-                                ! The thermodynamic and tracer advection time step.
-                                ! Ideally DT_THERM should be an integer multiple of DT
-                                ! and less than the forcing or coupling time-step, unless
-                                ! THERMO_SPANS_COUPLING is true, in which case DT_THERM
-                                ! can be an integer multiple of the coupling timestep.  By
-                                ! default DT_THERM is set to DT.
+                                ! The thermodynamic and tracer advection time step. Ideally DT_THERM should be
+                                ! an integer multiple of DT and less than the forcing or coupling time-step,
+                                ! unless THERMO_SPANS_COUPLING is true, in which case DT_THERM can be an integer
+                                ! multiple of the coupling timestep.  By default DT_THERM is set to DT.
 THERMO_SPANS_COUPLING = False   !   [Boolean] default = False
-                                ! If true, the MOM will take thermodynamic and tracer
-                                ! timesteps that can be longer than the coupling timestep.
-                                ! The actual thermodynamic timestep that is used in this
-                                ! case is the largest integer multiple of the coupling
-                                ! timestep that is less than or equal to DT_THERM.
+                                ! If true, the MOM will take thermodynamic and tracer timesteps that can be
+                                ! longer than the coupling timestep. The actual thermodynamic timestep that is
+                                ! used in this case is the largest integer multiple of the coupling timestep
+                                ! that is less than or equal to DT_THERM.
 HMIX_SFC_PROP = 1.0             !   [m] default = 1.0
-                                ! If BULKMIXEDLAYER is false, HMIX_SFC_PROP is the depth
-                                ! over which to average to find surface properties like
-                                ! SST and SSS or density (but not surface velocities).
+                                ! If BULKMIXEDLAYER is false, HMIX_SFC_PROP is the depth over which to average
+                                ! to find surface properties like SST and SSS or density (but not surface
+                                ! velocities).
 HMIX_UV_SFC_PROP = 0.0          !   [m] default = 0.0
-                                ! If BULKMIXEDLAYER is false, HMIX_UV_SFC_PROP is the depth
-                                ! over which to average to find surface flow properties,
-                                ! SSU, SSV. A non-positive value indicates no averaging.
+                                ! If BULKMIXEDLAYER is false, HMIX_UV_SFC_PROP is the depth over which to
+                                ! average to find surface flow properties, SSU, SSV. A non-positive value
+                                ! indicates no averaging.
 HFREEZE = -1.0                  !   [m] default = -1.0
-                                ! If HFREEZE > 0, melt potential will be computed. The actual depth
-                                ! over which melt potential is computed will be min(HFREEZE, OBLD),
-                                ! where OBLD is the boundary layer depth. If HFREEZE <= 0 (default),
-                                ! melt potential will not be computed.
-MIN_Z_DIAG_INTERVAL = 0.0       !   [s] default = 0.0
-                                ! The minimum amount of time in seconds between
-                                ! calculations of depth-space diagnostics. Making this
-                                ! larger than DT_THERM reduces the  performance penalty
-                                ! of regridding to depth online.
+                                ! If HFREEZE > 0, melt potential will be computed. The actual depth over which
+                                ! melt potential is computed will be min(HFREEZE, OBLD), where OBLD is the
+                                ! boundary layer depth. If HFREEZE <= 0 (default), melt potential will not be
+                                ! computed.
 INTERPOLATE_P_SURF = False      !   [Boolean] default = False
-                                ! If true, linearly interpolate the surface pressure
-                                ! over the coupling time step, using the specified value
-                                ! at the end of the step.
+                                ! If true, linearly interpolate the surface pressure over the coupling time
+                                ! step, using the specified value at the end of the step.
 DTBT_RESET_PERIOD = 900.0       !   [s] default = 900.0
-                                ! The period between recalculations of DTBT (if DTBT <= 0).
-                                ! If DTBT_RESET_PERIOD is negative, DTBT is set based
-                                ! only on information available at initialization.  If 0,
-                                ! DTBT will be set every dynamics time step. The default
+                                ! The period between recalculations of DTBT (if DTBT <= 0). If DTBT_RESET_PERIOD
+                                ! is negative, DTBT is set based only on information available at
+                                ! initialization.  If 0, DTBT will be set every dynamics time step. The default
                                 ! is set by DT_THERM.  This is only used if SPLIT is true.
 FRAZIL = False                  !   [Boolean] default = False
-                                ! If true, water freezes if it gets too cold, and the
-                                ! the accumulated heat deficit is returned in the
-                                ! surface state.  FRAZIL is only used if
+                                ! If true, water freezes if it gets too cold, and the the accumulated heat
+                                ! deficit is returned in the surface state.  FRAZIL is only used if
                                 ! ENABLE_THERMODYNAMICS is true.
 DO_GEOTHERMAL = False           !   [Boolean] default = False
                                 ! If true, apply geothermal heating.
 BOUND_SALINITY = False          !   [Boolean] default = False
-                                ! If true, limit salinity to being positive. (The sea-ice
-                                ! model may ask for more salt than is available and
-                                ! drive the salinity negative otherwise.)
+                                ! If true, limit salinity to being positive. (The sea-ice model may ask for more
+                                ! salt than is available and drive the salinity negative otherwise.)
 C_P = 3925.0                    !   [J kg-1 K-1] default = 3991.86795711963
-                                ! The heat capacity of sea water, approximated as a
-                                ! constant. This is only used if ENABLE_THERMODYNAMICS is
-                                ! true. The default value is from the TEOS-10 definition
-                                ! of conservative temperature.
+                                ! The heat capacity of sea water, approximated as a constant. This is only used
+                                ! if ENABLE_THERMODYNAMICS is true. The default value is from the TEOS-10
+                                ! definition of conservative temperature.
 P_REF = 2.0E+07                 !   [Pa] default = 2.0E+07
-                                ! The pressure that is used for calculating the coordinate
-                                ! density.  (1 Pa = 1e4 dbar, so 2e7 is commonly used.)
-                                ! This is only used if USE_EOS and ENABLE_THERMODYNAMICS
-                                ! are true.
+                                ! The pressure that is used for calculating the coordinate density.  (1 Pa = 1e4
+                                ! dbar, so 2e7 is commonly used.) This is only used if USE_EOS and
+                                ! ENABLE_THERMODYNAMICS are true.
 FIRST_DIRECTION = 0             ! default = 0
-                                ! An integer that indicates which direction goes first
-                                ! in parts of the code that use directionally split
-                                ! updates, with even numbers (or 0) used for x- first
+                                ! An integer that indicates which direction goes first in parts of the code that
+                                ! use directionally split updates, with even numbers (or 0) used for x- first
                                 ! and odd numbers used for y-first.
 CHECK_BAD_SURFACE_VALS = False  !   [Boolean] default = False
                                 ! If true, check the surface state for ridiculous values.
 SAVE_INITIAL_CONDS = True       !   [Boolean] default = False
-                                ! If true, write the initial conditions to a file given
-                                ! by IC_OUTPUT_FILE.
+                                ! If true, write the initial conditions to a file given by IC_OUTPUT_FILE.
 IC_OUTPUT_FILE = "MOM_IC"       ! default = "MOM_IC"
                                 ! The file into which to write the initial conditions.
 WRITE_GEOM = 1                  ! default = 1
-                                ! If =0, never write the geometry and vertical grid files.
-                                ! If =1, write the geometry and vertical grid files only for
-                                ! a new simulation. If =2, always write the geometry and
-                                ! vertical grid files. Other values are invalid.
+                                ! If =0, never write the geometry and vertical grid files. If =1, write the
+                                ! geometry and vertical grid files only for a new simulation. If =2, always
+                                ! write the geometry and vertical grid files. Other values are invalid.
 ENSEMBLE_OCEAN = False          !   [Boolean] default = False
-                                ! If False, The model is being run in serial mode as a single realization.
-                                ! If True, The current model realization is part of a larger ensemble
-                                ! and at the end of step MOM, we will perform a gather of the ensemble
-                                ! members for statistical evaluation and/or data assimilation.
+                                ! If False, The model is being run in serial mode as a single realization. If
+                                ! True, The current model realization is part of a larger ensemble and at the
+                                ! end of step MOM, we will perform a gather of the ensemble members for
+                                ! statistical evaluation and/or data assimilation.
 
 ! === module MOM_domains ===
 REENTRANT_X = False             !   [Boolean] default = True
@@ -156,16 +129,14 @@ REENTRANT_X = False             !   [Boolean] default = True
 REENTRANT_Y = False             !   [Boolean] default = False
                                 ! If true, the domain is meridionally reentrant.
 TRIPOLAR_N = False              !   [Boolean] default = False
-                                ! Use tripolar connectivity at the northern edge of the
-                                ! domain.  With TRIPOLAR_N, NIGLOBAL must be even.
+                                ! Use tripolar connectivity at the northern edge of the domain.  With
+                                ! TRIPOLAR_N, NIGLOBAL must be even.
 NIGLOBAL = 44                   !
-                                ! The total number of thickness grid points in the
-                                ! x-direction in the physical domain. With STATIC_MEMORY_
-                                ! this is set in MOM_memory.h at compile time.
+                                ! The total number of thickness grid points in the x-direction in the physical
+                                ! domain. With STATIC_MEMORY_ this is set in MOM_memory.h at compile time.
 NJGLOBAL = 44                   !
-                                ! The total number of thickness grid points in the
-                                ! y-direction in the physical domain. With STATIC_MEMORY_
-                                ! this is set in MOM_memory.h at compile time.
+                                ! The total number of thickness grid points in the y-direction in the physical
+                                ! domain. With STATIC_MEMORY_ this is set in MOM_memory.h at compile time.
 
 ! === module MOM_hor_index ===
 ! Sets the horizontal array index types.
@@ -175,17 +146,15 @@ NJGLOBAL = 44                   !
 G_EARTH = 9.8                   !   [m s-2] default = 9.8
                                 ! The gravitational acceleration of the Earth.
 RHO_0 = 1035.0                  !   [kg m-3] default = 1035.0
-                                ! The mean ocean density used with BOUSSINESQ true to
-                                ! calculate accelerations and the mass for conservation
-                                ! properties, or with BOUSSINSEQ false to convert some
-                                ! parameters from vertical units of m to kg m-2.
+                                ! The mean ocean density used with BOUSSINESQ true to calculate accelerations
+                                ! and the mass for conservation properties, or with BOUSSINSEQ false to convert
+                                ! some parameters from vertical units of m to kg m-2.
 BOUSSINESQ = True               !   [Boolean] default = True
                                 ! If true, make the Boussinesq approximation.
 ANGSTROM = 1.0E-10              !   [m] default = 1.0E-10
                                 ! The minimum layer thickness, usually one-Angstrom.
 H_TO_M = 1.0                    !   [m H-1] default = 1.0
-                                ! A constant that translates the model's internal
-                                ! units of thickness into m.
+                                ! A constant that translates the model's internal units of thickness into m.
 NK = 20                         !   [nondim]
                                 ! The number of model layers.
 
@@ -195,8 +164,8 @@ INPUTDIR = "INPUT/"             ! default = "."
 
 ! === module MOM_grid_init ===
 GRID_CONFIG = "mercator"        !
-                                ! A character string that determines the method for
-                                ! defining the horizontal grid.  Current options are:
+                                ! A character string that determines the method for defining the horizontal
+                                ! grid.  Current options are:
                                 !     mosaic - read the grid from a mosaic (supergrid)
                                 !              file set by GRID_FILE.
                                 !     cartesian - use a (flat) Cartesian grid.
@@ -213,22 +182,20 @@ LENLON = 7.0                    !   [degrees]
 RAD_EARTH = 6.378E+06           !   [m] default = 6.378E+06
                                 ! The radius of the Earth.
 ISOTROPIC = False               !   [Boolean] default = False
-                                ! If true, an isotropic grid on a sphere (also known as
-                                ! a Mercator grid) is used. With an isotropic grid, the
-                                ! meridional extent of the domain (LENLAT), the zonal
-                                ! extent (LENLON), and the number of grid points in each
-                                ! direction are _not_ independent. In MOM the meridional
-                                ! extent is determined to fit the zonal extent and the
-                                ! number of grid points, while grid is perfectly isotropic.
+                                ! If true, an isotropic grid on a sphere (also known as a Mercator grid) is
+                                ! used. With an isotropic grid, the meridional extent of the domain (LENLAT),
+                                ! the zonal extent (LENLON), and the number of grid points in each direction are
+                                ! _not_ independent. In MOM the meridional extent is determined to fit the zonal
+                                ! extent and the number of grid points, while grid is perfectly isotropic.
 EQUATOR_REFERENCE = True        !   [Boolean] default = True
-                                ! If true, the grid is defined to have the equator at the
-                                ! nearest q- or h- grid point to (-LOWLAT*NJGLOBAL/LENLAT).
+                                ! If true, the grid is defined to have the equator at the nearest q- or h- grid
+                                ! point to (-LOWLAT*NJGLOBAL/LENLAT).
 LAT_ENHANCE_FACTOR = 1.0        !   [nondim] default = 1.0
-                                ! The amount by which the meridional resolution is
-                                ! enhanced within LAT_EQ_ENHANCE of the equator.
+                                ! The amount by which the meridional resolution is enhanced within
+                                ! LAT_EQ_ENHANCE of the equator.
 LAT_EQ_ENHANCE = 0.0            !   [degrees] default = 0.0
-                                ! The latitude range to the north and south of the equator
-                                ! over which the resolution is enhanced.
+                                ! The latitude range to the north and south of the equator over which the
+                                ! resolution is enhanced.
 TOPO_CONFIG = "seamount"        !
                                 ! This specifies how bathymetry is specified:
                                 !     file - read bathymetric information from the file
@@ -258,52 +225,52 @@ TOPO_CONFIG = "seamount"        !
 SEAMOUNT_DELTA = 0.9            !   [non-dim] default = 0.5
                                 ! Non-dimensional height of seamount.
 SEAMOUNT_X_LENGTH_SCALE = 0.5   !   [Same as x,y] default = 20.0
-                                ! Length scale of seamount in x-direction.
-                                ! Set to zero make topography uniform in the x-direction.
+                                ! Length scale of seamount in x-direction. Set to zero make topography uniform
+                                ! in the x-direction.
 SEAMOUNT_Y_LENGTH_SCALE = 0.5   !   [Same as x,y] default = 0.0
-                                ! Length scale of seamount in y-direction.
-                                ! Set to zero make topography uniform in the y-direction.
+                                ! Length scale of seamount in y-direction. Set to zero make topography uniform
+                                ! in the y-direction.
 MAXIMUM_DEPTH = 4000.0          !   [m]
                                 ! The maximum depth of the ocean.
 MINIMUM_DEPTH = 1.0             !   [m] default = 0.0
-                                ! If MASKING_DEPTH is unspecified, then anything shallower than
-                                ! MINIMUM_DEPTH is assumed to be land and all fluxes are masked out.
-                                ! If MASKING_DEPTH is specified, then all depths shallower than
-                                ! MINIMUM_DEPTH but deeper than MASKING_DEPTH are rounded to MINIMUM_DEPTH.
+                                ! If MASKING_DEPTH is unspecified, then anything shallower than MINIMUM_DEPTH is
+                                ! assumed to be land and all fluxes are masked out. If MASKING_DEPTH is
+                                ! specified, then all depths shallower than MINIMUM_DEPTH but deeper than
+                                ! MASKING_DEPTH are rounded to MINIMUM_DEPTH.
 
 ! === module MOM_open_boundary ===
-! Controls where open boundaries are located, what kind of boundary condition
-! to impose, and what data to apply, if any.
+! Controls where open boundaries are located, what kind of boundary condition to impose, and what data to apply,
+! if any.
 OBC_NUMBER_OF_SEGMENTS = 36     ! default = 0
                                 ! The number of open boundary segments.
 OBC_ZERO_VORTICITY = False      !   [Boolean] default = False
                                 ! If true, sets relative vorticity to zero on open boundaries.
 OBC_FREESLIP_VORTICITY = True   !   [Boolean] default = True
-                                ! If true, sets the normal gradient of tangential velocity to
-                                ! zero in the relative vorticity on open boundaries. This cannot
-                                ! be true if another OBC_XXX_VORTICITY option is True.
+                                ! If true, sets the normal gradient of tangential velocity to zero in the
+                                ! relative vorticity on open boundaries. This cannot be true if another
+                                ! OBC_XXX_VORTICITY option is True.
 OBC_COMPUTED_VORTICITY = False  !   [Boolean] default = False
-                                ! If true, uses the external values of tangential velocity
-                                ! in the relative vorticity on open boundaries. This cannot
-                                ! be true if another OBC_XXX_VORTICITY option is True.
+                                ! If true, uses the external values of tangential velocity in the relative
+                                ! vorticity on open boundaries. This cannot be true if another OBC_XXX_VORTICITY
+                                ! option is True.
 OBC_SPECIFIED_VORTICITY = False !   [Boolean] default = False
-                                ! If true, uses the external values of tangential velocity
-                                ! in the relative vorticity on open boundaries. This cannot
-                                ! be true if another OBC_XXX_VORTICITY option is True.
+                                ! If true, uses the external values of tangential velocity in the relative
+                                ! vorticity on open boundaries. This cannot be true if another OBC_XXX_VORTICITY
+                                ! option is True.
 OBC_ZERO_STRAIN = False         !   [Boolean] default = False
                                 ! If true, sets the strain used in the stress tensor to zero on open boundaries.
 OBC_FREESLIP_STRAIN = True      !   [Boolean] default = True
-                                ! If true, sets the normal gradient of tangential velocity to
-                                ! zero in the strain use in the stress tensor on open boundaries. This cannot
-                                ! be true if another OBC_XXX_STRAIN option is True.
+                                ! If true, sets the normal gradient of tangential velocity to zero in the strain
+                                ! use in the stress tensor on open boundaries. This cannot be true if another
+                                ! OBC_XXX_STRAIN option is True.
 OBC_COMPUTED_STRAIN = False     !   [Boolean] default = False
-                                ! If true, sets the normal gradient of tangential velocity to
-                                ! zero in the strain use in the stress tensor on open boundaries. This cannot
-                                ! be true if another OBC_XXX_STRAIN option is True.
+                                ! If true, sets the normal gradient of tangential velocity to zero in the strain
+                                ! use in the stress tensor on open boundaries. This cannot be true if another
+                                ! OBC_XXX_STRAIN option is True.
 OBC_SPECIFIED_STRAIN = False    !   [Boolean] default = False
-                                ! If true, sets the normal gradient of tangential velocity to
-                                ! zero in the strain use in the stress tensor on open boundaries. This cannot
-                                ! be true if another OBC_XXX_STRAIN option is True.
+                                ! If true, sets the normal gradient of tangential velocity to zero in the strain
+                                ! use in the stress tensor on open boundaries. This cannot be true if another
+                                ! OBC_XXX_STRAIN option is True.
 OBC_ZERO_BIHARMONIC = True      !   [Boolean] default = False
                                 ! If true, zeros the Laplacian of flow on open boundaries in the biharmonic
                                 ! viscosity term.
@@ -359,41 +326,3 @@ OBC_SEGMENT_024 = "J=28,I=42:41,FLATHER, OBLIQUE" !
                                 ! Documentation needs to be dynamic?????
 OBC_SEGMENT_025 = "I=41,J=28:36,FLATHER, OBLIQUE" !
                                 ! Documentation needs to be dynamic?????
-OBC_SEGMENT_026 = "J=36,I=41:40,FLATHER, OBLIQUE" !
-                                ! Documentation needs to be dynamic?????
-OBC_SEGMENT_027 = "I=40,J=36:44,FLATHER, OBLIQUE" !
-                                ! Documentation needs to be dynamic?????
-OBC_SEGMENT_028 = "J=44,I=40:32,FLATHER, OBLIQUE" !
-                                ! Documentation needs to be dynamic?????
-OBC_SEGMENT_029 = "I=32,J=44:43,FLATHER, OBLIQUE" !
-                                ! Documentation needs to be dynamic?????
-OBC_SEGMENT_030 = "J=43,I=32:24,FLATHER, OBLIQUE" !
-                                ! Documentation needs to be dynamic?????
-OBC_SEGMENT_031 = "I=24,J=43:42,FLATHER, OBLIQUE" !
-                                ! Documentation needs to be dynamic?????
-OBC_SEGMENT_032 = "J=42,I=24:16,FLATHER, OBLIQUE" !
-                                ! Documentation needs to be dynamic?????
-OBC_SEGMENT_033 = "I=16,J=42:41,FLATHER, OBLIQUE" !
-                                ! Documentation needs to be dynamic?????
-OBC_SEGMENT_034 = "J=41,I=16:8,FLATHER, OBLIQUE" !
-                                ! Documentation needs to be dynamic?????
-OBC_SEGMENT_035 = "I=8,J=41:40,FLATHER, OBLIQUE" !
-                                ! Documentation needs to be dynamic?????
-OBC_SEGMENT_036 = "J=40,I=8:0,FLATHER, OBLIQUE" !
-                                ! Documentation needs to be dynamic?????
-BRUSHCUTTER_MODE = False        !   [Boolean] default = False
-                                ! If true, read external OBC data on the supergrid.
-OBC_RADIATION_MAX = 10.0        !   [m s-1] default = 10.0
-                                ! The maximum magnitude of the baroclinic radiation
-                                ! velocity (or speed of characteristics).  This is only
-                                ! used if one of the open boundary segments is using Orlanski.
-OBC_RAD_VEL_WT = 0.3            !   [nondim] default = 0.3
-                                ! The relative weighting for the baroclinic radiation
-                                ! velocities (or speed of characteristics) at the new
-                                ! time level (1) or the running mean (0) for velocities.
-                                ! Valid values range from 0 to 1. This is only used if
-                                ! one of the open boundary segments is using Orlanski.
-OBC_TRACER_RESERVOIR_LENGTH_SCALE_OUT = 1000.0 !   [m] default = 0.0
-                                ! An effective length scale for restoring the tracer concentration
-                                ! at the boundaries to externally imposed values when the flow
-                                ! is exiting the domain.

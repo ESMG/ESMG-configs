@@ -1,0 +1,39 @@
+#!/bin/bash
+#SBATCH -t 0:10:00
+#SBATCH --ntasks=48
+#SBATCH --job-name=CCS2
+#SBATCH --tasks-per-node=24
+#SBATCH -p t2small
+#SBATCH --account=akwaters
+#SBATCH --output=CCS2.%j
+#SBATCH --no-requeue
+####SBATCH -p debug
+
+cd $SLURM_SUBMIT_DIR
+. /usr/share/Modules/init/bash
+module purge
+module load slurm
+module load toolchain/foss/2016b
+module list
+
+#
+#  Prolog
+#
+echo " "
+echo "++++ Chinook ++++ $PGM_NAME began:    `date`"
+echo "++++ Chinook ++++ $PGM_NAME hostname: `hostname`"
+echo "++++ Chinook ++++ $PGM_NAME uname -a: `uname -a`"
+echo " "
+TBEGIN=`echo "print time();" | perl`
+
+srun -l /bin/hostname | sort -n | awk '{print $2}' > ./nodes
+mpirun -np $SLURM_NTASKS -machinefile ./nodes --mca mpi_paffinity_alone 1 /import/c1/AKWATERS/kshedstrom/MOM6/build/gnu/symmetric_SIS2/repro/MOM6
+
+#
+#  Epilog
+#
+TEND=`echo "print time();" | perl`
+echo " "
+echo "++++ Chinook ++++ $PGM_NAME pwd:      `pwd`"
+echo "++++ Chinook ++++ $PGM_NAME ended:    `date`"
+echo "++++ Chinook ++++ $PGM_NAME walltime: `expr $TEND - $TBEGIN` seconds"

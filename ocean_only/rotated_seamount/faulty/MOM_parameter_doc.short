@@ -5,37 +5,30 @@
 ! === module MOM_unit_scaling ===
 ! Parameters for doing unit scaling of variables.
 BULKMIXEDLAYER = False          !   [Boolean] default = True
-                                ! If true, use a Kraus-Turner-like bulk mixed layer
-                                ! with transitional buffer layers.  Layers 1 through
-                                ! NKML+NKBL have variable densities. There must be at
-                                ! least NKML+NKBL+1 layers if BULKMIXEDLAYER is true.
-                                ! BULKMIXEDLAYER can not be used with USE_REGRIDDING.
-                                ! The default is influenced by ENABLE_THERMODYNAMICS.
+                                ! If true, use a Kraus-Turner-like bulk mixed layer with transitional buffer
+                                ! layers.  Layers 1 through NKML+NKBL have variable densities. There must be at
+                                ! least NKML+NKBL+1 layers if BULKMIXEDLAYER is true. BULKMIXEDLAYER can not be
+                                ! used with USE_REGRIDDING. The default is influenced by ENABLE_THERMODYNAMICS.
 DT = 900.0                      !   [s]
-                                ! The (baroclinic) dynamics time step.  The time-step that
-                                ! is actually used will be an integer fraction of the
-                                ! forcing time-step (DT_FORCING in ocean-only mode or the
-                                ! coupling timestep in coupled mode.)
+                                ! The (baroclinic) dynamics time step.  The time-step that is actually used will
+                                ! be an integer fraction of the forcing time-step (DT_FORCING in ocean-only mode
+                                ! or the coupling timestep in coupled mode.)
 C_P = 3925.0                    !   [J kg-1 K-1] default = 3991.86795711963
-                                ! The heat capacity of sea water, approximated as a
-                                ! constant. This is only used if ENABLE_THERMODYNAMICS is
-                                ! true. The default value is from the TEOS-10 definition
-                                ! of conservative temperature.
+                                ! The heat capacity of sea water, approximated as a constant. This is only used
+                                ! if ENABLE_THERMODYNAMICS is true. The default value is from the TEOS-10
+                                ! definition of conservative temperature.
 SAVE_INITIAL_CONDS = True       !   [Boolean] default = False
-                                ! If true, write the initial conditions to a file given
-                                ! by IC_OUTPUT_FILE.
+                                ! If true, write the initial conditions to a file given by IC_OUTPUT_FILE.
 
 ! === module MOM_domains ===
 REENTRANT_X = False             !   [Boolean] default = True
                                 ! If true, the domain is zonally reentrant.
 NIGLOBAL = 44                   !
-                                ! The total number of thickness grid points in the
-                                ! x-direction in the physical domain. With STATIC_MEMORY_
-                                ! this is set in MOM_memory.h at compile time.
+                                ! The total number of thickness grid points in the x-direction in the physical
+                                ! domain. With STATIC_MEMORY_ this is set in MOM_memory.h at compile time.
 NJGLOBAL = 44                   !
-                                ! The total number of thickness grid points in the
-                                ! y-direction in the physical domain. With STATIC_MEMORY_
-                                ! this is set in MOM_memory.h at compile time.
+                                ! The total number of thickness grid points in the y-direction in the physical
+                                ! domain. With STATIC_MEMORY_ this is set in MOM_memory.h at compile time.
 
 ! === module MOM_hor_index ===
 ! Sets the horizontal array index types.
@@ -51,8 +44,8 @@ INPUTDIR = "INPUT/"             ! default = "."
 
 ! === module MOM_grid_init ===
 GRID_CONFIG = "mercator"        !
-                                ! A character string that determines the method for
-                                ! defining the horizontal grid.  Current options are:
+                                ! A character string that determines the method for defining the horizontal
+                                ! grid.  Current options are:
                                 !     mosaic - read the grid from a mosaic (supergrid)
                                 !              file set by GRID_FILE.
                                 !     cartesian - use a (flat) Cartesian grid.
@@ -95,22 +88,22 @@ TOPO_CONFIG = "seamount"        !
 SEAMOUNT_DELTA = 0.9            !   [non-dim] default = 0.5
                                 ! Non-dimensional height of seamount.
 SEAMOUNT_X_LENGTH_SCALE = 0.5   !   [Same as x,y] default = 20.0
-                                ! Length scale of seamount in x-direction.
-                                ! Set to zero make topography uniform in the x-direction.
+                                ! Length scale of seamount in x-direction. Set to zero make topography uniform
+                                ! in the x-direction.
 SEAMOUNT_Y_LENGTH_SCALE = 0.5   !   [Same as x,y] default = 0.0
-                                ! Length scale of seamount in y-direction.
-                                ! Set to zero make topography uniform in the y-direction.
+                                ! Length scale of seamount in y-direction. Set to zero make topography uniform
+                                ! in the y-direction.
 MAXIMUM_DEPTH = 4000.0          !   [m]
                                 ! The maximum depth of the ocean.
 MINIMUM_DEPTH = 1.0             !   [m] default = 0.0
-                                ! If MASKING_DEPTH is unspecified, then anything shallower than
-                                ! MINIMUM_DEPTH is assumed to be land and all fluxes are masked out.
-                                ! If MASKING_DEPTH is specified, then all depths shallower than
-                                ! MINIMUM_DEPTH but deeper than MASKING_DEPTH are rounded to MINIMUM_DEPTH.
+                                ! If MASKING_DEPTH is unspecified, then anything shallower than MINIMUM_DEPTH is
+                                ! assumed to be land and all fluxes are masked out. If MASKING_DEPTH is
+                                ! specified, then all depths shallower than MINIMUM_DEPTH but deeper than
+                                ! MASKING_DEPTH are rounded to MINIMUM_DEPTH.
 
 ! === module MOM_open_boundary ===
-! Controls where open boundaries are located, what kind of boundary condition
-! to impose, and what data to apply, if any.
+! Controls where open boundaries are located, what kind of boundary condition to impose, and what data to apply,
+! if any.
 OBC_NUMBER_OF_SEGMENTS = 36     ! default = 0
                                 ! The number of open boundary segments.
 OBC_ZERO_BIHARMONIC = True      !   [Boolean] default = False
@@ -189,3 +182,6 @@ OBC_SEGMENT_034 = "J=41,I=16:8,FLATHER, OBLIQUE" !
 OBC_SEGMENT_035 = "I=8,J=41:40,FLATHER, OBLIQUE" !
                                 ! Documentation needs to be dynamic?????
 OBC_SEGMENT_036 = "J=40,I=8:0,FLATHER, OBLIQUE" !
+                                ! Documentation needs to be dynamic?????
+OBC_TRACER_RESERVOIR_LENGTH_SCALE_OUT = 1000.0 !   [m] default = 0.0
+                                ! An effective length scale for restoring the tracer concentration at the
