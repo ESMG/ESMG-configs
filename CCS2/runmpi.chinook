@@ -3,11 +3,11 @@
 #SBATCH --ntasks=48
 #SBATCH --job-name=CCS2
 #SBATCH --tasks-per-node=24
-#SBATCH -p t2small
 #SBATCH --account=akwaters
 #SBATCH --output=CCS2.%j
 #SBATCH --no-requeue
-####SBATCH -p debug
+#SBATCH -p debug
+###SBATCH -p t2small
 
 cd $SLURM_SUBMIT_DIR
 . /usr/share/Modules/init/bash
@@ -16,6 +16,7 @@ module load slurm
 module load toolchain/foss/2016b
 module list
 
+rm ocean.stats.gnu seaice.stats.gnu
 #
 #  Prolog
 #
