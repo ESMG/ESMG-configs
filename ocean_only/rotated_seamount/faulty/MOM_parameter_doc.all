@@ -26,9 +26,6 @@ ADIABATIC = False               !   [Boolean] default = False
                                 ! There are no diapycnal mass fluxes if ADIABATIC is true. This assumes that KD
                                 ! = KDML = 0.0 and that there is no buoyancy forcing, but makes the model faster
                                 ! by eliminating subroutine calls.
-USE_LEGACY_DIABATIC_DRIVER = True !   [Boolean] default = True
-                                ! If true, use a legacy version of the diabatic subroutine. This is temporary
-                                ! and is needed to avoid change in answers.
 OFFLINE_TRACER_MODE = False     !   [Boolean] default = False
                                 ! If true, barotropic and baroclinic dynamics, thermodynamics are all bypassed
                                 ! with all the fields necessary to integrate the tracer advection and diffusion
@@ -325,4 +322,6 @@ OBC_SEGMENT_023 = "I=42,J=20:28,FLATHER, OBLIQUE" !
 OBC_SEGMENT_024 = "J=28,I=42:41,FLATHER, OBLIQUE" !
                                 ! Documentation needs to be dynamic?????
 OBC_SEGMENT_025 = "I=41,J=28:36,FLATHER, OBLIQUE" !
+                                ! Documentation needs to be dynamic?????
+OBC_SEGMENT_026 = "J=36,I=41:40,FLATHER, OBLIQUE" !
                                 ! Documentation needs to be dynamic?????
