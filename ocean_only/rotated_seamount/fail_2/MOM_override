@@ -1,0 +1,4 @@
+! Blank file in which we can put "overrides" for parameters
+!#override F_0 = 0.0E-04                   !   [s-1] default = 0.0
+!DEBUG = True
+!DEBUG =_BT True
