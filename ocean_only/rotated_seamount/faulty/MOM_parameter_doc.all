@@ -271,6 +271,9 @@ OBC_SPECIFIED_STRAIN = False    !   [Boolean] default = False
 OBC_ZERO_BIHARMONIC = True      !   [Boolean] default = False
                                 ! If true, zeros the Laplacian of flow on open boundaries in the biharmonic
                                 ! viscosity term.
+OBC_TIME_FILTER = True          !   [Boolean] default = True
+                                ! If true, apply a time filter to the calculation of the phase speed at
+                                ! theboundary.
 MASK_OUTSIDE_OBCS = True        !   [Boolean] default = False
                                 ! If true, set the areas outside open boundaries to be land.
 OBC_SEGMENT_001 = "I=0,J=40:32,FLATHER, OBLIQUE" !
@@ -391,6 +394,3 @@ OBC_SEGMENT_021_DATA = "U=value:0.0,V=value:0.0,SSH=value:0.0" !
                                 ! OBC segment docs
 OBC_SEGMENT_022_DATA = "U=value:0.0,V=value:0.0,SSH=value:0.0" !
                                 ! OBC segment docs
-OBC_SEGMENT_023_DATA = "U=value:0.0,V=value:0.0,SSH=value:0.0" !
-                                ! OBC segment docs
-OBC_SEGMENT_024_DATA = "U=value:0.0,V=value:0.0,SSH=value:0.0" !

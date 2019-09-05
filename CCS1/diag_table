@@ -7,7 +7,7 @@ CCS1 50 vertical levels
 #"ocean_model","v","v","ocean_hourly","all",.false.,"none",2
 #"ocean_model","h","h","ocean_hourly","all",.false.,"none",1
 #"ocean_model","e","e","ocean_hourly","all",.false.,"none",2
-#"ocean_model","SSH","ssh","ocean_hourly","all",.false.,"none",2
+"ocean_model","SSH","ssh","ocean_hourly","all",.false.,"none",2
 #"ocean_model","temp","temp","ocean_hourly","all",.false.,"none",2
 #"ocean_model","salt","salt","ocean_hourly","all",.false.,"none",2
 
