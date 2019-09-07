@@ -289,10 +289,10 @@ OBC_RAD_VEL_WT = 0.3            !   [nondim] default = 0.3
                                 ! characteristics) at the new time level (1) or the running mean (0) for
                                 ! velocities. Valid values range from 0 to 1. This is only used if one of the
                                 ! open boundary segments is using Orlanski.
-OBC_TRACER_RESERVOIR_LENGTH_SCALE_OUT = 3.0E+04 !   [m] default = 0.0
+OBC_TRACER_RESERVOIR_LENGTH_SCALE_OUT = 3000.0 !   [m] default = 0.0
                                 ! An effective length scale for restoring the tracer concentration at the
                                 ! boundaries to externally imposed values when the flow is exiting the domain.
-OBC_TRACER_RESERVOIR_LENGTH_SCALE_IN = 3000.0 !   [m] default = 0.0
+OBC_TRACER_RESERVOIR_LENGTH_SCALE_IN = 3.0E+04 !   [m] default = 0.0
                                 ! An effective length scale for restoring the tracer concentration at the
                                 ! boundaries to values from the interior when the flow is entering the domain.
 MASKING_DEPTH = 1.0             !   [m] default = -9999.0
@@ -1750,7 +1750,7 @@ READ_DEPTH_LIST = False         !   [Boolean] default = False
 DEPTH_LIST_MIN_INC = 1.0E-10    !   [m] default = 1.0E-10
                                 ! The minimum increment between the depths of the entries in the depth-list
                                 ! file.
-ENERGYSAVEDAYS = 1.0            !   [days] default = 1.0
+ENERGYSAVEDAYS = 0.05           !   [days] default = 1.0
                                 ! The interval in units of TIMEUNIT between saves of the energies of the run and
                                 ! other globally summed diagnostics.
 ENERGYSAVEDAYS_GEOMETRIC = 0.0  !   [days] default = 0.0

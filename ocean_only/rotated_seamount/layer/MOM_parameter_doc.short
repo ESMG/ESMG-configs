@@ -125,9 +125,6 @@ OBC_COMPUTED_STRAIN = True      !   [Boolean] default = False
 OBC_ZERO_BIHARMONIC = True      !   [Boolean] default = False
                                 ! If true, zeros the Laplacian of flow on open boundaries in the biharmonic
                                 ! viscosity term.
-OBC_TIME_FILTER = False         !   [Boolean] default = True
-                                ! If true, apply a time filter to the calculation of the phase speed at
-                                ! theboundary.
 MASK_OUTSIDE_OBCS = True        !   [Boolean] default = False
                                 ! If true, set the areas outside open boundaries to be land.
 OBC_SEGMENT_001 = "I=0,J=40:32,FLATHER, OBLIQUE, OBLIQUE_TAN" !
@@ -274,6 +271,11 @@ OBC_SEGMENT_035_DATA = "U=value:0.0,V=value:0.0,SSH=value:0.0" !
                                 ! OBC segment docs
 OBC_SEGMENT_036_DATA = "U=value:0.0,V=value:0.0,SSH=value:0.0" !
                                 ! OBC segment docs
+OBC_RAD_VEL_WT = 0.0            !   [nondim] default = 0.3
+                                ! The relative weighting for the baroclinic radiation velocities (or speed of
+                                ! characteristics) at the new time level (1) or the running mean (0) for
+                                ! velocities. Valid values range from 0 to 1. This is only used if one of the
+                                ! open boundary segments is using Orlanski.
 OBC_TRACER_RESERVOIR_LENGTH_SCALE_OUT = 1000.0 !   [m] default = 0.0
                                 ! An effective length scale for restoring the tracer concentration at the
                                 ! boundaries to externally imposed values when the flow is exiting the domain.

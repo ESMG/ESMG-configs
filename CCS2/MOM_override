@@ -6,3 +6,4 @@ SAVE_INITIAL_CONDS = True
 DEBUG = False
 DEBUG_BT = False
 !VERBOSITY = 9
+#override ENERGYSAVEDAYS = 0.05

@@ -242,11 +242,11 @@ OBC_NUMBER_OF_SEGMENTS = 36     ! default = 0
                                 ! The number of open boundary segments.
 OBC_ZERO_VORTICITY = False      !   [Boolean] default = False
                                 ! If true, sets relative vorticity to zero on open boundaries.
-OBC_FREESLIP_VORTICITY = True   !   [Boolean] default = True
+OBC_FREESLIP_VORTICITY = False  !   [Boolean] default = True
                                 ! If true, sets the normal gradient of tangential velocity to zero in the
                                 ! relative vorticity on open boundaries. This cannot be true if another
                                 ! OBC_XXX_VORTICITY option is True.
-OBC_COMPUTED_VORTICITY = False  !   [Boolean] default = False
+OBC_COMPUTED_VORTICITY = True   !   [Boolean] default = False
                                 ! If true, uses the external values of tangential velocity in the relative
                                 ! vorticity on open boundaries. This cannot be true if another OBC_XXX_VORTICITY
                                 ! option is True.
@@ -256,11 +256,11 @@ OBC_SPECIFIED_VORTICITY = False !   [Boolean] default = False
                                 ! option is True.
 OBC_ZERO_STRAIN = False         !   [Boolean] default = False
                                 ! If true, sets the strain used in the stress tensor to zero on open boundaries.
-OBC_FREESLIP_STRAIN = True      !   [Boolean] default = True
+OBC_FREESLIP_STRAIN = False     !   [Boolean] default = True
                                 ! If true, sets the normal gradient of tangential velocity to zero in the strain
                                 ! use in the stress tensor on open boundaries. This cannot be true if another
                                 ! OBC_XXX_STRAIN option is True.
-OBC_COMPUTED_STRAIN = False     !   [Boolean] default = False
+OBC_COMPUTED_STRAIN = True      !   [Boolean] default = False
                                 ! If true, sets the normal gradient of tangential velocity to zero in the strain
                                 ! use in the stress tensor on open boundaries. This cannot be true if another
                                 ! OBC_XXX_STRAIN option is True.
@@ -271,82 +271,79 @@ OBC_SPECIFIED_STRAIN = False    !   [Boolean] default = False
 OBC_ZERO_BIHARMONIC = True      !   [Boolean] default = False
                                 ! If true, zeros the Laplacian of flow on open boundaries in the biharmonic
                                 ! viscosity term.
-OBC_TIME_FILTER = True          !   [Boolean] default = True
-                                ! If true, apply a time filter to the calculation of the phase speed at
-                                ! theboundary.
 MASK_OUTSIDE_OBCS = True        !   [Boolean] default = False
                                 ! If true, set the areas outside open boundaries to be land.
-OBC_SEGMENT_001 = "I=0,J=40:32,FLATHER, OBLIQUE" !
+OBC_SEGMENT_001 = "I=0,J=40:32,FLATHER, OBLIQUE, OBLIQUE_TAN" !
                                 ! Documentation needs to be dynamic?????
-OBC_SEGMENT_002 = "J=32,I=0:1,FLATHER, OBLIQUE" !
+OBC_SEGMENT_002 = "J=32,I=0:1,FLATHER, OBLIQUE, OBLIQUE_TAN" !
                                 ! Documentation needs to be dynamic?????
-OBC_SEGMENT_003 = "I=1,J=32:24,FLATHER, OBLIQUE" !
+OBC_SEGMENT_003 = "I=1,J=32:24,FLATHER, OBLIQUE, OBLIQUE_TAN" !
                                 ! Documentation needs to be dynamic?????
-OBC_SEGMENT_004 = "J=24,I=1:2,FLATHER, OBLIQUE" !
+OBC_SEGMENT_004 = "J=24,I=1:2,FLATHER, OBLIQUE, OBLIQUE_TAN" !
                                 ! Documentation needs to be dynamic?????
-OBC_SEGMENT_005 = "I=2,J=24:16,FLATHER, OBLIQUE" !
+OBC_SEGMENT_005 = "I=2,J=24:16,FLATHER, OBLIQUE, OBLIQUE_TAN" !
                                 ! Documentation needs to be dynamic?????
-OBC_SEGMENT_006 = "J=16,I=2:3,FLATHER, OBLIQUE" !
+OBC_SEGMENT_006 = "J=16,I=2:3,FLATHER, OBLIQUE, OBLIQUE_TAN" !
                                 ! Documentation needs to be dynamic?????
-OBC_SEGMENT_007 = "I=3,J=16:8,FLATHER, OBLIQUE" !
+OBC_SEGMENT_007 = "I=3,J=16:8,FLATHER, OBLIQUE, OBLIQUE_TAN" !
                                 ! Documentation needs to be dynamic?????
-OBC_SEGMENT_008 = "J=8,I=3:4,FLATHER, OBLIQUE" !
+OBC_SEGMENT_008 = "J=8,I=3:4,FLATHER, OBLIQUE, OBLIQUE_TAN" !
                                 ! Documentation needs to be dynamic?????
-OBC_SEGMENT_009 = "I=4,J=8:0,FLATHER, OBLIQUE" !
+OBC_SEGMENT_009 = "I=4,J=8:0,FLATHER, OBLIQUE, OBLIQUE_TAN" !
                                 ! Documentation needs to be dynamic?????
-OBC_SEGMENT_010 = "J=0,I=4:12,FLATHER, OBLIQUE" !
+OBC_SEGMENT_010 = "J=0,I=4:12,FLATHER, OBLIQUE, OBLIQUE_TAN" !
                                 ! Documentation needs to be dynamic?????
-OBC_SEGMENT_011 = "I=12,J=0:1,FLATHER, OBLIQUE" !
+OBC_SEGMENT_011 = "I=12,J=0:1,FLATHER, OBLIQUE, OBLIQUE_TAN" !
                                 ! Documentation needs to be dynamic?????
-OBC_SEGMENT_012 = "J=1,I=12:20,FLATHER, OBLIQUE" !
+OBC_SEGMENT_012 = "J=1,I=12:20,FLATHER, OBLIQUE, OBLIQUE_TAN" !
                                 ! Documentation needs to be dynamic?????
-OBC_SEGMENT_013 = "I=20,J=1:2,FLATHER, OBLIQUE" !
+OBC_SEGMENT_013 = "I=20,J=1:2,FLATHER, OBLIQUE, OBLIQUE_TAN" !
                                 ! Documentation needs to be dynamic?????
-OBC_SEGMENT_014 = "J=2,I=20:28,FLATHER, OBLIQUE" !
+OBC_SEGMENT_014 = "J=2,I=20:28,FLATHER, OBLIQUE, OBLIQUE_TAN" !
                                 ! Documentation needs to be dynamic?????
-OBC_SEGMENT_015 = "I=28,J=2:3,FLATHER, OBLIQUE" !
+OBC_SEGMENT_015 = "I=28,J=2:3,FLATHER, OBLIQUE, OBLIQUE_TAN" !
                                 ! Documentation needs to be dynamic?????
-OBC_SEGMENT_016 = "J=3,I=28:36,FLATHER, OBLIQUE" !
+OBC_SEGMENT_016 = "J=3,I=28:36,FLATHER, OBLIQUE, OBLIQUE_TAN" !
                                 ! Documentation needs to be dynamic?????
-OBC_SEGMENT_017 = "I=36,J=3:4,FLATHER, OBLIQUE" !
+OBC_SEGMENT_017 = "I=36,J=3:4,FLATHER, OBLIQUE, OBLIQUE_TAN" !
                                 ! Documentation needs to be dynamic?????
-OBC_SEGMENT_018 = "J=4,I=36:44,FLATHER, OBLIQUE" !
+OBC_SEGMENT_018 = "J=4,I=36:44,FLATHER, OBLIQUE, OBLIQUE_TAN" !
                                 ! Documentation needs to be dynamic?????
-OBC_SEGMENT_019 = "I=44,J=4:12,FLATHER, OBLIQUE" !
+OBC_SEGMENT_019 = "I=44,J=4:12,FLATHER, OBLIQUE, OBLIQUE_TAN" !
                                 ! Documentation needs to be dynamic?????
-OBC_SEGMENT_020 = "J=12,I=44:43,FLATHER, OBLIQUE" !
+OBC_SEGMENT_020 = "J=12,I=44:43,FLATHER, OBLIQUE, OBLIQUE_TAN" !
                                 ! Documentation needs to be dynamic?????
-OBC_SEGMENT_021 = "I=43,J=12:20,FLATHER, OBLIQUE" !
+OBC_SEGMENT_021 = "I=43,J=12:20,FLATHER, OBLIQUE, OBLIQUE_TAN" !
                                 ! Documentation needs to be dynamic?????
-OBC_SEGMENT_022 = "J=20,I=43:42,FLATHER, OBLIQUE" !
+OBC_SEGMENT_022 = "J=20,I=43:42,FLATHER, OBLIQUE, OBLIQUE_TAN" !
                                 ! Documentation needs to be dynamic?????
-OBC_SEGMENT_023 = "I=42,J=20:28,FLATHER, OBLIQUE" !
+OBC_SEGMENT_023 = "I=42,J=20:28,FLATHER, OBLIQUE, OBLIQUE_TAN" !
                                 ! Documentation needs to be dynamic?????
-OBC_SEGMENT_024 = "J=28,I=42:41,FLATHER, OBLIQUE" !
+OBC_SEGMENT_024 = "J=28,I=42:41,FLATHER, OBLIQUE, OBLIQUE_TAN" !
                                 ! Documentation needs to be dynamic?????
-OBC_SEGMENT_025 = "I=41,J=28:36,FLATHER, OBLIQUE" !
+OBC_SEGMENT_025 = "I=41,J=28:36,FLATHER, OBLIQUE, OBLIQUE_TAN" !
                                 ! Documentation needs to be dynamic?????
-OBC_SEGMENT_026 = "J=36,I=41:40,FLATHER, OBLIQUE" !
+OBC_SEGMENT_026 = "J=36,I=41:40,FLATHER, OBLIQUE, OBLIQUE_TAN" !
                                 ! Documentation needs to be dynamic?????
-OBC_SEGMENT_027 = "I=40,J=36:44,FLATHER, OBLIQUE" !
+OBC_SEGMENT_027 = "I=40,J=36:44,FLATHER, OBLIQUE, OBLIQUE_TAN" !
                                 ! Documentation needs to be dynamic?????
-OBC_SEGMENT_028 = "J=44,I=40:32,FLATHER, OBLIQUE" !
+OBC_SEGMENT_028 = "J=44,I=40:32,FLATHER, OBLIQUE, OBLIQUE_TAN" !
                                 ! Documentation needs to be dynamic?????
-OBC_SEGMENT_029 = "I=32,J=44:43,FLATHER, OBLIQUE" !
+OBC_SEGMENT_029 = "I=32,J=44:43,FLATHER, OBLIQUE, OBLIQUE_TAN" !
                                 ! Documentation needs to be dynamic?????
-OBC_SEGMENT_030 = "J=43,I=32:24,FLATHER, OBLIQUE" !
+OBC_SEGMENT_030 = "J=43,I=32:24,FLATHER, OBLIQUE, OBLIQUE_TAN" !
                                 ! Documentation needs to be dynamic?????
-OBC_SEGMENT_031 = "I=24,J=43:42,FLATHER, OBLIQUE" !
+OBC_SEGMENT_031 = "I=24,J=43:42,FLATHER, OBLIQUE, OBLIQUE_TAN" !
                                 ! Documentation needs to be dynamic?????
-OBC_SEGMENT_032 = "J=42,I=24:16,FLATHER, OBLIQUE" !
+OBC_SEGMENT_032 = "J=42,I=24:16,FLATHER, OBLIQUE, OBLIQUE_TAN" !
                                 ! Documentation needs to be dynamic?????
-OBC_SEGMENT_033 = "I=16,J=42:41,FLATHER, OBLIQUE" !
+OBC_SEGMENT_033 = "I=16,J=42:41,FLATHER, OBLIQUE, OBLIQUE_TAN" !
                                 ! Documentation needs to be dynamic?????
-OBC_SEGMENT_034 = "J=41,I=16:8,FLATHER, OBLIQUE" !
+OBC_SEGMENT_034 = "J=41,I=16:8,FLATHER, OBLIQUE, OBLIQUE_TAN" !
                                 ! Documentation needs to be dynamic?????
-OBC_SEGMENT_035 = "I=8,J=41:40,FLATHER, OBLIQUE" !
+OBC_SEGMENT_035 = "I=8,J=41:40,FLATHER, OBLIQUE, OBLIQUE_TAN" !
                                 ! Documentation needs to be dynamic?????
-OBC_SEGMENT_036 = "J=40,I=8:0,FLATHER, OBLIQUE" !
+OBC_SEGMENT_036 = "J=40,I=8:0,FLATHER, OBLIQUE, OBLIQUE_TAN" !
                                 ! Documentation needs to be dynamic?????
 BRUSHCUTTER_MODE = False        !   [Boolean] default = False
                                 ! If true, read external OBC data on the supergrid.
@@ -426,7 +423,7 @@ OBC_RADIATION_MAX = 10.0        !   [m s-1] default = 10.0
                                 ! The maximum magnitude of the baroclinic radiation velocity (or speed of
                                 ! characteristics).  This is only used if one of the open boundary segments is
                                 ! using Orlanski.
-OBC_RAD_VEL_WT = 0.3            !   [nondim] default = 0.3
+OBC_RAD_VEL_WT = 0.0            !   [nondim] default = 0.3
                                 ! The relative weighting for the baroclinic radiation velocities (or speed of
                                 ! characteristics) at the new time level (1) or the running mean (0) for
                                 ! velocities. Valid values range from 0 to 1. This is only used if one of the
