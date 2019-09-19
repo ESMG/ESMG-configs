@@ -7,9 +7,7 @@
                               'MOM_override' /
 
  &ocean_solo_nml
-         months = 0,
-         days = 0,
-         minutes = 2 /
+ /
 
  &diag_manager_nml
         flush_nc_files = .true.

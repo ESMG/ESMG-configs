@@ -74,7 +74,7 @@ DT = 0.2                        !   [s]
                                 ! is actually used will be an integer fraction of the
                                 ! forcing time-step (DT_FORCING in ocean-only mode or the
                                 ! coupling timestep in coupled mode.)
-DT_THERM = 3600.0               !   [s] default = 900.0
+DT_THERM = 10.0                 !   [s] default = 900.0
                                 ! The thermodynamic and tracer advection time step.
                                 ! Ideally DT_THERM should be an integer multiple of DT
                                 ! and less than the forcing or coupling time-step.
@@ -359,7 +359,7 @@ DATE_STAMPED_STDOUT = False     !   [Boolean] default = True
                                 ! If true, use dates (not times) in messages to stdout
 
 ! === module MOM_main (MOM_driver) ===
-DT_FORCING = 3600.0             !   [s] default = 900.0
+DT_FORCING = 10.0               !   [s] default = 900.0
                                 ! The time step for changing forcing, coupling with other
                                 ! components, or potentially writing certain diagnostics.
                                 ! The default value is given by DT.
@@ -376,10 +376,10 @@ RESTART_CONTROL = 1             ! default = 1
                                 ! (bit 0) for a non-time-stamped file. A non-time-stamped
                                 ! restart file is saved at the end of the run segment
                                 ! for any non-negative value.
-RESTINT = 365.0                 !   [days] default = 0.0
+RESTINT = 1800.0                !   [days] default = 0.0
                                 ! The interval between saves of the restart file in units
                                 ! of TIMEUNIT.  Use 0 (the default) to not save
                                 ! incremental restart files at all.
-ENERGYSAVEDAYS = 1              !   [days] default = 3600.0
+ENERGYSAVEDAYS = 10             !   [days] default = 3600.0
                                 ! The interval in units of TIMEUNIT between saves of the
                                 ! energies of the run and other globally summed diagnostics.
