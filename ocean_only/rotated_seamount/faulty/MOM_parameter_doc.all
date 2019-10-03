@@ -26,6 +26,10 @@ ADIABATIC = False               !   [Boolean] default = False
                                 ! There are no diapycnal mass fluxes if ADIABATIC is true. This assumes that KD
                                 ! = KDML = 0.0 and that there is no buoyancy forcing, but makes the model faster
                                 ! by eliminating subroutine calls.
+DO_DYNAMICS = True              !   [Boolean] default = True
+                                ! If False, skips the dynamics calls that update u & v, as well as the gravity
+                                ! wave adjustment to h. This may be a fragile feature, but can be useful during
+                                ! development
 OFFLINE_TRACER_MODE = False     !   [Boolean] default = False
                                 ! If true, barotropic and baroclinic dynamics, thermodynamics are all bypassed
                                 ! with all the fields necessary to integrate the tracer advection and diffusion
@@ -380,10 +384,3 @@ OBC_SEGMENT_015_DATA = "U=value:0.0,V=value:0.0,SSH=value:0.0" !
 OBC_SEGMENT_016_DATA = "U=value:0.0,V=value:0.0,SSH=value:0.0" !
                                 ! OBC segment docs
 OBC_SEGMENT_017_DATA = "U=value:0.0,V=value:0.0,SSH=value:0.0" !
-                                ! OBC segment docs
-OBC_SEGMENT_018_DATA = "U=value:0.0,V=value:0.0,SSH=value:0.0" !
-                                ! OBC segment docs
-OBC_SEGMENT_019_DATA = "U=value:0.0,V=value:0.0,SSH=value:0.0" !
-                                ! OBC segment docs
-OBC_SEGMENT_020_DATA = "U=value:0.0,V=value:0.0,SSH=value:0.0" !
-                                ! OBC segment docs
