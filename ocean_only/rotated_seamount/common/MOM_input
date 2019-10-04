@@ -184,7 +184,7 @@ OBC_TRACER_RESERVOIR_LENGTH_SCALE_IN = 1.0e3 !   [m] default = 0.0
                                 ! An effective length scale for restoring the tracer concentration
                                 ! at the boundaries to values from the interior when the flow
                                 ! is entering the domain.
-OBC_RAD_VEL_WT = 0.0            !   [nondim] default = 0.3
+OBC_RAD_VEL_WT = 1.0            !   [nondim] default = 0.3
 OBC_FREESLIP_VORTICITY = False  !   [Boolean] default = False
 OBC_FREESLIP_STRAIN = False     !   [Boolean] default = False
 OBC_COMPUTED_VORTICITY = True   !   [Boolean] default = False

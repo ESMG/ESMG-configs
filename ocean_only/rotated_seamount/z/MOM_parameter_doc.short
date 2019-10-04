@@ -269,7 +269,7 @@ OBC_SEGMENT_035_DATA = "U=value:0.0,V=value:0.0,SSH=value:0.0" !
                                 ! OBC segment docs
 OBC_SEGMENT_036_DATA = "U=value:0.0,V=value:0.0,SSH=value:0.0" !
                                 ! OBC segment docs
-OBC_RAD_VEL_WT = 0.0            !   [nondim] default = 0.3
+OBC_RAD_VEL_WT = 1.0            !   [nondim] default = 0.3
                                 ! The relative weighting for the baroclinic radiation velocities (or speed of
                                 ! characteristics) at the new time level (1) or the running mean (0) for
                                 ! velocities. Valid values range from 0 to 1. This is only used if one of the
