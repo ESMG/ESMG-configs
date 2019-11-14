@@ -26,6 +26,10 @@ ADIABATIC = False               !   [Boolean] default = False
                                 ! There are no diapycnal mass fluxes if ADIABATIC is true. This assumes that KD
                                 ! = KDML = 0.0 and that there is no buoyancy forcing, but makes the model faster
                                 ! by eliminating subroutine calls.
+DO_DYNAMICS = True              !   [Boolean] default = True
+                                ! If False, skips the dynamics calls that update u & v, as well as the gravity
+                                ! wave adjustment to h. This may be a fragile feature, but can be useful during
+                                ! development
 OFFLINE_TRACER_MODE = False     !   [Boolean] default = False
                                 ! If true, barotropic and baroclinic dynamics, thermodynamics are all bypassed
                                 ! with all the fields necessary to integrate the tracer advection and diffusion
@@ -252,9 +256,6 @@ OBC_SPECIFIED_STRAIN = False    !   [Boolean] default = False
 OBC_ZERO_BIHARMONIC = True      !   [Boolean] default = False
                                 ! If true, zeros the Laplacian of flow on open boundaries in the biharmonic
                                 ! viscosity term.
-OBC_TIME_FILTER = True          !   [Boolean] default = True
-                                ! If true, apply a time filter to the calculation of the phase speed at
-                                ! theboundary.
 MASK_OUTSIDE_OBCS = False       !   [Boolean] default = False
                                 ! If true, set the areas outside open boundaries to be land.
 OBC_SEGMENT_001 = "J=N,I=N:0,FLATHER,ORLANSKI,NUDGED,ORLANSKI_TAN,NUDGED_TAN" !
@@ -292,10 +293,10 @@ OBC_RAD_VEL_WT = 0.3            !   [nondim] default = 0.3
                                 ! characteristics) at the new time level (1) or the running mean (0) for
                                 ! velocities. Valid values range from 0 to 1. This is only used if one of the
                                 ! open boundary segments is using Orlanski.
-OBC_TRACER_RESERVOIR_LENGTH_SCALE_OUT = 3.0E+04 !   [m] default = 0.0
+OBC_TRACER_RESERVOIR_LENGTH_SCALE_OUT = 3000.0 !   [m] default = 0.0
                                 ! An effective length scale for restoring the tracer concentration at the
                                 ! boundaries to externally imposed values when the flow is exiting the domain.
-OBC_TRACER_RESERVOIR_LENGTH_SCALE_IN = 3000.0 !   [m] default = 0.0
+OBC_TRACER_RESERVOIR_LENGTH_SCALE_IN = 3.0E+04 !   [m] default = 0.0
                                 ! An effective length scale for restoring the tracer concentration at the
                                 ! boundaries to values from the interior when the flow is entering the domain.
 MASKING_DEPTH = 1.0             !   [m] default = -9999.0
@@ -665,6 +666,9 @@ MEKE_GMCOEFF = 1.0              !   [nondim] default = -1.0
 MEKE_GEOMETRIC = False          !   [Boolean] default = False
                                 ! If MEKE_GEOMETRIC is true, uses the GM coefficient formulation from the
                                 ! GEOMETRIC framework (Marshall et al., 2012).
+MEKE_EQUILIBRIUM_ALT = False    !   [Boolean] default = False
+                                ! If true, use an alternative formula for computing the (equilibrium)initial
+                                ! value of MEKE.
 MEKE_FRCOEFF = -1.0             !   [nondim] default = -1.0
                                 ! The efficiency of the conversion of mean energy into MEKE.  If MEKE_FRCOEFF is
                                 ! negative, this conversion is not used or calculated.
@@ -887,12 +891,6 @@ HTBL_SHELF = 10.0               !   [m] default = 10.0
 KV = 1.0E-04                    !   [m2 s-1]
                                 ! The background kinematic viscosity in the interior. The molecular value, ~1e-6
                                 ! m2 s-1, may be used.
-ADD_KV_SLOW = False             !   [Boolean] default = False
-                                ! If true, the background vertical viscosity in the interior (i.e., tidal +
-                                ! background + shear + convection) is added when computing the coupling
-                                ! coefficient. The purpose of this flag is to be able to recover previous
-                                ! answers and it will likely be removed in the future since this option should
-                                ! always be true.
 KV_BBL_MIN = 1.0E-04            !   [m2 s-1] default = 1.0E-04
                                 ! The minimum viscosities in the bottom boundary layer.
 KV_TBL_MIN = 1.0E-04            !   [m2 s-1] default = 1.0E-04
@@ -1717,6 +1715,10 @@ MAX_TR_DIFFUSION_CFL = -1.0     !   [nondim] default = -1.0
                                 ! If positive, locally limit the along-isopycnal tracer diffusivity to keep the
                                 ! diffusive CFL locally at or below this value.  The number of diffusive
                                 ! iterations is often this value or the next greater integer.
+RECALC_NEUTRAL_SURF = False     !   [Boolean] default = False
+                                ! If true, then recalculate the neutral surfaces if the
+                                ! diffusive CFL is exceeded. If false, assume that the
+                                ! positions of the surfaces do not change
 
 ! === module MOM_neutral_diffusion ===
 ! This module implements neutral diffusion of tracers
