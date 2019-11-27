@@ -2,12 +2,21 @@
 #override REENTRANT_X = False
 ! === OBC options ===
 OBC_NUMBER_OF_SEGMENTS = 2      ! [Integer] The number of open boundary segments.
-OBC_SEGMENT_001 = "I=0,J=N:0,FLATHER,OBLIQUE"
-OBC_SEGMENT_002 = "I=N,J=0:N,FLATHER,OBLIQUE"
+OBC_SEGMENT_001 = "I=0,J=N:0,FLATHER,OBLIQUE,OBLIQUE_GRAD"
+OBC_SEGMENT_002 = "I=N,J=0:N,FLATHER,OBLIQUE,OBLIQUE_GRAD"
 OBC_SEGMENT_001_DATA = "U=value:0.0,V=value:0.0,SSH=value:0.0"
 OBC_SEGMENT_002_DATA = "U=value:0.0,V=value:0.0,SSH=value:0.0"
-#override DAYMAX = 900.0                  !   [seconds]
+#override DAYMAX = 600.0                  !   [seconds]
 #override LAPLACIAN = True
 #override KH = 0.0                        !   [m2 s-1] default = 0.0
 #override SMAG_LAP_CONST = 0.01
 #override SMAGORINSKY_KH = True           !   [Boolean] default = False
+#
+#override OBC_ZERO_VORTICITY = False      !   [Boolean] default = False
+#override OBC_FREESLIP_VORTICITY = False   !   [Boolean] default = True
+#override OBC_COMPUTED_VORTICITY = False  !   [Boolean] default = False
+#override OBC_SPECIFIED_VORTICITY = True !   [Boolean] default = False
+#override OBC_ZERO_STRAIN = False         !   [Boolean] default = False
+#override OBC_FREESLIP_STRAIN = False      !   [Boolean] default = True
+#override OBC_COMPUTED_STRAIN = False     !   [Boolean] default = False
+#override OBC_SPECIFIED_STRAIN = True    !   [Boolean] default = False

@@ -959,7 +959,7 @@ LA_DEPTH_RATIO = 0.04           !   [nondim] default = 0.04
                                 ! calculation, where La = sqrt(ust/Stokes).
 
 ! === module MOM_main (MOM_driver) ===
-DT_FORCING = 10.0               !   [s] default = 0.2
+DT_FORCING = 5.0                !   [s] default = 0.2
                                 ! The time step for changing forcing, coupling with other components, or
                                 ! potentially writing certain diagnostics. The default value is given by DT.
 DAYMAX = 120.0                  !   [seconds]

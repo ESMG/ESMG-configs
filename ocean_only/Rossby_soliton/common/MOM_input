@@ -359,7 +359,7 @@ DATE_STAMPED_STDOUT = False     !   [Boolean] default = True
                                 ! If true, use dates (not times) in messages to stdout
 
 ! === module MOM_main (MOM_driver) ===
-DT_FORCING = 10.0               !   [s] default = 900.0
+DT_FORCING = 5.0                !   [s] default = 900.0
                                 ! The time step for changing forcing, coupling with other
                                 ! components, or potentially writing certain diagnostics.
                                 ! The default value is given by DT.

@@ -232,9 +232,9 @@ MINIMUM_DEPTH = 1.0             !   [m] default = 0.0
 ! if any.
 OBC_NUMBER_OF_SEGMENTS = 2      ! default = 0
                                 ! The number of open boundary segments.
-OBC_ZERO_VORTICITY = True       !   [Boolean] default = False
+OBC_ZERO_VORTICITY = False      !   [Boolean] default = False
                                 ! If true, sets relative vorticity to zero on open boundaries.
-OBC_FREESLIP_VORTICITY = False  !   [Boolean] default = True
+OBC_FREESLIP_VORTICITY = True   !   [Boolean] default = True
                                 ! If true, sets the normal gradient of tangential velocity to zero in the
                                 ! relative vorticity on open boundaries. This cannot be true if another
                                 ! OBC_XXX_VORTICITY option is True.
@@ -246,9 +246,9 @@ OBC_SPECIFIED_VORTICITY = False !   [Boolean] default = False
                                 ! If true, uses the external values of tangential velocity in the relative
                                 ! vorticity on open boundaries. This cannot be true if another OBC_XXX_VORTICITY
                                 ! option is True.
-OBC_ZERO_STRAIN = True          !   [Boolean] default = False
+OBC_ZERO_STRAIN = False         !   [Boolean] default = False
                                 ! If true, sets the strain used in the stress tensor to zero on open boundaries.
-OBC_FREESLIP_STRAIN = False     !   [Boolean] default = True
+OBC_FREESLIP_STRAIN = True      !   [Boolean] default = True
                                 ! If true, sets the normal gradient of tangential velocity to zero in the strain
                                 ! use in the stress tensor on open boundaries. This cannot be true if another
                                 ! OBC_XXX_STRAIN option is True.
@@ -684,12 +684,6 @@ HTBL_SHELF = 10.0               !   [m] default = 10.0
 KV = 1.0E-04                    !   [m2 s-1]
                                 ! The background kinematic viscosity in the interior. The molecular value, ~1e-6
                                 ! m2 s-1, may be used.
-ADD_KV_SLOW = False             !   [Boolean] default = False
-                                ! If true, the background vertical viscosity in the interior (i.e., tidal +
-                                ! background + shear + convection) is added when computing the coupling
-                                ! coefficient. The purpose of this flag is to be able to recover previous
-                                ! answers and it will likely be removed in the future since this option should
-                                ! always be true.
 KV_BBL_MIN = 1.0E-04            !   [m2 s-1] default = 1.0E-04
                                 ! The minimum viscosities in the bottom boundary layer.
 KV_TBL_MIN = 1.0E-04            !   [m2 s-1] default = 1.0E-04

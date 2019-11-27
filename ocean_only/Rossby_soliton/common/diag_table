@@ -1,6 +1,6 @@
 "MOM Rossby Soliton Experiment"
 1 1 1 0 0 0
-"prog",      10,"seconds",1,"days","Time"
+"prog",      5,"seconds",1,"days","Time"
 #"ave_prog", 5,"days",1,"days","Time",365,"days"
 #"cont",     5,"days",1,"days","Time",365,"days"
 

@@ -106,9 +106,25 @@ MAXIMUM_DEPTH = 1.0             !   [m]
 ! if any.
 OBC_NUMBER_OF_SEGMENTS = 2      ! default = 0
                                 ! The number of open boundary segments.
-OBC_SEGMENT_001 = "I=0,J=N:0,FLATHER,OBLIQUE" !
+OBC_FREESLIP_VORTICITY = False  !   [Boolean] default = True
+                                ! If true, sets the normal gradient of tangential velocity to zero in the
+                                ! relative vorticity on open boundaries. This cannot be true if another
+                                ! OBC_XXX_VORTICITY option is True.
+OBC_SPECIFIED_VORTICITY = True  !   [Boolean] default = False
+                                ! If true, uses the external values of tangential velocity in the relative
+                                ! vorticity on open boundaries. This cannot be true if another OBC_XXX_VORTICITY
+                                ! option is True.
+OBC_FREESLIP_STRAIN = False     !   [Boolean] default = True
+                                ! If true, sets the normal gradient of tangential velocity to zero in the strain
+                                ! use in the stress tensor on open boundaries. This cannot be true if another
+                                ! OBC_XXX_STRAIN option is True.
+OBC_SPECIFIED_STRAIN = True     !   [Boolean] default = False
+                                ! If true, sets the normal gradient of tangential velocity to zero in the strain
+                                ! use in the stress tensor on open boundaries. This cannot be true if another
+                                ! OBC_XXX_STRAIN option is True.
+OBC_SEGMENT_001 = "I=0,J=N:0,FLATHER,OBLIQUE,OBLIQUE_GRAD" !
                                 ! Documentation needs to be dynamic?????
-OBC_SEGMENT_002 = "I=N,J=0:N,FLATHER,OBLIQUE" !
+OBC_SEGMENT_002 = "I=N,J=0:N,FLATHER,OBLIQUE,OBLIQUE_GRAD" !
                                 ! Documentation needs to be dynamic?????
 OBC_SEGMENT_001_DATA = "U=value:0.0,V=value:0.0,SSH=value:0.0" !
                                 ! OBC segment docs
@@ -327,10 +343,10 @@ WIND_CONFIG = "zero"            !
 ! === module MOM_restart ===
 
 ! === module MOM_main (MOM_driver) ===
-DT_FORCING = 10.0               !   [s] default = 0.2
+DT_FORCING = 5.0                !   [s] default = 0.2
                                 ! The time step for changing forcing, coupling with other components, or
                                 ! potentially writing certain diagnostics. The default value is given by DT.
-DAYMAX = 900.0                  !   [seconds]
+DAYMAX = 600.0                  !   [seconds]
                                 ! The final time of the whole simulation, in units of TIMEUNIT seconds.  This
                                 ! also sets the potential end time of the present run segment if the end time is
                                 ! not set via ocean_solo_nml in input.nml.
