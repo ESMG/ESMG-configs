@@ -132,10 +132,10 @@ REENTRANT_Y = False             !   [Boolean] default = False
 TRIPOLAR_N = False              !   [Boolean] default = False
                                 ! Use tripolar connectivity at the northern edge of the domain.  With
                                 ! TRIPOLAR_N, NIGLOBAL must be even.
-NIGLOBAL = 40                   !
+NIGLOBAL = 20                   !
                                 ! The total number of thickness grid points in the x-direction in the physical
                                 ! domain. With STATIC_MEMORY_ this is set in MOM_memory.h at compile time.
-NJGLOBAL = 20                   !
+NJGLOBAL = 120                  !
                                 ! The total number of thickness grid points in the y-direction in the physical
                                 ! domain. With STATIC_MEMORY_ this is set in MOM_memory.h at compile time.
 
@@ -177,15 +177,15 @@ AXIS_UNITS = "k"                ! default = "degrees"
                                 !     degrees - degrees of latitude and longitude
                                 !     m - meters
                                 !     k - kilometers
-SOUTHLAT = -50.0                !   [k]
+SOUTHLAT = -300.0               !   [k]
                                 ! The southern latitude of the domain or the equivalent starting value for the
                                 ! y-axis.
-LENLAT = 100.0                  !   [k]
+LENLAT = 600.0                  !   [k]
                                 ! The latitudinal or y-direction length of the domain.
-WESTLON = -100.0                !   [k] default = 0.0
+WESTLON = -50.0                 !   [k] default = 0.0
                                 ! The western longitude of the domain or the equivalent starting value for the
                                 ! x-axis.
-LENLON = 200.0                  !   [k]
+LENLON = 100.0                  !   [k]
                                 ! The longitudinal or x-direction length of the domain.
 RAD_EARTH = 6.378E+06           !   [m] default = 6.378E+06
                                 ! The radius of the Earth.
@@ -219,7 +219,7 @@ DUMBBELL_LEN = 600.0            !   [k] default = 600.0
                                 ! Lateral Length scale for dumbbell.
 DUMBBELL_FRACTION = 0.8         !   [nondim] default = 0.5
                                 ! Meridional fraction for narrow part of dumbbell.
-DUMBBELL_ROTATION = False       !   [nondim] default = False
+DUMBBELL_ROTATION = True        !   [nondim] default = False
                                 ! Logical for rotation of dumbbell domain.
 MAXIMUM_DEPTH = 2000.0          !   [m]
                                 ! The maximum depth of the ocean.
@@ -232,66 +232,8 @@ MINIMUM_DEPTH = 1.0             !   [m] default = 0.0
 ! === module MOM_open_boundary ===
 ! Controls where open boundaries are located, what kind of boundary condition to impose, and what data to apply,
 ! if any.
-OBC_NUMBER_OF_SEGMENTS = 2      ! default = 0
+OBC_NUMBER_OF_SEGMENTS = 0      ! default = 0
                                 ! The number of open boundary segments.
-OBC_ZERO_VORTICITY = False      !   [Boolean] default = False
-                                ! If true, sets relative vorticity to zero on open boundaries.
-OBC_FREESLIP_VORTICITY = False  !   [Boolean] default = True
-                                ! If true, sets the normal gradient of tangential velocity to zero in the
-                                ! relative vorticity on open boundaries. This cannot be true if another
-                                ! OBC_XXX_VORTICITY option is True.
-OBC_COMPUTED_VORTICITY = False  !   [Boolean] default = False
-                                ! If true, uses the external values of tangential velocity in the relative
-                                ! vorticity on open boundaries. This cannot be true if another OBC_XXX_VORTICITY
-                                ! option is True.
-OBC_SPECIFIED_VORTICITY = True  !   [Boolean] default = False
-                                ! If true, uses the external values of tangential velocity in the relative
-                                ! vorticity on open boundaries. This cannot be true if another OBC_XXX_VORTICITY
-                                ! option is True.
-OBC_ZERO_STRAIN = False         !   [Boolean] default = False
-                                ! If true, sets the strain used in the stress tensor to zero on open boundaries.
-OBC_FREESLIP_STRAIN = False     !   [Boolean] default = True
-                                ! If true, sets the normal gradient of tangential velocity to zero in the strain
-                                ! use in the stress tensor on open boundaries. This cannot be true if another
-                                ! OBC_XXX_STRAIN option is True.
-OBC_COMPUTED_STRAIN = True      !   [Boolean] default = False
-                                ! If true, sets the normal gradient of tangential velocity to zero in the strain
-                                ! use in the stress tensor on open boundaries. This cannot be true if another
-                                ! OBC_XXX_STRAIN option is True.
-OBC_SPECIFIED_STRAIN = False    !   [Boolean] default = False
-                                ! If true, sets the normal gradient of tangential velocity to zero in the strain
-                                ! use in the stress tensor on open boundaries. This cannot be true if another
-                                ! OBC_XXX_STRAIN option is True.
-OBC_ZERO_BIHARMONIC = True      !   [Boolean] default = False
-                                ! If true, zeros the Laplacian of flow on open boundaries in the biharmonic
-                                ! viscosity term.
-MASK_OUTSIDE_OBCS = False       !   [Boolean] default = False
-                                ! If true, set the areas outside open boundaries to be land.
-OBC_SEGMENT_001 = "I=0,J=N:0,SIMPLE,FLATHER" !
-                                ! Documentation needs to be dynamic?????
-OBC_SEGMENT_002 = "I=N,J=0:N,SIMPLE,FLATHER" !
-                                ! Documentation needs to be dynamic?????
-BRUSHCUTTER_MODE = False        !   [Boolean] default = False
-                                ! If true, read external OBC data on the supergrid.
-OBC_SEGMENT_001_DATA = "U=file:../z/west.nc(u),V=file:../z/west.nc(v),SSH=file:../z/west.nc(zeta),SALT=file:../z/west.nc(salt),DVDX=file:../z/west.nc(dvdx)" !
-                                ! OBC segment docs
-OBC_SEGMENT_002_DATA = "U=file:../z/east.nc(u),V=file:../z/east.nc(v),SSH=file:../z/east.nc(zeta),SALT=file:../z/east.nc(salt),DVDX=file:../z/east.nc(dvdx)" !
-                                ! OBC segment docs
-OBC_RADIATION_MAX = 10.0        !   [m s-1] default = 10.0
-                                ! The maximum magnitude of the baroclinic radiation velocity (or speed of
-                                ! characteristics).  This is only used if one of the open boundary segments is
-                                ! using Orlanski.
-OBC_RAD_VEL_WT = 0.3            !   [nondim] default = 0.3
-                                ! The relative weighting for the baroclinic radiation velocities (or speed of
-                                ! characteristics) at the new time level (1) or the running mean (0) for
-                                ! velocities. Valid values range from 0 to 1. This is only used if one of the
-                                ! open boundary segments is using Orlanski.
-OBC_TRACER_RESERVOIR_LENGTH_SCALE_OUT = 0.0 !   [m] default = 0.0
-                                ! An effective length scale for restoring the tracer concentration at the
-                                ! boundaries to externally imposed values when the flow is exiting the domain.
-OBC_TRACER_RESERVOIR_LENGTH_SCALE_IN = 0.0 !   [m] default = 0.0
-                                ! An effective length scale for restoring the tracer concentration at the
-                                ! boundaries to values from the interior when the flow is entering the domain.
 MASKING_DEPTH = -9999.0         !   [m] default = -9999.0
                                 ! The depth below which to mask points as land points, for which all fluxes are
                                 ! zeroed out. MASKING_DEPTH is ignored if negative.
@@ -324,21 +266,7 @@ PARALLEL_RESTARTFILES = False   !   [Boolean] default = False
                                 ! If true, each processor writes its own restart file, otherwise a single
                                 ! restart file is generated
 
-! === module MOM_boundary_update ===
-USE_FILE_OBC = False            !   [Boolean] default = False
-                                ! If true, use external files for the open boundary.
-USE_TIDAL_BAY_OBC = False       !   [Boolean] default = False
-                                ! If true, use the tidal_bay open boundary.
-USE_KELVIN_WAVE_OBC = False     !   [Boolean] default = False
-                                ! If true, use the Kelvin wave open boundary.
-USE_SHELFWAVE_OBC = False       !   [Boolean] default = False
-                                ! If true, use the shelfwave open boundary.
-USE_DYED_CHANNEL_OBC = False    !   [Boolean] default = False
-                                ! If true, use the dyed channel open boundary.
-
 ! === module MOM_tracer_registry ===
-
-! === module segment_tracer_registry_init ===
 
 ! === module MOM_EOS ===
 EQN_OF_STATE = "LINEAR"         ! default = "WRIGHT"
@@ -616,19 +544,29 @@ REGRID_ACCELERATE_INIT = False  !   [Boolean] default = False
                                 ! If true, runs REGRID_ACCELERATE_ITERATIONS iterations of the regridding
                                 ! algorithm to push the initial grid to be consistent with the initial
                                 ! condition. Useful only for state-based and iterative coordinates.
-SPONGE = False                  !   [Boolean] default = False
+SPONGE = True                   !   [Boolean] default = False
                                 ! If true, sponges may be applied anywhere in the domain. The exact location and
                                 ! properties of those sponges are specified via SPONGE_CONFIG.
-OBC_USER_CONFIG = "none"        ! default = "none"
-                                ! A string that sets how the user code is invoked to set open boundary data:
-                                !    DOME - specified inflow on northern boundary
-                                !    dyed_channel - supercritical with dye on the inflow boundary
-                                !    dyed_obcs - circle_obcs with dyes on the open boundaries
-                                !    Kelvin - barotropic Kelvin wave forcing on the western boundary
-                                !    shelfwave - Flather with shelf wave forcing on western boundary
-                                !    supercritical - now only needed here for the allocations
-                                !    tidal_bay - Flather with tidal forcing on eastern boundary
-                                !    USER - user specified
+SPONGE_CONFIG = "DUMBBELL"      ! default = "file"
+                                ! A string that sets how the sponges are configured:
+                                !     file - read sponge properties from the file
+                                !       specified by (SPONGE_FILE).
+                                !     ISOMIP - apply ale sponge in the ISOMIP case
+                                !     RGC - apply sponge in the rotating_gravity_current case
+                                !     DOME - use a slope and channel configuration for the
+                                !       DOME sill-overflow test case.
+                                !     BFB - Sponge at the southern boundary of the domain
+                                !       for buoyancy-forced basin case.
+                                !     USER - call a user modified routine.
+DUMBBELL_SPONGE_TIME_SCALE = 8.64E+04 !   [s] default = 0.0
+                                ! The time scale in the reservoir for restoring. If zero, the sponge is
+                                ! disabled.
+
+! === module MOM_sponge ===
+SPONGE_UV = False               !   [Boolean] default = False
+                                ! Apply sponges in u and v, in addition to tracers.
+!Total sponge columns at h points = 1200 !
+                                ! The total number of columns where sponges are applied at h points.
 
 ! === module MOM_diag_mediator ===
 NUM_DIAG_COORDS = 1             ! default = 1
