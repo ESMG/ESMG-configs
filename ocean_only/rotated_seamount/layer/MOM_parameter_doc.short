@@ -419,6 +419,8 @@ OBC_USER_CONFIG = "dyed_obcs"   ! default = "none"
 ! === module MOM_lateral_mixing_coeffs ===
 
 ! === module MOM_set_visc ===
+DEFAULT_2018_ANSWERS = False    !   [Boolean] default = True
+                                ! This sets the default value for the various _2018_ANSWERS parameters.
 LINEAR_DRAG = True              !   [Boolean] default = False
                                 ! If LINEAR_DRAG and BOTTOMDRAGLAW are defined the drag law is
                                 ! cdrag*DRAG_BG_VEL*u.

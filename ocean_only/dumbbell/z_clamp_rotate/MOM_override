@@ -1,0 +1,31 @@
+! Continuous isopycnal mode + initialization
+USE_REGRIDDING = True
+REGRIDDING_COORDINATE_MODE = "Z*"
+INTERPOLATION_SCHEME = "PPM_IH4"
+BOUNDARY_EXTRAPOLATION = True
+REMAPPING_SCHEME = "PPM_IH4"
+SPONGE = False
+SPONGE_CONFIG = "DUMBBELL"
+DUMBBELL_SPONGE_TIME_SCALE = 8.64e4
+DUMBBELL_ROTATION = True
+#override NIGLOBAL = 20
+#override NJGLOBAL = 40
+#override SOUTHLAT = -100.0
+#override WESTLON = -50.0
+#override LENLAT = 200.0
+#override LENLON = 100.0
+#override FIRST_DIRECTION = 1
+! #override DAYMAX = 30.
+! === OBC options ===
+OBC_NUMBER_OF_SEGMENTS = 2      ! [Integer] The number of open boundary segments.
+OBC_SEGMENT_001 = "J=0,I=0:N,SIMPLE,FLATHER"
+OBC_SEGMENT_002 = "J=N,I=N:0,SIMPLE,FLATHER"
+OBC_SEGMENT_001_DATA = "U=file:../z_rotate/south.nc(u),V=file:../z_rotate/south.nc(v),SSH=file:../z_rotate/south.nc(zeta),SALT=file:../z_rotate/south.nc(salt),DUDY=file:../z_rotate/south.nc(dudy)"
+OBC_SEGMENT_002_DATA = "U=file:../z_rotate/north.nc(u),V=file:../z_rotate/north.nc(v),SSH=file:../z_rotate/north.nc(zeta),SALT=file:../z_rotate/north.nc(salt),DUDY=file:../z_rotate/north.nc(dudy)"
+OBC_TRACER_RESERVOIR_LENGTH_SCALE_OUT = 0
+OBC_TRACER_RESERVOIR_LENGTH_SCALE_IN = 0
+OBC_FREESLIP_VORTICITY = False
+OBC_SPECIFIED_VORTICITY = True
+OBC_COMPUTED_STRAIN = True
+OBC_FREESLIP_STRAIN = False
+OBC_ZERO_BIHARMONIC = True

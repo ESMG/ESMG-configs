@@ -247,6 +247,12 @@ ADJUST_THICKNESS = True         !   [Boolean] default = False
                                 ! If true, all mass below the bottom removed if the
                                 ! topography is shallower than the thickness input file
                                 ! would indicate.
+DEFAULT_2018_ANSWERS = False    !   [Boolean] default = True
+                                ! This sets the default value for the various _2018_ANSWERS parameters.
+REMAPPING_2018_ANSWERS = False  !   [Boolean] default = True
+                                ! If true, use the order of arithmetic and expressions that recover the answers
+                                ! from the end of 2018.  Otherwise, use updated and more robust forms of the
+                                ! same expressions.
 TS_CONFIG = "file"              !
                                 ! A string that determines how the initial tempertures
                                 ! and salinities are specified for a new run:

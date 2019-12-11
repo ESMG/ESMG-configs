@@ -263,6 +263,12 @@ THICKNESS_CONFIG = "seamount"   !
                                 !     USER - call a user modified routine.
 MIN_THICKNESS = 0.1             !   [m] default = 0.001
                                 ! Minimum thickness for layer
+DEFAULT_2018_ANSWERS = False    !   [Boolean] default = True
+                                ! This sets the default value for the various _2018_ANSWERS parameters.
+REMAPPING_2018_ANSWERS = False  !   [Boolean] default = True
+                                ! If true, use the order of arithmetic and expressions that recover the answers
+                                ! from the end of 2018.  Otherwise, use updated and more robust forms of the
+                                ! same expressions.
 TS_CONFIG = "seamount"          !
                                 ! A string that determines how the initial tempertures
                                 ! and salinities are specified for a new run:
