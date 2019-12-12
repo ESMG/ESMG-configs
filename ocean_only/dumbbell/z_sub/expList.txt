@@ -1,17 +1,22 @@
 #Key
-#[Expname]:[CodeName]-[BT]-[BC]-[VS]-[Ti]-[To]-[Li]-[Lo]-[Tvi]-[Tvo]
-#BT:Barotropic Option (F)lather,(N)one
+#[Expname]:[CodeName]-[BT]-[BC]-[V]-[S]-[Ti]-[To]-[Li]-[Lo]-[W]
+#BT:Barotropic Option (F)lather,(S)one
 #BC:Baroclinic Option (S)imple,(Or)lanski,(Ob)lique
-#VS:Vorticity/Strain Option (F)reeslip,(S)pecified,(C)omputed
-#Ti: Velocity Nudging Timescale In (days)
-#To: Velocity Nudging Timescale Out (days)
-#Li: Tracer Reservoir Length Scale In (m)
-#Lo: Tracer Reservoir Length Scale Out (m)
-#i: Velocity
-#e.g.  Baseline:0.0:F-S-F-0-0-0-0  ## Clamped with Freeslip Vorticity
+#V:Vorticity Option (F)reeslip,(S)pecified,(C)omputed,(Z)ero
+#S:Strain Option (F)reeslip,(S)pecified,(C)omputed,(Z)ero
+#Ti: Velocity Nudging Timescale In (0-1)
+#To: Velocity Nudging Timescale Out (0-1)
+#Li: Tracer Reservoir Length Scale In (0-1)
+#Lo: Tracer Reservoir Length Scale Out (0-1)
+#W: Relative weighting of velocities at new time level (0-1)
+#e.g.  Baseline:0.0:F-Or-C-F-0.5-0.5-0.1-0.7-0.3  ## Flather-Orlanski-Computed Vorticity-Freeslip Strain-
 
-"Baseline":0.0-F-S-F-0-0-0-0  ## Clamped with Freeslip Vorticity
-"Baseline/Computed VS":0.1-F-S-C-0-0-0-0
-"Baseline/Specified VS":0.2-F-S-S-0-0-0-0
-"Baseline.2":1.0-F-Or-C-100.0-100.0-0-0  ## Orlanski with Computed Vorticity and weak nudging
-"Baseline.2/Oblique":1.1-F-Ob-C-100.0-100.0-0-0  ## Orlanski with Computed Vorticity and weak nudging
+"A.0":0.0-S-S-F-F-0-0-0-0-0.3
+"B.0":1.0-F-S-F-F-0-0-0-0-0.3
+"B.1":1.1-F-Or-F-F-0-0-0-0-0.3
+"B.1.1":1.1.1-F-Or-C-F-0-0-0-0-0.3
+"B.1.2":1.1.2-F-Or-S-F-0-0-0-0-0.3
+"B.1.3":1.1.3-F-Or-Z-F-0-0-0-0-0.3
+"B.0.3":1.0.3-F-S-Z-F-0-0-0-0-0.3
+"B.0.2":1.1.2-F-S-S-F-0-0-0-0-0.3
+"B.0.2":1.1.1-F-S-C-F-0-0-0-0-0.3
