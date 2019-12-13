@@ -7,8 +7,9 @@ cp ../common/input.nml .
 if [ -f ocean.stats ] ; then
     rm ocean.stats ocean.stats.nc
 fi
+
 num=0
-while read -r line; do
+cat Codes.txt | while read  line; do
     PF='MOM_override.'$line
     echo $PF
     if [ ! -d $line ]; then
@@ -21,8 +22,9 @@ while read -r line; do
        	mv input.nml.sav input.nml
 	python skill.py $num
     fi
-    ((num++))
-done < Codes.txt
-echo('num=',num)
+    num=$(($num + 1))
+    echo $num
+done || exit 1
+
 rm input.nml
 ln -s ../common/input.nml .

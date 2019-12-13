@@ -18,13 +18,13 @@ pi=3.14
 N=np.sqrt(grav*IdZ*(Irho*(dS*drho_dS))) # s-1
 Ld=(N*dZ)/(np.pi*F0) # m
 #print('N=',N,' s-1')
-#print('N/f=',N/F0)
-#print('Deformation Radius(km)= ',Ld*1.e-3)
+print('N/f=',N/F0)
+print('Deformation Radius(km)= ',Ld*1.e-3)
 # The Velocity scale is a typical eddy velocity observed from the parent model
 Vscale_in=0.1 # m s-1
 Tscale_in=(Ld/Vscale_in)/8.64e4 # days
 Vscale_out=0.0001 # m s-1
-Tscale_out=30. # days
+Tscale_out=300. # days
 Lscale_in=1.e3 # m
 Lscale_out=5.e3 # m
 print('NOTE:Using Incoming Time scale (days)=',Tscale_in)
@@ -48,7 +48,7 @@ for line in f.readlines():
           has_comment=True
       Res=line.split('-')
       exp=Res[0].split(':')
-
+      print(len(Res),len(exp))
       dict={'Name':exp[0],'Code':exp[1],'BT':Res[1],'BC':Res[2],'V':Res[3],'S':Res[4],'Ti':float(Res[5])*Tscale_in,'To':float(Res[6])*Tscale_out,'Li':float(Res[7])*Lscale_in,'Lo':float(Res[8].rstrip())*Lscale_out,'W':float(Res[9])}
       print(dict)
       if has_comment:
@@ -61,10 +61,10 @@ for line in f.readlines():
             Str=Str+'SIMPLE,'
         elif dict['BT']=='F':
             Str=Str+'FLATHER,'
-        elif dict['BC']=='Or':
-            Str=Str+'ORLANSKI'
+        if dict['BC']=='Or':
+            Str=Str+'ORLANSKI,'
         elif dict['BC']=='Ob':
-            Str=Str+'OBLIQUE'
+            Str=Str+'OBLIQUE,'
         if Str[-1]==',':
             Str=Str[:-1]
         g.write(Str+'"\n')
