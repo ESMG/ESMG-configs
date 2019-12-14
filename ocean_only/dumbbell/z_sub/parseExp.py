@@ -49,7 +49,7 @@ for line in f.readlines():
       Res=line.split('-')
       exp=Res[0].split(':')
       print(len(Res),len(exp))
-      dict={'Name':exp[0],'Code':exp[1],'BT':Res[1],'BC':Res[2],'V':Res[3],'S':Res[4],'Ti':float(Res[5])*Tscale_in,'To':float(Res[6])*Tscale_out,'Li':float(Res[7])*Lscale_in,'Lo':float(Res[8].rstrip())*Lscale_out,'W':float(Res[9])}
+      dict={'Name':exp[0],'Code':exp[1],'BT':Res[1],'BC':Res[2],'ObTan':Res[3],'ObGrad':Res[4],'V':Res[5],'S':Res[6],'Ti':float(Res[7])*Tscale_in,'To':float(Res[8])*Tscale_out,'Li':float(Res[9])*Lscale_in,'Lo':float(Res[10].rstrip())*Lscale_out,'W':float(Res[11])}
       print(dict)
       if has_comment:
           dict['comment']=comment
@@ -65,6 +65,10 @@ for line in f.readlines():
             Str=Str+'ORLANSKI,'
         elif dict['BC']=='Ob':
             Str=Str+'OBLIQUE,'
+        if dict['ObTan']==1:
+            Str=Str+'OBLIQUE_TAN,'
+        if dict['ObGrad']==1:
+            Str=Str+'OBLIQUE_GRAD,'
         if Str[-1]==',':
             Str=Str[:-1]
         g.write(Str+'"\n')

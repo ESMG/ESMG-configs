@@ -49,11 +49,12 @@ def rvSkill():
     is_=np.where(px>=x[0])[0][0]
     ie_=np.where(px>=x[-1])[0][0]
     prv_=prv[:,:,:,is_:ie_+1]
-    plt.plot(time,1.e4*prv_.mean(axis=3).mean(axis=2).mean(axis=1),label='Parent Vort')
-    plt.plot(time,1.e4*rv[:].mean(axis=3).mean(axis=2).mean(axis=1),label='Regional Vort')
     diff=1.e4*(rv[:]-prv_[:])
+    diff2 = diff**2.0
+    rms_diff = diff2.mean(axis=3).mean(axis=1).mean(axis=1)
+    plt.plot(time,rms_diff,label='RMS Vorticity Error')
     score=diff.std()
-    print('Total Vorticity error (10-4 s-1) = ',str(score)[:5])
+    print('Vorticity error (10-4 s-1) = ',str(score)[:5])
     return score
 
 def saltSkill():
@@ -72,14 +73,14 @@ def saltSkill():
 plt.clf()
 fig=plt.figure(1,figsize=(6,4))
 rv_score=rvSkill()
-salt_score=saltSkill()
-plt.title(ExpList[expnum]+' Average Vorticity (10-4 s-1) and RMS Salinity error (psu)')
+#salt_score=saltSkill()
+plt.title(ExpList[expnum]+' RMS Vorticity Error (10-4 s-1)')
 plt.xlabel('days')
 plt.ylabel('psu or 10-4 s-1')
 plt.grid()
 plt.legend()
-plt.ylim(-.25,0.75)
+plt.ylim(0,8.0)
 fig.savefig(exp+'/skill.png')
 g=open(exp+'/score.txt','w')
-g.write(str(rv_score)[:5]+','+str(salt_score)[:5]+'\n')
+g.write(str(rv_score)[:5]) #+','+str(salt_score)[:5]+'\n')
 g.close()

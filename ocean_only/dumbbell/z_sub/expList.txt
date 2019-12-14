@@ -1,7 +1,9 @@
 #Key
-#[Expname]:[CodeName]-[BT]-[BC]-[V]-[S]-[Ti]-[To]-[Li]-[Lo]-[W]
+#[Expname]:[CodeName]-[BT]-[BC]-[ObTan]-[ObGrad]-[V]-[S]-[Ti]-[To]-[Li]-[Lo]-[W]
 #BT:Barotropic Option (F)lather,(S)imple
 #BC:Baroclinic Option (S)imple,(Or)lanski,(Ob)lique
+#ObTan: 2-d radiation of tangential flow (0 or 1)
+#ObGrad: 2-d radiation of tangential vorticity (0 or 1)
 #V:Vorticity Option (F)reeslip,(S)pecified,(C)omputed,(Z)ero
 #S:Strain Option (F)reeslip,(S)pecified,(C)omputed,(Z)ero
 #Ti: Velocity Nudging Timescale In (0-1)
@@ -12,10 +14,16 @@
 
 
 #CLAMPED FAMILY
-"Clamped.0":0.0-S-S-F-F-0-0-0-0-0.3
-"Clamped.1":0.1-S-S-C-F-0-0-0-0-0.3
-"Clamped.2":0.2-S-S-F-C-0-0-0-0-0.3
+"Clamped.0":0.0-S-S-0-0-F-F-0-0-0-0-0.3
+"Clamped.1":0.1-S-S-0-0-C-F-0-0-0-0-0.3
+"Clamped.2":0.2-S-S-0-0-F-C-0-0-0-0-0.3
+"Clamped.3":0.3-S-S-0-0-F-Z-0-0-0-0-0.3
+"Clamped.4":0.4-S-S-0-0-Z-F-0-0-0-0-0.3
+"Clamped.5":0.5-S-S-0-0-Z-Z-0-0-0-0-0.3
 #FLATHER+OBLIQUE FAMILY
-"Flather,Oblique.0":1.0-F-Or-F-F-1-1-0-0-0.3
-"Flather,Oblique.1":1.1-F-Or-C-F-1-1-0-0-0.3
-"Flather,Oblique.2":1.2-F-Or-F-C-1-1-0-0-0.3
+"Flather,Oblique.0":1.0-F-Or-0-0-F-F-1-1-0-0-0.3
+"Flather,Oblique.1":1.1-F-Or-0-0-C-F-1-1-0-0-0.3
+"Flather,Oblique.2":1.2-F-Or-0-0-F-C-1-1-0-0-0.3
+"Flather,Oblique.3":1.3-F-Or-0-0-F-Z-1-1-0-0-0.3
+"Flather,Oblique.4":1.4-F-Or-0-0-Z-F-1-1-0-0-0.3
+"Flather,Oblique.5":1.5-F-Or-0-0-Z-Z-1-1-0-0-0.3
