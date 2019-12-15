@@ -22,7 +22,8 @@ print('N/f=',N/F0)
 print('Deformation Radius(km)= ',Ld*1.e-3)
 # The Velocity scale is a typical eddy velocity observed from the parent model
 Vscale_in=0.1 # m s-1
-Tscale_in=(Ld/Vscale_in)/8.64e4 # days
+#Tscale_in=(Ld/Vscale_in)/8.64e4 # days
+Tscale_in=1.0 # days
 Vscale_out=0.0001 # m s-1
 Tscale_out=300. # days
 Lscale_in=1.e3 # m
@@ -48,9 +49,9 @@ for line in f.readlines():
           has_comment=True
       Res=line.split('-')
       exp=Res[0].split(':')
-      print(len(Res),len(exp))
+      #print(len(Res),len(exp))
       dict={'Name':exp[0],'Code':exp[1],'BT':Res[1],'BC':Res[2],'ObTan':Res[3],'ObGrad':Res[4],'V':Res[5],'S':Res[6],'Ti':float(Res[7])*Tscale_in,'To':float(Res[8])*Tscale_out,'Li':float(Res[9])*Lscale_in,'Lo':float(Res[10].rstrip())*Lscale_out,'W':float(Res[11])}
-      print(dict)
+      #print(dict)
       if has_comment:
           dict['comment']=comment
       g=open('MOM_override.'+dict['Code'],'w')

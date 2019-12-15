@@ -9,14 +9,9 @@ import sys
 pgeom=nc.Dataset('../z/ocean_geometry.nc')
 geom=nc.Dataset('ocean_geometry.nc')
 
-f=open('Codes.txt')
-ExpList=[]
-for line in f.readlines():
-    ExpList.append(line.rstrip())
-expnum=int(sys.argv[1])
-f.close()
+exp=sys.argv[1]
 
-print('Calculating skill for ',ExpList[expnum],' .... ')
+print('Calculating skill for ',exp,' .... ')
 
 
 px=pgeom.variables['lonq']
@@ -31,7 +26,6 @@ xc=geom.variables['lonh']
 yc=geom.variables['lath']
 wet=geom.variables['wet']
 
-exp=ExpList[expnum]
 Prog=nc.Dataset('../z/prog.nc')
 prog=nc.Dataset(exp+'/prog.nc')
 
@@ -74,7 +68,7 @@ plt.clf()
 fig=plt.figure(1,figsize=(6,4))
 rv_score=rvSkill()
 #salt_score=saltSkill()
-plt.title(ExpList[expnum]+' RMS Vorticity Error (10-4 s-1)')
+plt.title(exp+' RMS Vorticity Error (10-4 s-1)')
 plt.xlabel('days')
 plt.ylabel('psu or 10-4 s-1')
 plt.grid()
