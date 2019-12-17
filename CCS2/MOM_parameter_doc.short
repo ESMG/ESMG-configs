@@ -513,6 +513,10 @@ USE_JACKSON_PARAM = True        !   [Boolean] default = False
 MAX_RINO_IT = 25                !   [nondim] default = 50
                                 ! The maximum number of iterations that may be used to estimate the Richardson
                                 ! number driven mixing.
+KAPPA_SHEAR_ITER_BUG = False    !   [Boolean] default = True
+                                ! If true. use an older, dimensionally inconsistent estimate of the derivative
+                                ! of diffusivity with energy in the Newton's method iteration.  The bug causes
+                                ! undercorrections when dz > 1m.
 
 ! === module MOM_CVMix_shear ===
 ! Parameterization of shear-driven turbulence via CVMix (various options)
