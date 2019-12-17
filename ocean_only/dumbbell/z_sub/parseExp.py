@@ -70,7 +70,7 @@ for line in f.readlines():
             Str=Str+'OBLIQUE_TAN,NUDGED_TAN,'
         elif dict['Tan']=='Or': # Oblique radiation of tangential flow (only useed for computed vorticity)
             Str=Str+'ORLANSKI_TAN,NUDGED_TAN,'
-        else dict['Tan']=='S': # Simple nudging tangential flow
+        elif dict['Tan']=='S': # Simple nudging tangential flow
             Str=Str+'NUDGED_TAN,'
         if dict['Grad']=='Or': # Normal radiation of kinetic energy gradient
             Str=Str+'ORLANSKI_GRAD,NUDGED_GRAD,'
