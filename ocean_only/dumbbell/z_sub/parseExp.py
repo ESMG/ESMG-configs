@@ -50,7 +50,7 @@ for line in f.readlines():
       Res=line.split('-')
       exp=Res[0].split(':')
       #print(len(Res),len(exp))
-      dict={'Name':exp[0],'Code':exp[1],'BT':Res[1],'BC':Res[2],'ObTan':Res[3],'ObGrad':Res[4],'V':Res[5],'S':Res[6],'Ti':float(Res[7])*Tscale_in,'To':float(Res[8])*Tscale_out,'Li':float(Res[9])*Lscale_in,'Lo':float(Res[10].rstrip())*Lscale_out,'W':float(Res[11])}
+      dict={'Name':exp[0],'Code':exp[1],'BT':Res[1],'BC':Res[2],'Tan':Res[3],'Grad':Res[4],'V':Res[5],'S':Res[6],'Ti':float(Res[7])*Tscale_in,'To':float(Res[8])*Tscale_out,'Li':float(Res[9])*Lscale_in,'Lo':float(Res[10].rstrip())*Lscale_out,'W':float(Res[11])}
       #print(dict)
       if has_comment:
           dict['comment']=comment
@@ -58,18 +58,26 @@ for line in f.readlines():
       for s in [Seg_001,Seg_002]:
         Str=s
         Str=Str+'NUDGED,'
-        if dict['BT']=='S' or dict['BC']=='S':
+        if dict['BT']=='S' or dict['BC']=='S':  # NO RADIATION, JUST NUDGING
             Str=Str+'SIMPLE,'
-        elif dict['BT']=='F':
+        elif dict['BT']=='F': # Flather for the external model
             Str=Str+'FLATHER,'
-        if dict['BC']=='Or':
+        if dict['BC']=='Or':  # Normal radiation for baroclinic flow
             Str=Str+'ORLANSKI,'
-        elif dict['BC']=='Ob':
+        elif dict['BC']=='Ob': # Oblique radiation for baroclinic flow
             Str=Str+'OBLIQUE,'
-        if dict['ObTan']==1:
-            Str=Str+'OBLIQUE_TAN,'
-        if dict['ObGrad']==1:
-            Str=Str+'OBLIQUE_GRAD,'
+        if dict['Tan']=='Ob': # Oblique radiation of tangential flow (only useed for computed vorticity)
+            Str=Str+'OBLIQUE_TAN,NUDGED_TAN,'
+        elif dict['Tan']=='Or': # Oblique radiation of tangential flow (only useed for computed vorticity)
+            Str=Str+'ORLANSKI_TAN,NUDGED_TAN,'
+        else dict['Tan']=='S': # Simple nudging tangential flow
+            Str=Str+'NUDGED_TAN,'
+        if dict['Grad']=='Or': # Normal radiation of kinetic energy gradient
+            Str=Str+'ORLANSKI_GRAD,NUDGED_GRAD,'
+        elif dict['Grad']=='Ob': # Oblique radiation of kinetic energy gradient
+            Str=Str+'OBLIQUE_GRAD,NUDGED_GRAD,'
+        elif dict['Grad']=='S': # Oblique radiation of kinetic energy gradient
+            Str=Str+'NUDGED_GRAD,'
         if Str[-1]==',':
             Str=Str[:-1]
         g.write(Str+'"\n')
@@ -93,6 +101,7 @@ for line in f.readlines():
           g.write(Str)
           Str='OBC_FREESLIP_VORTICITY = False \n'
           g.write(Str)
+
       elif dict['V']=='S':
           Str='OBC_SPECIFIED_VORTICITY = True \n'
           g.write(Str)
