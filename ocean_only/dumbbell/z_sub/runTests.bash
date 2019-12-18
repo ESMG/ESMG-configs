@@ -22,9 +22,9 @@ done < <(cat Codes.txt)
         cp input.nml input.nml.sav
         sed -i -e "/MOM_override/a ,'${pf}'" input.nml
         mpirun -n 4 ~/src/MOM6/build/symmetric/MOM6 >& output;
-        mv prog.nc output MOM_parameter_doc.all $exp
+        mv prog.nc output MOM_parameter_doc.all ocean.stats* $exp
         mv input.nml.sav input.nml
- 	python skill.py $exp
+ 	python rms_errors.py $exp
      fi
  done
 
