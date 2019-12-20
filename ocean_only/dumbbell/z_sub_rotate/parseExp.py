@@ -2,8 +2,8 @@ import numpy as np
 
 f = open('expList.txt','r')
 h = open('Codes.txt','w')
-Seg_001='OBC_SEGMENT_001 = \"I=0,J=N:0,'
-Seg_002='OBC_SEGMENT_002 = \"I=N,J=0:N,'
+Seg_001='OBC_SEGMENT_001 = \"J=0,I=0:N,'
+Seg_002='OBC_SEGMENT_002 = \"J=N,I=N:0,'
 
 # Calculate the baroclinic deformation radius for dumbbell
 Rho0=1.035e3 # kg m-3
