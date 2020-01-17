@@ -15,4 +15,4 @@ DUMBBELL_ROTATION = True
 #override LENLAT = 600.0
 #override LENLON = 100.0
 #override FIRST_DIRECTION = 1
-! #override DAYMAX = 30.
+#override DAYMAX = 30.

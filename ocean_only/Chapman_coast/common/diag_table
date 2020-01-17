@@ -14,6 +14,8 @@
 "ocean_model","v","v","prog","all",.false.,"none",2
 "ocean_model","h","h","prog","all",.false.,"none",1
 "ocean_model","e","e","prog","all",.false.,"none",2
+"ocean_model","SSH","SSH","prog","all",.false.,"none",2
+"ocean_model","RV","RV","prog","all",.false.,"none",2
 
 #"ocean_model","u","u","ave_prog_%4yr_%3dy","all",.true.,"none",2
 #"ocean_model","v","v","ave_prog_%4yr_%3dy","all",.true.,"none",2

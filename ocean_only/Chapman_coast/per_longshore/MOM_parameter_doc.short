@@ -116,7 +116,7 @@ OBC_ZERO_BIHARMONIC = True      !   [Boolean] default = False
                                 ! viscosity term.
 OBC_SEGMENT_001 = "I=N,J=-10:N+10,FLATHER" !
                                 ! Documentation needs to be dynamic?????
-OBC_SEGMENT_001_DATA = "U=value:0.0,V=value:0.0,SSH=value:0.0" !
+OBC_SEGMENT_001_DATA = "U=value:0.0,V=value:0.0,SSH=value:0.0,DVDX=value:0.0" !
                                 ! OBC segment docs
 ROTATION = "betaplane"          ! default = "2omegasinlat"
                                 ! This specifies how the Coriolis parameter is specified:

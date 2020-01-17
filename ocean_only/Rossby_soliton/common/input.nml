@@ -4,7 +4,8 @@
          restart_input_dir = 'INPUT/',
          restart_output_dir = 'RESTART/',
          parameter_filename = 'MOM_input',
-                              'MOM_override' /
+                              'MOM_override'
+/
 
  &ocean_solo_nml
  /

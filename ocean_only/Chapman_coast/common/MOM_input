@@ -119,17 +119,17 @@ MAXIMUM_DEPTH = 100.0           !   [m]
 ! Controls where open boundaries are located, what kind of boundary condition to impose, and what data to apply, if any.
 OBC_NUMBER_OF_SEGMENTS = 3      ! default = 0
                                 ! The number of open boundary segments.
-OBC_ZERO_VORTICITY = False      !   [Boolean] default = False
+!OBC_ZERO_VORTICITY = False      !   [Boolean] default = False
                                 ! If true, sets relative vorticity to zero on open boundaries.
-OBC_FREESLIP_VORTICITY = True   !   [Boolean] default = False
+!OBC_FREESLIP_VORTICITY = True   !   [Boolean] default = False
                                 ! If true, sets the normal gradient of tangential velocity to
                                 ! zero in the relative vorticity on open boundaries. This cannot
                                 ! be true if another OBC_XXX_VORTICITY option is True.
-OBC_COMPUTED_VORTICITY = False  !   [Boolean] default = False
+!OBC_COMPUTED_VORTICITY = False  !   [Boolean] default = False
                                 ! If true, uses the external values of tangential velocity
                                 ! in the relative vorticity on open boundaries. This cannot
                                 ! be true if another OBC_XXX_VORTICITY option is True.
-OBC_SPECIFIED_VORTICITY = False !   [Boolean] default = False
+!OBC_SPECIFIED_VORTICITY = False !   [Boolean] default = False
                                 ! If true, uses the external values of tangential velocity
                                 ! in the relative vorticity on open boundaries. This cannot
                                 ! be true if another OBC_XXX_VORTICITY option is True.
@@ -142,18 +142,12 @@ OBC_SEGMENT_002 = "J=N,I=N:0,FLATHER" !
                                 ! Documentation needs to be dynamic?????
 OBC_SEGMENT_003 = "J=0,I=0:N,FLATHER" !
                                 ! Documentation needs to be dynamic?????
-OBC_SEGMENT_001_DATA = "U=value:0.0,V=value:0.0,SSH=value:0.0" !
+OBC_SEGMENT_001_DATA = "U=value:0.0,V=value:0.0,SSH=value:0.0,DVDX=value:0.0" !
                                 ! OBC segment docs
 OBC_SEGMENT_002_DATA = "U=value:0.0,V=value:0.0,SSH=value:0.0" !
                                 ! OBC segment docs
 OBC_SEGMENT_003_DATA = "U=value:0.0,V=value:0.0,SSH=value:0.0" !
                                 ! OBC segment docs
-OBC_RAD_VEL_WT = 0.3            !   [nondim] default = 0.3
-                                ! The relative weighting for the baroclinic radiation
-                                ! velocities (or speed of characteristics) at the new
-                                ! time level (1) or the running mean (0) for velocities.
-                                ! Valid values range from 0 to 1. This is only used if
-                                ! one of the open boundary segments is using Orlanski.
 ROTATION = "betaplane"          ! default = "2omegasinlat"
                                 ! This specifies how the Coriolis parameter is specified:
                                 !     2omegasinlat - Use twice the planetary rotation rate
