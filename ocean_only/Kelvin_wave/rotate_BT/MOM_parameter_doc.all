@@ -287,6 +287,12 @@ OBC_SEGMENT_022 = "J=15,I=60:59,FLATHER" !
                                 ! Documentation needs to be dynamic?????
 BRUSHCUTTER_MODE = False        !   [Boolean] default = False
                                 ! If true, read external OBC data on the supergrid.
+DEFAULT_2018_ANSWERS = True     !   [Boolean] default = True
+                                ! This sets the default value for the various _2018_ANSWERS parameters.
+REMAPPING_2018_ANSWERS = True   !   [Boolean] default = True
+                                ! If true, use the order of arithmetic and expressions that recover the answers
+                                ! from the end of 2018.  Otherwise, use updated and more robust forms of the
+                                ! same expressions.
 OBC_RADIATION_MAX = 10.0        !   [m s-1] default = 10.0
                                 ! The maximum magnitude of the baroclinic radiation velocity (or speed of
                                 ! characteristics).  This is only used if one of the open boundary segments is
@@ -357,8 +363,6 @@ ROTATED_COAST_OFFSET_2 = 10.0   !   [km] default = 10.0
                                 ! angle in.
 ROTATED_COAST_ANGLE = 11.3      !   [degrees] default = 11.3
                                 ! The angle of the southern bondary beyond X=ROTATED_COAST_OFFSET.
-DEFAULT_2018_ANSWERS = True     !   [Boolean] default = True
-                                ! This sets the default value for the various _2018_ANSWERS parameters.
 KELVIN_WAVE_2018_ANSWERS = True !   [Boolean] default = True
                                 ! If true, use the order of arithmetic and expressions that recover the answers
                                 ! from the end of 2018.  Otherwise, use expressions that give rotational
@@ -645,6 +649,9 @@ USE_KH_IN_MEKE = False          !   [Boolean] default = False
 USE_GME = False                 !   [Boolean] default = False
                                 ! If true, use the GM+E backscatter scheme in association
                                 ! with the Gent and McWilliams parameterization.
+USE_GM_WORK_BUG = True          !   [Boolean] default = True
+                                ! If true, compute the top-layer work tendency on the u-grid with the incorrect
+                                ! sign, for legacy reproducibility.
 TIDES = False                   !   [Boolean] default = False
                                 ! If true, apply tidal momentum forcing.
 BE = 0.6                        !   [nondim] default = 0.6

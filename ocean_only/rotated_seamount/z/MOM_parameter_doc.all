@@ -351,6 +351,12 @@ OBC_SEGMENT_036 = "J=40,I=8:0,FLATHER, OBLIQUE, OBLIQUE_TAN" !
                                 ! Documentation needs to be dynamic?????
 BRUSHCUTTER_MODE = False        !   [Boolean] default = False
                                 ! If true, read external OBC data on the supergrid.
+DEFAULT_2018_ANSWERS = False    !   [Boolean] default = True
+                                ! This sets the default value for the various _2018_ANSWERS parameters.
+REMAPPING_2018_ANSWERS = False  !   [Boolean] default = False
+                                ! If true, use the order of arithmetic and expressions that recover the answers
+                                ! from the end of 2018.  Otherwise, use updated and more robust forms of the
+                                ! same expressions.
 OBC_SEGMENT_001_DATA = "U=value:0.0,V=value:0.0,SSH=value:0.0" !
                                 ! OBC segment docs
 OBC_SEGMENT_002_DATA = "U=value:0.0,V=value:0.0,SSH=value:0.0" !
@@ -664,12 +670,6 @@ REMAP_BOUND_INTERMEDIATE_VALUES = False !   [Boolean] default = False
 REMAP_BOUNDARY_EXTRAP = False   !   [Boolean] default = False
                                 ! If true, values at the interfaces of boundary cells are extrapolated instead
                                 ! of piecewise constant
-DEFAULT_2018_ANSWERS = False    !   [Boolean] default = True
-                                ! This sets the default value for the various _2018_ANSWERS parameters.
-REMAPPING_2018_ANSWERS = False  !   [Boolean] default = False
-                                ! If true, use the order of arithmetic and expressions that recover the answers
-                                ! from the end of 2018.  Otherwise, use updated and more robust forms of the
-                                ! same expressions.
 REMAP_AFTER_INITIALIZATION = True !   [Boolean] default = True
                                 ! If true, applies regridding and remapping immediately after initialization so
                                 ! that the state is ALE consistent. This is a legacy step and should not be
@@ -964,6 +964,9 @@ USE_KH_IN_MEKE = False          !   [Boolean] default = False
 USE_GME = False                 !   [Boolean] default = False
                                 ! If true, use the GM+E backscatter scheme in association
                                 ! with the Gent and McWilliams parameterization.
+USE_GM_WORK_BUG = True          !   [Boolean] default = True
+                                ! If true, compute the top-layer work tendency on the u-grid with the incorrect
+                                ! sign, for legacy reproducibility.
 TIDES = True                    !   [Boolean] default = False
                                 ! If true, apply tidal momentum forcing.
 BE = 0.7                        !   [nondim] default = 0.6

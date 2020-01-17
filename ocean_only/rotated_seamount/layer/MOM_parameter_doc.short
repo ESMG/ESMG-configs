@@ -199,6 +199,8 @@ OBC_SEGMENT_035 = "I=8,J=41:40,FLATHER, OBLIQUE, OBLIQUE_TAN" !
                                 ! Documentation needs to be dynamic?????
 OBC_SEGMENT_036 = "J=40,I=8:0,FLATHER, OBLIQUE, OBLIQUE_TAN" !
                                 ! Documentation needs to be dynamic?????
+DEFAULT_2018_ANSWERS = False    !   [Boolean] default = True
+                                ! This sets the default value for the various _2018_ANSWERS parameters.
 OBC_SEGMENT_001_DATA = "U=value:0.0,V=value:0.0,SSH=value:0.0" !
                                 ! OBC segment docs
 OBC_SEGMENT_002_DATA = "U=value:0.0,V=value:0.0,SSH=value:0.0" !
@@ -419,8 +421,6 @@ OBC_USER_CONFIG = "dyed_obcs"   ! default = "none"
 ! === module MOM_lateral_mixing_coeffs ===
 
 ! === module MOM_set_visc ===
-DEFAULT_2018_ANSWERS = False    !   [Boolean] default = True
-                                ! This sets the default value for the various _2018_ANSWERS parameters.
 LINEAR_DRAG = True              !   [Boolean] default = False
                                 ! If LINEAR_DRAG and BOTTOMDRAGLAW are defined the drag law is
                                 ! cdrag*DRAG_BG_VEL*u.

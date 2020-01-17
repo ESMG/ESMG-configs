@@ -351,6 +351,12 @@ OBC_SEGMENT_036 = "J=40,I=8:0,FLATHER, OBLIQUE, OBLIQUE_TAN" !
                                 ! Documentation needs to be dynamic?????
 BRUSHCUTTER_MODE = False        !   [Boolean] default = False
                                 ! If true, read external OBC data on the supergrid.
+DEFAULT_2018_ANSWERS = False    !   [Boolean] default = True
+                                ! This sets the default value for the various _2018_ANSWERS parameters.
+REMAPPING_2018_ANSWERS = False  !   [Boolean] default = False
+                                ! If true, use the order of arithmetic and expressions that recover the answers
+                                ! from the end of 2018.  Otherwise, use updated and more robust forms of the
+                                ! same expressions.
 OBC_SEGMENT_001_DATA = "U=value:0.0,V=value:0.0,SSH=value:0.0" !
                                 ! OBC segment docs
 OBC_SEGMENT_002_DATA = "U=value:0.0,V=value:0.0,SSH=value:0.0" !
@@ -384,3 +390,57 @@ OBC_SEGMENT_015_DATA = "U=value:0.0,V=value:0.0,SSH=value:0.0" !
 OBC_SEGMENT_016_DATA = "U=value:0.0,V=value:0.0,SSH=value:0.0" !
                                 ! OBC segment docs
 OBC_SEGMENT_017_DATA = "U=value:0.0,V=value:0.0,SSH=value:0.0" !
+                                ! OBC segment docs
+OBC_SEGMENT_018_DATA = "U=value:0.0,V=value:0.0,SSH=value:0.0" !
+                                ! OBC segment docs
+OBC_SEGMENT_019_DATA = "U=value:0.0,V=value:0.0,SSH=value:0.0" !
+                                ! OBC segment docs
+OBC_SEGMENT_020_DATA = "U=value:0.0,V=value:0.0,SSH=value:0.0" !
+                                ! OBC segment docs
+OBC_SEGMENT_021_DATA = "U=value:0.0,V=value:0.0,SSH=value:0.0" !
+                                ! OBC segment docs
+OBC_SEGMENT_022_DATA = "U=value:0.0,V=value:0.0,SSH=value:0.0" !
+                                ! OBC segment docs
+OBC_SEGMENT_023_DATA = "U=value:0.0,V=value:0.0,SSH=value:0.0" !
+                                ! OBC segment docs
+OBC_SEGMENT_024_DATA = "U=value:0.0,V=value:0.0,SSH=value:0.0" !
+                                ! OBC segment docs
+OBC_SEGMENT_025_DATA = "U=value:0.0,V=value:0.0,SSH=value:0.0" !
+                                ! OBC segment docs
+OBC_SEGMENT_026_DATA = "U=value:0.0,V=value:0.0,SSH=value:0.0" !
+                                ! OBC segment docs
+OBC_SEGMENT_027_DATA = "U=value:0.0,V=value:0.0,SSH=value:0.0" !
+                                ! OBC segment docs
+OBC_SEGMENT_028_DATA = "U=value:0.0,V=value:0.0,SSH=value:0.0" !
+                                ! OBC segment docs
+OBC_SEGMENT_029_DATA = "U=value:0.0,V=value:0.0,SSH=value:0.0" !
+                                ! OBC segment docs
+OBC_SEGMENT_030_DATA = "U=value:0.0,V=value:0.0,SSH=value:0.0" !
+                                ! OBC segment docs
+OBC_SEGMENT_031_DATA = "U=value:0.0,V=value:0.0,SSH=value:0.0" !
+                                ! OBC segment docs
+OBC_SEGMENT_032_DATA = "U=value:0.0,V=value:0.0,SSH=value:0.0" !
+                                ! OBC segment docs
+OBC_SEGMENT_033_DATA = "U=value:0.0,V=value:0.0,SSH=value:0.0" !
+                                ! OBC segment docs
+OBC_SEGMENT_034_DATA = "U=value:0.0,V=value:0.0,SSH=value:0.0" !
+                                ! OBC segment docs
+OBC_SEGMENT_035_DATA = "U=value:0.0,V=value:0.0,SSH=value:0.0" !
+                                ! OBC segment docs
+OBC_SEGMENT_036_DATA = "U=value:0.0,V=value:0.0,SSH=value:0.0" !
+                                ! OBC segment docs
+OBC_RADIATION_MAX = 10.0        !   [m s-1] default = 10.0
+                                ! The maximum magnitude of the baroclinic radiation velocity (or speed of
+                                ! characteristics).  This is only used if one of the open boundary segments is
+                                ! using Orlanski.
+OBC_RAD_VEL_WT = 1.0            !   [nondim] default = 0.3
+                                ! The relative weighting for the baroclinic radiation velocities (or speed of
+                                ! characteristics) at the new time level (1) or the running mean (0) for
+                                ! velocities. Valid values range from 0 to 1. This is only used if one of the
+                                ! open boundary segments is using Orlanski.
+OBC_TRACER_RESERVOIR_LENGTH_SCALE_OUT = 1000.0 !   [m] default = 0.0
+                                ! An effective length scale for restoring the tracer concentration at the
+                                ! boundaries to externally imposed values when the flow is exiting the domain.
+OBC_TRACER_RESERVOIR_LENGTH_SCALE_IN = 1000.0 !   [m] default = 0.0
+                                ! An effective length scale for restoring the tracer concentration at the
+                                ! boundaries to values from the interior when the flow is entering the domain.

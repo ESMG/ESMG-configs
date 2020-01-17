@@ -522,6 +522,9 @@ Z_OUTPUT_GRID_FILE = " " ! default = ""
 !NK_ZSPACE (from file) = 35     !   [nondim]
                                 ! The number of depth-space levels.  This is determined
                                 ! from the size of the variable zw in the output grid file.
+USE_GM_WORK_BUG = False         !   [Boolean] default = True
+                                ! If true, compute the top-layer work tendency on the u-grid with the incorrect
+                                ! sign, for legacy reproducibility.
 
 ! === module MOM_diabatic_driver ===
 ! The following parameters are used for diabatic processes.

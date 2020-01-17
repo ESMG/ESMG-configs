@@ -131,6 +131,8 @@ OBC_SEGMENT_003 = "I=N,J=0:N,FLATHER, OBLIQUE, OBLIQUE_GRAD" !
                                 ! Documentation needs to be dynamic?????
 OBC_SEGMENT_004 = "I=0,J=N:0,FLATHER, OBLIQUE, OBLIQUE_GRAD" !
                                 ! Documentation needs to be dynamic?????
+DEFAULT_2018_ANSWERS = False    !   [Boolean] default = True
+                                ! This sets the default value for the various _2018_ANSWERS parameters.
 OBC_SEGMENT_001_DATA = "U=value:0.0,V=value:0.0,SSH=value:0.0" !
                                 ! OBC segment docs
 OBC_SEGMENT_002_DATA = "U=value:0.0,V=value:0.0,SSH=value:0.0" !
@@ -251,8 +253,6 @@ REMAPPING_SCHEME = "PPM_H4"     ! default = "PLM"
                                 ! PPM_IH4     (3rd-order accurate)
                                 ! PQM_IH4IH3  (4th-order accurate)
                                 ! PQM_IH6IH5  (5th-order accurate)
-DEFAULT_2018_ANSWERS = False    !   [Boolean] default = True
-                                ! This sets the default value for the various _2018_ANSWERS parameters.
 
 ! === module MOM_grid ===
 ! Parameters providing information about the lateral grid.
