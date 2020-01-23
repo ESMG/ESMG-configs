@@ -109,18 +109,6 @@ MINIMUM_DEPTH = 1.0             !   [m] default = 0.0
 ! if any.
 OBC_NUMBER_OF_SEGMENTS = 2      ! default = 0
                                 ! The number of open boundary segments.
-OBC_ZERO_VORTICITY = True       !   [Boolean] default = False
-                                ! If true, sets relative vorticity to zero on open boundaries.
-OBC_FREESLIP_VORTICITY = False  !   [Boolean] default = True
-                                ! If true, sets the normal gradient of tangential velocity to zero in the
-                                ! relative vorticity on open boundaries. This cannot be true if another
-                                ! OBC_XXX_VORTICITY option is True.
-OBC_ZERO_STRAIN = True          !   [Boolean] default = False
-                                ! If true, sets the strain used in the stress tensor to zero on open boundaries.
-OBC_FREESLIP_STRAIN = False     !   [Boolean] default = True
-                                ! If true, sets the normal gradient of tangential velocity to zero in the strain
-                                ! use in the stress tensor on open boundaries. This cannot be true if another
-                                ! OBC_XXX_STRAIN option is True.
 OBC_SEGMENT_001 = "J=0,I=0:N,NUDGED,FLATHER,OBLIQUE,OBLIQUE_TAN,NUDGED_TAN,OBLIQUE_GRAD,NUDGED_GRAD" !
                                 ! Documentation needs to be dynamic?????
 OBC_SEGMENT_001_VELOCITY_NUDGING_TIMESCALES = 1.0, 300.0 !   [days] default = 0.0
@@ -133,6 +121,8 @@ OBC_SEGMENT_002_VELOCITY_NUDGING_TIMESCALES = 1.0, 300.0 !   [days] default = 0.
                                 ! Timescales in days for nudging along a segment, for inflow, then outflow.
                                 ! Setting both to zero should behave like SIMPLE obcs for the baroclinic
                                 ! velocities.
+DEFAULT_2018_ANSWERS = False    !   [Boolean] default = True
+                                ! This sets the default value for the various _2018_ANSWERS parameters.
 OBC_SEGMENT_001_DATA = "U=file:../z_rotate/south.nc(u),V=file:../z_rotate/south.nc(v),SSH=file:../z_rotate/south.nc(zeta),SALT=file:../z_rotate/south.nc(salt),DUDY=file:../z_rotate/south.nc(dudy)" !
                                 ! OBC segment docs
 OBC_SEGMENT_002_DATA = "U=file:../z_rotate/north.nc(u),V=file:../z_rotate/north.nc(v),SSH=file:../z_rotate/north.nc(zeta),SALT=file:../z_rotate/north.nc(salt),DUDY=file:../z_rotate/north.nc(dudy)" !
@@ -219,8 +209,6 @@ REMAPPING_SCHEME = "PPM_IH4"    ! default = "PLM"
                                 ! PPM_IH4     (3rd-order accurate)
                                 ! PQM_IH4IH3  (4th-order accurate)
                                 ! PQM_IH6IH5  (5th-order accurate)
-DEFAULT_2018_ANSWERS = False    !   [Boolean] default = True
-                                ! This sets the default value for the various _2018_ANSWERS parameters.
 
 ! === module MOM_grid ===
 ! Parameters providing information about the lateral grid.
