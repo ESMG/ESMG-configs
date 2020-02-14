@@ -230,11 +230,11 @@ OBC_SPECIFIED_VORTICITY = False !   [Boolean] default = False
                                 ! option is True.
 OBC_ZERO_STRAIN = False         !   [Boolean] default = False
                                 ! If true, sets the strain used in the stress tensor to zero on open boundaries.
-OBC_FREESLIP_STRAIN = True      !   [Boolean] default = True
+OBC_FREESLIP_STRAIN = False     !   [Boolean] default = True
                                 ! If true, sets the normal gradient of tangential velocity to zero in the strain
                                 ! use in the stress tensor on open boundaries. This cannot be true if another
                                 ! OBC_XXX_STRAIN option is True.
-OBC_COMPUTED_STRAIN = False     !   [Boolean] default = False
+OBC_COMPUTED_STRAIN = True      !   [Boolean] default = False
                                 ! If true, sets the normal gradient of tangential velocity to zero in the strain
                                 ! use in the stress tensor on open boundaries. This cannot be true if another
                                 ! OBC_XXX_STRAIN option is True.
