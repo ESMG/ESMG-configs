@@ -30,6 +30,8 @@ C_P = 3925.0                    !   [J kg-1 K-1] default = 3991.86795711963
                                 ! The heat capacity of sea water, approximated as a constant. This is only used
                                 ! if ENABLE_THERMODYNAMICS is true. The default value is from the TEOS-10
                                 ! definition of conservative temperature.
+DEFAULT_2018_ANSWERS = False    !   [Boolean] default = True
+                                ! This sets the default value for the various _2018_ANSWERS parameters.
 SAVE_INITIAL_CONDS = True       !   [Boolean] default = False
                                 ! If true, write the initial conditions to a file given by IC_OUTPUT_FILE.
 WRITE_GEOM = 0                  ! default = 1
@@ -142,8 +144,6 @@ OBC_SEGMENT_003_VELOCITY_NUDGING_TIMESCALES = 0.3, 360.0 !   [days] default = 0.
                                 ! velocities.
 BRUSHCUTTER_MODE = True         !   [Boolean] default = False
                                 ! If true, read external OBC data on the supergrid.
-DEFAULT_2018_ANSWERS = False    !   [Boolean] default = True
-                                ! This sets the default value for the various _2018_ANSWERS parameters.
 OBC_SEGMENT_001_DATA = "U=file:obc_CCS1_1980-1990.nc(u),V=file:obc_CCS1_1980-1990.nc(v),SSH=file:obc_CCS1_1980-1990.nc(zeta),TEMP=file:obc_CCS1_1980-1990.nc(temp),SALT=file:obc_CCS1_1980-1990.nc(salt)" !
                                 ! OBC segment docs
 OBC_SEGMENT_002_DATA = "U=file:obc_CCS1_1980-1990.nc(u),V=file:obc_CCS1_1980-1990.nc(v),SSH=file:obc_CCS1_1980-1990.nc(zeta),TEMP=file:obc_CCS1_1980-1990.nc(temp),SALT=file:obc_CCS1_1980-1990.nc(salt)" !
