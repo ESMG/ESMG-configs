@@ -1,0 +1,43 @@
+"ATM" , "p_surf"        , "Pair"         , "/center1/AKWATERS/kate/JRA55-do/JRA55DO_1.4_Pair_1980.nc"          , "bilinear" ,  1.0
+"ATM" , "p_bot"         , "Pair"         , "/center1/AKWATERS/kate/JRA55-do/JRA55DO_1.4_Pair_1980.nc"          , "bilinear" ,  1.0
+"ATM" , "t_bot"         , "Tair"    , "/center1/AKWATERS/kate/JRA55-do/JRA55DO_1.4_Tair_1980.nc"     , "bilinear" ,  1.0
+"ATM" , "sphum_bot"     , "Qair"    , "/center1/AKWATERS/kate/JRA55-do/JRA55DO_1.4_Qair_1980.nc"     , "bilinear" ,  1.0
+"ATM" , "u_bot"         , "Uwind"    , "/center1/AKWATERS/kate/JRA55-do/JRA55DO_1.4_Uwind_1980.nc"     , "bicubic",   1.0
+"ATM" , "v_bot"         , "Vwind"    , "/center1/AKWATERS/kate/JRA55-do/JRA55DO_1.4_Vwind_1980.nc"     , "bicubic",   1.0
+"ATM" , "z_bot"         , ""            , ""                             , "bilinear" , 10.0
+"ATM" , "gust"          , ""            , ""                             , "bilinear" ,  1.0e-4
+"OCN" , "runoff"        , "friver"    , "./INPUT/runoff_file.nc"     , "none",   1.0
+"ICE" , "lw_flux_dn"    , "lwrad_down"    , "/center1/AKWATERS/kate/JRA55-do/JRA55DO_1.4_lwrad_down_1980.nc"     , "bilinear" ,  1.0
+"ICE" , "sw_flux_vis_dir_dn", "swrad", "/center1/AKWATERS/kate/JRA55-do/JRA55DO_1.4_swrad_1980.nc"     , "bilinear" ,  0.285
+"ICE" , "sw_flux_vis_dif_dn", "swrad", "/center1/AKWATERS/kate/JRA55-do/JRA55DO_1.4_swrad_1980.nc"     , "bilinear" ,  0.285
+"ICE" , "sw_flux_nir_dir_dn", "swrad", "/center1/AKWATERS/kate/JRA55-do/JRA55DO_1.4_swrad_1980.nc"     , "bilinear" ,  0.215
+"ICE" , "sw_flux_nir_dif_dn", "swrad", "/center1/AKWATERS/kate/JRA55-do/JRA55DO_1.4_swrad_1980.nc"     , "bilinear" ,  0.215
+"ICE" , "lprec"         , "rain"        , "/center1/AKWATERS/kate/JRA55-do/JRA55DO_1.4_rain_1980.nc"  , "bilinear" ,  1.0
+"ICE" , "fprec"         , ""        , ""  , "none" ,  0.0
+"ICE" , "runoff"        , ""      , ""            , "none" ,  0.0
+"ICE" , "calving"       , ""            , ""                             , "none"  ,  0.0
+"ICE" , "dhdt"          , ""            , ""                             , "none"  , 80.0
+"ICE" , "dedt"          , ""            , ""                             , "none"  ,  2.0e-6
+"ICE" , "drdt"          , ""            , ""                             , "none"  ,  10.0
+"LND" , "t_surf"        , ""            , ""                             , "none"  ,  273.0
+"LND" , "t_ca"          , ""            , ""                             , "none"  ,  273.0
+"LND" , "q_ca"          , ""            , ""                             , "none"  ,  0.0
+"LND" , "rough_mom"     , ""            , ""                             , "none"  ,  0.01
+"LND" , "rough_heat"    , ""            , ""                             , "none"  ,  0.1
+"LND" , "albedo"        , ""            , ""                             , "none"  ,  0.1
+#"LND" , "t_ca"         , ""            , ""                             , "none"  ,  273.0
+#"LND" , "t_surf"       , ""            , ""                             , "none"  ,  273.0
+"LND" , "sphum_surf"    , ""            , ""                             , "none"  ,  0.0
+"LND" , "sphum_ca"      , ""            , ""                             , "none"  ,  0.0
+"LND" , "t_flux"        , ""            , ""                             , "none"  ,  0.0
+"LND" , "sphum_flux"    , ""            , ""                             , "none"  ,  0.0
+"LND" , "lw_flux"       , ""            , ""                             , "none"  ,  0.0
+"LND" , "sw_flux"       , ""            , ""                             , "none"  ,  0.0
+"LND" , "lprec"         , ""            , ""                             , "none"  ,  0.0
+"LND" , "fprec"         , ""            , ""                             , "none"  ,  0.0
+"LND" , "dhdt"          , ""            , ""                             , "none"  ,  5.0
+"LND" , "dedt"          , ""            , ""                             , "none"  ,  2e-6
+"LND" , "dedq"          , ""            , ""                             , "none"  ,  0.0
+"LND" , "drdt"          , ""            , ""                             , "none"  ,  5.0
+"LND" , "drag_q"        , ""            , ""                             , "none"  ,  0.0
+"LND" , "p_surf"        , ""            , ""                             , "none"  ,  1.e5

@@ -88,8 +88,8 @@ DTBT_RESET_PERIOD = 900.0       !   [s] default = 900.0
                                 ! initialization.  If 0, DTBT will be set every dynamics time step. The default
                                 ! is set by DT_THERM.  This is only used if SPLIT is true.
 FRAZIL = False                  !   [Boolean] default = False
-                                ! If true, water freezes if it gets too cold, and the the accumulated heat
-                                ! deficit is returned in the surface state.  FRAZIL is only used if
+                                ! If true, water freezes if it gets too cold, and the accumulated heat deficit
+                                ! is returned in the surface state.  FRAZIL is only used if
                                 ! ENABLE_THERMODYNAMICS is true.
 DO_GEOTHERMAL = False           !   [Boolean] default = False
                                 ! If true, apply geothermal heating.
@@ -115,7 +115,7 @@ DEFAULT_2018_ANSWERS = True     !   [Boolean] default = True
 SURFACE_2018_ANSWERS = True     !   [Boolean] default = True
                                 ! If true, use expressions for the surface properties that recover the answers
                                 ! from the end of 2018. Otherwise, use more appropriate expressions that differ
-                                ! at roundoff for non-Boussinsq cases.
+                                ! at roundoff for non-Boussinesq cases.
 SAVE_INITIAL_CONDS = True       !   [Boolean] default = False
                                 ! If true, write the initial conditions to a file given by IC_OUTPUT_FILE.
 IC_OUTPUT_FILE = "MOM_IC"       ! default = "MOM_IC"
@@ -283,6 +283,11 @@ OBC_ZERO_BIHARMONIC = True      !   [Boolean] default = False
                                 ! viscosity term.
 MASK_OUTSIDE_OBCS = True        !   [Boolean] default = False
                                 ! If true, set the areas outside open boundaries to be land.
+RAMP_OBCS = False               !   [Boolean] default = False
+                                ! If true, ramps from zero to the external values over time, witha ramping
+                                ! timescale given by RAMP_TIMESCALE. Ramping SSH only so far
+OBC_RAMP_TIMESCALE = 1.0        !   [days] default = 1.0
+                                ! If RAMP_OBCS is true, this sets the ramping timescale.
 OBC_SEGMENT_001 = "I=0,J=40:32,FLATHER, OBLIQUE" !
                                 ! Documentation needs to be dynamic?????
 OBC_SEGMENT_002 = "J=32,I=0:1,FLATHER, OBLIQUE" !
@@ -383,10 +388,3 @@ OBC_SEGMENT_010_DATA = "U=value:0.0,V=value:0.0" !
                                 ! OBC segment docs
 OBC_SEGMENT_011_DATA = "U=value:0.0,V=value:0.0" !
                                 ! OBC segment docs
-OBC_SEGMENT_012_DATA = "U=value:0.0,V=value:0.0" !
-                                ! OBC segment docs
-OBC_SEGMENT_013_DATA = "U=value:0.0,V=value:0.0" !
-                                ! OBC segment docs
-OBC_SEGMENT_014_DATA = "U=value:0.0,V=value:0.0" !
-                                ! OBC segment docs
-OBC_SEGMENT_015_DATA = "U=value:0.0,V=value:0.0" !
