@@ -35,13 +35,6 @@ NJGLOBAL = 360                  !
 ! === module MOM_hor_index ===
 ! Sets the horizontal array index types.
 
-! === module MOM_verticalGrid ===
-! Parameters providing information about the vertical grid.
-G_EARTH = 9.81                  !   [m s-2] default = 9.8
-                                ! The gravitational acceleration of the Earth.
-NK = 1                          !   [nondim]
-                                ! The number of model layers.
-
 ! === module MOM_fixed_initialization ===
 INPUTDIR = "INPUT"              ! default = "."
                                 ! The directory in which input files are found.
@@ -132,6 +125,13 @@ ROTATION = "betaplane"          ! default = "2omegasinlat"
                                 !     USER - call a user modified routine.
 F_0 = 1.0E-04                   !   [s-1] default = 0.0
                                 ! The reference value of the Coriolis parameter with the betaplane option.
+
+! === module MOM_verticalGrid ===
+! Parameters providing information about the vertical grid.
+G_EARTH = 9.81                  !   [m s-2] default = 9.8
+                                ! The gravitational acceleration of the Earth.
+NK = 1                          !   [nondim]
+                                ! The number of model layers.
 
 ! === module MOM_boundary_update ===
 

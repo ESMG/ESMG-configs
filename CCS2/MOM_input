@@ -305,6 +305,7 @@ TEMP_IC_VAR = "temp"            ! default = "PTEMP"
                                 ! The initial condition variable for potential temperature.
 SALT_IC_VAR = "salt"            ! default = "SALT"
                                 ! The initial condition variable for salinity.
+TEMP_SALT_INIT_VERTICAL_REMAP_ONLY = True !   [Boolean] default = False
 
 ! === module MOM_diag_mediator ===
 
