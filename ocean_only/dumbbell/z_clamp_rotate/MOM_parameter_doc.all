@@ -100,6 +100,9 @@ C_P = 3925.0                    !   [J kg-1 K-1] default = 3991.86795711963
                                 ! The heat capacity of sea water, approximated as a constant. This is only used
                                 ! if ENABLE_THERMODYNAMICS is true. The default value is from the TEOS-10
                                 ! definition of conservative temperature.
+USE_PSURF_IN_EOS = False        !   [Boolean] default = False
+                                ! If true, always include the surface pressure contributions in equation of
+                                ! state calculations.
 P_REF = 2.0E+07                 !   [Pa] default = 2.0E+07
                                 ! The pressure that is used for calculating the coordinate density.  (1 Pa = 1e4
                                 ! dbar, so 2e7 is commonly used.) This is only used if USE_EOS and
@@ -129,8 +132,6 @@ ENSEMBLE_OCEAN = False          !   [Boolean] default = False
                                 ! True, The current model realization is part of a larger ensemble and at the
                                 ! end of step MOM, we will perform a gather of the ensemble members for
                                 ! statistical evaluation and/or data assimilation.
-ROTATE_INDEX = False            !   [Boolean] default = False
-                                ! Enable rotation of the horizontal indices.
 
 ! === module MOM_domains ===
 REENTRANT_X = False             !   [Boolean] default = True
@@ -277,7 +278,7 @@ OBC_SEGMENT_001_DATA = "U=file:../z_rotate/south.nc(u),V=file:../z_rotate/south.
                                 ! OBC segment docs
 OBC_SEGMENT_002_DATA = "U=file:../z_rotate/north.nc(u),V=file:../z_rotate/north.nc(v),SSH=file:../z_rotate/north.nc(zeta),SALT=file:../z_rotate/north.nc(salt),DUDY=file:../z_rotate/north.nc(dudy)" !
                                 ! OBC segment docs
-OBC_RADIATION_MAX = 10.0        !   [m s-1] default = 10.0
+OBC_RADIATION_MAX = 1.0         !   [nondim] default = 10.0
                                 ! The maximum magnitude of the baroclinic radiation velocity (or speed of
                                 ! characteristics).  This is only used if one of the open boundary segments is
                                 ! using Orlanski.
@@ -1179,6 +1180,13 @@ DIAG_EBT_MONO_N2_COLUMN_FRACTION = 0.0 !   [nondim] default = 0.0
 DIAG_EBT_MONO_N2_DEPTH = -1.0   !   [m] default = -1.0
                                 ! The depth below which N2 is limited as monotonic for the purposes of
                                 ! calculating the equivalent barotropic wave speed.
+INTERNAL_WAVE_SPEED_TOL = 0.001 !   [nondim] default = 0.001
+                                ! The fractional tolerance for finding the wave speeds.
+INTERNAL_WAVE_SPEED_MIN = 0.0   !   [m s-1] default = 0.0
+                                ! A floor in the first mode speed below which 0 used instead.
+INTERNAL_WAVE_SPEED_BETTER_EST = False !   [Boolean] default = False
+                                ! If true, use a more robust estimate of the first mode wave speed as the
+                                ! starting point for iterations.
 
 ! === module MOM_diabatic_driver ===
 ! The following parameters are used for diabatic processes.

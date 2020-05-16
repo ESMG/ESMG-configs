@@ -154,6 +154,7 @@ OBC_RAD_VEL_WT = 0.3            !   [nondim] default = 0.3
                                 ! time level (1) or the running mean (0) for velocities.
                                 ! Valid values range from 0 to 1. This is only used if
                                 ! one of the open boundary segments is using Orlanski.
+OBC_RADIATION_MAX = 1.0         !   [nondim] default = 10.0
 ROTATION = "betaplane"          ! default = "2omegasinlat"
                                 ! This specifies how the Coriolis parameter is specified:
                                 !     2omegasinlat - Use twice the planetary rotation rate

@@ -166,6 +166,7 @@ OBC_TRACER_RESERVOIR_LENGTH_SCALE_IN = 3.0E+04 !   [m] default = 0.0
 MASKING_DEPTH = 1.0             !   [m] default = -9999.0
                                 ! The depth below which to mask points as land points, for which all fluxes are
                                 ! zeroed out. MASKING_DEPTH is ignored if negative.
+OBC_RADIATION_MAX = 1.0         !   [m s-1] default = 10.0
 
 ! === module MOM_boundary_update ===
 

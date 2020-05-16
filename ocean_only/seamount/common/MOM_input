@@ -125,6 +125,7 @@ OBC_SEGMENT_004_DATA = "U=value:0.0,V=value:0.0,SSH=value:0.0"
 USE_DYED_OBC_TRACER = True
 NUM_DYE_TRACERS = 4
 OBC_USER_CONFIG = "dyed_obcs"
+OBC_RADIATION_MAX = 1.0         !   [nondim] default = 10.0
 
 ! === module MOM_tidal_forcing ===
 TIDES = True                    !   [Boolean] default = False

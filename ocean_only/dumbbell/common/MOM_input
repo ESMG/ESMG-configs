@@ -98,6 +98,7 @@ DRHO_DS = 1.0                   !   [kg m-3 PSU-1] default = 0.8
 !OBC_NUMBER_OF_SEGMENTS = 0      ! default = 0
 !                                ! The number of open boundary segments.
 OBC_USER_CONFIG = "none"
+OBC_RADIATION_MAX = 1.0         !   [nondim] default = 10.0
 
 ! === module MOM_tidal_forcing ===
 TIDES = False                   !   [Boolean] default = False

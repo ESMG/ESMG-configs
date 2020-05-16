@@ -60,6 +60,7 @@ OBC_NUMBER_OF_SEGMENTS = 2      ! default = 0
 OBC_SEGMENT_001 = "I=N,J=0:N,FLATHER,ORLANSKI,ORLANSKI_TAN"
 OBC_SEGMENT_002 = "I=0,J=N:0,FLATHER,ORLANSKI_TAN"
 OBC_USER_CONFIG = Kelvin        ! Kelvin wave
+OBC_RADIATION_MAX = 1.0         !   [nondim] default = 10.0
 USE_KELVIN_WAVE_OBC = True      !   [Boolean] default = False
                                 ! If true, use the Kelvin wave open boundary.
 KELVIN_WAVE_MODE = 0            !   [Integer] default = 0

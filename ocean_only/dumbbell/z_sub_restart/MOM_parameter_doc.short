@@ -119,6 +119,10 @@ OBC_SEGMENT_001_DATA = "U=file:../z/west.nc(u),V=file:../z/west.nc(v),SSH=file:.
                                 ! OBC segment docs
 OBC_SEGMENT_002_DATA = "U=file:../z/east.nc(u),V=file:../z/east.nc(v),SSH=file:../z/east.nc(zeta),SALT=file:../z/east.nc(salt),DVDX=file:../z/east.nc(dvdx),TEMP=value:20.0" !
                                 ! OBC segment docs
+OBC_RADIATION_MAX = 1.0         !   [nondim] default = 10.0
+                                ! The maximum magnitude of the baroclinic radiation velocity (or speed of
+                                ! characteristics).  This is only used if one of the open boundary segments is
+                                ! using Orlanski.
 OBC_TRACER_RESERVOIR_LENGTH_SCALE_OUT = 300.0 !   [m] default = 0.0
                                 ! An effective length scale for restoring the tracer concentration at the
                                 ! boundaries to externally imposed values when the flow is exiting the domain.
@@ -173,7 +177,3 @@ COORD_CONFIG = "ts_range"       !
                                 !     layer_ref - linear based on layer densities
                                 !     ts_ref - use reference temperature and salinity
                                 !     ts_range - use range of temperature and salinity
-                                !       (T_REF and S_REF) to determine surface density
-                                !       and GINT calculate internal densities.
-                                !     gprime - use reference density (RHO_0) for surface
-                                !       density and GINT calculate internal densities.

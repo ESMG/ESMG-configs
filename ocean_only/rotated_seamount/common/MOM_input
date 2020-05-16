@@ -189,6 +189,7 @@ OBC_FREESLIP_VORTICITY = False  !   [Boolean] default = False
 OBC_FREESLIP_STRAIN = False     !   [Boolean] default = False
 OBC_COMPUTED_VORTICITY = True   !   [Boolean] default = False
 OBC_COMPUTED_STRAIN = True      !   [Boolean] default = False
+OBC_RADIATION_MAX = 1.0         !   [nondim] default = 10.0
 
 ! === module MOM_tidal_forcing ===
 TIDES = True                    !   [Boolean] default = False
