@@ -158,8 +158,8 @@ OBC_SEGMENT_022 = "J=15,I=60:59,FLATHER,ORLANSKI,ORLANSKI_TAN" !
                                 ! Documentation needs to be dynamic?????
 OBC_RADIATION_MAX = 1.0         !   [nondim] default = 10.0
                                 ! The maximum magnitude of the baroclinic radiation velocity (or speed of
-                                ! characteristics).  This is only used if one of the open boundary segments is
-                                ! using Orlanski.
+                                ! characteristics), in gridpoints per timestep.  This is only used if one of the
+                                ! open boundary segments is using Orlanski.
 MASKING_DEPTH = 1.5             !   [m] default = -9999.0
                                 ! The depth below which to mask points as land points, for which all fluxes are
                                 ! zeroed out. MASKING_DEPTH is ignored if negative.

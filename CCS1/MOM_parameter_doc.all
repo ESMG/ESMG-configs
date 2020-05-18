@@ -285,10 +285,10 @@ OBC_SEGMENT_002_DATA = "U=file:obc_CCS1_1980-1990.nc(u),V=file:obc_CCS1_1980-199
                                 ! OBC segment docs
 OBC_SEGMENT_003_DATA = "U=file:obc_CCS1_1980-1990.nc(u),V=file:obc_CCS1_1980-1990.nc(v),SSH=file:obc_CCS1_1980-1990.nc(zeta),TEMP=file:obc_CCS1_1980-1990.nc(temp),SALT=file:obc_CCS1_1980-1990.nc(salt)" !
                                 ! OBC segment docs
-OBC_RADIATION_MAX = 1.0         !   [nondim] default = 1.0
+OBC_RADIATION_MAX = 1.0         !   [nondim] default = 10.0
                                 ! The maximum magnitude of the baroclinic radiation velocity (or speed of
-                                ! characteristics).  This is only used if one of the open boundary segments is
-                                ! using Orlanski.
+                                ! characteristics), in gridpoints per timestep.  This is only used if one of the
+                                ! open boundary segments is using Orlanski.
 OBC_RAD_VEL_WT = 0.3            !   [nondim] default = 0.3
                                 ! The relative weighting for the baroclinic radiation velocities (or speed of
                                 ! characteristics) at the new time level (1) or the running mean (0) for
@@ -693,8 +693,8 @@ MEKE_EQUILIBRIUM_ALT = False    !   [Boolean] default = False
                                 ! If true, use an alternative formula for computing the (equilibrium)initial
                                 ! value of MEKE.
 MEKE_EQUILIBRIUM_RESTORING = False !   [Boolean] default = False
-                                ! If true, restore MEKE back to its equilibrium value, which is calculated
-                                ! ateach time step.
+                                ! If true, restore MEKE back to its equilibrium value, which is calculated at
+                                ! each time step.
 MEKE_FRCOEFF = -1.0             !   [nondim] default = -1.0
                                 ! The efficiency of the conversion of mean energy into MEKE.  If MEKE_FRCOEFF is
                                 ! negative, this conversion is not used or calculated.
@@ -1680,13 +1680,6 @@ USE_MLD_ITERATION = False       !   [Boolean] default = False
 EPBL_TRANSITION_SCALE = 0.1     !   [nondim] default = 0.1
                                 ! A scale for the mixing length in the transition layer at the edge of the
                                 ! boundary layer as a fraction of the boundary layer thickness.
-MLD_ITERATION_GUESS = False     !   [Boolean] default = False
-                                ! A logical that specifies whether or not to use the previous timestep MLD as a
-                                ! first guess in the MLD iteration. The default is false to facilitate
-                                ! reproducibility.
-EPBL_MLD_TOLERANCE = 1.0        !   [meter] default = 1.0
-                                ! The tolerance for the iteratively determined mixed layer depth.  This is only
-                                ! used with USE_MLD_ITERATION.
 EPBL_MIN_MIX_LEN = 0.0          !   [meter] default = 0.0
                                 ! The minimum mixing length scale that will be used by ePBL.  The default (0)
                                 ! does not set a minimum.

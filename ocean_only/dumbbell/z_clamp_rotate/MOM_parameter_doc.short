@@ -135,8 +135,8 @@ OBC_SEGMENT_002_DATA = "U=file:../z_rotate/north.nc(u),V=file:../z_rotate/north.
                                 ! OBC segment docs
 OBC_RADIATION_MAX = 1.0         !   [nondim] default = 10.0
                                 ! The maximum magnitude of the baroclinic radiation velocity (or speed of
-                                ! characteristics).  This is only used if one of the open boundary segments is
-                                ! using Orlanski.
+                                ! characteristics), in gridpoints per timestep.  This is only used if one of the
+                                ! open boundary segments is using Orlanski.
 ROTATION = "betaplane"          ! default = "2omegasinlat"
                                 ! This specifies how the Coriolis parameter is specified:
                                 !     2omegasinlat - Use twice the planetary rotation rate

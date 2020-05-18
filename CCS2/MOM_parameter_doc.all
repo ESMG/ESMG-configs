@@ -103,6 +103,9 @@ C_P = 3925.0                    !   [J kg-1 K-1] default = 3991.86795711963
                                 ! The heat capacity of sea water, approximated as a constant. This is only used
                                 ! if ENABLE_THERMODYNAMICS is true. The default value is from the TEOS-10
                                 ! definition of conservative temperature.
+USE_PSURF_IN_EOS = False        !   [Boolean] default = False
+                                ! If true, always include the surface pressure contributions in equation of
+                                ! state calculations.
 P_REF = 2.0E+07                 !   [Pa] default = 2.0E+07
                                 ! The pressure that is used for calculating the coordinate density.  (1 Pa = 1e4
                                 ! dbar, so 2e7 is commonly used.) This is only used if USE_EOS and
@@ -132,8 +135,6 @@ ENSEMBLE_OCEAN = False          !   [Boolean] default = False
                                 ! True, The current model realization is part of a larger ensemble and at the
                                 ! end of step MOM, we will perform a gather of the ensemble members for
                                 ! statistical evaluation and/or data assimilation.
-ROTATE_INDEX = False            !   [Boolean] default = False
-                                ! Enable rotation of the horizontal indices.
 
 ! === module MOM_domains ===
 REENTRANT_X = False             !   [Boolean] default = True
@@ -284,10 +285,10 @@ OBC_SEGMENT_002_DATA = "U=file:obc_CCS1_1980-1990.nc(u),V=file:obc_CCS1_1980-199
                                 ! OBC segment docs
 OBC_SEGMENT_003_DATA = "U=file:obc_CCS1_1980-1990.nc(u),V=file:obc_CCS1_1980-1990.nc(v),SSH=file:obc_CCS1_1980-1990.nc(zeta),TEMP=file:obc_CCS1_1980-1990.nc(temp),SALT=file:obc_CCS1_1980-1990.nc(salt)" !
                                 ! OBC segment docs
-OBC_RADIATION_MAX = 1.0         !   [nondim] default = 1.0
+OBC_RADIATION_MAX = 1.0         !   [nondim] default = 10.0
                                 ! The maximum magnitude of the baroclinic radiation velocity (or speed of
-                                ! characteristics).  This is only used if one of the open boundary segments is
-                                ! using Orlanski.
+                                ! characteristics), in gridpoints per timestep.  This is only used if one of the
+                                ! open boundary segments is using Orlanski.
 OBC_RAD_VEL_WT = 1.0            !   [nondim] default = 0.3
                                 ! The relative weighting for the baroclinic radiation velocities (or speed of
                                 ! characteristics) at the new time level (1) or the running mean (0) for
@@ -692,8 +693,8 @@ MEKE_EQUILIBRIUM_ALT = False    !   [Boolean] default = False
                                 ! If true, use an alternative formula for computing the (equilibrium)initial
                                 ! value of MEKE.
 MEKE_EQUILIBRIUM_RESTORING = False !   [Boolean] default = False
-                                ! If true, restore MEKE back to its equilibrium value, which is calculated
-                                ! ateach time step.
+                                ! If true, restore MEKE back to its equilibrium value, which is calculated at
+                                ! each time step.
 MEKE_FRCOEFF = -1.0             !   [nondim] default = -1.0
                                 ! The efficiency of the conversion of mean energy into MEKE.  If MEKE_FRCOEFF is
                                 ! negative, this conversion is not used or calculated.
@@ -869,6 +870,13 @@ GILL_EQUATORIAL_LD = True       !   [Boolean] default = False
                                 ! radius, otherwise, if false, use Pedlosky's definition. These definitions
                                 ! differ by a factor of 2 in front of the beta term in the denominator. Gill's
                                 ! is the more appropriate definition.
+INTERNAL_WAVE_SPEED_TOL = 0.001 !   [nondim] default = 0.001
+                                ! The fractional tolerance for finding the wave speeds.
+INTERNAL_WAVE_SPEED_MIN = 0.0   !   [m s-1] default = 0.0
+                                ! A floor in the first mode speed below which 0 used instead.
+INTERNAL_WAVE_SPEED_BETTER_EST = False !   [Boolean] default = False
+                                ! If true, use a more robust estimate of the first mode wave speed as the
+                                ! starting point for iterations.
 USE_QG_LEITH_GM = False         !   [Boolean] default = False
                                 ! If true, use the QG Leith viscosity as the GM coefficient.
 
@@ -1672,13 +1680,6 @@ USE_MLD_ITERATION = False       !   [Boolean] default = False
 EPBL_TRANSITION_SCALE = 0.1     !   [nondim] default = 0.1
                                 ! A scale for the mixing length in the transition layer at the edge of the
                                 ! boundary layer as a fraction of the boundary layer thickness.
-MLD_ITERATION_GUESS = False     !   [Boolean] default = False
-                                ! A logical that specifies whether or not to use the previous timestep MLD as a
-                                ! first guess in the MLD iteration. The default is false to facilitate
-                                ! reproducibility.
-EPBL_MLD_TOLERANCE = 1.0        !   [meter] default = 1.0
-                                ! The tolerance for the iteratively determined mixed layer depth.  This is only
-                                ! used with USE_MLD_ITERATION.
 EPBL_MIN_MIX_LEN = 0.0          !   [meter] default = 0.0
                                 ! The minimum mixing length scale that will be used by ePBL.  The default (0)
                                 ! does not set a minimum.

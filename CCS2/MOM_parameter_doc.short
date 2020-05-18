@@ -145,6 +145,10 @@ OBC_SEGMENT_002_DATA = "U=file:obc_CCS1_1980-1990.nc(u),V=file:obc_CCS1_1980-199
                                 ! OBC segment docs
 OBC_SEGMENT_003_DATA = "U=file:obc_CCS1_1980-1990.nc(u),V=file:obc_CCS1_1980-1990.nc(v),SSH=file:obc_CCS1_1980-1990.nc(zeta),TEMP=file:obc_CCS1_1980-1990.nc(temp),SALT=file:obc_CCS1_1980-1990.nc(salt)" !
                                 ! OBC segment docs
+OBC_RADIATION_MAX = 1.0         !   [nondim] default = 10.0
+                                ! The maximum magnitude of the baroclinic radiation velocity (or speed of
+                                ! characteristics), in gridpoints per timestep.  This is only used if one of the
+                                ! open boundary segments is using Orlanski.
 OBC_RAD_VEL_WT = 1.0            !   [nondim] default = 0.3
                                 ! The relative weighting for the baroclinic radiation velocities (or speed of
                                 ! characteristics) at the new time level (1) or the running mean (0) for
