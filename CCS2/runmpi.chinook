@@ -28,7 +28,7 @@ echo " "
 TBEGIN=`echo "print time();" | perl`
 
 srun -l /bin/hostname | sort -n | awk '{print $2}' > ./nodes
-mpirun -np $SLURM_NTASKS -machinefile ./nodes --mca mpi_paffinity_alone 1 /import/c1/AKWATERS/kshedstrom/MOM6/build/gnu/symmetric_SIS2/repro/MOM6
+mpirun -np $SLURM_NTASKS -machinefile ./nodes --mca mpi_paffinity_alone 1 /import/c1/AKWATERS/kshedstrom/MOM6/build/gnu/SYM_ice_ocean_SIS2/repro/MOM6
 
 #
 #  Epilog

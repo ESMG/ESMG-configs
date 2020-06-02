@@ -25,3 +25,9 @@
 [submodule "src/ice_param"]
 	path = src/ice_param
 	url = https://github.com/NOAA-GFDL/ice_param.git
+[submodule "Bering"]
+	path = Bering
+	url = git@github.com:ESMG/Bering.git
+[submodule "Arctic5"]
+	path = Arctic5
+	url = git@github.com:ESMG/Arctic5.git
