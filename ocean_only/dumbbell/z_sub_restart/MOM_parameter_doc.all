@@ -1,9 +1,7 @@
 ! This file was written by the model and records all non-layout or debugging parameters used at run-time.
 
-! === module MOM ===
 
-! === module MOM_unit_scaling ===
-! Parameters for doing unit scaling of variables.
+! === module MOM ===
 SPLIT = True                    !   [Boolean] default = True
                                 ! Use the split time stepping if true.
 CALC_RHO_FOR_SEA_LEVEL = False  !   [Boolean] default = False
@@ -100,7 +98,7 @@ C_P = 3925.0                    !   [J kg-1 K-1] default = 3991.86795711963
                                 ! The heat capacity of sea water, approximated as a constant. This is only used
                                 ! if ENABLE_THERMODYNAMICS is true. The default value is from the TEOS-10
                                 ! definition of conservative temperature.
-USE_PSURF_IN_EOS = False        !   [Boolean] default = False
+USE_PSURF_IN_EOS = True         !   [Boolean] default = True
                                 ! If true, always include the surface pressure contributions in equation of
                                 ! state calculations.
 P_REF = 2.0E+07                 !   [Pa] default = 2.0E+07
@@ -113,7 +111,7 @@ FIRST_DIRECTION = 0             ! default = 0
                                 ! and odd numbers used for y-first.
 CHECK_BAD_SURFACE_VALS = False  !   [Boolean] default = False
                                 ! If true, check the surface state for ridiculous values.
-DEFAULT_2018_ANSWERS = False    !   [Boolean] default = True
+DEFAULT_2018_ANSWERS = False    !   [Boolean] default = False
                                 ! This sets the default value for the various _2018_ANSWERS parameters.
 SURFACE_2018_ANSWERS = False    !   [Boolean] default = False
                                 ! If true, use expressions for the surface properties that recover the answers
@@ -147,6 +145,12 @@ NIGLOBAL = 40                   !
 NJGLOBAL = 20                   !
                                 ! The total number of thickness grid points in the y-direction in the physical
                                 ! domain. With STATIC_MEMORY_ this is set in MOM_memory.h at compile time.
+NIHALO = 3                      ! default = 4
+                                ! The number of halo points on each side in the x-direction.  How this is set
+                                ! varies with the calling component and static or dynamic memory configuration.
+NJHALO = 3                      ! default = 4
+                                ! The number of halo points on each side in the y-direction.  How this is set
+                                ! varies with the calling component and static or dynamic memory configuration.
 
 ! === module MOM_hor_index ===
 ! Sets the horizontal array index types.
@@ -192,8 +196,9 @@ TOPO_CONFIG = "dumbbell"        !
                                 !       wall at the southern face.
                                 !     halfpipe - a zonally uniform channel with a half-sine
                                 !       profile in the meridional direction.
+                                !     bbuilder - build topography from list of functions.
                                 !     benchmark - use the benchmark test case topography.
-                                !     Neverland - use the Neverland test case topography.
+                                !     Neverworld - use the Neverworld test case topography.
                                 !     DOME - use a slope and channel configuration for the
                                 !       DOME sill-overflow test case.
                                 !     ISOMIP - use a slope and channel configuration for the
@@ -286,7 +291,7 @@ OBC_SEGMENT_001_DATA = "U=file:../z/west.nc(u),V=file:../z/west.nc(v),SSH=file:.
                                 ! OBC segment docs
 OBC_SEGMENT_002_DATA = "U=file:../z/east.nc(u),V=file:../z/east.nc(v),SSH=file:../z/east.nc(zeta),SALT=file:../z/east.nc(salt),DVDX=file:../z/east.nc(dvdx),TEMP=value:20.0" !
                                 ! OBC segment docs
-OBC_RADIATION_MAX = 1.0         !   [nondim] default = 10.0
+OBC_RADIATION_MAX = 1.0         !   [nondim] default = 1.0
                                 ! The maximum magnitude of the baroclinic radiation velocity (or speed of
                                 ! characteristics), in gridpoints per timestep.  This is only used if one of the
                                 ! open boundary segments is using Orlanski.
@@ -325,7 +330,7 @@ F_0 = 1.0E-04                   !   [s-1] default = 0.0
                                 ! The reference value of the Coriolis parameter with the betaplane option.
 BETA = 0.0                      !   [m-1 s-1] default = 0.0
                                 ! The northward gradient of the Coriolis parameter with the betaplane option.
-GRID_ROTATION_ANGLE_BUGS = True !   [Boolean] default = True
+GRID_ROTATION_ANGLE_BUGS = False !   [Boolean] default = False
                                 ! If true, use an older algorithm to calculate the sine and cosines needed
                                 ! rotate between grid-oriented directions and true north and east.  Differences
                                 ! arise at the tripolar fold.
@@ -439,7 +444,7 @@ USE_DYED_OBC_TRACER = False     !   [Boolean] default = False
                                 ! If true, use the dyed_obc_tracer tracer package.
 
 ! === module MOM_coord_initialization ===
-COORD_CONFIG = "ts_range"       !
+COORD_CONFIG = "ts_range"       ! default = "none"
                                 ! This specifies how layers are to be defined:
                                 !     ALE or none - used to avoid defining layers in ALE mode
                                 !     file - read coordinate information from the file
@@ -477,7 +482,7 @@ TS_RANGE_RESOLN_RATIO = 1.0     !   [nondim] default = 1.0
                                 ! greater than 1 increase the resolution of the denser water.
 GFS = 9.8                       !   [m s-2] default = 9.8
                                 ! The reduced gravity at the free surface.
-REMAP_UV_USING_OLD_ALG = True   !   [Boolean] default = True
+REMAP_UV_USING_OLD_ALG = False  !   [Boolean] default = False
                                 ! If true, uses the old remapping-via-a-delta-z method for remapping u and v. If
                                 ! false, uses the new method that remaps between grids described by an old and
                                 ! new thickness.
@@ -526,9 +531,3 @@ REMAPPING_SCHEME = "PPM_IH4"    ! default = "PLM"
                                 ! PQM_IH6IH5  (5th-order accurate)
 FATAL_CHECK_RECONSTRUCTIONS = False !   [Boolean] default = False
                                 ! If true, cell-by-cell reconstructions are checked for consistency and if
-                                ! non-monotonicity or an inconsistency is detected then a FATAL error is issued.
-FATAL_CHECK_REMAPPING = False   !   [Boolean] default = False
-                                ! If true, the results of remapping are checked for conservation and new extrema
-                                ! and if an inconsistency is detected then a FATAL error is issued.
-REMAP_BOUND_INTERMEDIATE_VALUES = False !   [Boolean] default = False
-                                ! If true, the values on the intermediate grid used for remapping are forced to

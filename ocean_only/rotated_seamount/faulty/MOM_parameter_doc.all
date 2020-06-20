@@ -1,9 +1,7 @@
 ! This file was written by the model and records all non-layout or debugging parameters used at run-time.
 
-! === module MOM ===
 
-! === module MOM_unit_scaling ===
-! Parameters for doing unit scaling of variables.
+! === module MOM ===
 SPLIT = True                    !   [Boolean] default = True
                                 ! Use the split time stepping if true.
 CALC_RHO_FOR_SEA_LEVEL = False  !   [Boolean] default = False
@@ -100,7 +98,7 @@ C_P = 3925.0                    !   [J kg-1 K-1] default = 3991.86795711963
                                 ! The heat capacity of sea water, approximated as a constant. This is only used
                                 ! if ENABLE_THERMODYNAMICS is true. The default value is from the TEOS-10
                                 ! definition of conservative temperature.
-USE_PSURF_IN_EOS = False        !   [Boolean] default = False
+USE_PSURF_IN_EOS = True         !   [Boolean] default = True
                                 ! If true, always include the surface pressure contributions in equation of
                                 ! state calculations.
 P_REF = 2.0E+07                 !   [Pa] default = 2.0E+07
@@ -113,7 +111,7 @@ FIRST_DIRECTION = 0             ! default = 0
                                 ! and odd numbers used for y-first.
 CHECK_BAD_SURFACE_VALS = False  !   [Boolean] default = False
                                 ! If true, check the surface state for ridiculous values.
-DEFAULT_2018_ANSWERS = False    !   [Boolean] default = True
+DEFAULT_2018_ANSWERS = False    !   [Boolean] default = False
                                 ! This sets the default value for the various _2018_ANSWERS parameters.
 SURFACE_2018_ANSWERS = False    !   [Boolean] default = False
                                 ! If true, use expressions for the surface properties that recover the answers
@@ -147,6 +145,12 @@ NIGLOBAL = 44                   !
 NJGLOBAL = 44                   !
                                 ! The total number of thickness grid points in the y-direction in the physical
                                 ! domain. With STATIC_MEMORY_ this is set in MOM_memory.h at compile time.
+NIHALO = 3                      ! default = 4
+                                ! The number of halo points on each side in the x-direction.  How this is set
+                                ! varies with the calling component and static or dynamic memory configuration.
+NJHALO = 3                      ! default = 4
+                                ! The number of halo points on each side in the y-direction.  How this is set
+                                ! varies with the calling component and static or dynamic memory configuration.
 
 ! === module MOM_hor_index ===
 ! Sets the horizontal array index types.
@@ -200,8 +204,9 @@ TOPO_CONFIG = "seamount"        !
                                 !       wall at the southern face.
                                 !     halfpipe - a zonally uniform channel with a half-sine
                                 !       profile in the meridional direction.
+                                !     bbuilder - build topography from list of functions.
                                 !     benchmark - use the benchmark test case topography.
-                                !     Neverland - use the Neverland test case topography.
+                                !     Neverworld - use the Neverworld test case topography.
                                 !     DOME - use a slope and channel configuration for the
                                 !       DOME sill-overflow test case.
                                 !     ISOMIP - use a slope and channel configuration for the
@@ -424,7 +429,7 @@ OBC_SEGMENT_035_DATA = "U=value:0.0,V=value:0.0,SSH=value:0.0" !
                                 ! OBC segment docs
 OBC_SEGMENT_036_DATA = "U=value:0.0,V=value:0.0,SSH=value:0.0" !
                                 ! OBC segment docs
-OBC_RADIATION_MAX = 1.0         !   [nondim] default = 10.0
+OBC_RADIATION_MAX = 1.0         !   [nondim] default = 1.0
                                 ! The maximum magnitude of the baroclinic radiation velocity (or speed of
                                 ! characteristics), in gridpoints per timestep.  This is only used if one of the
                                 ! open boundary segments is using Orlanski.
@@ -436,8 +441,3 @@ OBC_RAD_VEL_WT = 1.0            !   [nondim] default = 0.3
 OBC_TRACER_RESERVOIR_LENGTH_SCALE_OUT = 1000.0 !   [m] default = 0.0
                                 ! An effective length scale for restoring the tracer concentration at the
                                 ! boundaries to externally imposed values when the flow is exiting the domain.
-OBC_TRACER_RESERVOIR_LENGTH_SCALE_IN = 1000.0 !   [m] default = 0.0
-                                ! An effective length scale for restoring the tracer concentration at the
-                                ! boundaries to values from the interior when the flow is entering the domain.
-MASKING_DEPTH = -9999.0         !   [m] default = -9999.0
-                                ! The depth below which to mask points as land points, for which all fluxes are

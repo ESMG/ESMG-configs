@@ -4,9 +4,6 @@
 
 ! === module MOM_unit_scaling ===
 ! Parameters for doing unit scaling of variables.
-CGRID_ICE_DYNAMICS = True       !   [Boolean] default = False
-                                ! If true, use a C-grid discretization of the sea-ice dynamics; if false use a
-                                ! B-grid discretization.
 ADD_DIURNAL_SW = True           !   [Boolean] default = False
                                 ! If true, add a synthetic diurnal cycle to the shortwave radiation.
 
@@ -130,6 +127,3 @@ ICE_DELTA_EDD_R_POND = 1.0      !   [nondimensional] default = 0.0
                                 ! calculation.
 
 ! === module MOM_file_parser ===
-DOCUMENT_FILE = "SIS_parameter_doc" ! default = "MOM_parameter_doc"
-                                ! The basename for files where run-time parameters, their settings, units and
-                                ! defaults are documented. Blank will disable all parameter documentation.

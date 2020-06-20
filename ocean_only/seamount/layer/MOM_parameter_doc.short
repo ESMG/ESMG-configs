@@ -1,9 +1,7 @@
 ! This file was written by the model and records the non-default parameters used at run-time.
 
-! === module MOM ===
 
-! === module MOM_unit_scaling ===
-! Parameters for doing unit scaling of variables.
+! === module MOM ===
 BULKMIXEDLAYER = False          !   [Boolean] default = True
                                 ! If true, use a Kraus-Turner-like bulk mixed layer with transitional buffer
                                 ! layers.  Layers 1 through NKML+NKBL have variable densities. There must be at
@@ -17,8 +15,6 @@ C_P = 3925.0                    !   [J kg-1 K-1] default = 3991.86795711963
                                 ! The heat capacity of sea water, approximated as a constant. This is only used
                                 ! if ENABLE_THERMODYNAMICS is true. The default value is from the TEOS-10
                                 ! definition of conservative temperature.
-DEFAULT_2018_ANSWERS = False    !   [Boolean] default = True
-                                ! This sets the default value for the various _2018_ANSWERS parameters.
 SAVE_INITIAL_CONDS = True       !   [Boolean] default = False
                                 ! If true, write the initial conditions to a file given by IC_OUTPUT_FILE.
 
@@ -31,9 +27,13 @@ NIGLOBAL = 40                   !
 NJGLOBAL = 40                   !
                                 ! The total number of thickness grid points in the y-direction in the physical
                                 ! domain. With STATIC_MEMORY_ this is set in MOM_memory.h at compile time.
+NIHALO = 3                      ! default = 4
+                                ! The number of halo points on each side in the x-direction.  How this is set
+                                ! varies with the calling component and static or dynamic memory configuration.
+NJHALO = 3                      ! default = 4
+                                ! The number of halo points on each side in the y-direction.  How this is set
+                                ! varies with the calling component and static or dynamic memory configuration.
 
-! === module MOM_hor_index ===
-! Sets the horizontal array index types.
 
 ! === module MOM_fixed_initialization ===
 INPUTDIR = "INPUT/"             ! default = "."
@@ -67,8 +67,9 @@ TOPO_CONFIG = "seamount"        !
                                 !       wall at the southern face.
                                 !     halfpipe - a zonally uniform channel with a half-sine
                                 !       profile in the meridional direction.
+                                !     bbuilder - build topography from list of functions.
                                 !     benchmark - use the benchmark test case topography.
-                                !     Neverland - use the Neverland test case topography.
+                                !     Neverworld - use the Neverworld test case topography.
                                 !     DOME - use a slope and channel configuration for the
                                 !       DOME sill-overflow test case.
                                 !     ISOMIP - use a slope and channel configuration for the
@@ -138,10 +139,6 @@ OBC_SEGMENT_003_DATA = "U=value:0.0,V=value:0.0,SSH=value:0.0" !
                                 ! OBC segment docs
 OBC_SEGMENT_004_DATA = "U=value:0.0,V=value:0.0,SSH=value:0.0" !
                                 ! OBC segment docs
-OBC_RADIATION_MAX = 1.0         !   [nondim] default = 10.0
-                                ! The maximum magnitude of the baroclinic radiation velocity (or speed of
-                                ! characteristics), in gridpoints per timestep.  This is only used if one of the
-                                ! open boundary segments is using Orlanski.
 ROTATION = "betaplane"          ! default = "2omegasinlat"
                                 ! This specifies how the Coriolis parameter is specified:
                                 !     2omegasinlat - Use twice the planetary rotation rate
@@ -186,7 +183,7 @@ NUM_DYE_TRACERS = 4             ! default = 0
                                 ! boundary segment.
 
 ! === module MOM_coord_initialization ===
-COORD_CONFIG = "ts_range"       !
+COORD_CONFIG = "ts_range"       ! default = "none"
                                 ! This specifies how layers are to be defined:
                                 !     ALE or none - used to avoid defining layers in ALE mode
                                 !     file - read coordinate information from the file
@@ -217,7 +214,7 @@ TS_RANGE_S_DENSE = 35.95        !   [PSU] default = 34.0
 ! Parameters providing information about the lateral grid.
 
 ! === module MOM_state_initialization ===
-THICKNESS_CONFIG = "seamount"   !
+THICKNESS_CONFIG = "seamount"   ! default = "uniform"
                                 ! A string that determines how the initial layer thicknesses are specified for a
                                 ! new run:
                                 !     file - read interface heights from the file specified
@@ -232,7 +229,7 @@ THICKNESS_CONFIG = "seamount"   !
                                 !     ISOMIP - use a configuration for the
                                 !       ISOMIP test case.
                                 !     benchmark - use the benchmark test case thicknesses.
-                                !     Neverland - use the Neverland test case thicknesses.
+                                !     Neverworld - use the Neverworld test case thicknesses.
                                 !     search - search a density profile for the interface
                                 !       densities. This is not yet implemented.
                                 !     circle_obcs - the circle_obcs test case is used.
@@ -279,7 +276,6 @@ OBC_USER_CONFIG = "dyed_obcs"   ! default = "none"
 
 ! === module MOM_diag_mediator ===
 
-! === module MOM_MEKE ===
 
 ! === module MOM_lateral_mixing_coeffs ===
 
@@ -314,6 +310,8 @@ KV = 1.0E-04                    !   [m2 s-1]
 ! === module MOM_thickness_diffuse ===
 KHTH = 500.0                    !   [m2 s-1] default = 0.0
                                 ! The background horizontal thickness diffusivity.
+
+! === module MOM_dynamics_split_RK2 ===
 TIDES = True                    !   [Boolean] default = False
                                 ! If true, apply tidal momentum forcing.
 BE = 0.7                        !   [nondim] default = 0.6
@@ -412,25 +410,16 @@ DTBT = 10.0                     !   [s or nondim] default = -0.98
                                 ! DTBT to 0 is the same as setting it to -0.98. The value of DTBT that will
                                 ! actually be used is an integer fraction of DT, rounding down.
 
-! === module MOM_mixed_layer_restrat ===
+
+! === module MOM_diagnostics ===
 
 ! === module MOM_diabatic_driver ===
 ! The following parameters are used for diabatic processes.
 
-! === module MOM_CVMix_KPP ===
-! This is the MOM wrapper to CVMix:KPP
-! See http://cvmix.github.io/
 
-! === module MOM_tidal_mixing ===
-! Vertical Tidal Mixing Parameterization
 
-! === module MOM_CVMix_conv ===
-! Parameterization of enhanced mixing due to convection via CVMix
 
 ! === module MOM_entrain_diffusive ===
-CORRECT_DENSITY = False         !   [Boolean] default = True
-                                ! If true, and USE_EOS is true, the layer densities are restored toward their
-                                ! target values by the diapycnal mixing, as described in Hallberg (MWR, 2000).
 
 ! === module MOM_set_diffusivity ===
 BBL_EFFIC = 0.0                 !   [nondim] default = 0.2
@@ -439,23 +428,13 @@ BBL_EFFIC = 0.0                 !   [nondim] default = 0.2
 
 ! === module MOM_bkgnd_mixing ===
 ! Adding static vertical background mixing coefficients
-KD = 0.0                        !   [m2 s-1]
-                                ! The background diapycnal diffusivity of density in the interior. Zero or the
-                                ! molecular value, ~1e-7 m2 s-1, may be used.
 
-! === module MOM_kappa_shear ===
-! Parameterization of shear-driven turbulence following Jackson, Hallberg and Legg, JPO 2008
 
-! === module MOM_CVMix_shear ===
-! Parameterization of shear-driven turbulence via CVMix (various options)
 
-! === module MOM_CVMix_ddiff ===
-! Parameterization of mixing due to double diffusion processes via CVMix
 
 ! === module MOM_diabatic_aux ===
 ! The following parameters are used for auxiliary diabatic processes.
 
-! === module MOM_regularize_layers ===
 
 ! === module MOM_opacity ===
 PEN_SW_SCALE = 15.0             !   [m] default = 0.0
@@ -468,11 +447,7 @@ PEN_SW_FRAC = 0.42              !   [nondim] default = 0.0
 
 ! === module MOM_tracer_hor_diff ===
 
-! === module MOM_neutral_diffusion ===
-! This module implements neutral diffusion of tracers
 
-! === module MOM_lateral_boundary_diffusion ===
-! This module implements lateral diffusion of tracers near boundaries
 
 ! === module MOM_sum_output ===
 MAXTRUNC = 5000                 !   [truncations save_interval-1] default = 0
@@ -488,12 +463,9 @@ VARIABLE_WINDS = False          !   [Boolean] default = True
 VARIABLE_BUOYFORCE = False      !   [Boolean] default = True
                                 ! If true, the buoyancy forcing varies in time after the initialization of the
                                 ! model.
-BUOY_CONFIG = "NONE"            !
+BUOY_CONFIG = "NONE"            ! default = "zero"
                                 ! The character string that indicates how buoyancy forcing is specified. Valid
                                 ! options include (file), (zero), (linear), (USER), (BFB) and (NONE).
-WIND_CONFIG = "zero"            !
-                                ! The character string that indicates how wind forcing is specified. Valid
-                                ! options include (file), (2gyre), (1gyre), (gyres), (zero), and (USER).
 
 ! === module MOM_restart ===
 
@@ -523,4 +495,3 @@ MAXCPU = 2.88E+04               !   [wall-clock seconds] default = -1.0
                                 ! seconds, so the actual CPU time used is larger by a factor of the number of
                                 ! processors used.
 
-! === module MOM_file_parser ===

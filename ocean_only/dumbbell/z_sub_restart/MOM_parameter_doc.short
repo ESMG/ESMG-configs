@@ -1,9 +1,7 @@
 ! This file was written by the model and records the non-default parameters used at run-time.
 
-! === module MOM ===
 
-! === module MOM_unit_scaling ===
-! Parameters for doing unit scaling of variables.
+! === module MOM ===
 USE_REGRIDDING = True           !   [Boolean] default = False
                                 ! If True, use the ALE algorithm (regridding/remapping). If False, use the
                                 ! layered isopycnal algorithm.
@@ -15,8 +13,6 @@ C_P = 3925.0                    !   [J kg-1 K-1] default = 3991.86795711963
                                 ! The heat capacity of sea water, approximated as a constant. This is only used
                                 ! if ENABLE_THERMODYNAMICS is true. The default value is from the TEOS-10
                                 ! definition of conservative temperature.
-DEFAULT_2018_ANSWERS = False    !   [Boolean] default = True
-                                ! This sets the default value for the various _2018_ANSWERS parameters.
 SAVE_INITIAL_CONDS = True       !   [Boolean] default = False
                                 ! If true, write the initial conditions to a file given by IC_OUTPUT_FILE.
 
@@ -29,9 +25,13 @@ NIGLOBAL = 40                   !
 NJGLOBAL = 20                   !
                                 ! The total number of thickness grid points in the y-direction in the physical
                                 ! domain. With STATIC_MEMORY_ this is set in MOM_memory.h at compile time.
+NIHALO = 3                      ! default = 4
+                                ! The number of halo points on each side in the x-direction.  How this is set
+                                ! varies with the calling component and static or dynamic memory configuration.
+NJHALO = 3                      ! default = 4
+                                ! The number of halo points on each side in the y-direction.  How this is set
+                                ! varies with the calling component and static or dynamic memory configuration.
 
-! === module MOM_hor_index ===
-! Sets the horizontal array index types.
 
 ! === module MOM_fixed_initialization ===
 
@@ -70,8 +70,9 @@ TOPO_CONFIG = "dumbbell"        !
                                 !       wall at the southern face.
                                 !     halfpipe - a zonally uniform channel with a half-sine
                                 !       profile in the meridional direction.
+                                !     bbuilder - build topography from list of functions.
                                 !     benchmark - use the benchmark test case topography.
-                                !     Neverland - use the Neverland test case topography.
+                                !     Neverworld - use the Neverworld test case topography.
                                 !     DOME - use a slope and channel configuration for the
                                 !       DOME sill-overflow test case.
                                 !     ISOMIP - use a slope and channel configuration for the
@@ -119,10 +120,6 @@ OBC_SEGMENT_001_DATA = "U=file:../z/west.nc(u),V=file:../z/west.nc(v),SSH=file:.
                                 ! OBC segment docs
 OBC_SEGMENT_002_DATA = "U=file:../z/east.nc(u),V=file:../z/east.nc(v),SSH=file:../z/east.nc(zeta),SALT=file:../z/east.nc(salt),DVDX=file:../z/east.nc(dvdx),TEMP=value:20.0" !
                                 ! OBC segment docs
-OBC_RADIATION_MAX = 1.0         !   [nondim] default = 10.0
-                                ! The maximum magnitude of the baroclinic radiation velocity (or speed of
-                                ! characteristics), in gridpoints per timestep.  This is only used if one of the
-                                ! open boundary segments is using Orlanski.
 OBC_TRACER_RESERVOIR_LENGTH_SCALE_OUT = 300.0 !   [m] default = 0.0
                                 ! An effective length scale for restoring the tracer concentration at the
                                 ! boundaries to externally imposed values when the flow is exiting the domain.
@@ -166,7 +163,7 @@ DRHO_DS = 1.0                   !   [kg m-3 PSU-1] default = 0.8
 ! === module MOM_tracer_flow_control ===
 
 ! === module MOM_coord_initialization ===
-COORD_CONFIG = "ts_range"       !
+COORD_CONFIG = "ts_range"       ! default = "none"
                                 ! This specifies how layers are to be defined:
                                 !     ALE or none - used to avoid defining layers in ALE mode
                                 !     file - read coordinate information from the file
