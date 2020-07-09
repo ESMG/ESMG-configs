@@ -1,6 +1,5 @@
 ! This file was written by the model and records the non-default parameters used at run-time.
 
-
 ! === module MOM ===
 DIABATIC_FIRST = True           !   [Boolean] default = False
                                 ! If true, apply diabatic and thermodynamic processes, including buoyancy
@@ -44,7 +43,6 @@ NIGLOBAL = 180                  !
 NJGLOBAL = 480                  !
                                 ! The total number of thickness grid points in the y-direction in the physical
                                 ! domain. With STATIC_MEMORY_ this is set in MOM_memory.h at compile time.
-
 
 ! === module MOM_fixed_initialization ===
 INPUTDIR = "INPUT"              ! default = "."
@@ -162,8 +160,6 @@ NK = 50                         !   [nondim]
 
 ! === module MOM_boundary_update ===
 
-! === module MOM_tracer_registry ===
-
 ! === module segment_tracer_registry_init ===
 
 ! === module MOM_EOS ===
@@ -240,9 +236,6 @@ REMAPPING_SCHEME = "PPM_H4"     ! default = "PLM"
                                 ! PPM_IH4     (3rd-order accurate)
                                 ! PQM_IH4IH3  (4th-order accurate)
                                 ! PQM_IH6IH5  (5th-order accurate)
-
-! === module MOM_grid ===
-! Parameters providing information about the lateral grid.
 
 ! === module MOM_state_initialization ===
 THICKNESS_CONFIG = "coord"      ! default = "uniform"
@@ -444,7 +437,6 @@ DTBT = -0.9                     !   [s or nondim] default = -0.98
                                 ! DTBT to 0 is the same as setting it to -0.98. The value of DTBT that will
                                 ! actually be used is an integer fraction of DT, rounding down.
 
-
 ! === module MOM_diagnostics ===
 
 ! === module MOM_diabatic_driver ===
@@ -452,9 +444,6 @@ DTBT = -0.9                     !   [s or nondim] default = -0.98
 ENERGETICS_SFC_PBL = True       !   [Boolean] default = False
                                 ! If true, use an implied energetics planetary boundary layer scheme to
                                 ! determine the diffusivity and viscosity in the surface boundary layer.
-
-
-
 
 ! === module MOM_set_diffusivity ===
 BBL_MIXING_AS_MAX = False       !   [Boolean] default = True
@@ -492,8 +481,6 @@ MAX_RINO_IT = 25                !   [nondim] default = 50
                                 ! The maximum number of iterations that may be used to estimate the Richardson
                                 ! number driven mixing.
 
-
-
 ! === module MOM_diabatic_aux ===
 ! The following parameters are used for auxiliary diabatic processes.
 PRESSURE_DEPENDENT_FRAZIL = True !   [Boolean] default = False
@@ -502,10 +489,6 @@ PRESSURE_DEPENDENT_FRAZIL = True !   [Boolean] default = False
                                 ! cavities.
 
 ! === module MOM_energetic_PBL ===
-EPBL_USTAR_MIN = 1.45842E-18    !   [m s-1]
-                                ! The (tiny) minimum friction velocity used within the ePBL code, derived from
-                                ! OMEGA and ANGSTROM.
-
 
 ! === module MOM_opacity ===
 PEN_SW_SCALE = 10.0             !   [m] default = 0.0
@@ -526,8 +509,6 @@ CHECK_DIFFUSIVE_CFL = True      !   [Boolean] default = False
                                 ! If true, use enough iterations the diffusion to ensure that the diffusive
                                 ! equivalent of the CFL limit is not violated.  If false, always use the greater
                                 ! of 1 or MAX_TR_DIFFUSION_CFL iteration.
-
-
 
 ! === module MOM_sum_output ===
 MAXTRUNC = 100000               !   [truncations save_interval-1] default = 0
@@ -551,4 +532,3 @@ CD_TIDES = 0.0018               !   [nondim] default = 1.0E-04
                                 ! The drag coefficient that applies to the tides.
 
 ! === module MOM_restart ===
-

@@ -1,6 +1,5 @@
 ! This file was written by the model and records the non-default parameters used at run-time.
 
-
 ! === module MOM ===
 USE_REGRIDDING = True           !   [Boolean] default = False
                                 ! If True, use the ALE algorithm (regridding/remapping). If False, use the
@@ -31,7 +30,6 @@ NIHALO = 3                      ! default = 4
 NJHALO = 3                      ! default = 4
                                 ! The number of halo points on each side in the y-direction.  How this is set
                                 ! varies with the calling component and static or dynamic memory configuration.
-
 
 ! === module MOM_fixed_initialization ===
 INPUTDIR = "INPUT/"             ! default = "."
@@ -294,8 +292,6 @@ NK = 20                         !   [nondim]
 
 ! === module MOM_boundary_update ===
 
-! === module MOM_tracer_registry ===
-
 ! === module segment_tracer_registry_init ===
 
 ! === module MOM_EOS ===
@@ -309,8 +305,6 @@ DRHO_DT = 0.0                   !   [kg m-3 K-1] default = -0.2
 DRHO_DS = 1.0                   !   [kg m-3 PSU-1] default = 0.8
                                 ! When EQN_OF_STATE=LINEAR, this is the partial derivative of density with
                                 ! salinity.
-
-! === module MOM_restart ===
 
 ! === module MOM_tracer_flow_control ===
 USE_DYED_OBC_TRACER = True      !   [Boolean] default = False
@@ -376,9 +370,6 @@ REMAPPING_SCHEME = "PPM_IH4"    ! default = "PLM"
                                 ! PQM_IH4IH3  (4th-order accurate)
                                 ! PQM_IH6IH5  (5th-order accurate)
 
-! === module MOM_grid ===
-! Parameters providing information about the lateral grid.
-
 ! === module MOM_state_initialization ===
 THICKNESS_CONFIG = "seamount"   ! default = "uniform"
                                 ! A string that determines how the initial layer thicknesses are specified for a
@@ -439,7 +430,6 @@ OBC_USER_CONFIG = "dyed_obcs"   ! default = "none"
                                 !    USER - user specified
 
 ! === module MOM_diag_mediator ===
-
 
 ! === module MOM_lateral_mixing_coeffs ===
 
@@ -568,14 +558,10 @@ BEBT = 0.2                      !   [nondim] default = 0.1
                                 ! (for a backward Euler treatment). In practice, BEBT must be greater than about
                                 ! 0.05.
 
-
 ! === module MOM_diagnostics ===
 
 ! === module MOM_diabatic_driver ===
 ! The following parameters are used for diabatic processes.
-
-
-
 
 ! === module MOM_set_diffusivity ===
 BBL_EFFIC = 0.0                 !   [nondim] default = 0.2
@@ -585,12 +571,8 @@ BBL_EFFIC = 0.0                 !   [nondim] default = 0.2
 ! === module MOM_bkgnd_mixing ===
 ! Adding static vertical background mixing coefficients
 
-
-
-
 ! === module MOM_diabatic_aux ===
 ! The following parameters are used for auxiliary diabatic processes.
-
 
 ! === module MOM_opacity ===
 PEN_SW_SCALE = 15.0             !   [m] default = 0.0
@@ -602,8 +584,6 @@ PEN_SW_FRAC = 0.42              !   [nondim] default = 0.0
 ! === module MOM_tracer_advect ===
 
 ! === module MOM_tracer_hor_diff ===
-
-
 
 ! === module MOM_sum_output ===
 MAXTRUNC = 5000                 !   [truncations save_interval-1] default = 0
@@ -622,8 +602,6 @@ VARIABLE_BUOYFORCE = False      !   [Boolean] default = True
 BUOY_CONFIG = "NONE"            ! default = "zero"
                                 ! The character string that indicates how buoyancy forcing is specified. Valid
                                 ! options include (file), (zero), (linear), (USER), (BFB) and (NONE).
-
-! === module MOM_restart ===
 
 ! === module MOM_main (MOM_driver) ===
 DAYMAX = 3.0                    !   [days]
@@ -647,4 +625,3 @@ MAXCPU = 2.88E+04               !   [wall-clock seconds] default = -1.0
                                 ! not desired, use a negative value for MAXCPU.  MAXCPU has units of wall-clock
                                 ! seconds, so the actual CPU time used is larger by a factor of the number of
                                 ! processors used.
-

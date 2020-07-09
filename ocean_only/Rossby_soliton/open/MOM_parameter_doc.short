@@ -1,6 +1,5 @@
 ! This file was written by the model and records the non-default parameters used at run-time.
 
-
 ! === module MOM ===
 ENABLE_THERMODYNAMICS = False   !   [Boolean] default = True
                                 ! If true, Temperature and salinity are used as state variables.
@@ -34,7 +33,6 @@ NIGLOBAL = 96                   !
 NJGLOBAL = 32                   !
                                 ! The total number of thickness grid points in the y-direction in the physical
                                 ! domain. With STATIC_MEMORY_ this is set in MOM_memory.h at compile time.
-
 
 ! === module MOM_fixed_initialization ===
 INPUTDIR = "INPUT"              ! default = "."
@@ -138,10 +136,6 @@ NK = 1                          !   [nondim]
 
 ! === module MOM_boundary_update ===
 
-! === module MOM_tracer_registry ===
-
-! === module MOM_restart ===
-
 ! === module MOM_tracer_flow_control ===
 
 ! === module MOM_coord_initialization ===
@@ -163,9 +157,6 @@ COORD_CONFIG = "linear"         ! default = "none"
                                 !     ts_profile - use temperature and salinity profiles
                                 !       (read from COORD_FILE) to set layer densities.
                                 !     USER - call a user modified routine.
-
-! === module MOM_grid ===
-! Parameters providing information about the lateral grid.
 
 ! === module MOM_state_initialization ===
 THICKNESS_CONFIG = "soliton"    ! default = "uniform"
@@ -208,7 +199,6 @@ VELOCITY_CONFIG = "soliton"     ! default = "zero"
                                 !     USER - call a user modified routine.
 
 ! === module MOM_diag_mediator ===
-
 
 ! === module MOM_lateral_mixing_coeffs ===
 
@@ -299,7 +289,6 @@ DTBT = -0.9                     !   [s or nondim] default = -0.98
                                 ! DTBT to 0 is the same as setting it to -0.98. The value of DTBT that will
                                 ! actually be used is an integer fraction of DT, rounding down.
 
-
 ! === module MOM_diagnostics ===
 
 ! === module MOM_diabatic_driver ===
@@ -308,8 +297,6 @@ DTBT = -0.9                     !   [s or nondim] default = -0.98
 ! === module MOM_tracer_advect ===
 
 ! === module MOM_tracer_hor_diff ===
-
-
 
 ! === module MOM_sum_output ===
 DATE_STAMPED_STDOUT = False     !   [Boolean] default = True
@@ -332,8 +319,6 @@ VARIABLE_BUOYFORCE = False      !   [Boolean] default = True
                                 ! If true, the buoyancy forcing varies in time after the initialization of the
                                 ! model.
 
-! === module MOM_restart ===
-
 ! === module MOM_main (MOM_driver) ===
 DT_FORCING = 5.0                !   [s] default = 0.2
                                 ! The time step for changing forcing, coupling with other components, or
@@ -345,6 +330,3 @@ DAYMAX = 600.0                  !   [seconds]
 RESTINT = 1800.0                !   [seconds] default = 0.0
                                 ! The interval between saves of the restart file in units of TIMEUNIT.  Use 0
                                 ! (the default) to not save incremental restart files at all.
-
-! === module MOM_write_cputime ===
-

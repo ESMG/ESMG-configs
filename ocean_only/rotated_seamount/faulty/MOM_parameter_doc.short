@@ -1,6 +1,5 @@
 ! This file was written by the model and records the non-default parameters used at run-time.
 
-
 ! === module MOM ===
 BULKMIXEDLAYER = False          !   [Boolean] default = True
                                 ! If true, use a Kraus-Turner-like bulk mixed layer with transitional buffer
@@ -33,7 +32,6 @@ NIHALO = 3                      ! default = 4
 NJHALO = 3                      ! default = 4
                                 ! The number of halo points on each side in the y-direction.  How this is set
                                 ! varies with the calling component and static or dynamic memory configuration.
-
 
 ! === module MOM_fixed_initialization ===
 INPUTDIR = "INPUT/"             ! default = "."
