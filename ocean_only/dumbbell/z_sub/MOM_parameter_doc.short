@@ -1,6 +1,5 @@
 ! This file was written by the model and records the non-default parameters used at run-time.
 
-
 ! === module MOM ===
 USE_REGRIDDING = True           !   [Boolean] default = False
                                 ! If True, use the ALE algorithm (regridding/remapping). If False, use the
@@ -31,7 +30,6 @@ NIHALO = 3                      ! default = 4
 NJHALO = 3                      ! default = 4
                                 ! The number of halo points on each side in the y-direction.  How this is set
                                 ! varies with the calling component and static or dynamic memory configuration.
-
 
 ! === module MOM_fixed_initialization ===
 
@@ -158,8 +156,6 @@ NK = 2                          !   [nondim]
 
 ! === module MOM_boundary_update ===
 
-! === module MOM_tracer_registry ===
-
 ! === module segment_tracer_registry_init ===
 
 ! === module MOM_EOS ===
@@ -173,8 +169,6 @@ DRHO_DT = 0.0                   !   [kg m-3 K-1] default = -0.2
 DRHO_DS = 1.0                   !   [kg m-3 PSU-1] default = 0.8
                                 ! When EQN_OF_STATE=LINEAR, this is the partial derivative of density with
                                 ! salinity.
-
-! === module MOM_restart ===
 
 ! === module MOM_tracer_flow_control ===
 
@@ -224,9 +218,6 @@ REMAPPING_SCHEME = "PPM_IH4"    ! default = "PLM"
                                 ! PPM_IH4     (3rd-order accurate)
                                 ! PQM_IH4IH3  (4th-order accurate)
                                 ! PQM_IH6IH5  (5th-order accurate)
-
-! === module MOM_grid ===
-! Parameters providing information about the lateral grid.
 
 ! === module MOM_state_initialization ===
 THICKNESS_CONFIG = "dumbbell"   ! default = "uniform"
@@ -282,7 +273,6 @@ DUMBBELL_SREF = 35.0            !   [1e-3] default = 34.0
                                 ! DUMBBELL REFERENCE SALINITY
 
 ! === module MOM_diag_mediator ===
-
 
 ! === module MOM_lateral_mixing_coeffs ===
 
@@ -349,7 +339,7 @@ BOUND_CORIOLIS = True           !   [Boolean] default = False
 
 ! === module MOM_PressureForce ===
 
-! === module MOM_PressureForce_AFV ===
+! === module MOM_PressureForce_FV ===
 
 ! === module MOM_hor_visc ===
 SMAGORINSKY_AH = True           !   [Boolean] default = False
@@ -387,14 +377,10 @@ DTBT = 10.0                     !   [s or nondim] default = -0.98
                                 ! DTBT to 0 is the same as setting it to -0.98. The value of DTBT that will
                                 ! actually be used is an integer fraction of DT, rounding down.
 
-
 ! === module MOM_diagnostics ===
 
 ! === module MOM_diabatic_driver ===
 ! The following parameters are used for diabatic processes.
-
-
-
 
 ! === module MOM_set_diffusivity ===
 BBL_EFFIC = 0.0                 !   [nondim] default = 0.2
@@ -404,20 +390,14 @@ BBL_EFFIC = 0.0                 !   [nondim] default = 0.2
 ! === module MOM_bkgnd_mixing ===
 ! Adding static vertical background mixing coefficients
 
-
-
-
 ! === module MOM_diabatic_aux ===
 ! The following parameters are used for auxiliary diabatic processes.
-
 
 ! === module MOM_opacity ===
 
 ! === module MOM_tracer_advect ===
 
 ! === module MOM_tracer_hor_diff ===
-
-
 
 ! === module MOM_sum_output ===
 MAXTRUNC = 5000                 !   [truncations save_interval-1] default = 0
@@ -433,8 +413,6 @@ VARIABLE_WINDS = False          !   [Boolean] default = True
 VARIABLE_BUOYFORCE = False      !   [Boolean] default = True
                                 ! If true, the buoyancy forcing varies in time after the initialization of the
                                 ! model.
-
-! === module MOM_restart ===
 
 ! === module MOM_main (MOM_driver) ===
 DAYMAX = 2.0                    !   [days]
@@ -455,4 +433,3 @@ MAXCPU = 2.88E+04               !   [wall-clock seconds] default = -1.0
                                 ! not desired, use a negative value for MAXCPU.  MAXCPU has units of wall-clock
                                 ! seconds, so the actual CPU time used is larger by a factor of the number of
                                 ! processors used.
-
