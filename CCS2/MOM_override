@@ -7,4 +7,3 @@ DEBUG = False
 DEBUG_BT = False
 !VERBOSITY = 9
 #override ENERGYSAVEDAYS = 0.05
-#override OBC_RAD_VEL_WT = 1.0            !   [nondim] default = 0.3

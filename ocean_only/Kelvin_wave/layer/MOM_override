@@ -19,6 +19,9 @@
 #override KV = 1.0E-04                    !   [m2 s-1]
 #override KVML = 1.0E-04                  !   [m2 s-1] default = 1.0E-04
 #override HBBL = 10.0                     !   [m]
+#override KH_VEL_SCALE = 0.003            !   [m s-1] default = 0.0
+#override SMAGORINSKY_KH = True           !   [Boolean] default = False
+#override SMAG_LAP_CONST = 0.15           !   [nondim] default = 0.0
 !
 OBC_SEGMENT_002_VELOCITY_NUDGING_TIMESCALES = 1, 10
 #override OBC_FREESLIP_VORTICITY = False   !   [Boolean] default = False
