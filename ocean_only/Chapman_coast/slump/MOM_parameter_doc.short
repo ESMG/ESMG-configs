@@ -112,12 +112,6 @@ OBC_SEGMENT_002 = "J=N,I=N:0,FLATHER,OBLIQUE" !
                                 ! Documentation needs to be dynamic?????
 OBC_SEGMENT_003 = "J=0,I=0:N,FLATHER,OBLIQUE" !
                                 ! Documentation needs to be dynamic?????
-OBC_SEGMENT_001_DATA = "U=value:0.0,V=value:0.0,SSH=value:0.0" !
-                                ! OBC segment docs
-OBC_SEGMENT_002_DATA = "U=value:0.0,V=value:0.0,SSH=value:0.0" !
-                                ! OBC segment docs
-OBC_SEGMENT_003_DATA = "U=value:0.0,V=value:0.0,SSH=value:0.0" !
-                                ! OBC segment docs
 ROTATION = "betaplane"          ! default = "2omegasinlat"
                                 ! This specifies how the Coriolis parameter is specified:
                                 !     2omegasinlat - Use twice the planetary rotation rate
@@ -194,6 +188,12 @@ DISK_RADIUS = 25.0              !   [kilometers]
                                 ! The radius of the initially elevated disk in the circle_obcs test case.
 DISK_X_OFFSET = -50.0           !   [kilometers] default = 0.0
                                 ! The x-offset of the initially elevated disk in the circle_obcs test case.
+OBC_SEGMENT_001_DATA = "U=value:0.0,V=value:0.0,SSH=value:0.0" !
+                                ! OBC segment docs
+OBC_SEGMENT_002_DATA = "U=value:0.0,V=value:0.0,SSH=value:0.0" !
+                                ! OBC segment docs
+OBC_SEGMENT_003_DATA = "U=value:0.0,V=value:0.0,SSH=value:0.0" !
+                                ! OBC segment docs
 
 ! === module MOM_diag_mediator ===
 NUM_DIAG_COORDS = 0             ! default = 1

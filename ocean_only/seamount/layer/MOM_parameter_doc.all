@@ -278,6 +278,8 @@ RAMP_OBCS = False               !   [Boolean] default = False
                                 ! timescale given by RAMP_TIMESCALE. Ramping SSH only so far
 OBC_RAMP_TIMESCALE = 1.0        !   [days] default = 1.0
                                 ! If RAMP_OBCS is true, this sets the ramping timescale.
+OBC_TIDE_N_CONSTITUENTS = 0     ! default = 0
+                                ! Number of tidal constituents being added to the open boundary.
 OBC_SEGMENT_001 = "J=N,I=N:0,FLATHER, OBLIQUE, OBLIQUE_GRAD" !
                                 ! Documentation needs to be dynamic?????
 OBC_SEGMENT_002 = "J=0,I=0:N,FLATHER, OBLIQUE, OBLIQUE_GRAD" !
@@ -286,20 +288,6 @@ OBC_SEGMENT_003 = "I=N,J=0:N,FLATHER, OBLIQUE, OBLIQUE_GRAD" !
                                 ! Documentation needs to be dynamic?????
 OBC_SEGMENT_004 = "I=0,J=N:0,FLATHER, OBLIQUE, OBLIQUE_GRAD" !
                                 ! Documentation needs to be dynamic?????
-BRUSHCUTTER_MODE = False        !   [Boolean] default = False
-                                ! If true, read external OBC data on the supergrid.
-REMAPPING_2018_ANSWERS = False  !   [Boolean] default = False
-                                ! If true, use the order of arithmetic and expressions that recover the answers
-                                ! from the end of 2018.  Otherwise, use updated and more robust forms of the
-                                ! same expressions.
-OBC_SEGMENT_001_DATA = "U=value:0.0,V=value:0.0,SSH=value:0.0" !
-                                ! OBC segment docs
-OBC_SEGMENT_002_DATA = "U=value:0.0,V=value:0.0,SSH=value:0.0" !
-                                ! OBC segment docs
-OBC_SEGMENT_003_DATA = "U=value:0.0,V=value:0.0,SSH=value:0.0" !
-                                ! OBC segment docs
-OBC_SEGMENT_004_DATA = "U=value:0.0,V=value:0.0,SSH=value:0.0" !
-                                ! OBC segment docs
 OBC_RADIATION_MAX = 1.0         !   [nondim] default = 1.0
                                 ! The maximum magnitude of the baroclinic radiation velocity (or speed of
                                 ! characteristics), in gridpoints per timestep.  This is only used if one of the
@@ -315,6 +303,12 @@ OBC_TRACER_RESERVOIR_LENGTH_SCALE_OUT = 0.0 !   [m] default = 0.0
 OBC_TRACER_RESERVOIR_LENGTH_SCALE_IN = 0.0 !   [m] default = 0.0
                                 ! An effective length scale for restoring the tracer concentration at the
                                 ! boundaries to values from the interior when the flow is entering the domain.
+BRUSHCUTTER_MODE = False        !   [Boolean] default = False
+                                ! If true, read external OBC data on the supergrid.
+REMAPPING_2018_ANSWERS = False  !   [Boolean] default = False
+                                ! If true, use the order of arithmetic and expressions that recover the answers
+                                ! from the end of 2018.  Otherwise, use updated and more robust forms of the
+                                ! same expressions.
 MASKING_DEPTH = -9999.0         !   [m] default = -9999.0
                                 ! The depth below which to mask points as land points, for which all fluxes are
                                 ! zeroed out. MASKING_DEPTH is ignored if negative.
@@ -597,6 +591,14 @@ TRIM_IC_FOR_P_SURF = False      !   [Boolean] default = False
 SPONGE = False                  !   [Boolean] default = False
                                 ! If true, sponges may be applied anywhere in the domain. The exact location and
                                 ! properties of those sponges are specified via SPONGE_CONFIG.
+OBC_SEGMENT_001_DATA = "U=value:0.0,V=value:0.0,SSH=value:0.0" !
+                                ! OBC segment docs
+OBC_SEGMENT_002_DATA = "U=value:0.0,V=value:0.0,SSH=value:0.0" !
+                                ! OBC segment docs
+OBC_SEGMENT_003_DATA = "U=value:0.0,V=value:0.0,SSH=value:0.0" !
+                                ! OBC segment docs
+OBC_SEGMENT_004_DATA = "U=value:0.0,V=value:0.0,SSH=value:0.0" !
+                                ! OBC segment docs
 OBC_USER_CONFIG = "dyed_obcs"   ! default = "none"
                                 ! A string that sets how the user code is invoked to set open boundary data:
                                 !    DOME - specified inflow on northern boundary
@@ -612,6 +614,8 @@ OBC_USER_CONFIG = "dyed_obcs"   ! default = "none"
 NUM_DIAG_COORDS = 1             ! default = 1
                                 ! The number of diagnostic vertical coordinates to use. For each coordinate, an
                                 ! entry in DIAG_COORDS must be provided.
+USE_GRID_SPACE_DIAGNOSTIC_AXES = False !   [Boolean] default = False
+                                ! If true, use a grid index coordinate convention for diagnostic axes.
 DIAG_COORDS = "z Z ZSTAR"       ! default = "z Z ZSTAR"
                                 ! A list of string tuples associating diag_table modules to a coordinate
                                 ! definition used for diagnostics. Each string is of the form "MODULE_SUFFIX
@@ -733,7 +737,8 @@ DRAG_BG_VEL = 0.05              !   [m s-1] default = 0.0
                                 ! defined.
 BBL_USE_EOS = True              !   [Boolean] default = False
                                 ! If true, use the equation of state in determining the properties of the bottom
-                                ! boundary layer.  Otherwise use the layer target potential densities.
+                                ! boundary layer.  Otherwise use the layer target potential densities.  The
+                                ! default of this is determined by USE_REGRIDDING.
 BBL_THICK_MIN = 0.1             !   [m] default = 0.0
                                 ! The minimum bottom boundary layer thickness that can be used with
                                 ! BOTTOMDRAGLAW. This might be Kv/(cdrag*drag_bg_vel) to give Kv as the minimum
@@ -947,13 +952,18 @@ TIDE_SAL_SCALAR_VALUE = 0.094   !   [m m-1]
                                 ! The constant of proportionality between sea surface height (really it should
                                 ! be bottom pressure) anomalies and bottom geopotential anomalies. This is only
                                 ! used if TIDES and TIDE_USE_SAL_SCALAR are true.
+TIDE_REF_DATE = 0, 0, 0         ! default = 0
+                                ! Year,month,day to use as reference date for tidal forcing. If not specified,
+                                ! defaults to 0.
+TIDE_USE_EQ_PHASE = True        !   [Boolean] default = True
+                                ! Correct phases by calculating equilibrium phase arguments for TIDE_REF_DATE.
 TIDE_M2_FREQ = 1.405189E-04     !   [s-1] default = 1.405189E-04
                                 ! Frequency of the M2 tidal constituent. This is only used if TIDES and TIDE_M2
                                 ! are true.
 TIDE_M2_AMP = 0.242334          !   [m] default = 0.242334
                                 ! Amplitude of the M2 tidal constituent. This is only used if TIDES and TIDE_M2
                                 ! are true.
-TIDE_M2_PHASE_T0 = 0.0          !   [radians] default = 0.0
+TIDE_M2_PHASE_T0 = -2.2209194857519687 !   [radians] default = -2.2209194857519687
                                 ! Phase of the M2 tidal constituent at time 0. This is only used if TIDES and
                                 ! TIDE_M2 are true.
 

@@ -67,6 +67,9 @@ ICE_STATS_INTERVAL = 10.0       !   [days] default = 1.0
 DT_RHEOLOGY = 50.0              !   [seconds] default = -1.0
                                 ! The sub-cycling time step for iterating the rheology and ice momentum
                                 ! equations. If DT_RHEOLOGY is negative, the time step is set via NSTEPS_DYN.
+ICE_COVER_DISCARD = 1.0E-30     !   [nondim] default = -1.0
+                                ! A tiny fractional ice coverage which if positive causes the mass in categories
+                                ! with less than this coverage to be discarded.
 SIS_THICKNESS_ADVECTION_SCHEME = "PCM" ! default = "UPWIND_2D"
                                 ! The horizontal transport scheme for thickness:
                                 !   UPWIND_2D - Non-directionally split upwind
@@ -79,6 +82,17 @@ SIS_CONTINUITY_SCHEME = "PCM"   ! default = "UPWIND_2D"
                                 !   PCM       - Directionally split piecewise constant
                                 !   PPM:C2PD  - Positive definite PPM with 2nd order edge values
                                 !   PPM:C2MO  - Monotonic PPM with 2nd order edge values
+CONTINUITY_H_NEGLECT = 1.0E-28  !   [kg m-2] default = 0.0
+                                ! The category ice mass per ocean cell area below which the transport within
+                                ! this thickness category of out of a cell is set to zero.  A suggested
+                                ! non-default value might be of order 3e-32 kg m-2, which is one molecule of ice
+                                ! per square kilometer.
+CONTINUITY_FRAC_NEGLECT = 1.0E-20 !   [nondim] default = 0.0
+                                ! When the total fluxes are distributed between categories with
+                                ! MERGED_CONTINUITY, any category whose ice is less than this fraction of the
+                                ! total mass contributes no flux.  Without MERGED_CONTINUITY, any snow or melt
+                                ! pond transport that is less than this fraction of the ice transport is zeroed
+                                ! out.  A suggested non-default value might be of order 1e-20.
 
 ! === module SIS_tracer_advect ===
 SIS_TRACER_ADVECTION_SCHEME = "PPM:H3" ! default = "UPWIND_2D"
@@ -87,6 +101,10 @@ SIS_TRACER_ADVECTION_SCHEME = "PPM:H3" ! default = "UPWIND_2D"
                                 !   PCM    - Directionally split piecewise constant
                                 !   PLM    - Piecewise Linear Method
                                 !   PPM:H3 - Piecewise Parabolic Method (Huyhn 3rd order)
+ADCROFT_ADVECTIVE_CFL = True    !   [Boolean] default = False
+                                ! If true use the Adcroft reciprocal of the cell mass when calculating the
+                                ! advective CFL numbers used in PPM tracer advection schemes, rather than adding
+                                ! a small mass in the denominator of the advective CFL ratio.
 
 ! === module SIS_sum_output ===
 MAXTRUNC = 200                  !   [truncations save_interval-1] default = 0

@@ -136,10 +136,6 @@ OBC_SEGMENT_002_VELOCITY_NUDGING_TIMESCALES = 0.25, 200.0 !   [days] default = 0
                                 ! Timescales in days for nudging along a segment, for inflow, then outflow.
                                 ! Setting both to zero should behave like SIMPLE obcs for the baroclinic
                                 ! velocities.
-OBC_SEGMENT_001_DATA = "U=file:../z_rotate/south.nc(u),V=file:../z_rotate/south.nc(v),SSH=file:../z_rotate/south.nc(zeta),SALT=file:../z_rotate/south.nc(salt),DUDY=file:../z_rotate/south.nc(dudy)" !
-                                ! OBC segment docs
-OBC_SEGMENT_002_DATA = "U=file:../z_rotate/north.nc(u),V=file:../z_rotate/north.nc(v),SSH=file:../z_rotate/north.nc(zeta),SALT=file:../z_rotate/north.nc(salt),DUDY=file:../z_rotate/north.nc(dudy)" !
-                                ! OBC segment docs
 OBC_TRACER_RESERVOIR_LENGTH_SCALE_OUT = 5000.0 !   [m] default = 0.0
                                 ! An effective length scale for restoring the tracer concentration at the
                                 ! boundaries to externally imposed values when the flow is exiting the domain.
@@ -277,6 +273,10 @@ TS_CONFIG = "dumbbell"          !
                                 !     USER - call a user modified routine.
 DUMBBELL_SREF = 35.0            !   [1e-3] default = 34.0
                                 ! DUMBBELL REFERENCE SALINITY
+OBC_SEGMENT_001_DATA = "U=file:../z_rotate/south.nc(u),V=file:../z_rotate/south.nc(v),SSH=file:../z_rotate/south.nc(zeta),SALT=file:../z_rotate/south.nc(salt),DUDY=file:../z_rotate/south.nc(dudy)" !
+                                ! OBC segment docs
+OBC_SEGMENT_002_DATA = "U=file:../z_rotate/north.nc(u),V=file:../z_rotate/north.nc(v),SSH=file:../z_rotate/north.nc(zeta),SALT=file:../z_rotate/north.nc(salt),DUDY=file:../z_rotate/north.nc(dudy)" !
+                                ! OBC segment docs
 
 ! === module MOM_diag_mediator ===
 
@@ -299,9 +299,6 @@ DRAG_BG_VEL = 0.05              !   [m s-1] default = 0.0
                                 ! unresolved  velocity that is combined with the resolved velocity to estimate
                                 ! the velocity magnitude.  DRAG_BG_VEL is only used when BOTTOMDRAGLAW is
                                 ! defined.
-BBL_USE_EOS = True              !   [Boolean] default = False
-                                ! If true, use the equation of state in determining the properties of the bottom
-                                ! boundary layer.  Otherwise use the layer target potential densities.
 BBL_THICK_MIN = 0.1             !   [m] default = 0.0
                                 ! The minimum bottom boundary layer thickness that can be used with
                                 ! BOTTOMDRAGLAW. This might be Kv/(cdrag*drag_bg_vel) to give Kv as the minimum
