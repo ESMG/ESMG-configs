@@ -482,6 +482,9 @@ TIDE_SAL_SCALAR_VALUE = 0.094   !   [m m-1]
                                 ! The constant of proportionality between sea surface height (really it should
                                 ! be bottom pressure) anomalies and bottom geopotential anomalies. This is only
                                 ! used if TIDES and TIDE_USE_SAL_SCALAR are true.
+TIDE_M2_PHASE_T0 = -2.2209194857519687 !   [radians] default = 0.0
+                                ! Phase of the M2 tidal constituent at time 0. This is only used if TIDES and
+                                ! TIDE_M2 are true.
 
 ! === module MOM_PressureForce ===
 
