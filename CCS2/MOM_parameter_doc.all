@@ -902,9 +902,6 @@ CHANNEL_DRAG = True             !   [Boolean] default = False
 LINEAR_DRAG = False             !   [Boolean] default = False
                                 ! If LINEAR_DRAG and BOTTOMDRAGLAW are defined the drag law is
                                 ! cdrag*DRAG_BG_VEL*u.
-DOUBLE_DIFFUSION = False        !   [Boolean] default = False
-                                ! If true, increase diffusivites for temperature or salt based on
-                                ! double-diffusive parameterization from MOM4/KPP.
 PRANDTL_TURB = 1.0              !   [nondim] default = 1.0
                                 ! The turbulent Prandtl number applied to shear instability.
 DYNAMIC_VISCOUS_ML = False      !   [Boolean] default = False
@@ -1408,6 +1405,9 @@ AGGREGATE_FW_FORCING = True     !   [Boolean] default = True
 MIX_BOUNDARY_TRACERS = True     !   [Boolean] default = True
                                 ! If true, mix the passive tracers in massless layers at the bottom into the
                                 ! interior as though a diffusivity of KD_MIN_TR were operating.
+MIX_BOUNDARY_TRACER_ALE = False !   [Boolean] default = False
+                                ! If true and in ALE mode, mix the passive tracers in massless layers at the
+                                ! bottom into the interior as though a diffusivity of KD_MIN_TR were operating.
 KD_MIN_TR = 2.0E-06             !   [m2 s-1] default = 2.0E-06
                                 ! A minimal diffusivity that should always be applied to tracers, especially in
                                 ! massless layers near the bottom. The default is 0.1*KD.
@@ -1546,6 +1546,9 @@ DISSIPATION_N1 = 0.0            !   [J m-3] default = 0.0
                                 ! = A + B*N
 DISSIPATION_KD_MIN = 0.0        !   [m2 s-1] default = 0.0
                                 ! The minimum vertical diffusivity applied as a floor.
+DOUBLE_DIFFUSION = False        !   [Boolean] default = False
+                                ! If true, increase diffusivites for temperature or salinity based on the
+                                ! double-diffusive parameterization described in Large et al. (1994).
 
 ! === module MOM_kappa_shear ===
 ! Parameterization of shear-driven turbulence following Jackson, Hallberg and Legg, JPO 2008
