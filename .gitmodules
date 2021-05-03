@@ -31,3 +31,6 @@
 [submodule "Arctic5"]
 	path = Arctic5
 	url = git@github.com:ESMG/Arctic5.git
+[submodule "Arctic6"]
+	path = Arctic6
+	url = ./Arctic6
