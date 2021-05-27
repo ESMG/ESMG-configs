@@ -326,6 +326,8 @@ USE_SHELFWAVE_OBC = False       !   [Boolean] default = False
                                 ! If true, use the shelfwave open boundary.
 USE_DYED_CHANNEL_OBC = False    !   [Boolean] default = False
                                 ! If true, use the dyed channel open boundary.
+TIDAL_BAY_FLOW = 3.0E+06        !   [m3 s-1] default = 3.0E+06
+                                ! Maximum total tidal volume flux.
 
 ! === module MOM_tracer_registry ===
 
@@ -1174,9 +1176,6 @@ READ_GUST_2D = False            !   [Boolean] default = False
 ! === module MOM_restart ===
 USE_WAVES = False               !   [Boolean] default = False
                                 ! If true, enables surface wave modules.
-LA_DEPTH_RATIO = 0.04           !   [nondim] default = 0.04
-                                ! The depth (normalized by BLD) to average Stokes drift over in Langmuir number
-                                ! calculation, where La = sqrt(ust/Stokes).
 
 ! === module MOM_main (MOM_driver) ===
 DT_FORCING = 300.0              !   [s] default = 300.0

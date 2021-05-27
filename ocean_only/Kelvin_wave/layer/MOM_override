@@ -10,6 +10,7 @@
 #override NIGLOBAL = 80                   !
 #override OBC_SEGMENT_001 = "I=N,J=0:N,FLATHER,ORLANSKI"
 #override OBC_SEGMENT_002 = "I=0,J=N:0,FLATHER,ORLANSKI,NUDGED"
+!#override OBC_SEGMENT_002 = "I=0,J=N:0,FLATHER,SIMPLE"
 #override LAPLACIAN = True                !   [Boolean] default = False
 #override KH = 2000.0                     !   [m2 s-1] default = 0.0
 ! === module MOM_vert_friction ===
@@ -26,3 +27,8 @@
 OBC_SEGMENT_002_VELOCITY_NUDGING_TIMESCALES = 1, 10
 #override OBC_FREESLIP_VORTICITY = False   !   [Boolean] default = False
 OBC_COMPUTED_VORTICITY = True  !   [Boolean] default = False
+!#override T_RESCALE_POWER=11
+!#override L_RESCALE_POWER=11
+!#override Z_RESCALE_POWER=11
+!#override Q_RESCALE_POWER=11
+!#override R_RESCALE_POWER=11

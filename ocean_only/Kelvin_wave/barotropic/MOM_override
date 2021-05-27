@@ -1,3 +1,4 @@
 ! Blank file in which we can put "overrides" for parameters
 DEBUG = False
 DEBUG_BT = False
+L_RESCALE_POWER = 11
