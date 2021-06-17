@@ -4,9 +4,9 @@
 [submodule "src/SIS2"]
 	path = src/SIS2
 	url = git@github.com:ESMG/SIS2
-[submodule "src/FMS"]
-	path = src/FMS
-	url = git@github.com:NOAA-GFDL/FMS
+[submodule "src/FMS1"]
+        path = src/FMS1
+	url = https://github.com/NOAA-GFDL/FMS
 [submodule "src/mkmf"]
 	path = src/mkmf
 	url = git@github.com:ESMG/mkmf
@@ -34,3 +34,6 @@
 [submodule "Arctic6"]
 	path = Arctic6
 	url = ./Arctic6
+[submodule "src/FMS2"]
+	path = src/FMS2
+	url = https://github.com/NOAA-GFDL/FMS
