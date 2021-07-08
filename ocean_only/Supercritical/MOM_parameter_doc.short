@@ -95,7 +95,7 @@ OBC_SEGMENT_002 = "I=0,J=N:0,SIMPLE" !
                                 ! Documentation needs to be dynamic?????
 MASKING_DEPTH = 0.5             !   [m] default = -9999.0
                                 ! The depth below which to mask points as land points, for which all fluxes are
-                                ! zeroed out. MASKING_DEPTH is ignored if negative.
+                                ! zeroed out. MASKING_DEPTH needs to be smaller than MINIMUM_DEPTH
 ROTATION = "betaplane"          ! default = "2omegasinlat"
                                 ! This specifies how the Coriolis parameter is specified:
                                 !     2omegasinlat - Use twice the planetary rotation rate
