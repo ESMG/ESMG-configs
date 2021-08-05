@@ -362,21 +362,7 @@ H_TO_M = 1.0                    !   [m H-1] default = 1.0
 NK = 20                         !   [nondim]
                                 ! The number of model layers.
 
-! === module MOM_boundary_update ===
-USE_FILE_OBC = False            !   [Boolean] default = False
-                                ! If true, use external files for the open boundary.
-USE_TIDAL_BAY_OBC = False       !   [Boolean] default = False
-                                ! If true, use the tidal_bay open boundary.
-USE_KELVIN_WAVE_OBC = False     !   [Boolean] default = False
-                                ! If true, use the Kelvin wave open boundary.
-USE_SHELFWAVE_OBC = False       !   [Boolean] default = False
-                                ! If true, use the shelfwave open boundary.
-USE_DYED_CHANNEL_OBC = False    !   [Boolean] default = False
-                                ! If true, use the dyed channel open boundary.
-
 ! === module MOM_tracer_registry ===
-
-! === module segment_tracer_registry_init ===
 
 ! === module MOM_EOS ===
 EQN_OF_STATE = "LINEAR"         ! default = "WRIGHT"
@@ -460,6 +446,20 @@ NUM_DYE_TRACERS = 4             ! default = 0
 dyed_obc_TRACER_IC_FILE = ""    ! default = ""
                                 ! The name of a file from which to read the initial conditions for the dyed_obc
                                 ! tracers, or blank to initialize them internally.
+
+! === module MOM_boundary_update ===
+USE_FILE_OBC = False            !   [Boolean] default = False
+                                ! If true, use external files for the open boundary.
+USE_TIDAL_BAY_OBC = False       !   [Boolean] default = False
+                                ! If true, use the tidal_bay open boundary.
+USE_KELVIN_WAVE_OBC = False     !   [Boolean] default = False
+                                ! If true, use the Kelvin wave open boundary.
+USE_SHELFWAVE_OBC = False       !   [Boolean] default = False
+                                ! If true, use the shelfwave open boundary.
+USE_DYED_CHANNEL_OBC = False    !   [Boolean] default = False
+                                ! If true, use the dyed channel open boundary.
+
+! === module segment_tracer_registry_init ===
 
 ! === module MOM_grid ===
 ! Parameters providing information about the lateral grid.
@@ -595,8 +595,6 @@ TRIM_IC_FOR_P_SURF = False      !   [Boolean] default = False
                                 ! If true, cuts way the top of the column for initial conditions at the depth
                                 ! where the hydrostatic pressure matches the imposed surface pressure which is
                                 ! read from file.
-ODA_INCUPD = False              !   [Boolean] default = False
-                                ! If true, oda incremental updates will be applied everywhere in the domain.
 SPONGE = False                  !   [Boolean] default = False
                                 ! If true, sponges may be applied anywhere in the domain. The exact location and
                                 ! properties of those sponges are specified via SPONGE_CONFIG.

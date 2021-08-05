@@ -115,11 +115,11 @@ F_0 = 1.0E-04                   !   [s-1] default = 0.0
 NK = 1                          !   [nondim]
                                 ! The number of model layers.
 
+! === module MOM_tracer_flow_control ===
+
 ! === module MOM_boundary_update ===
 USE_TIDAL_BAY_OBC = True        !   [Boolean] default = False
                                 ! If true, use the tidal_bay open boundary.
-
-! === module MOM_tracer_flow_control ===
 
 ! === module MOM_coord_initialization ===
 COORD_CONFIG = "linear"         ! default = "none"

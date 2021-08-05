@@ -220,10 +220,6 @@ F_0 = 1.0E-04                   !   [s-1] default = 0.0
 NK = 20                         !   [nondim]
                                 ! The number of model layers.
 
-! === module MOM_boundary_update ===
-
-! === module segment_tracer_registry_init ===
-
 ! === module MOM_EOS ===
 EQN_OF_STATE = "LINEAR"         ! default = "WRIGHT"
                                 ! EQN_OF_STATE determines which ocean equation of state should be used.
@@ -244,6 +240,10 @@ USE_DYED_OBC_TRACER = True      !   [Boolean] default = False
 NUM_DYE_TRACERS = 3             ! default = 0
                                 ! The number of dye tracers in this run. Each tracer should have a separate
                                 ! boundary segment.
+
+! === module MOM_boundary_update ===
+
+! === module segment_tracer_registry_init ===
 
 ! === module MOM_coord_initialization ===
 COORD_CONFIG = "ts_range"       ! default = "none"

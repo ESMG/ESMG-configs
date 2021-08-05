@@ -112,12 +112,6 @@ G_EARTH = 9.81                  !   [m s-2] default = 9.8
 NK = 1                          !   [nondim]
                                 ! The number of model layers.
 
-! === module MOM_boundary_update ===
-USE_DYED_CHANNEL_OBC = True     !   [Boolean] default = False
-                                ! If true, use the dyed channel open boundary.
-CHANNEL_MEAN_FLOW = 1.0         !   [m/s] default = 8.57
-                                ! Mean zonal flow imposed at upstream open boundary.
-
 ! === module MOM_tracer_flow_control ===
 USE_DYED_OBC_TRACER = True      !   [Boolean] default = False
                                 ! If true, use the dyed_obc_tracer tracer package.
@@ -126,6 +120,12 @@ USE_DYED_OBC_TRACER = True      !   [Boolean] default = False
 NUM_DYE_TRACERS = 2             ! default = 0
                                 ! The number of dye tracers in this run. Each tracer should have a separate
                                 ! boundary segment.
+
+! === module MOM_boundary_update ===
+USE_DYED_CHANNEL_OBC = True     !   [Boolean] default = False
+                                ! If true, use the dyed channel open boundary.
+CHANNEL_MEAN_FLOW = 1.0         !   [m/s] default = 8.57
+                                ! Mean zonal flow imposed at upstream open boundary.
 
 ! === module MOM_coord_initialization ===
 COORD_CONFIG = "linear"         ! default = "none"

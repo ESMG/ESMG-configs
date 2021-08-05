@@ -290,6 +290,8 @@ G_EARTH = 9.81                  !   [m s-2] default = 9.8
 NK = 1                          !   [nondim]
                                 ! The number of model layers.
 
+! === module MOM_tracer_flow_control ===
+
 ! === module MOM_boundary_update ===
 USE_KELVIN_WAVE_OBC = True      !   [Boolean] default = False
                                 ! If true, use the Kelvin wave open boundary.
@@ -303,8 +305,6 @@ ROTATED_COAST_OFFSET_2 = 0.0    !   [km] default = 10.0
                                 ! angle in.
 ROTATED_COAST_ANGLE = 45.0      !   [degrees] default = 11.3
                                 ! The angle of the southern bondary beyond X=ROTATED_COAST_OFFSET.
-
-! === module MOM_tracer_flow_control ===
 
 ! === module MOM_coord_initialization ===
 COORD_CONFIG = "linear"         ! default = "none"

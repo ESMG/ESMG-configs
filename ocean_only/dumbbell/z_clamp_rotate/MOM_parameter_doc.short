@@ -142,10 +142,6 @@ F_0 = 1.0E-04                   !   [s-1] default = 0.0
 NK = 2                          !   [nondim]
                                 ! The number of model layers.
 
-! === module MOM_boundary_update ===
-
-! === module segment_tracer_registry_init ===
-
 ! === module MOM_EOS ===
 EQN_OF_STATE = "LINEAR"         ! default = "WRIGHT"
                                 ! EQN_OF_STATE determines which ocean equation of state should be used.
@@ -159,6 +155,10 @@ DRHO_DS = 1.0                   !   [kg m-3 PSU-1] default = 0.8
                                 ! salinity.
 
 ! === module MOM_tracer_flow_control ===
+
+! === module MOM_boundary_update ===
+
+! === module segment_tracer_registry_init ===
 
 ! === module MOM_coord_initialization ===
 COORD_CONFIG = "ts_range"       ! default = "none"
