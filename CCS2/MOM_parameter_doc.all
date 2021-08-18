@@ -212,13 +212,16 @@ TOPO_EDITS_FILE = ""            ! default = ""
                                 ! The file from which to read a list of i,j,z topography overrides.
 ALLOW_LANDMASK_CHANGES = False  !   [Boolean] default = False
                                 ! If true, allow topography overrides to change land mask.
-MAXIMUM_DEPTH = 6500.0          !   [m]
-                                ! The maximum depth of the ocean.
 MINIMUM_DEPTH = 9.5             !   [m] default = 0.0
                                 ! If MASKING_DEPTH is unspecified, then anything shallower than MINIMUM_DEPTH is
                                 ! assumed to be land and all fluxes are masked out. If MASKING_DEPTH is
                                 ! specified, then all depths shallower than MINIMUM_DEPTH but deeper than
                                 ! MASKING_DEPTH are rounded to MINIMUM_DEPTH.
+MASKING_DEPTH = 1.0             !   [m] default = -9999.0
+                                ! The depth below which to mask points as land points, for which all fluxes are
+                                ! zeroed out. MASKING_DEPTH needs to be smaller than MINIMUM_DEPTH
+MAXIMUM_DEPTH = 6500.0          !   [m]
+                                ! The maximum depth of the ocean.
 
 ! === module MOM_open_boundary ===
 ! Controls where open boundaries are located, what kind of boundary condition to impose, and what data to apply,
@@ -304,9 +307,6 @@ REMAPPING_2018_ANSWERS = False  !   [Boolean] default = False
                                 ! If true, use the order of arithmetic and expressions that recover the answers
                                 ! from the end of 2018.  Otherwise, use updated and more robust forms of the
                                 ! same expressions.
-MASKING_DEPTH = 1.0             !   [m] default = -9999.0
-                                ! The depth below which to mask points as land points, for which all fluxes are
-                                ! zeroed out. MASKING_DEPTH needs to be smaller than MINIMUM_DEPTH
 CHANNEL_CONFIG = "none"         ! default = "none"
                                 ! A parameter that determines which set of channels are
                                 ! restricted to specific  widths.  Options are:
@@ -348,21 +348,7 @@ H_TO_M = 1.0                    !   [m H-1] default = 1.0
 NK = 50                         !   [nondim]
                                 ! The number of model layers.
 
-! === module MOM_boundary_update ===
-USE_FILE_OBC = False            !   [Boolean] default = False
-                                ! If true, use external files for the open boundary.
-USE_TIDAL_BAY_OBC = False       !   [Boolean] default = False
-                                ! If true, use the tidal_bay open boundary.
-USE_KELVIN_WAVE_OBC = False     !   [Boolean] default = False
-                                ! If true, use the Kelvin wave open boundary.
-USE_SHELFWAVE_OBC = False       !   [Boolean] default = False
-                                ! If true, use the shelfwave open boundary.
-USE_DYED_CHANNEL_OBC = False    !   [Boolean] default = False
-                                ! If true, use the dyed channel open boundary.
-
 ! === module MOM_tracer_registry ===
-
-! === module segment_tracer_registry_init ===
 
 ! === module MOM_EOS ===
 EQN_OF_STATE = "WRIGHT"         ! default = "WRIGHT"
@@ -430,6 +416,20 @@ USE_BOUNDARY_IMPULSE_TRACER = False !   [Boolean] default = False
                                 ! If true, use the boundary impulse tracer.
 USE_DYED_OBC_TRACER = False     !   [Boolean] default = False
                                 ! If true, use the dyed_obc_tracer tracer package.
+
+! === module MOM_boundary_update ===
+USE_FILE_OBC = False            !   [Boolean] default = False
+                                ! If true, use external files for the open boundary.
+USE_TIDAL_BAY_OBC = False       !   [Boolean] default = False
+                                ! If true, use the tidal_bay open boundary.
+USE_KELVIN_WAVE_OBC = False     !   [Boolean] default = False
+                                ! If true, use the Kelvin wave open boundary.
+USE_SHELFWAVE_OBC = False       !   [Boolean] default = False
+                                ! If true, use the shelfwave open boundary.
+USE_DYED_CHANNEL_OBC = False    !   [Boolean] default = False
+                                ! If true, use the dyed channel open boundary.
+
+! === module segment_tracer_registry_init ===
 
 ! === module MOM_grid ===
 ! Parameters providing information about the lateral grid.
@@ -620,6 +620,8 @@ REGRID_ACCELERATE_INIT = False  !   [Boolean] default = False
                                 ! If true, runs REGRID_ACCELERATE_ITERATIONS iterations of the regridding
                                 ! algorithm to push the initial grid to be consistent with the initial
                                 ! condition. Useful only for state-based and iterative coordinates.
+ODA_INCUPD = False              !   [Boolean] default = False
+                                ! If true, oda incremental updates will be applied everywhere in the domain.
 SPONGE = False                  !   [Boolean] default = False
                                 ! If true, sponges may be applied anywhere in the domain. The exact location and
                                 ! properties of those sponges are specified via SPONGE_CONFIG.
