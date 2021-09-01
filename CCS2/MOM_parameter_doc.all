@@ -407,6 +407,8 @@ USE_ADVECTION_TEST_TRACER = False !   [Boolean] default = False
                                 ! If true, use the advection_test_tracer tracer package.
 USE_OCMIP2_CFC = False          !   [Boolean] default = False
                                 ! If true, use the MOM_OCMIP2_CFC tracer package.
+USE_CFC_CAP = False             !   [Boolean] default = False
+                                ! If true, use the MOM_CFC_cap tracer package.
 USE_generic_tracer = False      !   [Boolean] default = False
                                 ! If true and _USE_GENERIC_TRACER is defined as a preprocessor macro, use the
                                 ! MOM_generic_tracer packages.
@@ -416,6 +418,8 @@ USE_BOUNDARY_IMPULSE_TRACER = False !   [Boolean] default = False
                                 ! If true, use the boundary impulse tracer.
 USE_DYED_OBC_TRACER = False     !   [Boolean] default = False
                                 ! If true, use the dyed_obc_tracer tracer package.
+USE_NW2_TRACERS = False         !   [Boolean] default = False
+                                ! If true, use the NeverWorld2 tracers.
 
 ! === module MOM_boundary_update ===
 USE_FILE_OBC = False            !   [Boolean] default = False
@@ -765,6 +769,9 @@ MEKE_VISCOSITY_COEFF_AU = 0.0   !   [nondim] default = 0.0
 MEKE_FIXED_MIXING_LENGTH = 0.0  !   [m] default = 0.0
                                 ! If positive, is a fixed length contribution to the expression for mixing
                                 ! length used in MEKE-derived diffusivity.
+MEKE_FIXED_TOTAL_DEPTH = True   !   [Boolean] default = True
+                                ! If true, use the nominal bathymetric depth as the estimate of the time-varying
+                                ! ocean depth.  Otherwise base the depth on the total ocean massper unit area.
 MEKE_ALPHA_DEFORM = 0.0         !   [nondim] default = 0.0
                                 ! If positive, is a coefficient weighting the deformation scale in the
                                 ! expression for mixing length used in MEKE-derived diffusivity.
