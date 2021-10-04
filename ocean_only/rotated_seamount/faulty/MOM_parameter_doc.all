@@ -108,6 +108,11 @@ FIRST_DIRECTION = 0             ! default = 0
                                 ! An integer that indicates which direction goes first in parts of the code that
                                 ! use directionally split updates, with even numbers (or 0) used for x- first
                                 ! and odd numbers used for y-first.
+ALTERNATE_FIRST_DIRECTION = False !   [Boolean] default = False
+                                ! If true, after every dynamic timestep alternate whether the x- or y- direction
+                                ! updates occur first in directionally split parts of the calculation. If this
+                                ! is true, FIRST_DIRECTION applies at the start of a new run or if the next
+                                ! first direction can not be found in the restart file.
 CHECK_BAD_SURFACE_VALS = False  !   [Boolean] default = False
                                 ! If true, check the surface state for ridiculous values.
 DEFAULT_2018_ANSWERS = False    !   [Boolean] default = False
@@ -364,9 +369,3 @@ OBC_RADIATION_MAX = 1.0         !   [nondim] default = 1.0
 OBC_RAD_VEL_WT = 1.0            !   [nondim] default = 0.3
                                 ! The relative weighting for the baroclinic radiation velocities (or speed of
                                 ! characteristics) at the new time level (1) or the running mean (0) for
-                                ! velocities. Valid values range from 0 to 1. This is only used if one of the
-                                ! open boundary segments is using Orlanski.
-OBC_TRACER_RESERVOIR_LENGTH_SCALE_OUT = 1000.0 !   [m] default = 0.0
-                                ! An effective length scale for restoring the tracer concentration at the
-                                ! boundaries to externally imposed values when the flow is exiting the domain.
-OBC_TRACER_RESERVOIR_LENGTH_SCALE_IN = 1000.0 !   [m] default = 0.0
