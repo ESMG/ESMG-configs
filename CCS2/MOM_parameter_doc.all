@@ -134,6 +134,8 @@ WRITE_GEOM = 0                  ! default = 1
                                 ! If =0, never write the geometry and vertical grid files. If =1, write the
                                 ! geometry and vertical grid files only for a new simulation. If =2, always
                                 ! write the geometry and vertical grid files. Other values are invalid.
+USE_PARTICLES = False           !   [Boolean] default = False
+                                ! If true, use the particles package.
 ENSEMBLE_OCEAN = False          !   [Boolean] default = False
                                 ! If False, The model is being run in serial mode as a single realization. If
                                 ! True, The current model realization is part of a larger ensemble and at the
@@ -378,13 +380,11 @@ DTFREEZE_DP = -7.75E-08         !   [deg C Pa-1] default = 0.0
 
 ! === module MOM_restart ===
 PARALLEL_RESTARTFILES = True    !   [Boolean] default = False
-                                ! If true, each processor writes its own restart file, otherwise a single
-                                ! restart file is generated
+                                ! If true, the IO layout is used to group processors that write to the same
+                                ! restart file or each processor writes its own (numbered) restart file. If
+                                ! false, a single restart file is generated combining output from all PEs.
 RESTARTFILE = "MOM.res"         ! default = "MOM.res"
                                 ! The name-root of the restart file.
-LARGE_FILE_SUPPORT = True       !   [Boolean] default = True
-                                ! If true, use the file-size limits with NetCDF large file support (4Gb),
-                                ! otherwise the limit is 2Gb.
 MAX_FIELDS = 100                ! default = 100
                                 ! The maximum number of restart fields that can be used.
 RESTART_CHECKSUMS_REQUIRED = True !   [Boolean] default = True
@@ -545,6 +545,10 @@ REGRID_FILTER_DEEP_DEPTH = 0.0  !   [m] default = 0.0
                                 ! REGRID_FILTER_SHALLOW_DEPTH the filter weights adopt a cubic profile.
 
 ! === module MOM_state_initialization ===
+FATAL_INCONSISTENT_RESTART_TIME = False !   [Boolean] default = False
+                                ! If true and a time_in value is provided to MOM_initialize_state, verify that
+                                ! the time read from a restart file is the same as time_in, and issue a fatal
+                                ! error if it is not.  Otherwise, simply set the time to time_in if present.
 INIT_LAYERS_FROM_Z_FILE = False !   [Boolean] default = False
                                 ! If true, initialize the layer thicknesses, temperatures, and salinities from a
                                 ! Z-space file on a latitude-longitude grid.
@@ -903,7 +907,7 @@ INTERNAL_WAVE_SPEED_TOL = 0.001 !   [nondim] default = 0.001
                                 ! The fractional tolerance for finding the wave speeds.
 INTERNAL_WAVE_SPEED_MIN = 0.0   !   [m s-1] default = 0.0
                                 ! A floor in the first mode speed below which 0 used instead.
-INTERNAL_WAVE_SPEED_BETTER_EST = False !   [Boolean] default = False
+INTERNAL_WAVE_SPEED_BETTER_EST = True !   [Boolean] default = True
                                 ! If true, use a more robust estimate of the first mode wave speed as the
                                 ! starting point for iterations.
 USE_QG_LEITH_GM = False         !   [Boolean] default = False
@@ -946,7 +950,7 @@ DRAG_BG_VEL = 0.001             !   [m s-1] default = 0.0
 BBL_USE_EOS = True              !   [Boolean] default = True
                                 ! If true, use the equation of state in determining the properties of the bottom
                                 ! boundary layer.  Otherwise use the layer target potential densities.  The
-                                ! default of this is determined by USE_REGRIDDING.
+                                ! default of this parameter is the value of USE_EOS.
 BBL_THICK_MIN = 0.1             !   [m] default = 0.0
                                 ! The minimum bottom boundary layer thickness that can be used with
                                 ! BOTTOMDRAGLAW. This might be Kv/(cdrag*drag_bg_vel) to give Kv as the minimum
@@ -1514,10 +1518,6 @@ USE_LOTW_BBL_DIFFUSIVITY = True !   [Boolean] default = False
 LOTW_BBL_USE_OMEGA = True       !   [Boolean] default = True
                                 ! If true, use the maximum of Omega and N for the TKE to diffusion calculation.
                                 ! Otherwise, N is N.
-SIMPLE_TKE_TO_KD = True         !   [Boolean] default = False
-                                ! If true, uses a simple estimate of Kd/TKE that will work for arbitrary
-                                ! vertical coordinates. If false, calculates Kd/TKE and bounds based on exact
-                                ! energetics for an isopycnal layer-formulation.
 
 ! === module MOM_bkgnd_mixing ===
 ! Adding static vertical background mixing coefficients
@@ -1716,7 +1716,7 @@ TKE_DECAY = 2.5                 !   [nondim] default = 2.5
 EPBL_MSTAR_SCHEME = "CONSTANT"  ! default = "CONSTANT"
                                 ! EPBL_MSTAR_SCHEME selects the method for setting mstar.  Valid values are:
                                 !    CONSTANT   - Use a fixed mstar given by MSTAR
-                                !    OM4        - Use L_Ekman/L_Obukhov in the sabilizing limit, as in OM4
+                                !    OM4        - Use L_Ekman/L_Obukhov in the stabilizing limit, as in OM4
                                 !    REICHL_H18 - Use the scheme documented in Reichl & Hallberg, 2018.
 MSTAR = 1.2                     !   [nondim] default = 1.2
                                 ! The ratio of the friction velocity cubed to the TKE input to the mixed layer.
@@ -1741,7 +1741,7 @@ MLD_ITERATION_GUESS = False     !   [Boolean] default = False
 EPBL_MLD_TOLERANCE = 1.0        !   [meter] default = 1.0
                                 ! The tolerance for the iteratively determined mixed layer depth.  This is only
                                 ! used with USE_MLD_ITERATION.
-EPBL_MLD_BISECTION = True       !   [Boolean] default = True
+EPBL_MLD_BISECTION = False      !   [Boolean] default = False
                                 ! If true, use bisection with the iterative determination of the self-consistent
                                 ! mixed layer depth.  Otherwise use the false position after a maximum and
                                 ! minimum bound have been evaluated and the returned value or bisection before
