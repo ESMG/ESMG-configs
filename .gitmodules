@@ -33,7 +33,10 @@
 	url = git@github.com:ESMG/Arctic5.git
 [submodule "Arctic6"]
 	path = Arctic6
-	url = ./Arctic6
+	url = git@github.com:ESMG/Arctic6.git
 [submodule "src/FMS2"]
 	path = src/FMS2
 	url = https://github.com/NOAA-GFDL/FMS
+[submodule "src/Icepack"]
+	path = src/Icepack
+	url = https://github.com/CICE-Consortium/Icepack
