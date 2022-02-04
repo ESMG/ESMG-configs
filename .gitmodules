@@ -5,7 +5,7 @@
 	path = src/SIS2
 	url = git@github.com:ESMG/SIS2
 [submodule "src/FMS1"]
-        path = src/FMS1
+	path = src/FMS1
 	url = https://github.com/NOAA-GFDL/FMS
 [submodule "src/mkmf"]
 	path = src/mkmf
