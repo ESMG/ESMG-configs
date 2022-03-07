@@ -604,6 +604,15 @@ REMAPPING_SCHEME = "PPM_H4"     ! default = "PLM"
                                 ! PPM_IH4     (3rd-order accurate)
                                 ! PQM_IH4IH3  (4th-order accurate)
                                 ! PQM_IH6IH5  (5th-order accurate)
+VELOCITY_REMAPPING_SCHEME = "PPM_H4" ! default = "PPM_H4"
+                                ! This sets the reconstruction scheme used for vertical remapping of velocities.
+                                ! By default it is the same as REMAPPING_SCHEME. It can be one of the following
+                                ! schemes: PCM         (1st-order accurate)
+                                ! PLM         (2nd-order accurate)
+                                ! PPM_H4      (3rd-order accurate)
+                                ! PPM_IH4     (3rd-order accurate)
+                                ! PQM_IH4IH3  (4th-order accurate)
+                                ! PQM_IH6IH5  (5th-order accurate)
 FATAL_CHECK_RECONSTRUCTIONS = False !   [Boolean] default = False
                                 ! If true, cell-by-cell reconstructions are checked for consistency and if
                                 ! non-monotonicity or an inconsistency is detected then a FATAL error is issued.
@@ -616,6 +625,10 @@ REMAP_BOUND_INTERMEDIATE_VALUES = False !   [Boolean] default = False
 REMAP_BOUNDARY_EXTRAP = False   !   [Boolean] default = False
                                 ! If true, values at the interfaces of boundary cells are extrapolated instead
                                 ! of piecewise constant
+PARTIAL_CELL_VELOCITY_REMAP = False !   [Boolean] default = False
+                                ! If true, use partial cell thicknesses at velocity points that are masked out
+                                ! where they extend below the shallower of the neighboring bathymetry for
+                                ! remapping velocity.
 REMAP_AFTER_INITIALIZATION = True !   [Boolean] default = True
                                 ! If true, applies regridding and remapping immediately after initialization so
                                 ! that the state is ALE consistent. This is a legacy step and should not be
@@ -632,6 +645,10 @@ REGRID_FILTER_DEEP_DEPTH = 0.0  !   [m] default = 0.0
                                 ! The depth below which full time-filtering is applied with time-scale
                                 ! REGRID_TIME_SCALE. Between depths REGRID_FILTER_SHALLOW_DEPTH and
                                 ! REGRID_FILTER_SHALLOW_DEPTH the filter weights adopt a cubic profile.
+REMAP_VEL_MASK_BBL_THICK = -0.001 !   [m] default = -0.001
+                                ! A thickness of a bottom boundary layer below which velocities in thin layers
+                                ! are zeroed out after remapping, following practice with Hybgen remapping, or a
+                                ! negative value to avoid such filtering altogether.
 
 ! === module MOM_state_initialization ===
 FATAL_INCONSISTENT_RESTART_TIME = False !   [Boolean] default = False
@@ -1160,9 +1177,6 @@ SMAGORINSKY_KH = False          !   [Boolean] default = False
                                 ! If true, use a Smagorinsky nonlinear eddy viscosity.
 LEITH_KH = False                !   [Boolean] default = False
                                 ! If true, use a Leith nonlinear eddy viscosity.
-MODIFIED_LEITH = False          !   [Boolean] default = False
-                                ! If true, add a term to Leith viscosity which is proportional to the gradient
-                                ! of divergence.
 BOUND_KH = True                 !   [Boolean] default = True
                                 ! If true, the Laplacian coefficient is locally limited to be stable.
 BETTER_BOUND_KH = True          !   [Boolean] default = True
