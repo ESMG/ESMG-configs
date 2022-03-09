@@ -37,3 +37,6 @@
 [submodule "src/FMS2"]
 	path = src/FMS2
 	url = https://github.com/NOAA-GFDL/FMS
+[submodule "src/Icepack"]
+	path = src/Icepack
+	url = https://github.com/CICE-Consortium/Icepack
