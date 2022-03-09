@@ -4,9 +4,6 @@
 [submodule "src/SIS2"]
 	path = src/SIS2
 	url = git@github.com:ESMG/SIS2
-[submodule "src/FMS1"]
-        path = src/FMS1
-	url = git@github.com:ESMG/FMS.git
 [submodule "src/mkmf"]
 	path = src/mkmf
 	url = git@github.com:ESMG/mkmf
