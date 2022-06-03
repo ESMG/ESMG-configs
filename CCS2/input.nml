@@ -113,7 +113,7 @@
 
  &surface_flux_nml
             ncar_ocean_flux = .true.
-	    raoult_sat_vap = .true.
+            raoult_sat_vap = .true.
 /
 
  &topography_nml
