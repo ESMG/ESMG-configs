@@ -93,6 +93,11 @@ DO_GEOTHERMAL = False           !   [Boolean] default = False
 BOUND_SALINITY = False          !   [Boolean] default = False
                                 ! If true, limit salinity to being positive. (The sea-ice model may ask for more
                                 ! salt than is available and drive the salinity negative otherwise.)
+SALINITY_UNDERFLOW = 0.0        !   [PPT] default = 0.0
+                                ! A tiny value of salinity below which the it is set to 0.  For reference, one
+                                ! molecule of salt per square meter of ocean is of order 1e-29 ppt.
+TEMPERATURE_UNDERFLOW = 0.0     !   [degC] default = 0.0
+                                ! A tiny magnitude of temperatures below which they are set to 0.
 C_P = 3925.0                    !   [J kg-1 K-1] default = 3991.86795711963
                                 ! The heat capacity of sea water, approximated as a constant. This is only used
                                 ! if ENABLE_THERMODYNAMICS is true. The default value is from the TEOS-10
@@ -366,9 +371,3 @@ OBC_SEGMENT_032 = "J=42,I=24:16,FLATHER, OBLIQUE, OBLIQUE_TAN" !
 OBC_SEGMENT_033 = "I=16,J=42:41,FLATHER, OBLIQUE, OBLIQUE_TAN" !
                                 ! Documentation needs to be dynamic?????
 OBC_SEGMENT_034 = "J=41,I=16:8,FLATHER, OBLIQUE, OBLIQUE_TAN" !
-                                ! Documentation needs to be dynamic?????
-OBC_SEGMENT_035 = "I=8,J=41:40,FLATHER, OBLIQUE, OBLIQUE_TAN" !
-                                ! Documentation needs to be dynamic?????
-OBC_SEGMENT_036 = "J=40,I=8:0,FLATHER, OBLIQUE, OBLIQUE_TAN" !
-                                ! Documentation needs to be dynamic?????
-OBC_RADIATION_MAX = 1.0         !   [nondim] default = 1.0
