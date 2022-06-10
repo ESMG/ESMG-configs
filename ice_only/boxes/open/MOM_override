@@ -1,0 +1,7 @@
+! Blank file in which we can put "overrides" for parameters
+!DEBUG = True
+USE_LEGACY_DIABATIC_DRIVER = False
+#override REENTRANT_X = False             !   [Boolean] default = True
+#override REENTRANT_Y = False             !   [Boolean] default = False
+#override NIGLOBAL = 10                   !
+#override NJGLOBAL = 10                   !

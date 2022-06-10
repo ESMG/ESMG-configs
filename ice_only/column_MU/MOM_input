@@ -1,10 +1,13 @@
 ! This file was written by the model and records the non-default parameters used at run-time.
 
 ! === module MOM ===
-DO_DYNAMICS = False             !   [Boolean] default = True
-                                ! If False, skips the dynamics calls that update u & v, as well as the gravity
-                                ! wave adjustment to h. This may be a fragile feature, but can be useful during
-                                ! development
+DO_DYNAMICS = False
+ENABLE_THERMODYNAMICS = True    !   [Boolean] default = True
+                                ! If true, Temperature and salinity are used as state variables.
+ADIABATIC = False               !   [Boolean] default = False
+                                ! There are no diapycnal mass fluxes if ADIABATIC is true. This assumes that KD
+                                ! = KDML = 0.0 and that there is no buoyancy forcing, but makes the model faster
+                                ! by eliminating subroutine calls.
 DT = 300.0                      !   [s]
                                 ! The (baroclinic) dynamics time step.  The time-step that is actually used will
                                 ! be an integer fraction of the forcing time-step (DT_FORCING in ocean-only mode
@@ -21,6 +24,8 @@ DTBT_RESET_PERIOD = -1.0        !   [s] default = 3600.0
                                 ! is set by DT_THERM.  This is only used if SPLIT is true.
 
 ! === module MOM_domains ===
+REENTRANT_X = True              !   [Boolean] default = True
+                                ! If true, the domain is zonally reentrant.
 REENTRANT_Y = True              !   [Boolean] default = False
                                 ! If true, the domain is meridionally reentrant.
 NIGLOBAL = 4                    !
@@ -80,18 +85,73 @@ TOPO_CONFIG = "flat"            !
                                 !     USER - call a user modified routine.
 MINIMUM_DEPTH = 1.0             !   [m] default = 0.0
                                 ! The minimum depth of the ocean.
-MAXIMUM_DEPTH = 35.0            !   [m]
+MAXIMUM_DEPTH = 1000.0          !   [m]
                                 ! The maximum depth of the ocean.
+! === module MOM_state_initialization ===
+THICKNESS_CONFIG = "uniform"    ! default = "uniform"
+                                ! A string that determines how the initial layer thicknesses are specified for a
+                                ! new run:
+                                !     file - read interface heights from the file specified
+                                !     thickness_file - read thicknesses from the file specified
+                                !       by (THICKNESS_FILE).
+                                !     coord - determined by ALE coordinate.
+                                !     uniform - uniform thickness layers evenly distributed
+                                !       between the surface and MAXIMUM_DEPTH.
+                                !     list - read a list of positive interface depths.
+                                !     DOME - use a slope and channel configuration for the
+                                !       DOME sill-overflow test case.
+                                !     ISOMIP - use a configuration for the
+                                !       ISOMIP test case.
+                                !     benchmark - use the benchmark test case thicknesses.
+                                !     Neverworld - use the Neverworld test case thicknesses.
+                                !     search - search a density profile for the interface
+                                !       densities. This is not yet implemented.
+                                !     circle_obcs - the circle_obcs test case is used.
+                                !     DOME2D - 2D version of DOME initialization.
+                                !     adjustment2d - 2D lock exchange thickness ICs.
+                                !     sloshing - sloshing gravity thickness ICs.
+                                !     seamount - no motion test with seamount ICs.
+                                !     dumbbell - sloshing channel ICs.
+                                !     soliton - Equatorial Rossby soliton.
+                                !     rossby_front - a mixed layer front in thermal wind balance.
+                                !     USER - call a user modified routine.
+TS_CONFIG = "linear"            !
+                                ! A string that determines how the initial tempertures and salinities are
+                                ! specified for a new run:
+                                !     file - read velocities from the file specified
+                                !       by (TS_FILE).
+                                !     fit - find the temperatures that are consistent with
+                                !       the layer densities and salinity S_REF.
+                                !     TS_profile - use temperature and salinity profiles
+                                !       (read from TS_FILE) to set layer densities.
+                                !     benchmark - use the benchmark test case T & S.
+                                !     linear - linear in logical layer space.
+                                !     DOME2D - 2D DOME initialization.
+                                !     ISOMIP - ISOMIP initialization.
+                                !     adjustment2d - 2d lock exchange T/S ICs.
+                                !     sloshing - sloshing mode T/S ICs.
+                                !     seamount - no motion test with seamount ICs.
+                                !     dumbbell - sloshing channel ICs.
+                                !     rossby_front - a mixed layer front in thermal wind balance.
+                                !     SCM_CVMix_tests - used in the SCM CVMix tests.
+                                !     USER - call a user modified routine.
+T_TOP = -1.8
+T_RANGE = -1.8
+S_TOP = 30.0
+S_RANGE = -4.0
+
 ROTATION = "betaplane"          ! default = "2omegasinlat"
                                 ! This specifies how the Coriolis parameter is specified:
                                 !     2omegasinlat - Use twice the planetary rotation rate
                                 !       times the sine of latitude.
                                 !     betaplane - Use a beta-plane or f-plane.
                                 !     USER - call a user modified routine.
+F_0 = 0.0                       !   [s-1] default = 0.0
+                                ! The reference value of the Coriolis parameter with the betaplane option.
 
 ! === module MOM_verticalGrid ===
 ! Parameters providing information about the vertical grid.
-NK = 6                          !   [nondim]
+NK = 10                         !   [nondim]
                                 ! The number of model layers.
 
 ! === module MOM_EOS ===
@@ -159,7 +219,7 @@ KV = 1.0E-04                    !   [m2 s-1]
 ! === module MOM_continuity ===
 
 ! === module MOM_continuity_PPM ===
-ETA_TOLERANCE = 1.0E-06         !   [m] default = 3.0E-10
+ETA_TOLERANCE = 1.0E-06         !   [m] default = 5.0E-11
                                 ! The tolerance for the differences between the barotropic and baroclinic
                                 ! estimates of the sea surface height due to the fluxes through each face.  The
                                 ! total tolerance for SSH is 4 times this value.  The default is

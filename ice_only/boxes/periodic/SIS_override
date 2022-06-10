@@ -1,0 +1,9 @@
+#override CGRID_ICE_DYNAMICS = True
+!#override ICE_STATS_INTERVAL = 10.
+#override DO_ICEBERGS = False
+#override ICE_OCEAN_STRESS_STAGGER = "C"
+#override CONTINUITY_H_NEGLECT = 1e-28 kg m-2
+#override CONTINUITY_FRAC_NEGLECT=1e-20
+#override ICE_COVER_DISCARD = 1e-30
+#override ADCROFT_ADVECTIVE_CFL = True
+#override MERGED_CONTINUITY = True

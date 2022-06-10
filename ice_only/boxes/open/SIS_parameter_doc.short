@@ -1,24 +1,16 @@
 ! This file was written by the model and records the non-default parameters used at run-time.
 
 ! === module ice_model ===
-DO_DYNAMICS = False             !   [Boolean] default = True
-                                ! If False, skips the dynamics calls that update u & v.
 
 ! === module MOM_domains ===
-REENTRANT_Y = True              !   [Boolean] default = False
-                                ! If true, the domain is meridionally reentrant.
-NIGLOBAL = 4                    !
+REENTRANT_X = False             !   [Boolean] default = True
+                                ! If true, the domain is zonally reentrant.
+NIGLOBAL = 10                   !
                                 ! The total number of thickness grid points in the x-direction in the physical
                                 ! domain. With STATIC_MEMORY_ this is set in SIS2_memory.h at compile time.
-NJGLOBAL = 4                    !
+NJGLOBAL = 10                   !
                                 ! The total number of thickness grid points in the y-direction in the physical
                                 ! domain. With STATIC_MEMORY_ this is set in SIS2_memory.h at compile time.
-NIHALO = 3                      ! default = 4
-                                ! The number of halo points on each side in the x-direction.  How this is set
-                                ! varies with the calling component and static or dynamic memory configuration.
-NJHALO = 3                      ! default = 4
-                                ! The number of halo points on each side in the y-direction.  How this is set
-                                ! varies with the calling component and static or dynamic memory configuration.
 
 ! === module SIS_initialize_fixed ===
 INPUTDIR = "INPUT"              ! default = "."
@@ -51,6 +43,23 @@ MINIMUM_DEPTH = 1.0             !   [m] default = 0.0
 MAXIMUM_DEPTH = 30.0            !   [m]
                                 ! The maximum depth of the ocean.
 
+! === module SIS_open_boundary ===
+! Controls where open boundaries are located, what kind of boundary condition to impose, and what data to apply,
+! if any.
+OBC_NUMBER_OF_SEGMENTS = 4      ! default = 0
+                                ! The number of open boundary segments.
+OBC_ZERO_BIHARMONIC = True      !   [Boolean] default = False
+                                ! If true, zeros the Laplacian of flow on open boundaries in the biharmonic
+                                ! viscosity term.
+OBC_SEGMENT_001 = "I=N,J=0:N,FLATHER" !
+                                ! Documentation needs to be dynamic?????
+OBC_SEGMENT_002 = "I=0,J=N:0,FLATHER" !
+                                ! Documentation needs to be dynamic?????
+OBC_SEGMENT_003 = "J=N,I=N:0,FLATHER" !
+                                ! Documentation needs to be dynamic?????
+OBC_SEGMENT_004 = "J=0,I=0:N,FLATHER" !
+                                ! Documentation needs to be dynamic?????
+
 ! === module hor_grid ===
 ! Parameters providing information about the lateral grid.
 
@@ -60,6 +69,26 @@ MAXIMUM_DEPTH = 30.0            !   [m]
 ! === module SIS_tracer_registry ===
 
 ! === module SIS_tracer_flow_control ===
+CONCENTRATION_INIT_CONFIG = "latitudes" ! default = "data_override"
+                                ! A string that determines how the initial total sea ice concentration is
+                                ! initialized for a new run:
+                                !     file - read sea ice concentrations from a specified file
+                                !     data_override - use the data_override capability or zero everywhere
+                                !     zero - there is no sea ice anywhere
+                                !     latitudes - initial sea ice concentration is a function of latitude.
+ICE_THICKNESS_INIT_CONFIG = "uniform" ! default = "data_override"
+                                ! A string that determines how the initial sea ice thickness is initialized for
+                                ! a new run:
+                                !     file - read sea ice thickesses from a specified file
+                                !     data_override - use the data_override capability or zero everywhere
+                                !     uniform - sea ice has uniform thickness where the concentration is
+                                !       nonzero.
+ARCTIC_ICE_EDGE_IC = -2.0       !   [degrees of latitude] default = 91.0
+                                ! The southern latitude of Arctic ice in an initial condition.
+ICE_INIT_MASS = 900.0           !   [kg m-2] default = 0.0
+                                ! A uniform initial sea ice mass per unit area where there is sea ice.
+ICE_SALINITY_IC = 4.0           !   [g kg-1] default = 0.0
+                                ! The uniform sea ice salinity used for the initial condition
 
 ! === module SIS_slow_thermo ===
 ! This module calculates the slow evolution of the ice mass, heat, and salt budgets.

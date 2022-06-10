@@ -85,6 +85,11 @@ DO_GEOTHERMAL = False           !   [Boolean] default = False
 BOUND_SALINITY = False          !   [Boolean] default = False
                                 ! If true, limit salinity to being positive. (The sea-ice model may ask for more
                                 ! salt than is available and drive the salinity negative otherwise.)
+SALINITY_UNDERFLOW = 0.0        !   [PPT] default = 0.0
+                                ! A tiny value of salinity below which the it is set to 0.  For reference, one
+                                ! molecule of salt per square meter of ocean is of order 1e-29 ppt.
+TEMPERATURE_UNDERFLOW = 0.0     !   [degC] default = 0.0
+                                ! A tiny magnitude of temperatures below which they are set to 0.
 C_P = 3991.86795711963          !   [J kg-1 K-1] default = 3991.86795711963
                                 ! The heat capacity of sea water, approximated as a constant. This is only used
                                 ! if ENABLE_THERMODYNAMICS is true. The default value is from the TEOS-10
@@ -140,23 +145,23 @@ HOMOGENIZE_FORCINGS = False     !   [Boolean] default = False
                                 ! If True, homogenize the forces and fluxes.
 
 ! === module MOM_domains ===
-REENTRANT_X = True              !   [Boolean] default = True
+REENTRANT_X = False             !   [Boolean] default = True
                                 ! If true, the domain is zonally reentrant.
-REENTRANT_Y = True              !   [Boolean] default = False
+REENTRANT_Y = False             !   [Boolean] default = False
                                 ! If true, the domain is meridionally reentrant.
 TRIPOLAR_N = False              !   [Boolean] default = False
                                 ! Use tripolar connectivity at the northern edge of the domain.  With
                                 ! TRIPOLAR_N, NIGLOBAL must be even.
-NIGLOBAL = 4                    !
+NIGLOBAL = 10                   !
                                 ! The total number of thickness grid points in the x-direction in the physical
                                 ! domain. With STATIC_MEMORY_ this is set in MOM_memory.h at compile time.
-NJGLOBAL = 4                    !
+NJGLOBAL = 10                   !
                                 ! The total number of thickness grid points in the y-direction in the physical
                                 ! domain. With STATIC_MEMORY_ this is set in MOM_memory.h at compile time.
-NIHALO = 3                      ! default = 4
+NIHALO = 4                      ! default = 4
                                 ! The number of halo points on each side in the x-direction.  How this is set
                                 ! varies with the calling component and static or dynamic memory configuration.
-NJHALO = 3                      ! default = 4
+NJHALO = 4                      ! default = 4
                                 ! The number of halo points on each side in the y-direction.  How this is set
                                 ! varies with the calling component and static or dynamic memory configuration.
 
@@ -186,6 +191,8 @@ GRID_FILE = "ocean_hgrid.nc"    !
 USE_TRIPOLAR_GEOLONB_BUG = False !   [Boolean] default = False
                                 ! If true, use older code that incorrectly sets the longitude in some points
                                 ! along the tripolar fold to be off by 360 degrees.
+RAD_EARTH = 6.378E+06           !   [m] default = 6.378E+06
+                                ! The radius of the Earth.
 TOPO_CONFIG = "flat"            !
                                 ! This specifies how bathymetry is specified:
                                 !     file - read bathymetric information from the file
@@ -215,7 +222,7 @@ TOPO_CONFIG = "flat"            !
                                 !     USER - call a user modified routine.
 MINIMUM_DEPTH = 1.0             !   [m] default = 0.0
                                 ! The minimum depth of the ocean.
-MAXIMUM_DEPTH = 35.0            !   [m]
+MAXIMUM_DEPTH = 50.0            !   [m]
                                 ! The maximum depth of the ocean.
 
 ! === module MOM_open_boundary ===
@@ -247,8 +254,6 @@ F_0 = 0.0                       !   [s-1] default = 0.0
                                 ! The reference value of the Coriolis parameter with the betaplane option.
 BETA = 0.0                      !   [m-1 s-1] default = 0.0
                                 ! The northward gradient of the Coriolis parameter with the betaplane option.
-RAD_EARTH = 6.378E+06           !   [m] default = 6.378E+06
-                                ! The radius of the Earth.
 BETA_LAT_REF = 0.0              !   [degrees] default = 0.0
                                 ! The reference latitude (origin) of the beta-plane
 GRID_ROTATION_ANGLE_BUGS = False !   [Boolean] default = False
@@ -375,6 +380,86 @@ FATAL_INCONSISTENT_RESTART_TIME = False !   [Boolean] default = False
                                 ! If true and a time_in value is provided to MOM_initialize_state, verify that
                                 ! the time read from a restart file is the same as time_in, and issue a fatal
                                 ! error if it is not.  Otherwise, simply set the time to time_in if present.
+INIT_LAYERS_FROM_Z_FILE = False !   [Boolean] default = False
+                                ! If true, initialize the layer thicknesses, temperatures, and salinities from a
+                                ! Z-space file on a latitude-longitude grid.
+THICKNESS_CONFIG = "uniform"    ! default = "uniform"
+                                ! A string that determines how the initial layer thicknesses are specified for a
+                                ! new run:
+                                !     file - read interface heights from the file specified
+                                !     thickness_file - read thicknesses from the file specified
+                                !       by (THICKNESS_FILE).
+                                !     coord - determined by ALE coordinate.
+                                !     uniform - uniform thickness layers evenly distributed
+                                !       between the surface and MAXIMUM_DEPTH.
+                                !     list - read a list of positive interface depths.
+                                !     DOME - use a slope and channel configuration for the
+                                !       DOME sill-overflow test case.
+                                !     ISOMIP - use a configuration for the
+                                !       ISOMIP test case.
+                                !     benchmark - use the benchmark test case thicknesses.
+                                !     Neverworld - use the Neverworld test case thicknesses.
+                                !     search - search a density profile for the interface
+                                !       densities. This is not yet implemented.
+                                !     circle_obcs - the circle_obcs test case is used.
+                                !     DOME2D - 2D version of DOME initialization.
+                                !     adjustment2d - 2D lock exchange thickness ICs.
+                                !     sloshing - sloshing gravity thickness ICs.
+                                !     seamount - no motion test with seamount ICs.
+                                !     dumbbell - sloshing channel ICs.
+                                !     soliton - Equatorial Rossby soliton.
+                                !     rossby_front - a mixed layer front in thermal wind balance.
+                                !     USER - call a user modified routine.
+TS_CONFIG = "linear"            !
+                                ! A string that determines how the initial tempertures and salinities are
+                                ! specified for a new run:
+                                !     file - read velocities from the file specified
+                                !       by (TS_FILE).
+                                !     fit - find the temperatures that are consistent with
+                                !       the layer densities and salinity S_REF.
+                                !     TS_profile - use temperature and salinity profiles
+                                !       (read from TS_FILE) to set layer densities.
+                                !     benchmark - use the benchmark test case T & S.
+                                !     linear - linear in logical layer space.
+                                !     DOME2D - 2D DOME initialization.
+                                !     ISOMIP - ISOMIP initialization.
+                                !     adjustment2d - 2d lock exchange T/S ICs.
+                                !     sloshing - sloshing mode T/S ICs.
+                                !     seamount - no motion test with seamount ICs.
+                                !     dumbbell - sloshing channel ICs.
+                                !     rossby_front - a mixed layer front in thermal wind balance.
+                                !     SCM_CVMix_tests - used in the SCM CVMix tests.
+                                !     USER - call a user modified routine.
+T_TOP = -1.8                    !   [degC]
+                                ! Initial temperature of the top surface.
+T_RANGE = 0.0                   !   [degC]
+                                ! Initial temperature difference (top-bottom).
+S_TOP = 30.0                    !   [PSU]
+                                ! Initial salinity of the top surface.
+S_RANGE = -2.0                  !   [PSU]
+                                ! Initial salinity difference (top-bottom).
+DEPRESS_INITIAL_SURFACE = False !   [Boolean] default = False
+                                ! If true,  depress the initial surface to avoid huge tsunamis when a large
+                                ! surface pressure is applied.
+TRIM_IC_FOR_P_SURF = False      !   [Boolean] default = False
+                                ! If true, cuts way the top of the column for initial conditions at the depth
+                                ! where the hydrostatic pressure matches the imposed surface pressure which is
+                                ! read from file.
+VELOCITY_CONFIG = "zero"        ! default = "zero"
+                                ! A string that determines how the initial velocities are specified for a new
+                                ! run:
+                                !     file - read velocities from the file specified
+                                !       by (VELOCITY_FILE).
+                                !     zero - the fluid is initially at rest.
+                                !     uniform - the flow is uniform (determined by
+                                !       parameters INITIAL_U_CONST and INITIAL_V_CONST).
+                                !     rossby_front - a mixed layer front in thermal wind balance.
+                                !     soliton - Equatorial Rossby soliton.
+                                !     USER - call a user modified routine.
+CONVERT_THICKNESS_UNITS = False !   [Boolean] default = False
+                                ! If true,  convert the thickness initial conditions from units of m to kg m-2
+                                ! or vice versa, depending on whether BOUSSINESQ is defined. This does not apply
+                                ! if a restart file is read.
 ODA_INCUPD = False              !   [Boolean] default = False
                                 ! If true, oda incremental updates will be applied everywhere in the domain.
 SPONGE = False                  !   [Boolean] default = False
@@ -907,7 +992,7 @@ DT_BT_FILTER = -0.25            !   [sec or nondim] default = -0.25
                                 ! taken to be longer than 2*dt.  Set this to 0 to apply no filtering.
 G_BT_EXTRA = 0.0                !   [nondim] default = 0.0
                                 ! A nondimensional factor by which gtot is enhanced.
-SSH_EXTRA = 1.75                !   [m] default = 1.75
+SSH_EXTRA = 2.5                 !   [m] default = 2.5
                                 ! An estimate of how much higher SSH might get, for use in calculating the safe
                                 ! external wave speed. The default is the minimum of 10 m or 5% of
                                 ! MAXIMUM_DEPTH.
