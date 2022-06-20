@@ -19,8 +19,8 @@
 /
 
  &coupler_nml
-            months = 9,
-            days   = 1,
+            months = 1,
+            days   = 0,
             hours  = 0,
             current_date = 1000,1,1,0,0,0,
             calendar = 'thirty_day',
