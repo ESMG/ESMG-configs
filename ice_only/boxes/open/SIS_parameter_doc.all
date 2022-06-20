@@ -344,13 +344,13 @@ ICE_SALINITY_IC = 4.0           !   [g kg-1] default = 0.0
                                 ! The uniform sea ice salinity used for the initial condition
 ICE_TEMPERATURE_IC = -4.0       !   [degC] default = -4.0
                                 ! The uniform sea ice and snow temperature used for the initial condition
-OBC_SEGMENT_001_DATA = "UI=file:../../periodic/west.nc(ui),STR_S=file:../../periodic/west.nc(str_s)" !
+OBC_SEGMENT_001_DATA = "UI=file:../../periodic/west.nc(ui),VI=file:../../periodic/west.nc(vi),STR_S=file:../../periodic/west.nc(str_s)" !
                                 ! OBC segment docs
-OBC_SEGMENT_002_DATA = "UI=file:../../periodic/east.nc(ui),STR_S=file:../../periodic/east.nc(str_s)" !
+OBC_SEGMENT_002_DATA = "UI=file:../../periodic/east.nc(ui),VI=file:../../periodic/east.nc(vi),STR_S=file:../../periodic/east.nc(str_s)" !
                                 ! OBC segment docs
-OBC_SEGMENT_003_DATA = "VI=file:../../periodic/north.nc(vi),STR_S=file:../../periodic/north.nc(str_s)" !
+OBC_SEGMENT_003_DATA = "UI=file:../../periodic/north.nc(ui),VI=file:../../periodic/north.nc(vi),STR_S=file:../../periodic/north.nc(str_s)" !
                                 ! OBC segment docs
-OBC_SEGMENT_004_DATA = "VI=file:../../periodic/south.nc(vi),STR_S=file:../../periodic/south.nc(str_s)" !
+OBC_SEGMENT_004_DATA = "UI=file:../../periodic/south.nc(ui),VI=file:../../periodic/south.nc(vi),STR_S=file:../../periodic/south.nc(str_s)" !
                                 ! OBC segment docs
 
 ! === module SIS_slow_thermo ===
