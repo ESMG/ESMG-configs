@@ -1,3 +1,0 @@
-! Blank file in which we can put "overrides" for parameters
-!DEBUG = True
-USE_LEGACY_DIABATIC_DRIVER = False
