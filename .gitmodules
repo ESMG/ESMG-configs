@@ -40,3 +40,6 @@
 [submodule "src/Icepack"]
 	path = src/Icepack
 	url = https://github.com/CICE-Consortium/Icepack
+[submodule "ice_only"]
+	path = ice_only
+	url = https://github.com/ESMG/ice_only
