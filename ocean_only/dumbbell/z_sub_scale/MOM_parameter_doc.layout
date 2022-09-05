@@ -57,11 +57,3 @@ NJBLOCK = 1                     ! default = 1
 
 ! === module MOM_barotropic ===
 BT_USE_WIDE_HALOS = True        !   [Boolean] default = True
-                                ! If true, use wide halos and march in during the barotropic time stepping for
-                                ! efficiency.
-BTHALO = 0                      ! default = 0
-                                ! The minimum halo size for the barotropic solver.
-!BT x-halo = 0                  !
-                                ! The barotropic x-halo size that is actually used.
-!BT y-halo = 0                  !
-                                ! The barotropic y-halo size that is actually used.

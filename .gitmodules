@@ -43,3 +43,6 @@
 [submodule "ice_only"]
 	path = ice_only
 	url = https://github.com/ESMG/ice_only
+[submodule "src/ocean_BGC"]
+	path = src/ocean_BGC
+	url = https://github.com/NOAA-GFDL/ocean_BGC.git
