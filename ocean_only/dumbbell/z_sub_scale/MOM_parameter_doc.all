@@ -20,9 +20,9 @@ USE_CONTEMP_ABSSAL = False      !   [Boolean] default = False
                                 ! practical salinity before exchanging them with the coupler and/or reporting
                                 ! T&S diagnostics.
 ADIABATIC = False               !   [Boolean] default = False
-                                ! There are no diapycnal mass fluxes if ADIABATIC is true. This assumes that KD
-                                ! = KDML = 0.0 and that there is no buoyancy forcing, but makes the model faster
-                                ! by eliminating subroutine calls.
+                                ! There are no diapycnal mass fluxes if ADIABATIC is true.  This assumes that KD
+                                ! = 0.0 and that there is no buoyancy forcing, but makes the model faster by
+                                ! eliminating subroutine calls.
 DO_DYNAMICS = True              !   [Boolean] default = True
                                 ! If False, skips the dynamics calls that update u & v, as well as the gravity
                                 ! wave adjustment to h. This may be a fragile feature, but can be useful during
@@ -41,10 +41,10 @@ BULKMIXEDLAYER = False          !   [Boolean] default = False
                                 ! least NKML+NKBL+1 layers if BULKMIXEDLAYER is true. BULKMIXEDLAYER can not be
                                 ! used with USE_REGRIDDING. The default is influenced by ENABLE_THERMODYNAMICS.
 THICKNESSDIFFUSE = False        !   [Boolean] default = False
-                                ! If true, interface heights are diffused with a coefficient of KHTH.
-THICKNESSDIFFUSE_FIRST = False  !   [Boolean] default = False
-                                ! If true, do thickness diffusion before dynamics. This is only used if
-                                ! THICKNESSDIFFUSE is true.
+                                ! If true, isopycnal surfaces are diffused with a Laplacian coefficient of KHTH.
+APPLY_INTERFACE_FILTER = False  !   [Boolean] default = False
+                                ! If true, model interface heights are subjected to a grid-scale dependent
+                                ! spatial smoothing, often with biharmonic filter.
 USE_POROUS_BARRIER = True       !   [Boolean] default = True
                                 ! If true, use porous barrier to constrain the widths and face areas at the
                                 ! edges of the grid cells.
@@ -863,10 +863,10 @@ DYNAMIC_VISCOUS_ML = False      !   [Boolean] default = False
 OMEGA = 7.2921E-05              !   [s-1] default = 7.2921E-05
                                 ! The rotation rate of the earth.
 HBBL = 10.0                     !   [m]
-                                ! The thickness of a bottom boundary layer with a viscosity of KVBBL if
-                                ! BOTTOMDRAGLAW is not defined, or the thickness over which near-bottom
-                                ! velocities are averaged for the drag law if BOTTOMDRAGLAW is defined but
-                                ! LINEAR_DRAG is not.
+                                ! The thickness of a bottom boundary layer with a viscosity increased by
+                                ! KV_EXTRA_BBL if BOTTOMDRAGLAW is not defined, or the thickness over which
+                                ! near-bottom velocities are averaged for the drag law if BOTTOMDRAGLAW is
+                                ! defined but LINEAR_DRAG is not.
 CDRAG = 0.002                   !   [nondim] default = 0.003
                                 ! CDRAG is the drag coefficient relating the magnitude of the velocity field to
                                 ! the bottom stress. CDRAG is only used if BOTTOMDRAGLAW is defined.
@@ -972,12 +972,12 @@ PORBAR_MASKING_DEPTH = 0.0      !   [m] default = 0.0
                                 ! number, then porous barrier is not applied at that location.
                                 ! PORBAR_MASKING_DEPTH is assumed to be positive below the sea surface.
 PORBAR_ETA_INTERP = "MAX"       ! default = "MAX"
-                                ! A string describing the method that decicdes how the interface heights at the
+                                ! A string describing the method that decides how the interface heights at the
                                 ! velocity points are calculated. Valid values are:
                                 !    MAX (the default) - maximum of the adjacent cells
                                 !    MIN - minimum of the adjacent cells
                                 !    ARITHMETIC - arithmetic mean of the adjacent cells
-                                !    HARMOINIC - harmonic mean of the adjacent cells
+                                !    HARMONIC - harmonic mean of the adjacent cells
 
 ! === module MOM_dynamics_split_RK2 ===
 TIDES = False                   !   [Boolean] default = False
@@ -1184,7 +1184,20 @@ VERT_FRICTION_ANSWER_DATE = 99991231 ! default = 99991231
                                 ! latter takes precedence.
 DIRECT_STRESS = True            !   [Boolean] default = False
                                 ! If true, the wind stress is distributed over the topmost HMIX_STRESS of fluid
-                                ! (like in HYCOM), and KVML may be set to a very small value.
+                                ! (like in HYCOM), and an added mixed layer viscosity or a physically based
+                                ! boundary layer turbulence parameterization is not needed for stability.
+FIXED_DEPTH_LOTW_ML = False     !   [Boolean] default = False
+                                ! If true, use a Law-of-the-wall prescription for the mixed layer viscosity
+                                ! within a boundary layer that is the lesser of HMIX_FIXED and the total depth
+                                ! of the ocean in a column.
+LOTW_VISCOUS_ML_FLOOR = False   !   [Boolean] default = False
+                                ! If true, use a Law-of-the-wall prescription to set a lower bound on the
+                                ! viscous coupling between layers within the surface boundary layer, based the
+                                ! distance of interfaces from the surface.  This only acts when there are large
+                                ! changes in the thicknesses of successive layers or when the viscosity is set
+                                ! externally and the wind stress has subsequently increased.
+VON_KARMAN_CONST = 0.41         !   [nondim] default = 0.41
+                                ! The value the von Karman constant as used for mixed layer viscosity.
 HARMONIC_VISC = False           !   [Boolean] default = False
                                 ! If true, use the harmonic mean thicknesses for calculating the vertical
                                 ! viscosity.
@@ -1197,9 +1210,12 @@ HMIX_FIXED = 20.0               !   [m]
                                 ! elevated when the bulk mixed layer is not used.
 HMIX_STRESS = 20.0              !   [m] default = 20.0
                                 ! The depth over which the wind stress is applied if DIRECT_STRESS is true.
-KVML = 0.01                     !   [m2 s-1] default = 1.0E-04
-                                ! The kinematic viscosity in the mixed layer.  A typical value is ~1e-2 m2 s-1.
-                                ! KVML is not used if BULKMIXEDLAYER is true.  The default is set by KV.
+KV_ML_INVZ2 = 0.01              !   [m2 s-1] default = 0.0
+                                ! An extra kinematic viscosity in a mixed layer of thickness HMIX_FIXED, with
+                                ! the actual viscosity scaling as 1/(z*HMIX_FIXED)^2, where z is the distance
+                                ! from the surface, to allow for finite wind stresses to be transmitted through
+                                ! infinitesimally thin surface layers.  This is an older option for numerical
+                                ! convenience without a strong physical basis, and its use is now discouraged.
 MAXVEL = 10.0                   !   [m s-1] default = 3.0E+08
                                 ! The maximum velocity allowed before the velocity components are truncated.
 CFL_BASED_TRUNCATIONS = True    !   [Boolean] default = True
@@ -1296,3 +1312,31 @@ BT_THICK_SCHEME = "FROM_BT_CONT" ! default = "FROM_BT_CONT"
 BT_STRONG_DRAG = False          !   [Boolean] default = False
                                 ! If true, use a stronger estimate of the retarding effects of strong bottom
                                 ! drag, by making it implicit with the barotropic time-step instead of implicit
+                                ! with the baroclinic time-step and dividing by the number of barotropic steps.
+BT_LINEAR_WAVE_DRAG = False     !   [Boolean] default = False
+                                ! If true, apply a linear drag to the barotropic velocities, using rates set by
+                                ! lin_drag_u & _v divided by the depth of the ocean.  This was introduced to
+                                ! facilitate tide modeling.
+CLIP_BT_VELOCITY = False        !   [Boolean] default = False
+                                ! If true, limit any velocity components that exceed CFL_TRUNCATE.  This should
+                                ! only be used as a desperate debugging measure.
+MAXCFL_BT_CONT = 0.25           !   [nondim] default = 0.25
+                                ! The maximum permitted CFL number associated with the barotropic accelerations
+                                ! from the summed velocities times the time-derivatives of thicknesses.
+DT_BT_FILTER = -0.25            !   [sec or nondim] default = -0.25
+                                ! A time-scale over which the barotropic mode solutions are filtered, in seconds
+                                ! if positive, or as a fraction of DT if negative. When used this can never be
+                                ! taken to be longer than 2*dt.  Set this to 0 to apply no filtering.
+G_BT_EXTRA = 0.0                !   [nondim] default = 0.0
+                                ! A nondimensional factor by which gtot is enhanced.
+SSH_EXTRA = 10.0                !   [m] default = 10.0
+                                ! An estimate of how much higher SSH might get, for use in calculating the safe
+                                ! external wave speed. The default is the minimum of 10 m or 5% of
+                                ! MAXIMUM_DEPTH.
+LINEARIZED_BT_CORIOLIS = True   !   [Boolean] default = True
+                                ! If true use the bottom depth instead of the total water column thickness in
+                                ! the barotropic Coriolis term calculations.
+BEBT = 0.2                      !   [nondim] default = 0.1
+                                ! BEBT determines whether the barotropic time stepping uses the forward-backward
+                                ! time-stepping scheme or a backward Euler scheme. BEBT is valid in the range
+                                ! from 0 (for a forward-backward treatment of nonrotating gravity waves) to 1

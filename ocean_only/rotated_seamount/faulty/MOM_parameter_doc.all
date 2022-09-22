@@ -20,9 +20,9 @@ USE_CONTEMP_ABSSAL = False      !   [Boolean] default = False
                                 ! practical salinity before exchanging them with the coupler and/or reporting
                                 ! T&S diagnostics.
 ADIABATIC = False               !   [Boolean] default = False
-                                ! There are no diapycnal mass fluxes if ADIABATIC is true. This assumes that KD
-                                ! = KDML = 0.0 and that there is no buoyancy forcing, but makes the model faster
-                                ! by eliminating subroutine calls.
+                                ! There are no diapycnal mass fluxes if ADIABATIC is true.  This assumes that KD
+                                ! = 0.0 and that there is no buoyancy forcing, but makes the model faster by
+                                ! eliminating subroutine calls.
 DO_DYNAMICS = True              !   [Boolean] default = True
                                 ! If False, skips the dynamics calls that update u & v, as well as the gravity
                                 ! wave adjustment to h. This may be a fragile feature, but can be useful during
@@ -41,10 +41,10 @@ BULKMIXEDLAYER = False          !   [Boolean] default = True
                                 ! least NKML+NKBL+1 layers if BULKMIXEDLAYER is true. BULKMIXEDLAYER can not be
                                 ! used with USE_REGRIDDING. The default is influenced by ENABLE_THERMODYNAMICS.
 THICKNESSDIFFUSE = False        !   [Boolean] default = False
-                                ! If true, interface heights are diffused with a coefficient of KHTH.
-THICKNESSDIFFUSE_FIRST = False  !   [Boolean] default = False
-                                ! If true, do thickness diffusion before dynamics. This is only used if
-                                ! THICKNESSDIFFUSE is true.
+                                ! If true, isopycnal surfaces are diffused with a Laplacian coefficient of KHTH.
+APPLY_INTERFACE_FILTER = False  !   [Boolean] default = False
+                                ! If true, model interface heights are subjected to a grid-scale dependent
+                                ! spatial smoothing, often with biharmonic filter.
 USE_POROUS_BARRIER = True       !   [Boolean] default = True
                                 ! If true, use porous barrier to constrain the widths and face areas at the
                                 ! edges of the grid cells.
@@ -87,6 +87,9 @@ DTBT_RESET_PERIOD = 900.0       !   [s] default = 900.0
                                 ! is negative, DTBT is set based only on information available at
                                 ! initialization.  If 0, DTBT will be set every dynamics time step. The default
                                 ! is set by DT_THERM.  This is only used if SPLIT is true.
+DT_OBC_SEG_UPDATE_OBGC = 900.0  !   [s] default = 900.0
+                                ! The time between OBC segment data updates for OBGC tracers. This must be an
+                                ! integer multiple of DT and DT_THERM. The default is set to DT.
 FRAZIL = False                  !   [Boolean] default = False
                                 ! If true, water freezes if it gets too cold, and the accumulated heat deficit
                                 ! is returned in the surface state.  FRAZIL is only used if
@@ -415,7 +418,3 @@ REMAPPING_ANSWER_DATE = 99991231 ! default = 99991231
                                 ! The vintage of the expressions and order of arithmetic to use for remapping.
                                 ! Values below 20190101 result in the use of older, less accurate expressions
                                 ! that were in use at the end of 2018.  Higher values result in the use of more
-                                ! robust and accurate forms of mathematically equivalent expressions.  If both
-                                ! REMAPPING_2018_ANSWERS and REMAPPING_ANSWER_DATE are specified, the latter
-                                ! takes precedence.
-MASKING_DEPTH = -9999.0         !   [m] default = -9999.0
