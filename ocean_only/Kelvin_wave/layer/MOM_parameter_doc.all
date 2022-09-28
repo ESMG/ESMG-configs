@@ -87,9 +87,6 @@ DTBT_RESET_PERIOD = -1.0        !   [s] default = 900.0
                                 ! is negative, DTBT is set based only on information available at
                                 ! initialization.  If 0, DTBT will be set every dynamics time step. The default
                                 ! is set by DT_THERM.  This is only used if SPLIT is true.
-DT_OBC_SEG_UPDATE_OBGC = 900.0  !   [s] default = 900.0
-                                ! The time between OBC segment data updates for OBGC tracers. This must be an
-                                ! integer multiple of DT and DT_THERM. The default is set to DT.
 FIRST_DIRECTION = 0             ! default = 0
                                 ! An integer that indicates which direction goes first in parts of the code that
                                 ! use directionally split updates, with even numbers (or 0) used for x- first
@@ -952,7 +949,7 @@ HMIX_FIXED = 20.0               !   [m]
                                 ! elevated when the bulk mixed layer is not used.
 HMIX_STRESS = 20.0              !   [m] default = 20.0
                                 ! The depth over which the wind stress is applied if DIRECT_STRESS is true.
-KV_ML_INVZ2 = 1.0E-04           !   [m2 s-1] default = 0.0
+KV_ML_INVZ2 = 1.0E-04           !   [m2 s-1] default = 1.0E-04
                                 ! An extra kinematic viscosity in a mixed layer of thickness HMIX_FIXED, with
                                 ! the actual viscosity scaling as 1/(z*HMIX_FIXED)^2, where z is the distance
                                 ! from the surface, to allow for finite wind stresses to be transmitted through

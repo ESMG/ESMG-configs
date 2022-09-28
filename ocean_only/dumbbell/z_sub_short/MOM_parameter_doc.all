@@ -87,9 +87,6 @@ DTBT_RESET_PERIOD = -1.0        !   [s] default = -1.0
                                 ! is negative, DTBT is set based only on information available at
                                 ! initialization.  If 0, DTBT will be set every dynamics time step. The default
                                 ! is set by DT_THERM.  This is only used if SPLIT is true.
-DT_OBC_SEG_UPDATE_OBGC = 300.0  !   [s] default = 300.0
-                                ! The time between OBC segment data updates for OBGC tracers. This must be an
-                                ! integer multiple of DT and DT_THERM. The default is set to DT.
 FRAZIL = False                  !   [Boolean] default = False
                                 ! If true, water freezes if it gets too cold, and the accumulated heat deficit
                                 ! is returned in the surface state.  FRAZIL is only used if
@@ -1210,7 +1207,7 @@ HMIX_FIXED = 20.0               !   [m]
                                 ! elevated when the bulk mixed layer is not used.
 HMIX_STRESS = 20.0              !   [m] default = 20.0
                                 ! The depth over which the wind stress is applied if DIRECT_STRESS is true.
-KV_ML_INVZ2 = 0.01              !   [m2 s-1] default = 0.0
+KV_ML_INVZ2 = 0.01              !   [m2 s-1] default = 1.0E-04
                                 ! An extra kinematic viscosity in a mixed layer of thickness HMIX_FIXED, with
                                 ! the actual viscosity scaling as 1/(z*HMIX_FIXED)^2, where z is the distance
                                 ! from the surface, to allow for finite wind stresses to be transmitted through
@@ -1515,6 +1512,10 @@ PRANDTL_BKGND = 1.0             !   [nondim] default = 1.0
 HENYEY_IGW_BACKGROUND = False   !   [Boolean] default = False
                                 ! If true, use a latitude-dependent scaling for the near surface background
                                 ! diffusivity, as described in Harrison & Hallberg, JPO 2008.
+HENYEY_IGW_BACKGROUND_NEW = False !   [Boolean] default = False
+                                ! If true, use a better latitude-dependent scaling for the background
+                                ! diffusivity, as described in Harrison & Hallberg, JPO 2008. This option is
+                                ! obsolete.
 KD_TANH_LAT_FN = False          !   [Boolean] default = False
                                 ! If true, use a tanh dependence of Kd_sfc on latitude, like CM2.1/CM2M.  There
                                 ! is no physical justification for this form, and it can not be used with
