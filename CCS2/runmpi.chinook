@@ -1,19 +1,23 @@
 #!/bin/bash
 #SBATCH -t 0:10:00
-#SBATCH --ntasks=48
+#SBATCH --ntasks=40
 #SBATCH --job-name=CCS2
-#SBATCH --tasks-per-node=24
 #SBATCH --account=akwaters
 #SBATCH --output=CCS2.%j
 #SBATCH --no-requeue
 #SBATCH -p debug
 ###SBATCH -p t1small
+###SBATCH --tasks-per-node=24
 
 cd $SLURM_SUBMIT_DIR
 . /usr/share/Modules/init/bash
 module purge
-module load slurm
+# New gnu
+#module load slurm/22.05.4
+#module load foss/2022a
+#module load netCDF-Fortran/4.5.4
 # Gnu universe
+module load slurm
 module load toolchain/foss/2019b
 # Intel universe
 #module load toolchain/pic-intel/2016b
@@ -33,6 +37,7 @@ TBEGIN=`echo "print time();" | perl`
 
 srun -l /bin/hostname | sort -n | awk '{print $2}' > ./nodes
 mpirun -np $SLURM_NTASKS -machinefile ./nodes --mca mpi_paffinity_alone 1 /import/c1/AKWATERS/kshedstrom/MOM6/build/gnu/SYM_ice_ocean_SIS2/repro/MOM6
+#mpirun -np $SLURM_NTASKS -machinefile ./nodes --mca mpi_paffinity_alone 1 /import/c1/AKWATERS/kshedstrom/MOM6_22/build/gnu/SYM_ice_ocean_SIS2/repro/MOM6
 #mpirun -np $SLURM_NTASKS -machinefile ./nodes --mca mpi_paffinity_alone 1 /import/c1/AKWATERS/kshedstrom/MOM6/build/gnu/SYM_ice_ocean_SIS2/debug/MOM6
 #mpirun -np $SLURM_NTASKS -machinefile ./nodes --mca mpi_paffinity_alone 1 /import/c1/AKWATERS/kshedstrom/MOM6/build/intel/SYM_ice_ocean_SIS2/repro/MOM6
 

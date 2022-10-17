@@ -87,6 +87,9 @@ DTBT_RESET_PERIOD = -1.0        !   [s] default = -1.0
                                 ! is negative, DTBT is set based only on information available at
                                 ! initialization.  If 0, DTBT will be set every dynamics time step. The default
                                 ! is set by DT_THERM.  This is only used if SPLIT is true.
+DT_OBC_SEG_UPDATE_OBGC = 900.0  !   [s] default = 900.0
+                                ! The time between OBC segment data updates for OBGC tracers. This must be an
+                                ! integer multiple of DT and DT_THERM. The default is set to DT.
 FRAZIL = False                  !   [Boolean] default = False
                                 ! If true, water freezes if it gets too cold, and the accumulated heat deficit
                                 ! is returned in the surface state.  FRAZIL is only used if
@@ -1016,6 +1019,9 @@ SPLIT_BOTTOM_STRESS = False     !   [Boolean] default = False
 BT_USE_LAYER_FLUXES = True      !   [Boolean] default = True
                                 ! If true, use the summed layered fluxes plus an adjustment due to the change in
                                 ! the barotropic velocity in the barotropic continuity equation.
+STORE_CORIOLIS_ACCEL = True     !   [Boolean] default = True
+                                ! If true, calculate the Coriolis accelerations at the end of each timestep for
+                                ! use in the predictor step of the next split RK2 timestep.
 
 ! === module MOM_continuity ===
 CONTINUITY_SCHEME = "PPM"       ! default = "PPM"
@@ -1142,6 +1148,9 @@ TIDE_SAL_SCALAR_VALUE = 0.094   !   [m m-1]
                                 ! The constant of proportionality between sea surface height (really it should
                                 ! be bottom pressure) anomalies and bottom geopotential anomalies. This is only
                                 ! used if TIDES and TIDE_USE_SAL_SCALAR are true.
+TIDAL_SAL_SHT = False           !   [Boolean] default = False
+                                ! If true, use the online spherical harmonics method to calculate
+                                ! self-attraction and loading term in tides.
 TIDE_REF_DATE = 0, 0, 0         ! default = 0
                                 ! Year,month,day to use as reference date for tidal forcing. If not specified,
                                 ! defaults to 0.
@@ -1281,7 +1290,7 @@ HMIX_FIXED = 20.0               !   [m]
                                 ! elevated when the bulk mixed layer is not used.
 HMIX_STRESS = 20.0              !   [m] default = 20.0
                                 ! The depth over which the wind stress is applied if DIRECT_STRESS is true.
-KV_ML_INVZ2 = 0.01              !   [m2 s-1] default = 1.0E-04
+KV_ML_INVZ2 = 0.0               !   [m2 s-1] default = 0.0
                                 ! An extra kinematic viscosity in a mixed layer of thickness HMIX_FIXED, with
                                 ! the actual viscosity scaling as 1/(z*HMIX_FIXED)^2, where z is the distance
                                 ! from the surface, to allow for finite wind stresses to be transmitted through
@@ -1363,7 +1372,7 @@ BAROTROPIC_ANSWER_DATE = 99991231 ! default = 99991231
                                 ! recover the answers from the end of 2018, while higher values uuse more
                                 ! efficient or general expressions.  If both BAROTROPIC_2018_ANSWERS and
                                 ! BAROTROPIC_ANSWER_DATE are specified, the latter takes precedence.
-BAROTROPIC_TIDAL_SAL_BUG = False !   [Boolean] default = True
+BAROTROPIC_TIDAL_SAL_BUG = False !   [Boolean] default = False
                                 ! If true, the tidal self-attraction and loading anomaly in the barotropic
                                 ! solver has the wrong sign, replicating a long-standing bug with a scalar
                                 ! self-attraction and loading term or the SAL term from a previous simulation.
@@ -1590,10 +1599,6 @@ PRANDTL_BKGND = 1.0             !   [nondim] default = 1.0
 HENYEY_IGW_BACKGROUND = False   !   [Boolean] default = False
                                 ! If true, use a latitude-dependent scaling for the near surface background
                                 ! diffusivity, as described in Harrison & Hallberg, JPO 2008.
-HENYEY_IGW_BACKGROUND_NEW = False !   [Boolean] default = False
-                                ! If true, use a better latitude-dependent scaling for the background
-                                ! diffusivity, as described in Harrison & Hallberg, JPO 2008. This option is
-                                ! obsolete.
 KD_TANH_LAT_FN = False          !   [Boolean] default = False
                                 ! If true, use a tanh dependence of Kd_sfc on latitude, like CM2.1/CM2M.  There
                                 ! is no physical justification for this form, and it can not be used with

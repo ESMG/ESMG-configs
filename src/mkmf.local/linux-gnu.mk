@@ -100,7 +100,6 @@ FFLAGS +=
 
 # Flags based on perforance target (production (OPT), reproduction (REPRO), or debug (DEBUG)
 FFLAGS_OPT = -O3
-#FFLAGS_OPT = -O2 -fno-expensive-optimizations
 FFLAGS_REPRO = -O2 -fbounds-check
 FFLAGS_DEBUG = -O0 -g -W -fbounds-check -fbacktrace -ffpe-trap=invalid,zero,overflow
 
