@@ -1,5 +1,5 @@
 #!/bin/bash
-#SBATCH -t 0:10:00
+#SBATCH -t 0:20:00
 #SBATCH --ntasks=40
 #SBATCH --job-name=CCS2
 #SBATCH --account=akwaters
