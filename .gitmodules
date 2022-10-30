@@ -46,3 +46,6 @@
 [submodule "src/ocean_BGC"]
 	path = src/ocean_BGC
 	url = https://github.com/NOAA-GFDL/ocean_BGC.git
+[submodule "NGOA"]
+	path = NGOA
+	url = git@github.com:ESMG/NGOA.git

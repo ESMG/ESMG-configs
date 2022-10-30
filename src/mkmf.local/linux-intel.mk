@@ -5,10 +5,10 @@
 
 ############
 # Command Macros
-FC = mpif90
-CC = mpicc
+FC = mpiifort
+CC = mpiicc
 CXX = mpic++
-LD = mpif90
+LD = mpiifort
 
 #######################
 # Build target macros
@@ -93,7 +93,7 @@ FPPFLAGS += $(shell nf-config --fflags)
 #FPPFLAGS += $(shell pkg-config --cflags-only-I mpich2-c)
 
 # Base set of Fortran compiler flags
-FFLAGS := -fno-alias -stack_temps -safe_cray_ptr -ftz -assume byterecl -i4 -r8 -nowarn -g -sox -traceback
+FFLAGS := -fno-alias -stack-temps -safe-cray-ptr -ftz -assume byterecl -i4 -r8 -nowarn -g -sox -traceback
 
 # Flags based on perforance target (production (OPT), reproduction (REPRO), or debug (DEBUG)
 FFLAGS_OPT = -O2
