@@ -35,6 +35,11 @@ OFFLINE_TRACER_MODE = False     !   [Boolean] default = False
 USE_REGRIDDING = True           !   [Boolean] default = False
                                 ! If True, use the ALE algorithm (regridding/remapping). If False, use the
                                 ! layered isopycnal algorithm.
+REMAP_AUXILIARY_VARS = False    !   [Boolean] default = False
+                                ! If true, apply ALE remapping to all of the auxiliary 3-dimensional variables
+                                ! that are needed to reproduce across restarts, similarly to what is already
+                                ! being done with the primary state variables.  The default should be changed to
+                                ! true.
 BULKMIXEDLAYER = False          !   [Boolean] default = False
                                 ! If true, use a Kraus-Turner-like bulk mixed layer with transitional buffer
                                 ! layers.  Layers 1 through NKML+NKBL have variable densities. There must be at
@@ -744,7 +749,7 @@ THICKNESS_CONFIG = "seamount"   ! default = "uniform"
                                 !     rossby_front - a mixed layer front in thermal wind balance.
                                 !     USER - call a user modified routine.
 TS_CONFIG = "seamount"          !
-                                ! A string that determines how the initial tempertures and salinities are
+                                ! A string that determines how the initial temperatures and salinities are
                                 ! specified for a new run:
                                 !     file - read velocities from the file specified
                                 !       by (TS_FILE).
@@ -1053,6 +1058,9 @@ CORRECT_BBL_BOUNDS = False      !   [Boolean] default = False
 ! === module MOM_thickness_diffuse ===
 KHTH = 500.0                    !   [m2 s-1] default = 0.0
                                 ! The background horizontal thickness diffusivity.
+READ_KHTH = False               !   [Boolean] default = False
+                                ! If true, read a file (given by KHTH_FILE) containing the spatially varying
+                                ! horizontal isopycnal height diffusivity.
 KHTH_MIN = 0.0                  !   [m2 s-1] default = 0.0
                                 ! The minimum horizontal thickness diffusivity.
 KHTH_MAX = 0.0                  !   [m2 s-1] default = 0.0
