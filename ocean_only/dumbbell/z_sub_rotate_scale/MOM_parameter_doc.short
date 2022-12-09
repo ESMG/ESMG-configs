@@ -90,7 +90,7 @@ TOPO_CONFIG = "dumbbell"        !
                                 !     USER - call a user modified routine.
 DUMBBELL_FRACTION = 0.8         !   [nondim] default = 0.5
                                 ! Meridional fraction for narrow part of dumbbell.
-DUMBBELL_ROTATION = True        !   [nondim] default = False
+DUMBBELL_ROTATION = True        !   [Boolean] default = False
                                 ! Logical for rotation of dumbbell domain.
 MAXIMUM_DEPTH = 2000.0          !   [m]
                                 ! The maximum depth of the ocean.
