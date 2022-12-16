@@ -183,17 +183,17 @@ GRID_CONFIG = "cartesian"       !
 AXIS_UNITS = "k"                ! default = "degrees"
                                 ! The units for the Cartesian axes. Valid entries are:
                                 !     degrees - degrees of latitude and longitude
-                                !     m - meters
-                                !     k - kilometers
-SOUTHLAT = 0.0                  !   [k]
+                                !     m or meter(s) - meters
+                                !     k or km or kilometer(s) - kilometers
+SOUTHLAT = 0.0                  !   [km]
                                 ! The southern latitude of the domain or the equivalent starting value for the
                                 ! y-axis.
-LENLAT = 1120.0                 !   [k]
+LENLAT = 1120.0                 !   [km]
                                 ! The latitudinal or y-direction length of the domain.
-WESTLON = 0.0                   !   [k] default = 0.0
+WESTLON = 0.0                   !   [km] default = 0.0
                                 ! The western longitude of the domain or the equivalent starting value for the
                                 ! x-axis.
-LENLON = 1120.0                 !   [k]
+LENLON = 1120.0                 !   [km]
                                 ! The longitudinal or x-direction length of the domain.
 RAD_EARTH = 6.378E+06           !   [m] default = 6.378E+06
                                 ! The radius of the Earth.
@@ -695,7 +695,7 @@ NUM_DIAG_COORDS = 0             ! default = 1
                                 ! entry in DIAG_COORDS must be provided.
 USE_GRID_SPACE_DIAGNOSTIC_AXES = False !   [Boolean] default = False
                                 ! If true, use a grid index coordinate convention for diagnostic axes.
-DIAG_MISVAL = 1.0E+20           !   [not defined] default = 1.0E+20
+DIAG_MISVAL = 1.0E+20           !   [various] default = 1.0E+20
                                 ! Set the default missing value to use for diagnostics.
 DIAG_AS_CHKSUM = False          !   [Boolean] default = False
                                 ! Instead of writing diagnostics to the diag manager, write a text file

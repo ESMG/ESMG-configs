@@ -44,13 +44,13 @@ GRID_CONFIG = "mercator"        !
                                 !     cartesian - use a (flat) Cartesian grid.
                                 !     spherical - use a simple spherical grid.
                                 !     mercator - use a Mercator spherical grid.
-SOUTHLAT = 35.5                 !   [degrees]
+SOUTHLAT = 35.5                 !   [degrees_N]
                                 ! The southern latitude of the domain.
-LENLAT = 6.0                    !   [degrees]
+LENLAT = 6.0                    !   [degrees_N]
                                 ! The latitudinal length of the domain.
-WESTLON = 180.0                 !   [degrees] default = 0.0
+WESTLON = 180.0                 !   [degrees_E] default = 0.0
                                 ! The western longitude of the domain.
-LENLON = 6.0                    !   [degrees]
+LENLON = 6.0                    !   [degrees_E]
                                 ! The longitudinal length of the domain.
 TOPO_CONFIG = "seamount"        !
                                 ! This specifies how bathymetry is specified:
