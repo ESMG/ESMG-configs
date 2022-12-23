@@ -1,17 +1,18 @@
-"ATM" , "p_surf"        , "Pair"         , "/center1/AKWATERS/kate/JRA55-do/JRA55DO_1.4_Pair_1980.nc"          , "bilinear" ,  1.0
-"ATM" , "p_bot"         , "Pair"         , "/center1/AKWATERS/kate/JRA55-do/JRA55DO_1.4_Pair_1980.nc"          , "bilinear" ,  1.0
-"ATM" , "t_bot"         , "Tair"    , "/center1/AKWATERS/kate/JRA55-do/JRA55DO_1.4_Tair_1980.nc"     , "bilinear" ,  1.0
-"ATM" , "sphum_bot"     , "Qair"    , "/center1/AKWATERS/kate/JRA55-do/JRA55DO_1.4_Qair_1980.nc"     , "bilinear" ,  1.0
-"ATM" , "u_bot"         , "Uwind"    , "/center1/AKWATERS/kate/JRA55-do/JRA55DO_1.4_Uwind_1980.nc"     , "bicubic",   1.0
-"ATM" , "v_bot"         , "Vwind"    , "/center1/AKWATERS/kate/JRA55-do/JRA55DO_1.4_Vwind_1980.nc"     , "bicubic",   1.0
+"ATM" , "p_surf"        , "Pair"         , "/import/c1/AKWATERS/kshedstrom/JRA_padded/JRA55DO_1.5_Pair_1980.nc"          , "bilinear" ,  1.0
+"ATM" , "p_bot"         , "Pair"         , "/import/c1/AKWATERS/kshedstrom/JRA_padded/JRA55DO_1.5_Pair_1980.nc"          , "bilinear" ,  1.0
+"ATM" , "t_bot"         , "Tair"    , "/import/c1/AKWATERS/kshedstrom/JRA_padded/JRA55DO_1.5_Tair_1980.nc"     , "bilinear" ,  1.0
+"ATM" , "sphum_bot"     , "Qair"    , "/import/c1/AKWATERS/kshedstrom/JRA_padded/JRA55DO_1.5_Qair_1980.nc"     , "bilinear" ,  1.0
+"ATM" , "u_bot"         , "Uwind"    , "/import/c1/AKWATERS/kshedstrom/JRA_padded/JRA55DO_1.5_Uwind_1980.nc"     , "bicubic",   1.0
+"ATM" , "v_bot"         , "Vwind"    , "/import/c1/AKWATERS/kshedstrom/JRA_padded/JRA55DO_1.5_Vwind_1980.nc"     , "bicubic",   1.0
 "ATM" , "z_bot"         , ""            , ""                             , "bilinear" , 10.0
 "ATM" , "gust"          , ""            , ""                             , "bilinear" ,  1.0e-4
-"ICE" , "lw_flux_dn"    , "lwrad_down"    , "/center1/AKWATERS/kate/JRA55-do/JRA55DO_1.4_lwrad_down_1980.nc"     , "bilinear" ,  1.0
-"ICE" , "sw_flux_vis_dir_dn", "swrad", "/center1/AKWATERS/kate/JRA55-do/JRA55DO_1.4_swrad_1980.nc"     , "bilinear" ,  0.285
-"ICE" , "sw_flux_vis_dif_dn", "swrad", "/center1/AKWATERS/kate/JRA55-do/JRA55DO_1.4_swrad_1980.nc"     , "bilinear" ,  0.285
-"ICE" , "sw_flux_nir_dir_dn", "swrad", "/center1/AKWATERS/kate/JRA55-do/JRA55DO_1.4_swrad_1980.nc"     , "bilinear" ,  0.215
-"ICE" , "sw_flux_nir_dif_dn", "swrad", "/center1/AKWATERS/kate/JRA55-do/JRA55DO_1.4_swrad_1980.nc"     , "bilinear" ,  0.215
-"ICE" , "lprec"         , "rain"        , "/center1/AKWATERS/kate/JRA55-do/JRA55DO_1.4_rain_1980.nc"  , "bilinear" ,  1.0
+"ICE" , "lw_flux_dn"    , "lwrad_down"  , "/import/c1/AKWATERS/kshedstrom/JRA_padded/JRA55DO_1.5_lwrad_down_1980.nc"     , "bilinear" ,  1.0
+"ICE" , "sw_flux_vis_dir_dn", "swrad", "/import/c1/AKWATERS/kshedstrom/JRA_padded/JRA55DO_1.5_swrad_1980.nc"     , "bilinear" ,  0.285
+"ICE" , "sw_flux_vis_dif_dn", "swrad", "/import/c1/AKWATERS/kshedstrom/JRA_padded/JRA55DO_1.5_swrad_1980.nc"     , "bilinear" ,  0.285
+"ICE" , "sw_flux_nir_dir_dn", "swrad", "/import/c1/AKWATERS/kshedstrom/JRA_padded/JRA55DO_1.5_swrad_1980.nc"     , "bilinear" ,  0.215
+"ICE" , "sw_flux_nir_dif_dn", "swrad", "/import/c1/AKWATERS/kshedstrom/JRA_padded/JRA55DO_1.5_swrad_1980.nc"     , "bilinear" ,  0.215
+"ICE" , "lprec"         , "rain"        , "/import/c1/AKWATERS/kshedstrom/JRA_padded/JRA55DO_1.5_rain_1980.nc"  , "bilinear" ,  1.0
+"ICE" , "fprec"         , "snow"        , "/import/c1/AKWATERS/kshedstrom/JRA_padded/JRA55DO_1.5_snow_1980.nc"  , "bilinear" ,  1.0
 "ICE" , "fprec"         , ""        , ""  , "none" ,  0.0
 "ICE" , "runoff"        , ""      , ""            , "none" ,  0.0
 "ICE" , "calving"       , ""            , ""                             , "none"  ,  0.0

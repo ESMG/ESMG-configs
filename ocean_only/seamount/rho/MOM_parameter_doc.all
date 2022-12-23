@@ -262,12 +262,12 @@ TOPO_CONFIG = "seamount"        !
                                 !     Phillips - ACC-like idealized topography used in the Phillips config.
                                 !     dense - Denmark Strait-like dense water formation and overflow.
                                 !     USER - call a user modified routine.
-SEAMOUNT_DELTA = 0.9            !   [non-dim] default = 0.5
+SEAMOUNT_DELTA = 0.9            !   [nondim] default = 0.5
                                 ! Non-dimensional height of seamount.
-SEAMOUNT_X_LENGTH_SCALE = 0.5   !   [Same as x,y] default = 20.0
+SEAMOUNT_X_LENGTH_SCALE = 0.5   !   [degrees_E] default = 20.0
                                 ! Length scale of seamount in x-direction. Set to zero make topography uniform
                                 ! in the x-direction.
-SEAMOUNT_Y_LENGTH_SCALE = 0.5   !   [Same as x,y] default = 0.0
+SEAMOUNT_Y_LENGTH_SCALE = 0.5   !   [degrees_N] default = 0.0
                                 ! Length scale of seamount in y-direction. Set to zero make topography uniform
                                 ! in the y-direction.
 MAXIMUM_DEPTH = 4000.0          !   [m]
@@ -1025,11 +1025,8 @@ USE_GM_WORK_BUG = False         !   [Boolean] default = False
                                 ! sign, for legacy reproducibility.
 STOCH_EOS = False               !   [Boolean] default = False
                                 ! If true, stochastic perturbations are applied to the EOS in the PGF.
-STANLEY_COEFF = -1.0            !   [not defined] default = -1.0
+STANLEY_COEFF = -1.0            !   [nondim] default = -1.0
                                 ! Coefficient correlating the temperature gradient and SGS T variance.
-STANLEY_A = 1.0                 !   [not defined] default = 1.0
-                                ! Coefficient a which scales chi in stochastic perturbation of the SGS T
-                                ! variance.
 
 ! === module MOM_porous_barriers ===
 PORBAR_ANSWER_DATE = 99991231   ! default = 99991231

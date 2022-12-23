@@ -420,9 +420,9 @@ USE_SHELFWAVE_OBC = True        !   [Boolean] default = False
                                 ! If true, use the shelfwave open boundary.
 USE_DYED_CHANNEL_OBC = False    !   [Boolean] default = False
                                 ! If true, use the dyed channel open boundary.
-SHELFWAVE_X_WAVELENGTH = 100.0  !   [Same as x,y] default = 100.0
+SHELFWAVE_X_WAVELENGTH = 100.0  !   [km] default = 100.0
                                 ! Length scale of shelfwave in x-direction.
-SHELFWAVE_Y_LENGTH_SCALE = 50.0 !   [Same as x,y] default = 50.0
+SHELFWAVE_Y_LENGTH_SCALE = 50.0 !   [km] default = 50.0
                                 ! Length scale of exponential dropoff of topography in the y-direction.
 SHELFWAVE_Y_MODE = 2.0          !   [nondim] default = 1.0
                                 ! Cross-shore wave mode.
@@ -701,13 +701,6 @@ USE_GME = False                 !   [Boolean] default = False
 USE_GM_WORK_BUG = False         !   [Boolean] default = False
                                 ! If true, compute the top-layer work tendency on the u-grid with the incorrect
                                 ! sign, for legacy reproducibility.
-STOCH_EOS = False               !   [Boolean] default = False
-                                ! If true, stochastic perturbations are applied to the EOS in the PGF.
-STANLEY_COEFF = -1.0            !   [not defined] default = -1.0
-                                ! Coefficient correlating the temperature gradient and SGS T variance.
-STANLEY_A = 1.0                 !   [not defined] default = 1.0
-                                ! Coefficient a which scales chi in stochastic perturbation of the SGS T
-                                ! variance.
 
 ! === module MOM_porous_barriers ===
 PORBAR_ANSWER_DATE = 99991231   ! default = 99991231
