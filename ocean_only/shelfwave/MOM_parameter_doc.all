@@ -426,6 +426,8 @@ SHELFWAVE_Y_LENGTH_SCALE = 50.0 !   [km] default = 50.0
                                 ! Length scale of exponential dropoff of topography in the y-direction.
 SHELFWAVE_Y_MODE = 2.0          !   [nondim] default = 1.0
                                 ! Cross-shore wave mode.
+SHELFWAVE_AMPLITUDE = 1.0       !   [m s-1] default = 1.0
+                                ! Amplitude of the open boundary current inflows in the shelfwave configuration.
 
 ! === module MOM_coord_initialization ===
 COORD_CONFIG = "linear"         ! default = "none"
