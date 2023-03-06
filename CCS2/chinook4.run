@@ -1,0 +1,51 @@
+#!/bin/bash
+#SBATCH -t 0:10:00
+#SBATCH --ntasks=40
+#SBATCH --job-name=CCS2
+#SBATCH --account=akwaters
+#SBATCH --output=CCS2.%j
+#SBATCH --no-requeue
+#SBATCH -p debug
+###SBATCH -p t1small
+###SBATCH --tasks-per-node=24
+
+cd $SLURM_SUBMIT_DIR
+#. /usr/share/Modules/init/bash
+# New gnu
+module purge
+module load slurm/22.05.4
+module load foss/2022a
+module load netCDF-Fortran/4.5.4
+#module load slurm
+# Gnu universe
+#module load toolchain/foss/2019b
+# Intel universe
+#module load toolchain/pic-intel/2016b
+#module load data/netCDF-Fortran/4.4.4-pic-intel-2016b
+module list
+
+rm ocean.stats.gnu seaice.stats.gnu
+#
+#  Prolog
+#
+echo " "
+echo "++++ Chinook ++++ $PGM_NAME began:    `date`"
+echo "++++ Chinook ++++ $PGM_NAME hostname: `hostname`"
+echo "++++ Chinook ++++ $PGM_NAME uname -a: `uname -a`"
+echo " "
+TBEGIN=`echo "print time();" | perl`
+
+srun -l /bin/hostname | sort -n | awk '{print $2}' > ./nodes
+#mpirun -np $SLURM_NTASKS -machinefile ./nodes --mca mpi_paffinity_alone 1 /import/c1/AKWATERS/kshedstrom/MOM6/build/gnu/SYM_ice_ocean_SIS2/repro/MOM6
+mpirun -np $SLURM_NTASKS -machinefile ./nodes --mca mpi_paffinity_alone 1 /import/c1/AKWATERS/kshedstrom/MOM6_22/build/gnu/SYM_ice_ocean_SIS2/repro/MOM6
+#mpirun -np $SLURM_NTASKS -machinefile ./nodes --mca mpi_paffinity_alone 1 /import/c1/AKWATERS/kshedstrom/MOM6/build/gnu/SYM_ice_ocean_SIS2/debug/MOM6
+#mpirun -np $SLURM_NTASKS -machinefile ./nodes --mca mpi_paffinity_alone 1 /import/c1/AKWATERS/kshedstrom/MOM6/build/intel/SYM_ice_ocean_SIS2/repro/MOM6
+
+#
+#  Epilog
+#
+TEND=`echo "print time();" | perl`
+echo " "
+echo "++++ Chinook ++++ $PGM_NAME pwd:      `pwd`"
+echo "++++ Chinook ++++ $PGM_NAME ended:    `date`"
+echo "++++ Chinook ++++ $PGM_NAME walltime: `expr $TEND - $TBEGIN` seconds"
