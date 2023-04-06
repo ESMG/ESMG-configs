@@ -7,7 +7,6 @@
 #SBATCH --no-requeue
 #SBATCH -p debug
 ###SBATCH -p t1small
-###SBATCH --tasks-per-node=24
 
 cd $SLURM_SUBMIT_DIR
 . /usr/share/Modules/init/bash
