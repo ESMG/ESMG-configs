@@ -101,7 +101,8 @@ FFLAGS += -I$(shell nf-config --includedir)
 # Flags based on perforance target (production (OPT), reproduction (REPRO), or debug (DEBUG)
 FFLAGS_OPT = -O3
 FFLAGS_REPRO = -O2 -fbounds-check
-FFLAGS_DEBUG = -O0 -g -W -fbounds-check -fbacktrace -ffpe-trap=invalid,zero,overflow
+FFLAGS_DEBUG = -O0 -g -W -fbounds-check -fbacktrace
+#FFLAGS_DEBUG = -O0 -g -W -fbounds-check -fbacktrace -ffpe-trap=invalid,zero,overflow
 
 # Flags to add additional build options
 FFLAGS_OPENMP = -fopenmp

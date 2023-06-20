@@ -32,20 +32,17 @@ VERBOSITY = 2                   ! default = 2
                                 !   9 = All)
 DO_UNIT_TESTS = False           !   [Boolean] default = False
                                 ! If True, exercises unit tests at model start up.
-DEBUG = True                    !   [Boolean] default = False
+DEBUG = False                   !   [Boolean] default = False
                                 ! If true, write out verbose debugging data.
 DEBUG_TRUNCATIONS = False       !   [Boolean] default = False
                                 ! If true, calculate all diagnostics that are useful for debugging truncations.
 ROTATE_INDEX = False            !   [Boolean] default = False
                                 ! Enable rotation of the horizontal indices.
-DEBUG_CHKSUMS = True            !   [Boolean] default = True
+DEBUG_CHKSUMS = False           !   [Boolean] default = False
                                 ! If true, checksums are performed on arrays in the various vec_chksum routines.
-DEBUG_REDUNDANT = True          !   [Boolean] default = True
+DEBUG_REDUNDANT = False         !   [Boolean] default = False
                                 ! If true, debug redundant data points during calls to the various vec_chksum
                                 ! routines.
-DEBUG_OBC = False               !   [Boolean] default = False
-                                ! If true, do additional calls to help debug the performance of the open
-                                ! boundary condition code.
 
 ! === module MOM_verticalGrid ===
 ! Parameters providing information about the vertical grid.
@@ -64,7 +61,7 @@ V_TRUNC_FILE = ""               ! default = ""
                                 ! diagnostic is not needed.
 
 ! === module MOM_barotropic ===
-DEBUG_BT = True                 !   [Boolean] default = True
+DEBUG_BT = False                !   [Boolean] default = False
                                 ! If true, write out verbose debugging data within the barotropic time-stepping
                                 ! loop. The data volume can be quite large if this is true.
 
