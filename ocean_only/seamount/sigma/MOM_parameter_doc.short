@@ -377,6 +377,8 @@ TIDE_M2_PHASE_T0 = -2.2209194857519687 !   [radians] default = 0.0
 
 ! === module MOM_PressureForce_FV ===
 
+! === module MOM_Zanna_Bolton ===
+
 ! === module MOM_hor_visc ===
 LAPLACIAN = True                !   [Boolean] default = False
                                 ! If true, use a Laplacian horizontal viscosity.
