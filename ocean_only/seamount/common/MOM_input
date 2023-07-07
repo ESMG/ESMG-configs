@@ -404,7 +404,10 @@ DTBT = 10.0                     !   [s or nondim] default = -0.98
 ! === module MOM_diagnostics ===
 
 ! === module MOM_diabatic_driver ===
+! === module MOM_diabatic_driver ===
 ! The following parameters are used for diabatic processes.
+USE_LEGACY_DIABATIC_DRIVER = False !   [Boolean] default = True
+                                ! If true, use a legacy version of the diabatic subroutine. This is temporary
 
 ! === module MOM_entrain_diffusive ===
 

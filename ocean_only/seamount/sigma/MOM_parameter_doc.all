@@ -1475,7 +1475,7 @@ INTERNAL_WAVE_SPEED_BETTER_EST = True !   [Boolean] default = True
 
 ! === module MOM_diabatic_driver ===
 ! The following parameters are used for diabatic processes.
-USE_LEGACY_DIABATIC_DRIVER = True !   [Boolean] default = True
+USE_LEGACY_DIABATIC_DRIVER = False !   [Boolean] default = True
                                 ! If true, use a legacy version of the diabatic subroutine. This is temporary
                                 ! and is needed to avoid change in answers.
 ENERGETICS_SFC_PBL = False      !   [Boolean] default = False
