@@ -2,8 +2,6 @@
 #override KH_RES_FN_POWER = 100
 #override VISC_RES_FN_POWER = 100
 #override MIN_THICKNESS = 1.e-6
-!SAVE_INITIAL_CONDS = True
 DEBUG = False
 DEBUG_BT = False
 !VERBOSITY = 9
-#override ENERGYSAVEDAYS = 0.05
