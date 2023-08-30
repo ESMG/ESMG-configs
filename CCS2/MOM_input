@@ -139,6 +139,7 @@ OBC_TRACER_RESERVOIR_LENGTH_SCALE_IN = 3.0E+04 !   [m] default = 0.0
                                 ! boundaries to values from the interior when the flow is entering the domain.
 BRUSHCUTTER_MODE = True         !   [Boolean] default = False
                                 ! If true, read external OBC data on the supergrid.
+TIDAL_SAL_FLATHER = True
 
 ! === module MOM_verticalGrid ===
 ! Parameters providing information about the vertical grid.

@@ -1025,6 +1025,8 @@ PORBAR_ETA_INTERP = "MAX"       ! default = "MAX"
 ! === module MOM_dynamics_split_RK2 ===
 TIDES = False                   !   [Boolean] default = False
                                 ! If true, apply tidal momentum forcing.
+CALCULATE_SAL = False           !   [Boolean] default = False
+                                ! If true, calculate self-attraction and loading.
 BE = 0.6                        !   [nondim] default = 0.6
                                 ! If SPLIT is true, BE determines the relative weighting of a  2nd-order
                                 ! Runga-Kutta baroclinic time stepping scheme (0.5) and a backward Euler scheme
@@ -1378,6 +1380,12 @@ BAROTROPIC_ANSWER_DATE = 99991231 ! default = 99991231
                                 ! recover the answers from the end of 2018, while higher values uuse more
                                 ! efficient or general expressions.  If both BAROTROPIC_2018_ANSWERS and
                                 ! BAROTROPIC_ANSWER_DATE are specified, the latter takes precedence.
+TIDAL_SAL_FLATHER = True        !   [Boolean] default = False
+                                ! If true, then apply adjustments to the external gravity wave speed used with
+                                ! the Flather OBC routine consistent with the barotropic solver. This applies to
+                                ! cases with  tidal forcing using the scalar self-attraction approximation. The
+                                ! default is currently False in order to retain previous answers but should be
+                                ! set to True for new experiments
 SADOURNY = True                 !   [Boolean] default = True
                                 ! If true, the Coriolis terms are discretized with the Sadourny (1975) energy
                                 ! conserving scheme, otherwise the Arakawa & Hsu scheme is used.  If the
@@ -1624,6 +1632,9 @@ LOTW_BBL_USE_OMEGA = True       !   [Boolean] default = True
                                 ! Otherwise, N is N.
 VON_KARMAN_BBL = 0.41           !   [nondim] default = 0.41
                                 ! The value the von Karman constant as used in calculating the BBL diffusivity.
+DZ_BBL_AVG_MIN = 0.0            !   [m] default = 0.0
+                                ! A minimal distance over which to average to determine the average bottom
+                                ! boundary layer density.
 
 ! === module MOM_bkgnd_mixing ===
 ! Adding static vertical background mixing coefficients
@@ -2193,6 +2204,9 @@ VON_KARMAN_WAVES = 0.4          !   [nondim] default = 0.4
                                 ! The value the von Karman constant as used for surface wave calculations.
 RHO_AIR = 1.225                 !   [kg m-3] default = 1.225
                                 ! A typical density of air at sea level, as used in wave calculations
+RHO_SFC_WAVES = 1035.0          !   [kg m-3] default = 1035.0
+                                ! A typical surface density of seawater, as used in wave calculations in
+                                ! comparison with the density of air.  The default is RHO_0.
 WAVE_HEIGHT_SCALE_FACTOR = 0.0246 !   [s2 m-1] default = 0.0246
                                 ! A factor relating the square of the 10 m wind speed to the significant wave
                                 ! height, with a default value based on the Pierson-Moskowitz spectrum.
