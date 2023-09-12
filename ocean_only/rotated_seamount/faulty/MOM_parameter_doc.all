@@ -125,18 +125,10 @@ CHECK_BAD_SURFACE_VALS = False  !   [Boolean] default = False
                                 ! If true, check the surface state for ridiculous values.
 DEFAULT_ANSWER_DATE = 99991231  ! default = 99991231
                                 ! This sets the default value for the various _ANSWER_DATE parameters.
-DEFAULT_2018_ANSWERS = False    !   [Boolean] default = False
-                                ! This sets the default value for the various _2018_ANSWERS parameters.
-SURFACE_2018_ANSWERS = False    !   [Boolean] default = False
-                                ! If true, use expressions for the surface properties that recover the answers
-                                ! from the end of 2018. Otherwise, use more appropriate expressions that differ
-                                ! at roundoff for non-Boussinesq cases.
 SURFACE_ANSWER_DATE = 99991231  ! default = 99991231
                                 ! The vintage of the expressions for the surface properties.  Values below
                                 ! 20190101 recover the answers from the end of 2018, while higher values use
-                                ! updated and more robust forms of the same expressions.  If both
-                                ! SURFACE_2018_ANSWERS and SURFACE_ANSWER_DATE are specified, the latter takes
-                                ! precedence.
+                                ! updated and more robust forms of the same expressions.
 USE_DIABATIC_TIME_BUG = False   !   [Boolean] default = False
                                 ! If true, uses the wrong calendar time for diabatic processes, as was done in
                                 ! MOM6 versions prior to February 2018. This is not recommended.
@@ -376,46 +368,3 @@ OBC_SEGMENT_028 = "J=44,I=40:32,FLATHER, OBLIQUE, OBLIQUE_TAN" !
                                 ! Documentation needs to be dynamic?????
 OBC_SEGMENT_029 = "I=32,J=44:43,FLATHER, OBLIQUE, OBLIQUE_TAN" !
                                 ! Documentation needs to be dynamic?????
-OBC_SEGMENT_030 = "J=43,I=32:24,FLATHER, OBLIQUE, OBLIQUE_TAN" !
-                                ! Documentation needs to be dynamic?????
-OBC_SEGMENT_031 = "I=24,J=43:42,FLATHER, OBLIQUE, OBLIQUE_TAN" !
-                                ! Documentation needs to be dynamic?????
-OBC_SEGMENT_032 = "J=42,I=24:16,FLATHER, OBLIQUE, OBLIQUE_TAN" !
-                                ! Documentation needs to be dynamic?????
-OBC_SEGMENT_033 = "I=16,J=42:41,FLATHER, OBLIQUE, OBLIQUE_TAN" !
-                                ! Documentation needs to be dynamic?????
-OBC_SEGMENT_034 = "J=41,I=16:8,FLATHER, OBLIQUE, OBLIQUE_TAN" !
-                                ! Documentation needs to be dynamic?????
-OBC_SEGMENT_035 = "I=8,J=41:40,FLATHER, OBLIQUE, OBLIQUE_TAN" !
-                                ! Documentation needs to be dynamic?????
-OBC_SEGMENT_036 = "J=40,I=8:0,FLATHER, OBLIQUE, OBLIQUE_TAN" !
-                                ! Documentation needs to be dynamic?????
-OBC_RADIATION_MAX = 1.0         !   [nondim] default = 1.0
-                                ! The maximum magnitude of the baroclinic radiation velocity (or speed of
-                                ! characteristics), in gridpoints per timestep.  This is only used if one of the
-                                ! open boundary segments is using Orlanski.
-OBC_RAD_VEL_WT = 1.0            !   [nondim] default = 0.3
-                                ! The relative weighting for the baroclinic radiation velocities (or speed of
-                                ! characteristics) at the new time level (1) or the running mean (0) for
-                                ! velocities. Valid values range from 0 to 1. This is only used if one of the
-                                ! open boundary segments is using Orlanski.
-OBC_TRACER_RESERVOIR_LENGTH_SCALE_OUT = 1000.0 !   [m] default = 0.0
-                                ! An effective length scale for restoring the tracer concentration at the
-                                ! boundaries to externally imposed values when the flow is exiting the domain.
-OBC_TRACER_RESERVOIR_LENGTH_SCALE_IN = 1000.0 !   [m] default = 0.0
-                                ! An effective length scale for restoring the tracer concentration at the
-                                ! boundaries to values from the interior when the flow is entering the domain.
-BRUSHCUTTER_MODE = False        !   [Boolean] default = False
-                                ! If true, read external OBC data on the supergrid.
-REMAPPING_2018_ANSWERS = False  !   [Boolean] default = False
-                                ! If true, use the order of arithmetic and expressions that recover the answers
-                                ! from the end of 2018.  Otherwise, use updated and more robust forms of the
-                                ! same expressions.
-REMAPPING_ANSWER_DATE = 99991231 ! default = 99991231
-                                ! The vintage of the expressions and order of arithmetic to use for remapping.
-                                ! Values below 20190101 result in the use of older, less accurate expressions
-                                ! that were in use at the end of 2018.  Higher values result in the use of more
-                                ! robust and accurate forms of mathematically equivalent expressions.  If both
-                                ! REMAPPING_2018_ANSWERS and REMAPPING_ANSWER_DATE are specified, the latter
-                                ! takes precedence.
-MASKING_DEPTH = -9999.0         !   [m] default = -9999.0
