@@ -21,7 +21,8 @@ module purge
 # Intel universe
 module load slurm/22.05.4
 module load intel/2022a
-module load netCDF-Fortran/4.5.4
+#module load netCDF-Fortran/4.5.4
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/home/kshedstrom/intel_23/lib
 module list
 
 #rm ocean.stats.gnu seaice.stats.gnu
@@ -38,8 +39,8 @@ TBEGIN=`echo "print time();" | perl`
 
 #srun -l /bin/hostname | sort -n | awk '{print $2}' > ./nodes
 mpirun -np $SLURM_NTASKS /import/c1/AKWATERS/kshedstrom/MOM6_22/build/intel/SYM_ice_ocean_SIS2/repro/MOM6
-#mpirun -np $SLURM_NTASKS -machinefile ./nodes --mca mpi_paffinity_alone 1 /import/c1/AKWATERS/kshedstrom/MOM6_22/build/gnu/SYM_ice_ocean_SIS2/repro/MOM6
-#mpirun -np $SLURM_NTASKS -machinefile ./nodes --mca mpi_paffinity_alone 1 /import/c1/AKWATERS/kshedstrom/MOM6_22/build/gnu/SYM_ice_ocean_SIS2/debug/MOM6
+#mpirun -np $SLURM_NTASKS --mca mpi_paffinity_alone 1 /import/c1/AKWATERS/kshedstrom/MOM6_22/build/gnu/SYM_ice_ocean_SIS2/repro/MOM6
+#mpirun -np $SLURM_NTASKS --mca mpi_paffinity_alone 1 /import/c1/AKWATERS/kshedstrom/MOM6_22/build/gnu/SYM_ice_ocean_SIS2/debug/MOM6
 
 #
 #  Epilog
