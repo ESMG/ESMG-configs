@@ -336,10 +336,10 @@ BOUND_CORIOLIS = True           !   [Boolean] default = False
 TIDE_M2 = True                  !   [Boolean] default = False
                                 ! If true, apply tidal momentum forcing at the M2 frequency. This is only used
                                 ! if TIDES is true.
-TIDE_SAL_SCALAR_VALUE = 0.094   !   [m m-1]
+SAL_SCALAR_VALUE = 0.094        !   [m m-1]
                                 ! The constant of proportionality between sea surface height (really it should
                                 ! be bottom pressure) anomalies and bottom geopotential anomalies. This is only
-                                ! used if TIDES and TIDE_USE_SAL_SCALAR are true.
+                                ! used if TIDES and USE_SAL_SCALAR are true.
 TIDE_M2_PHASE_T0 = -2.2209194857519687
 
 ! === module MOM_PressureForce ===
@@ -477,4 +477,3 @@ MAXCPU = 2.88E+04               !   [wall-clock seconds] default = -1.0
                                 ! seconds, so the actual CPU time used is larger by a factor of the number of
                                 ! processors used.
 
-BAROTROPIC_TIDAL_SAL_BUG = False

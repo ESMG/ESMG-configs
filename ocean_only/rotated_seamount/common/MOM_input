@@ -477,10 +477,10 @@ BOUND_CORIOLIS = True           !   [Boolean] default = False
 TIDE_M2 = True                  !   [Boolean] default = False
                                 ! If true, apply tidal momentum forcing at the M2 frequency. This is only used
                                 ! if TIDES is true.
-TIDE_SAL_SCALAR_VALUE = 0.094   !   [m m-1]
+SAL_SCALAR_VALUE = 0.094        !   [m m-1]
                                 ! The constant of proportionality between sea surface height (really it should
                                 ! be bottom pressure) anomalies and bottom geopotential anomalies. This is only
-                                ! used if TIDES and TIDE_USE_SAL_SCALAR are true.
+                                ! used if TIDES and USE_SAL_SCALAR are true.
 TIDE_M2_PHASE_T0 = -2.2209194857519687
 
 ! === module MOM_PressureForce ===
@@ -503,13 +503,13 @@ BIHARMONIC = False              !   [Boolean] default = True
 ! === module MOM_vert_friction ===
 DIRECT_STRESS = True            !   [Boolean] default = False
                                 ! If true, the wind stress is distributed over the topmost HMIX_STRESS of fluid
-                                ! (like in HYCOM), and KVML may be set to a very small value.
+                                ! (like in HYCOM), and KV_ML_INVZ2 may be set to a very small value.
 HMIX_FIXED = 20.0               !   [m]
                                 ! The prescribed depth over which the near-surface viscosity and diffusivity are
                                 ! elevated when the bulk mixed layer is not used.
-KVML = 0.01                     !   [m2 s-1] default = 1.0E-04
+KV_ML_INVZ2 = 0.01              !   [m2 s-1] default = 1.0E-04
                                 ! The kinematic viscosity in the mixed layer.  A typical value is ~1e-2 m2 s-1.
-                                ! KVML is not used if BULKMIXEDLAYER is true.  The default is set by KV.
+                                ! KV_ML_INVZ2 is not used if BULKMIXEDLAYER is true.  The default is set by KV.
 MAXVEL = 10.0                   !   [m s-1] default = 3.0E+08
                                 ! The maximum velocity allowed before the velocity components are truncated.
 

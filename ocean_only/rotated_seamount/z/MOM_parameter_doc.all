@@ -1228,7 +1228,7 @@ PV_ADV_SCHEME = "PV_ADV_CENTERED" ! default = "PV_ADV_CENTERED"
 SAL_SCALAR_APPROX = True        !   [Boolean] default = True
                                 ! If true, use the scalar approximation to calculate self-attraction and
                                 ! loading.
-SAL_SCALAR_VALUE = 0.094        !   [m m-1] default = 0.094
+SAL_SCALAR_VALUE = 0.094        !   [m m-1] default = 0.0
                                 ! The constant of proportionality between sea surface height (really it should
                                 ! be bottom pressure) anomalies and bottom geopotential anomalies. This is only
                                 ! used if USE_SAL_SCALAR is true or USE_PREVIOUS_TIDES is true.
@@ -1423,7 +1423,7 @@ HMIX_STRESS = 20.0              !   [m] default = 20.0
 USE_GL90_IN_SSW = False         !   [Boolean] default = False
                                 ! If true, use simpler method to calculate 1/N^2 in GL90 vertical viscosity
                                 ! coefficient. This method is valid in stacked shallow water mode.
-KV_ML_INVZ2 = 0.01              !   [m2 s-1] default = 0.01
+KV_ML_INVZ2 = 0.01              !   [m2 s-1] default = 0.0
                                 ! An extra kinematic viscosity in a mixed layer of thickness HMIX_FIXED, with
                                 ! the actual viscosity scaling as 1/(z*HMIX_FIXED)^2, where z is the distance
                                 ! from the surface, to allow for finite wind stresses to be transmitted through

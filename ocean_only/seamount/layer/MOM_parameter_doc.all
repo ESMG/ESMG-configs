@@ -997,7 +997,7 @@ PV_ADV_SCHEME = "PV_ADV_CENTERED" ! default = "PV_ADV_CENTERED"
 SAL_SCALAR_APPROX = True        !   [Boolean] default = True
                                 ! If true, use the scalar approximation to calculate self-attraction and
                                 ! loading.
-SAL_SCALAR_VALUE = 0.094        !   [m m-1] default = 0.094
+SAL_SCALAR_VALUE = 0.094        !   [m m-1] default = 0.0
                                 ! The constant of proportionality between sea surface height (really it should
                                 ! be bottom pressure) anomalies and bottom geopotential anomalies. This is only
                                 ! used if USE_SAL_SCALAR is true or USE_PREVIOUS_TIDES is true.

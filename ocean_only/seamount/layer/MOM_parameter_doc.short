@@ -336,6 +336,10 @@ BOUND_CORIOLIS = True           !   [Boolean] default = False
                                 ! CORIOLIS_SCHEME set to SADOURNY75_ENERGY.
 
 ! === module MOM_self_attr_load ===
+SAL_SCALAR_VALUE = 0.094        !   [m m-1] default = 0.0
+                                ! The constant of proportionality between sea surface height (really it should
+                                ! be bottom pressure) anomalies and bottom geopotential anomalies. This is only
+                                ! used if USE_SAL_SCALAR is true or USE_PREVIOUS_TIDES is true.
 
 ! === module MOM_tidal_forcing ===
 TIDE_M2 = True                  !   [Boolean] default = False

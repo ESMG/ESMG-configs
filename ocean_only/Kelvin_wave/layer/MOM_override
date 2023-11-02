@@ -17,8 +17,8 @@
 #override DIRECT_STRESS = True            !   [Boolean] default = False
 #override HARMONIC_VISC = True            !   [Boolean] default = False
 #override HMIX_FIXED = 20.0               !   [m]
-#override KV = 1.0E-04                    !   [m2 s-1]
-#override KVML = 1.0E-04                  !   [m2 s-1] default = 1.0E-04
+#override KV = 0.0                        !   [m2 s-1]
+#override KV_ML_INVZ2 = 1.0E-04           !   [m2 s-1] default = 1.0E-04
 #override HBBL = 10.0                     !   [m]
 #override KH_VEL_SCALE = 0.003            !   [m s-1] default = 0.0
 #override SMAGORINSKY_KH = True           !   [Boolean] default = False
