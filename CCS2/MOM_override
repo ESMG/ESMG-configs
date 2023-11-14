@@ -2,6 +2,6 @@
 #override KH_RES_FN_POWER = 100
 #override VISC_RES_FN_POWER = 100
 #override MIN_THICKNESS = 1.e-6
-DEBUG = False
+!DEBUG = True
 DEBUG_BT = False
 !VERBOSITY = 9
