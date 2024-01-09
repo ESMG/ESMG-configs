@@ -3,6 +3,10 @@
 ! === module MOM ===
 SPLIT = True                    !   [Boolean] default = True
                                 ! Use the split time stepping if true.
+SPLIT_RK2B = False              !   [Boolean] default = False
+                                ! If true, use a version of the split explicit time stepping scheme that
+                                ! exchanges velocities with step_MOM that have the average barotropic phase over
+                                ! a baroclinic timestep rather than the instantaneous barotropic phase.
 CALC_RHO_FOR_SEA_LEVEL = False  !   [Boolean] default = False
                                 ! If true, the in-situ density is used to calculate the effective sea level that
                                 ! is returned to the coupler. If false, the Boussinesq parameter RHO_0 is used.
@@ -365,6 +369,3 @@ OBC_SEGMENT_025 = "I=41,J=28:36,FLATHER, OBLIQUE, OBLIQUE_TAN" !
 OBC_SEGMENT_026 = "J=36,I=41:40,FLATHER, OBLIQUE, OBLIQUE_TAN" !
                                 ! Documentation needs to be dynamic?????
 OBC_SEGMENT_027 = "I=40,J=36:44,FLATHER, OBLIQUE, OBLIQUE_TAN" !
-                                ! Documentation needs to be dynamic?????
-OBC_SEGMENT_028 = "J=44,I=40:32,FLATHER, OBLIQUE, OBLIQUE_TAN" !
-                                ! Documentation needs to be dynamic?????

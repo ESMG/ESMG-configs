@@ -3,6 +3,10 @@
 ! === module MOM ===
 SPLIT = True                    !   [Boolean] default = True
                                 ! Use the split time stepping if true.
+SPLIT_RK2B = False              !   [Boolean] default = False
+                                ! If true, use a version of the split explicit time stepping scheme that
+                                ! exchanges velocities with step_MOM that have the average barotropic phase over
+                                ! a baroclinic timestep rather than the instantaneous barotropic phase.
 CALC_RHO_FOR_SEA_LEVEL = False  !   [Boolean] default = False
                                 ! If true, the in-situ density is used to calculate the effective sea level that
                                 ! is returned to the coupler. If false, the Boussinesq parameter RHO_0 is used.
@@ -334,7 +338,7 @@ RHO_T0_S0 = 1000.0              !   [kg m-3] default = 1000.0
 DRHO_DT = 0.0                   !   [kg m-3 K-1] default = -0.2
                                 ! When EQN_OF_STATE=LINEAR, this is the partial derivative of density with
                                 ! temperature.
-DRHO_DS = 1.0                   !   [kg m-3 PSU-1] default = 0.8
+DRHO_DS = 1.0                   !   [kg m-3 ppt-1] default = 0.8
                                 ! When EQN_OF_STATE=LINEAR, this is the partial derivative of density with
                                 ! salinity.
 EOS_QUADRATURE = False          !   [Boolean] default = False
@@ -344,13 +348,13 @@ TFREEZE_FORM = "LINEAR"         ! default = "LINEAR"
                                 ! TFREEZE_FORM determines which expression should be used for the freezing
                                 ! point.  Currently, the valid choices are "LINEAR", "MILLERO_78", "TEOS_POLY",
                                 ! "TEOS10"
-TFREEZE_S0_P0 = 0.0             !   [deg C] default = 0.0
+TFREEZE_S0_P0 = 0.0             !   [degC] default = 0.0
                                 ! When TFREEZE_FORM=LINEAR, this is the freezing potential temperature at S=0,
                                 ! P=0.
-DTFREEZE_DS = -0.054            !   [deg C PSU-1] default = -0.054
+DTFREEZE_DS = -0.054            !   [degC ppt-1] default = -0.054
                                 ! When TFREEZE_FORM=LINEAR, this is the derivative of the freezing potential
                                 ! temperature with salinity.
-DTFREEZE_DP = 0.0               !   [deg C Pa-1] default = 0.0
+DTFREEZE_DP = 0.0               !   [degC Pa-1] default = 0.0
                                 ! When TFREEZE_FORM=LINEAR, this is the derivative of the freezing potential
                                 ! temperature with pressure.
 
@@ -429,11 +433,11 @@ TS_RANGE_T_LIGHT = 10.0         !   [degC] default = 10.0
 TS_RANGE_T_DENSE = 10.0         !   [degC] default = 10.0
                                 ! The initial temperature of the densest layer when COORD_CONFIG is set to
                                 ! ts_range.
-S_REF = 35.0                    !   [PSU] default = 35.0
+S_REF = 35.0                    !   [ppt] default = 35.0
                                 ! The default initial salinities.
-TS_RANGE_S_LIGHT = 35.0         !   [PSU] default = 35.0
+TS_RANGE_S_LIGHT = 35.0         !   [ppt] default = 35.0
                                 ! The initial lightest salinities when COORD_CONFIG is set to ts_range.
-TS_RANGE_S_DENSE = 35.0         !   [PSU] default = 35.0
+TS_RANGE_S_DENSE = 35.0         !   [ppt] default = 35.0
                                 ! The initial densest salinities when COORD_CONFIG is set to ts_range.
 TS_RANGE_RESOLN_RATIO = 1.0     !   [nondim] default = 1.0
                                 ! The ratio of density space resolution in the densest part of the range to that
@@ -607,9 +611,9 @@ INITIAL_DENSITY_PROFILE = "linear" ! default = "linear"
                                 ! "exponential".
 DUMBBELL_T_SURF = 20.0          !   [degC] default = 20.0
                                 ! Initial surface temperature in the DUMBBELL configuration
-DUMBBELL_SREF = 35.0            !   [1e-3] default = 34.0
+DUMBBELL_SREF = 35.0            !   [ppt] default = 34.0
                                 ! DUMBBELL REFERENCE SALINITY
-DUMBBELL_S_RANGE = 2.0          !   [1e-3] default = 2.0
+DUMBBELL_S_RANGE = 2.0          !   [ppt] default = 2.0
                                 ! DUMBBELL salinity range (right-left)
 DEPRESS_INITIAL_SURFACE = False !   [Boolean] default = False
                                 ! If true,  depress the initial surface to avoid huge tsunamis when a large
@@ -924,13 +928,6 @@ STORE_CORIOLIS_ACCEL = True     !   [Boolean] default = True
                                 ! use in the predictor step of the next split RK2 timestep.
 FPMIX = False                   !   [Boolean] default = False
                                 ! If true, apply profiles of momentum flux magnitude and  direction
-
-! === module MOM_continuity ===
-CONTINUITY_SCHEME = "PPM"       ! default = "PPM"
-                                ! CONTINUITY_SCHEME selects the discretization for the continuity solver. The
-                                ! only valid value currently is:
-                                !    PPM - use a positive-definite (or monotonic)
-                                !          piecewise parabolic reconstruction solver.
 
 ! === module MOM_continuity_PPM ===
 MONOTONIC_CONTINUITY = False    !   [Boolean] default = False
@@ -1683,8 +1680,8 @@ LATENT_HEAT_VAPORIZATION = 2.5E+06 !   [J/kg] default = 2.5E+06
                                 ! The latent heat of fusion.
 GUST_CONST = 0.0                !   [Pa] default = 0.0
                                 ! The background gustiness in the winds.
-FIX_USTAR_GUSTLESS_BUG = True   !   [Boolean] default = True
-                                ! If true correct a bug in the time-averaging of the gustless wind friction
+USTAR_GUSTLESS_BUG = False      !   [Boolean] default = False
+                                ! If true include a bug in the time-averaging of the gustless wind friction
                                 ! velocity
 READ_GUST_2D = False            !   [Boolean] default = False
                                 ! If true, use a 2-dimensional gustiness supplied from an input file

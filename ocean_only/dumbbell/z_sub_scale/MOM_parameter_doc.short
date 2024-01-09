@@ -159,7 +159,7 @@ EQN_OF_STATE = "LINEAR"         ! default = "WRIGHT"
 DRHO_DT = 0.0                   !   [kg m-3 K-1] default = -0.2
                                 ! When EQN_OF_STATE=LINEAR, this is the partial derivative of density with
                                 ! temperature.
-DRHO_DS = 1.0                   !   [kg m-3 PSU-1] default = 0.8
+DRHO_DS = 1.0                   !   [kg m-3 ppt-1] default = 0.8
                                 ! When EQN_OF_STATE=LINEAR, this is the partial derivative of density with
                                 ! salinity.
 
@@ -272,7 +272,7 @@ TS_CONFIG = "dumbbell"          !
                                 !     rossby_front - a mixed layer front in thermal wind balance.
                                 !     SCM_CVMix_tests - used in the SCM CVMix tests.
                                 !     USER - call a user modified routine.
-DUMBBELL_SREF = 35.0            !   [1e-3] default = 34.0
+DUMBBELL_SREF = 35.0            !   [ppt] default = 34.0
                                 ! DUMBBELL REFERENCE SALINITY
 OBC_SEGMENT_001_DATA = "U=file:../z/west.nc(u),V=file:../z/west.nc(v),SSH=file:../z/west.nc(zeta),SALT=file:../z/west.nc(salt),DVDX=file:../z/west.nc(dvdx)" !
                                 ! OBC segment docs
@@ -321,8 +321,6 @@ BE = 0.7                        !   [nondim] default = 0.6
                                 ! (1) that is used for the Coriolis and inertial terms.  BE may be from 0.5 to
                                 ! 1, but instability may occur near 0.5. BE is also applicable if SPLIT is false
                                 ! and USE_RK2 is true.
-
-! === module MOM_continuity ===
 
 ! === module MOM_continuity_PPM ===
 ETA_TOLERANCE = 1.0E-12         !   [m] default = 1.0E-10
