@@ -44,11 +44,11 @@ VERBOSE = False                 !   [Boolean] default = False
 DEBUG_EVP_SUBSTEPS = False      !   [Boolean] default = False
                                 ! If true, write out verbose debugging data for each of the steps within the EVP
                                 ! solver.
-U_TRUNC_FILE = "SIS_U_truncations" ! default = ""
+U_TRUNC_FILE = ""               ! default = ""
                                 ! The absolute path to the file where the accelerations leading to zonal
                                 ! velocity truncations are written. Leave this empty for efficiency if this
                                 ! diagnostic is not needed.
-V_TRUNC_FILE = "SIS_V_truncations" ! default = ""
+V_TRUNC_FILE = ""               ! default = ""
                                 ! The absolute path to the file where the accelerations leading to meridional
                                 ! velocity truncations are written. Leave this empty for efficiency if this
                                 ! diagnostic is not needed.

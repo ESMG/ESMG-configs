@@ -928,6 +928,9 @@ SMAG_CONST_CHANNEL = 0.15       !   [nondim] default = 0.15
                                 ! channel drag if it is enabled.  The default is to use the same value as
                                 ! SMAG_LAP_CONST if it is defined, or 0.15 if it is not. The value used is also
                                 ! 0.15 if the specified value is negative.
+TRIG_CHANNEL_DRAG_WIDTHS = True !   [Boolean] default = True
+                                ! If true, use trigonometric expressions to determine the fractional open
+                                ! interface lengths for concave topography.
 CHANNEL_DRAG_MAX_BBL_THICK = 5.0 !   [m] default = 5.0
                                 ! The maximum bottom boundary layer thickness over which the channel drag is
                                 ! exerted, or a negative value for no fixed limit, instead basing the BBL
@@ -1153,6 +1156,9 @@ HOR_VISC_ANSWER_DATE = 99991231 ! default = 99991231
                                 ! viscosity calculations.  Values below 20190101 recover the answers from the
                                 ! end of 2018, while higher values use updated and more robust forms of the same
                                 ! expressions.
+USE_CONT_THICKNESS = False      !   [Boolean] default = False
+                                ! If true, use thickness at velocity points from continuity solver. This
+                                ! optioncurrently only works with split mode.
 LAPLACIAN = True                !   [Boolean] default = False
                                 ! If true, use a Laplacian horizontal viscosity.
 KH = 0.0                        !   [m2 s-1] default = 0.0
