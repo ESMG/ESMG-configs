@@ -508,7 +508,7 @@ SUPERCRITICAL_ZONAL_FLOW = 8.57 !   [m/s] default = 8.57
 NUM_DIAG_COORDS = 0             ! default = 1
                                 ! The number of diagnostic vertical coordinates to use. For each coordinate, an
                                 ! entry in DIAG_COORDS must be provided.
-USE_GRID_SPACE_DIAGNOSTIC_AXES = False !   [Boolean] default = False
+USE_INDEX_DIAGNOSTIC_AXES = False !   [Boolean] default = False
                                 ! If true, use a grid index coordinate convention for diagnostic axes.
 DIAG_MISVAL = 1.0E+20           !   [various] default = 1.0E+20
                                 ! Set the default missing value to use for diagnostics.
