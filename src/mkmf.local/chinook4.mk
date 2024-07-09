@@ -193,6 +193,7 @@ ifeq ($(NETCDF),3)
 endif
 
 LIBS := $(shell nc-config --flibs)
+LIBS += -lyaml
 ifdef COVERAGE
 ifdef BUILDROOT
 PROF_DIR=-prof-dir=$(BUILDROOT)
