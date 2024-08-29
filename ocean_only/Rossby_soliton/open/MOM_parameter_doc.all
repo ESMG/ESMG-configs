@@ -549,6 +549,8 @@ DIAG_COORD_DEF_Z = "UNIFORM"    ! default = "UNIFORM"
                                 !                by a comma or space, e.g. FILE:lev.nc,dz
                                 !                or FILE:lev.nc,interfaces=zw
                                 !  WOA09[:N]   - the WOA09 vertical grid (approximately)
+                                !  WOA09INT[:N] - layers spanned by the WOA09 depths
+                                !  WOA23INT[:N] - layers spanned by the WOA23 depths
                                 !  FNC1:string - FNC1:dz_min,H_total,power,precision
                                 !  HYBRID:string - read from a file. The string specifies
                                 !                the filename and two variable names, separated
@@ -1181,10 +1183,6 @@ TRACER_ADVECTION_SCHEME = "PLM" ! default = "PLM"
                                 !   PLM    - Piecewise Linear Method
                                 !   PPM:H3 - Piecewise Parabolic Method (Huyhn 3rd order)
                                 !   PPM    - Piecewise Parabolic Method (Colella-Woodward)
-USE_HUYNH_STENCIL_BUG = False   !   [Boolean] default = False
-                                ! If true, use a stencil width of 2 in PPM:H3 tracer advection. This is
-                                ! incorrect and will produce regressions in certain configurations, but may be
-                                ! required to reproduce results in legacy simulations.
 
 ! === module MOM_tracer_hor_diff ===
 KHTR = 0.0                      !   [m2 s-1] default = 0.0
