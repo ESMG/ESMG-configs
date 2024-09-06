@@ -1,9 +1,9 @@
 #!/bin/bash
 #SBATCH -t 0:30:00
 #SBATCH --ntasks=24
-#SBATCH --job-name=CCS2
+#SBATCH --job-name=CCS1
 #SBATCH --account=akwaters
-#SBATCH --output=CCS2.%j
+#SBATCH --output=CCS1.%j
 #SBATCH --no-requeue
 #SBATCH -p debug
 ###SBATCH -p t1small
