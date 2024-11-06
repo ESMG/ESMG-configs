@@ -233,16 +233,12 @@ KV = 0.0                        !   [m2 s-1]
 
 ! === module MOM_thickness_diffuse ===
 
-! === module MOM_porous_barriers ===
-
 ! === module MOM_dynamics_split_RK2 ===
 VISC_REM_BUG = False            !   [Boolean] default = True
                                 ! If true, visc_rem_[uv] in split mode is incorrectly calculated or accounted
-                                ! for in three places. This parameter controls the defaults of three individual
-                                ! flags, VISC_REM_TIMESTEP_FIX in MOM_dynamics_split_RK2(b),
-                                ! VISC_REM_BT_WEIGHT_FIX in MOM_barotropic, and VISC_REM_CONT_HVEL_FIX in
-                                ! MOM_continuity_PPM. Eventually, the three individual flags should be removed
-                                ! after tests and the default of VISC_REM_BUG should be to False.
+                                ! for in two places. This parameter controls the defaults of two individual
+                                ! flags, VISC_REM_TIMESTEP_BUG in MOM_dynamics_split_RK2(b) and
+                                ! VISC_REM_BT_WEIGHT_BUG in MOM_barotropic.
 
 ! === module MOM_continuity_PPM ===
 ETA_TOLERANCE = 1.0E-06         !   [m] default = 5.0E-11

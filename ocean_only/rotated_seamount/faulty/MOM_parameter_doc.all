@@ -49,7 +49,7 @@ THICKNESSDIFFUSE = False        !   [Boolean] default = False
 APPLY_INTERFACE_FILTER = False  !   [Boolean] default = False
                                 ! If true, model interface heights are subjected to a grid-scale dependent
                                 ! spatial smoothing, often with biharmonic filter.
-USE_POROUS_BARRIER = True       !   [Boolean] default = True
+USE_POROUS_BARRIER = False      !   [Boolean] default = False
                                 ! If true, use porous barrier to constrain the widths and face areas at the
                                 ! edges of the grid cells.
 BATHYMETRY_AT_VEL = False       !   [Boolean] default = False
