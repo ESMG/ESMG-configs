@@ -1,0 +1,10 @@
+! Blank file in which we can put "overrides" for parameters !VERBOSITY = 9
+#override BBL_EFFIC = 0.0
+## R20
+#override CHANNEL_DRAG = True
+#override CHANNEL_DRAG_MAX_BBL_THICK = 1
+#override BBL_THICK_MIM = 0.1
+
+ROTATE_INDEX = True
+INDEX_TURNS = 1
+
