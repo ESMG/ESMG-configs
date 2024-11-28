@@ -16,7 +16,7 @@ REENTRANT_X = False             !   [Boolean] default = True
 NIGLOBAL = 100                  !
                                 ! The total number of thickness grid points in the x-direction in the physical
                                 ! domain. With STATIC_MEMORY_ this is set in MOM_memory.h at compile time.
-NJGLOBAL = 100                  !
+NJGLOBAL = 96                  !
                                 ! The total number of thickness grid points in the y-direction in the physical
                                 ! domain. With STATIC_MEMORY_ this is set in MOM_memory.h at compile time.
 NIHALO = 4                      ! default = 4

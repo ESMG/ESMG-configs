@@ -51,7 +51,7 @@ REENTRANT_X = False             !   [Boolean] default = True
 NIGLOBAL = 100                  !
                                 ! The total number of thickness grid points in the x-direction in the physical
                                 ! domain. With STATIC_MEMORY_ this is set in MOM_memory.h at compile time.
-NJGLOBAL = 100                  !
+NJGLOBAL = 96                   !
                                 ! The total number of thickness grid points in the y-direction in the physical
                                 ! domain. With STATIC_MEMORY_ this is set in MOM_memory.h at compile time.
 
@@ -169,9 +169,9 @@ PARALLEL_RESTARTFILES = True    !   [Boolean] default = False
 
 ! === module MOM_tracer_flow_control ===
 
-! === module segment_tracer_registry_init ===
-
 ! === module MOM_boundary_update ===
+
+! === module segment_tracer_registry_init ===
 
 ! === module MOM_coord_initialization ===
 COORD_CONFIG = "ALE"            ! default = "none"
@@ -264,13 +264,13 @@ S_TOP = 20.0                    !   [ppt]
                                 ! Initial salinity of the top surface.
 S_RANGE = 5.0                   !   [ppt]
                                 ! Initial salinity difference (top-bottom).
-OBC_SEGMENT_001_DATA = "SSH=value:0.1,U=value:0.0,V=value:0,TEMP=value:7.0,SALT=value:33.0" !
+OBC_SEGMENT_001_DATA = "SSH=value:0.1,U=value:0.1,V=value:0,TEMP=value:7.0,SALT=value:33.0" !
                                 ! OBC segment docs
-OBC_SEGMENT_002_DATA = "SSH=value:0.1,U=value:0.0,V=value:0,TEMP=value:7.0,SALT=value:33.0" !
+OBC_SEGMENT_002_DATA = "SSH=value:0.1,U=value:0.1,V=value:0,TEMP=value:7.0,SALT=value:33.0" !
                                 ! OBC segment docs
-OBC_SEGMENT_003_DATA = "SSH=value:0.1,U=value:0.0,V=value:0,TEMP=value:7.0,SALT=value:33.0" !
+OBC_SEGMENT_003_DATA = "SSH=value:0.15,U=value:0.0,V=value:0.1,TEMP=value:7.0,SALT=value:33.0" !
                                 ! OBC segment docs
-OBC_SEGMENT_004_DATA = "SSH=value:0.1,U=value:0.0,V=value:0,TEMP=value:7.0,SALT=value:33.0" !
+OBC_SEGMENT_004_DATA = "SSH=value:0.15,U=value:0.0,V=value:0.1,TEMP=value:7.0,SALT=value:33.0" !
                                 ! OBC segment docs
 
 ! === module MOM_diag_mediator ===

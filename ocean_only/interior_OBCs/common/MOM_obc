@@ -6,16 +6,16 @@ OBC_NUMBER_OF_SEGMENTS = 4
 !OBC_SEGMENT_002 = "I=70,J=70:N,FLATHER,ORLANSKI"
 
 OBC_SEGMENT_001 = "I=2,J=N-2:3,FLATHER,ORLANSKI"
-OBC_SEGMENT_001_DATA = "SSH=value:0.1,U=value:0.0,V=value:0,TEMP=value:7.0,SALT=value:33.0"
+OBC_SEGMENT_001_DATA = "SSH=value:0.1,U=value:0.1,V=value:0,TEMP=value:7.0,SALT=value:33.0"
 
 OBC_SEGMENT_002 = "I=N,J=3:N-2,FLATHER,ORLANSKI"
-OBC_SEGMENT_002_DATA = "SSH=value:0.1,U=value:0.0,V=value:0,TEMP=value:7.0,SALT=value:33.0"
+OBC_SEGMENT_002_DATA = "SSH=value:0.1,U=value:0.1,V=value:0,TEMP=value:7.0,SALT=value:33.0"
 
 OBC_SEGMENT_003 = "J=N-2,I=N:2,FLATHER,ORLANSKI"
-OBC_SEGMENT_003_DATA = "SSH=value:0.1,U=value:0.0,V=value:0,TEMP=value:7.0,SALT=value:33.0"
+OBC_SEGMENT_003_DATA = "SSH=value:0.15,U=value:0.0,V=value:0.1,TEMP=value:7.0,SALT=value:33.0"
 
 OBC_SEGMENT_004 = "J=3,I=2:N,FLATHER,ORLANSKI"
-OBC_SEGMENT_004_DATA = "SSH=value:0.1,U=value:0.0,V=value:0,TEMP=value:7.0,SALT=value:33.0"
+OBC_SEGMENT_004_DATA = "SSH=value:0.15,U=value:0.0,V=value:0.1,TEMP=value:7.0,SALT=value:33.0"
 
 MASK_OUTSIDE_OBCS = True
 OBC_TRACER_RESERVOIR_LENGTH_SCALE_OUT = 9000
@@ -41,7 +41,7 @@ RAMP_OBCS = False
 #override DTBT = 60
 #override OBC_REMAPPING_USE_OM4_SUBCELLS = False
 #override VISC_REM_BUG = False
-!#override DEBUG_OBC = True
+#override DEBUG_OBC = False
 #
 #override USE_PSURF_IN_EOS = False
 #override DYNAMIC_SURFACE_PRESSURE = False
