@@ -14,7 +14,7 @@ cd $SLURM_SUBMIT_DIR
 # New gnu
 module purge
 # Gnu universe
-module load slurm/22.05.4
+module load slurm
 module load foss/2022a
 module load netCDF-Fortran/4.5.4
 #

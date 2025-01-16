@@ -93,10 +93,6 @@ OBC_SEGMENT_002 = "J=N,I=N:0,GRADIENT" !
                                 ! Documentation needs to be dynamic?????
 OBC_SEGMENT_003 = "I=N,J=0:N,FLATHER" !
                                 ! Documentation needs to be dynamic?????
-OBC_REMAPPING_USE_OM4_SUBCELLS = False !   [Boolean] default = True
-                                ! If true, use the OM4 remapping-via-subcells algorithm for neutral diffusion.
-                                ! See REMAPPING_USE_OM4_SUBCELLS for more details. We recommend setting this
-                                ! option to false.
 MASKING_DEPTH = 0.5             !   [m] default = -9999.0
                                 ! The depth below which to mask points as land points, for which all fluxes are
                                 ! zeroed out. MASKING_DEPTH is ignored if it has the special default value.
@@ -184,10 +180,6 @@ OBC_USER_CONFIG = "dyed_channel" ! default = "none"
 NUM_DIAG_COORDS = 0             ! default = 1
                                 ! The number of diagnostic vertical coordinates to use. For each coordinate, an
                                 ! entry in DIAG_COORDS must be provided.
-DIAG_REMAPPING_USE_OM4_SUBCELLS = False !   [Boolean] default = True
-                                ! If true, use the OM4 remapping-via-subcells algorithm for diagnostics. See
-                                ! REMAPPING_USE_OM4_SUBCELLS for details. We recommend setting this option to
-                                ! false.
 
 ! === module MOM_lateral_mixing_coeffs ===
 
@@ -291,10 +283,6 @@ DTBT = -0.9                     !   [s or nondim] default = -0.98
                                 ! actually be used is an integer fraction of DT, rounding down.
 
 ! === module MOM_diagnostics ===
-INTWAVE_REMAPPING_USE_OM4_SUBCELLS = False !   [Boolean] default = True
-                                ! If true, use the OM4 remapping-via-subcells algorithm for calculating EBT
-                                ! structure. See REMAPPING_USE_OM4_SUBCELLS for details. We recommend setting
-                                ! this option to false.
 
 ! === module MOM_diabatic_driver ===
 ! The following parameters are used for diabatic processes.

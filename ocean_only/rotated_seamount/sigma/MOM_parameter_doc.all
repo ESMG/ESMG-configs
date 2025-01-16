@@ -431,7 +431,7 @@ REMAPPING_ANSWER_DATE = 99991231 ! default = 99991231
                                 ! Values below 20190101 result in the use of older, less accurate expressions
                                 ! that were in use at the end of 2018.  Higher values result in the use of more
                                 ! robust and accurate forms of mathematically equivalent expressions.
-OBC_REMAPPING_USE_OM4_SUBCELLS = False !   [Boolean] default = True
+OBC_REMAPPING_USE_OM4_SUBCELLS = False !   [Boolean] default = False
                                 ! If true, use the OM4 remapping-via-subcells algorithm for neutral diffusion.
                                 ! See REMAPPING_USE_OM4_SUBCELLS for more details. We recommend setting this
                                 ! option to false.
@@ -760,6 +760,7 @@ THICKNESS_CONFIG = "seamount"   ! default = "uniform"
                                 !     uniform - uniform thickness layers evenly distributed
                                 !       between the surface and MAXIMUM_DEPTH.
                                 !     list - read a list of positive interface depths.
+                                !     param - use thicknesses from parameter THICKNESS_INIT_VALUES.
                                 !     DOME - use a slope and channel configuration for the
                                 !       DOME sill-overflow test case.
                                 !     ISOMIP - use a configuration for the
@@ -922,7 +923,7 @@ OBC_USER_CONFIG = "dyed_obcs"   ! default = "none"
 NUM_DIAG_COORDS = 1             ! default = 1
                                 ! The number of diagnostic vertical coordinates to use. For each coordinate, an
                                 ! entry in DIAG_COORDS must be provided.
-DIAG_REMAPPING_USE_OM4_SUBCELLS = False !   [Boolean] default = True
+DIAG_REMAPPING_USE_OM4_SUBCELLS = False !   [Boolean] default = False
                                 ! If true, use the OM4 remapping-via-subcells algorithm for diagnostics. See
                                 ! REMAPPING_USE_OM4_SUBCELLS for details. We recommend setting this option to
                                 ! false.
@@ -1273,6 +1274,10 @@ PV_ADV_SCHEME = "PV_ADV_CENTERED" ! default = "PV_ADV_CENTERED"
                                 !    PV_ADV_UPWIND1  - upwind, first order
 
 ! === module MOM_self_attr_load ===
+SAL_USE_BPA = False             !   [Boolean] default = False
+                                ! If true, use bottom pressure anomaly to calculate self-attraction and loading
+                                ! (SAL). Otherwise sea surface height anomaly is used, which is only correct for
+                                ! homogenous flow.
 SAL_SCALAR_APPROX = True        !   [Boolean] default = True
                                 ! If true, use the scalar approximation to calculate self-attraction and
                                 ! loading.
@@ -1321,12 +1326,12 @@ TIDAL_SAL_FROM_FILE = False     !   [Boolean] default = False
 USE_PREVIOUS_TIDES = False      !   [Boolean] default = False
                                 ! If true, use the SAL from the previous iteration of the tides to facilitate
                                 ! convergent iteration. This is only used if TIDES is true.
-TIDE_REF_DATE = 0, 0, 0         ! default = 0
+TIDE_REF_DATE = 0, 0, 0         ! default = 0, 0, 0
                                 ! Year,month,day to use as reference date for tidal forcing. If not specified,
                                 ! defaults to 0.
 TIDE_USE_EQ_PHASE = False       !   [Boolean] default = False
                                 ! Correct phases by calculating equilibrium phase arguments for TIDE_REF_DATE.
-TIDE_M2_FREQ = 1.405189E-04     !   [s-1] default = 1.405189E-04
+TIDE_M2_FREQ = 1.405189E-04     !   [rad s-1] default = 1.405189E-04
                                 ! Frequency of the M2 tidal constituent. This is only used if TIDES and TIDE_M2
                                 ! are true, or if OBC_TIDE_N_CONSTITUENTS > 0 and M2 is in
                                 ! OBC_TIDE_CONSTITUENTS.
@@ -1368,9 +1373,18 @@ RHO_PGF_REF = 1035.0            !   [kg m-3] default = 1035.0
                                 ! non-Boussinesq mode.  The default is RHO_0.
 TIDES_ANSWER_DATE = 20230630    ! default = 20230630
                                 ! The vintage of self-attraction and loading (SAL) and tidal forcing
-                                ! calculations in Boussinesq mode. Values below 20230701 recover the old answers
-                                ! in which the SAL is part of the tidal forcing calculation.  The change is due
-                                ! to a reordered summation and the difference is only at bit level.
+                                ! calculations.  Setting dates before 20230701 recovers old answers (Boussinesq
+                                ! and non-Boussinesq modes) when SAL is part of the tidal forcing calculation.
+                                ! The answer difference is only at bit level and due to a reordered summation.
+                                ! Setting dates before 20250201 recovers answers (Boussinesq mode) that
+                                ! interface heights are modified before pressure force integrals are calculated.
+BOUSSINESQ_SAL_TIDES = False    !   [Boolean] default = False
+                                ! If true, in Boussinesq mode, use an alternative method to include
+                                ! self-attraction and loading (SAL) and tidal forcings in pressure gradient, in
+                                ! which their gradients are calculated separately, instead of adding
+                                ! geopotential anomalies as corrections to the interface height.  This
+                                ! alternative method elimates a baroclinic component of the SAL and tidal
+                                ! forcings.
 SSH_IN_EOS_PRESSURE_FOR_PGF = False !   [Boolean] default = False
                                 ! If true, include contributions from the sea surface height in the height-based
                                 ! pressure used in the equation of state calculations for the Boussinesq
@@ -1679,7 +1693,7 @@ INTERNAL_WAVE_SPEED_MIN = 0.0   !   [m s-1] default = 0.0
 INTERNAL_WAVE_SPEED_BETTER_EST = True !   [Boolean] default = True
                                 ! If true, use a more robust estimate of the first mode wave speed as the
                                 ! starting point for iterations.
-INTWAVE_REMAPPING_USE_OM4_SUBCELLS = False !   [Boolean] default = True
+INTWAVE_REMAPPING_USE_OM4_SUBCELLS = False !   [Boolean] default = False
                                 ! If true, use the OM4 remapping-via-subcells algorithm for calculating EBT
                                 ! structure. See REMAPPING_USE_OM4_SUBCELLS for details. We recommend setting
                                 ! this option to false.
@@ -1732,7 +1746,7 @@ EVAP_CFL_LIMIT = 0.8            !   [nondim] default = 0.8
                                 ! The largest fraction of a layer than can be lost to forcing (e.g. evaporation,
                                 ! sea-ice formation) in one time-step. The unused mass loss is passed down
                                 ! through the column.
-MLD_EN_VALS = 3*0.0             !   [J/m2] default = 0.0
+MLD_EN_VALS = 25.0, 2500.0, 2.5E+05 !   [J/m2] default = 25.0, 2500.0, 2.5E+05
                                 ! The energy values used to compute MLDs.  If not set (or all set to 0.), the
                                 ! default will overwrite to 25., 2500., 250000.
 DIAG_MLD_DENSITY_DIFF = 0.1     !   [kg/m3] default = 0.1
@@ -2051,8 +2065,7 @@ BUOY_CONFIG = "NONE"            ! default = "zero"
 WIND_CONFIG = "zero"            ! default = "zero"
                                 ! The character string that indicates how wind forcing is specified.  Valid
                                 ! options include (file), (data_override), (2gyre), (1gyre), (gyres), (zero),
-                                ! (const), (Neverworld), (scurves), (ideal_hurr), (SCM_ideal_hurr),
-                                ! (SCM_CVmix_tests) and (USER).
+                                ! (const), (Neverworld), (scurves), (ideal_hurr), (SCM_CVmix_tests) and (USER).
 RESTOREBUOY = False             !   [Boolean] default = False
                                 ! If true, the buoyancy fluxes drive the model back toward some specified
                                 ! surface state with a rate given by FLUXCONST.

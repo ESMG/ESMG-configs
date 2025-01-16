@@ -112,10 +112,6 @@ OBC_SEGMENT_001 = "I=N,J=-10:14,FLATHER" !
                                 ! Documentation needs to be dynamic?????
 OBC_SEGMENT_002 = "I=N,J=12:N+10,FLATHER" !
                                 ! Documentation needs to be dynamic?????
-OBC_REMAPPING_USE_OM4_SUBCELLS = False !   [Boolean] default = True
-                                ! If true, use the OM4 remapping-via-subcells algorithm for neutral diffusion.
-                                ! See REMAPPING_USE_OM4_SUBCELLS for more details. We recommend setting this
-                                ! option to false.
 ROTATION = "betaplane"          ! default = "2omegasinlat"
                                 ! This specifies how the Coriolis parameter is specified:
                                 !     2omegasinlat - Use twice the planetary rotation rate
@@ -168,10 +164,6 @@ OBC_SEGMENT_002_DATA = "U=value:0.0,V=value:0.0,SSH=value:0.0" !
 NUM_DIAG_COORDS = 0             ! default = 1
                                 ! The number of diagnostic vertical coordinates to use. For each coordinate, an
                                 ! entry in DIAG_COORDS must be provided.
-DIAG_REMAPPING_USE_OM4_SUBCELLS = False !   [Boolean] default = True
-                                ! If true, use the OM4 remapping-via-subcells algorithm for diagnostics. See
-                                ! REMAPPING_USE_OM4_SUBCELLS for details. We recommend setting this option to
-                                ! false.
 
 ! === module MOM_lateral_mixing_coeffs ===
 
@@ -271,10 +263,6 @@ DTBT = -0.9                     !   [s or nondim] default = -0.98
                                 ! actually be used is an integer fraction of DT, rounding down.
 
 ! === module MOM_diagnostics ===
-INTWAVE_REMAPPING_USE_OM4_SUBCELLS = False !   [Boolean] default = True
-                                ! If true, use the OM4 remapping-via-subcells algorithm for calculating EBT
-                                ! structure. See REMAPPING_USE_OM4_SUBCELLS for details. We recommend setting
-                                ! this option to false.
 
 ! === module MOM_diabatic_driver ===
 ! The following parameters are used for diabatic processes.
@@ -301,8 +289,7 @@ VARIABLE_BUOYFORCE = False      !   [Boolean] default = True
 WIND_CONFIG = "const"           ! default = "zero"
                                 ! The character string that indicates how wind forcing is specified.  Valid
                                 ! options include (file), (data_override), (2gyre), (1gyre), (gyres), (zero),
-                                ! (const), (Neverworld), (scurves), (ideal_hurr), (SCM_ideal_hurr),
-                                ! (SCM_CVmix_tests) and (USER).
+                                ! (const), (Neverworld), (scurves), (ideal_hurr), (SCM_CVmix_tests) and (USER).
 CONST_WIND_TAUX = -0.1          !   [Pa]
                                 ! With wind_config const, this is the constant zonal wind-stress
 CONST_WIND_TAUY = 0.0           !   [Pa]

@@ -138,6 +138,7 @@ THICKNESS_CONFIG = "soliton"    ! default = "uniform"
                                 !     uniform - uniform thickness layers evenly distributed
                                 !       between the surface and MAXIMUM_DEPTH.
                                 !     list - read a list of positive interface depths.
+                                !     param - use thicknesses from parameter THICKNESS_INIT_VALUES.
                                 !     DOME - use a slope and channel configuration for the
                                 !       DOME sill-overflow test case.
                                 !     ISOMIP - use a configuration for the
@@ -170,10 +171,6 @@ VELOCITY_CONFIG = "soliton"     ! default = "zero"
                                 !     USER - call a user modified routine.
 
 ! === module MOM_diag_mediator ===
-DIAG_REMAPPING_USE_OM4_SUBCELLS = False !   [Boolean] default = True
-                                ! If true, use the OM4 remapping-via-subcells algorithm for diagnostics. See
-                                ! REMAPPING_USE_OM4_SUBCELLS for details. We recommend setting this option to
-                                ! false.
 
 ! === module MOM_lateral_mixing_coeffs ===
 
@@ -265,10 +262,6 @@ DTBT = -0.9                     !   [s or nondim] default = -0.98
                                 ! actually be used is an integer fraction of DT, rounding down.
 
 ! === module MOM_diagnostics ===
-INTWAVE_REMAPPING_USE_OM4_SUBCELLS = False !   [Boolean] default = True
-                                ! If true, use the OM4 remapping-via-subcells algorithm for calculating EBT
-                                ! structure. See REMAPPING_USE_OM4_SUBCELLS for details. We recommend setting
-                                ! this option to false.
 
 ! === module MOM_diabatic_driver ===
 ! The following parameters are used for diabatic processes.
