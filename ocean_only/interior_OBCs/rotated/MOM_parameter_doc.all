@@ -327,6 +327,9 @@ OBC_RAMP_TIMESCALE = 1.0        !   [days] default = 1.0
                                 ! If RAMP_OBCS is true, this sets the ramping timescale.
 OBC_TIDE_N_CONSTITUENTS = 0     ! default = 0
                                 ! Number of tidal constituents being added to the open boundary.
+EXTERIOR_OBC_BUG = False        !   [Boolean] default = True
+                                ! If true, recover a bug in barotropic solver and other routines when boundary
+                                ! contitions interior to the domain are used.
 OBC_SEGMENT_001 = "I=2,J=N-2:3,FLATHER,ORLANSKI" !
                                 ! Documentation needs to be dynamic?????
 OBC_SEGMENT_002 = "I=N,J=3:N-2,FLATHER,ORLANSKI" !
@@ -456,6 +459,13 @@ RESTART_CHECKSUMS_REQUIRED = True !   [Boolean] default = True
                                 ! may want to avoid this comparison if for example the restarts are made from a
                                 ! run with a different mask_table than the current run, in which case the
                                 ! checksums will not match and cause crash.
+RESTART_SYMMETRIC_CHECKSUMS = False !   [Boolean] default = False
+                                ! If true, do the restart checksums on all the edge points for a non-reentrant
+                                ! grid.  This requires that SYMMETRIC_MEMORY_ is defined at compile time.
+RESTART_UNSIGNED_ZEROS = False  !   [Boolean] default = False
+                                ! If true, convert any negative zeros that would be written to the restart file
+                                ! into ordinary unsigned zeros.  This does not change answers, but it can be
+                                ! helpful in comparing restart files after grid rotation, for example.
 USE_FILTER = False              !   [Boolean] default = False
                                 ! If true, use streaming band-pass filters to detect the instantaneous tidal
                                 ! signals in the simulation.
@@ -686,3 +696,45 @@ TS_CONFIG = "linear"            !
                                 !       (read from TS_FILE) to set layer densities.
                                 !     benchmark - use the benchmark test case T & S.
                                 !     linear - linear in logical layer space.
+                                !     DOME2D - 2D DOME initialization.
+                                !     ISOMIP - ISOMIP initialization.
+                                !     adjustment2d - 2d lock exchange T/S ICs.
+                                !     sloshing - sloshing mode T/S ICs.
+                                !     seamount - no motion test with seamount ICs.
+                                !     dumbbell - sloshing channel ICs.
+                                !     rossby_front - a mixed layer front in thermal wind balance.
+                                !     SCM_CVMix_tests - used in the SCM CVMix tests.
+                                !     USER - call a user modified routine.
+T_TOP = 12.0                    !   [degC]
+                                ! Initial temperature of the top surface.
+T_RANGE = -3.0                  !   [degC]
+                                ! Initial temperature difference (top-bottom).
+S_TOP = 20.0                    !   [ppt]
+                                ! Initial salinity of the top surface.
+S_RANGE = 5.0                   !   [ppt]
+                                ! Initial salinity difference (top-bottom).
+DEPRESS_INITIAL_SURFACE = False !   [Boolean] default = False
+                                ! If true,  depress the initial surface to avoid huge tsunamis when a large
+                                ! surface pressure is applied.
+TRIM_IC_FOR_P_SURF = False      !   [Boolean] default = False
+                                ! If true, cuts way the top of the column for initial conditions at the depth
+                                ! where the hydrostatic pressure matches the imposed surface pressure which is
+                                ! read from file.
+REGRID_ACCELERATE_INIT = False  !   [Boolean] default = False
+                                ! If true, runs REGRID_ACCELERATE_ITERATIONS iterations of the regridding
+                                ! algorithm to push the initial grid to be consistent with the initial
+                                ! condition. Useful only for state-based and iterative coordinates.
+VELOCITY_CONFIG = "zero"        ! default = "zero"
+                                ! A string that determines how the initial velocities are specified for a new
+                                ! run:
+                                !     file - read velocities from the file specified
+                                !       by (VELOCITY_FILE).
+                                !     zero - the fluid is initially at rest.
+                                !     uniform - the flow is uniform (determined by
+                                !       parameters INITIAL_U_CONST and INITIAL_V_CONST).
+                                !     rossby_front - a mixed layer front in thermal wind balance.
+                                !     soliton - Equatorial Rossby soliton.
+                                !     USER - call a user modified routine.
+ODA_INCUPD = False              !   [Boolean] default = False
+                                ! If true, oda incremental updates will be applied everywhere in the domain.
+SPONGE = False                  !   [Boolean] default = False

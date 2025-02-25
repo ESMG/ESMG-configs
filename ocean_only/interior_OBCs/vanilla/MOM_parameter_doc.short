@@ -128,6 +128,9 @@ OBC_ZERO_BIHARMONIC = True      !   [Boolean] default = False
                                 ! viscosity term.
 MASK_OUTSIDE_OBCS = True        !   [Boolean] default = False
                                 ! If true, set the areas outside open boundaries to be land.
+EXTERIOR_OBC_BUG = False        !   [Boolean] default = True
+                                ! If true, recover a bug in barotropic solver and other routines when boundary
+                                ! contitions interior to the domain are used.
 OBC_SEGMENT_001 = "I=2,J=N-2:3,FLATHER,ORLANSKI" !
                                 ! Documentation needs to be dynamic?????
 OBC_SEGMENT_002 = "I=N,J=3:N-2,FLATHER,ORLANSKI" !

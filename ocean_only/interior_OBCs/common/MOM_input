@@ -947,3 +947,5 @@ SEA_ICE_RIGID_MASS = 100.0      !   [kg m-2] default = 1000.0
 ! === module MOM_restart ===
 
 ! === module MOM_file_parser ===
+
+EXTERIOR_OBC_BUG = False
