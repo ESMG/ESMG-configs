@@ -344,14 +344,20 @@ EQN_OF_STATE = "LINEAR"         ! default = "WRIGHT"
                                 ! Currently, the valid choices are "LINEAR", "UNESCO", "JACKETT_MCD", "WRIGHT",
                                 ! "WRIGHT_REDUCED", "WRIGHT_FULL", "NEMO", "ROQUET_RHO", "ROQUET_SPV" and
                                 ! "TEOS10".  This is only used if USE_EOS is true.
-RHO_T0_S0 = 1000.0              !   [kg m-3] default = 1000.0
-                                ! When EQN_OF_STATE=LINEAR, this is the density at T=0, S=0.
+RHO_TREF_SREF = 1000.0          !   [kg m-3] default = 1000.0
+                                ! When EQN_OF_STATE=LINEAR, this is the density at T=TREF, S=SREF.
+TREF = 0.0                      !   [degC] default = 0.0
+                                ! When EQN_OF_STATE=LINEAR, this is the reference temperature.
+SREF = 0.0                      !   [psu] default = 0.0
+                                ! When EQN_OF_STATE=LINEAR, this is the reference salinity.
 DRHO_DT = 0.0                   !   [kg m-3 K-1] default = -0.2
                                 ! When EQN_OF_STATE=LINEAR, this is the partial derivative of density with
                                 ! temperature.
 DRHO_DS = 1.0                   !   [kg m-3 ppt-1] default = 0.8
                                 ! When EQN_OF_STATE=LINEAR, this is the partial derivative of density with
                                 ! salinity.
+RHO_T0_S0 = 1000.0              !   [kg m-3] default = 1000.0
+                                ! When EQN_OF_STATE=LINEAR, this is the density at T=0, S=0.
 EOS_QUADRATURE = False          !   [Boolean] default = False
                                 ! If true, always use the generic (quadrature) code code for the integrals of
                                 ! density.
