@@ -1362,6 +1362,9 @@ CORRECTION_INTXPA = False       !   [Boolean] default = False
 RESET_INTXPA_INTEGRAL = False   !   [Boolean] default = False
                                 ! If true, reset INTXPA to match pressures at first nonvanished cell. Includes
                                 ! pressure correction.
+RESET_INTXPA_INTEGRAL_FLATTEST = False !   [Boolean] default = False
+                                ! If true, use flattest interface as reference interface where there is no
+                                ! better choice for RESET_INTXPA_INTEGRAL. Otherwise, use surface interface.
 USE_INACCURATE_PGF_RHO_ANOM = False !   [Boolean] default = False
                                 ! If true, use a form of the PGF that uses the reference density in an
                                 ! inaccurate way. This is not recommended.

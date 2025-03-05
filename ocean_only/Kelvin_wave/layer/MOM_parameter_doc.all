@@ -457,7 +457,7 @@ USE_DYED_CHANNEL_OBC = False    !   [Boolean] default = False
 ! === module register_Kelvin_OBC ===
 KELVIN_WAVE_MODE = 2            ! default = 0
                                 ! Vertical Kelvin wave mode imposed at upstream open boundary.
-KELVIN_WAVE_INFLOW_AMP = 1.0    !   [m s-1] default = 1.0
+KELVIN_WAVE_INFLOW_AMP = 0.5    !   [m s-1] default = 1.0
                                 ! The amplitude of the Kelvin wave sea surface inflow velocity forcing at the
                                 ! open boundaries.
 KELVIN_WAVE_VEL_NUDGING_TIMESCALE = 3.858024691358025E-05 !   [s] default = 3.858024691358025E-05
@@ -1340,7 +1340,7 @@ USE_WAVES = False               !   [Boolean] default = False
 DT_FORCING = 900.0              !   [s] default = 900.0
                                 ! The time step for changing forcing, coupling with other components, or
                                 ! potentially writing certain diagnostics. The default value is given by DT.
-DAYMAX = 2.0                    !   [days]
+DAYMAX = 4.0                    !   [days]
                                 ! The final time of the whole simulation, in units of TIMEUNIT seconds.  This
                                 ! also sets the potential end time of the present run segment if the end time is
                                 ! not set via ocean_solo_nml in input.nml.

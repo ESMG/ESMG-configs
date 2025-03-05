@@ -25,7 +25,8 @@
 #override SMAG_LAP_CONST = 0.15           !   [nondim] default = 0.0
 !
 OBC_SEGMENT_002_VELOCITY_NUDGING_TIMESCALES = 1, 10
-#override OBC_FREESLIP_VORTICITY = False   !   [Boolean] default = False
+#override OBC_FREESLIP_VORTICITY = False  !   [Boolean] default = False
+#override KELVIN_WAVE_INFLOW_AMP = 0.5    !   [m s-1] default = 1.0
 OBC_COMPUTED_VORTICITY = True  !   [Boolean] default = False
 !#override T_RESCALE_POWER=11
 !#override L_RESCALE_POWER=11
