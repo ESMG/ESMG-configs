@@ -49,9 +49,9 @@ NETCDF =             # If value is '3' and CPPDEFS contains
 INCLUDES =           # A list of -I Include directories to be added to the
                      # the compile command.
 
-SSE = -xsse2         # The SSE options to be used to compile.  If blank,
+SSE =                # The SSE options to be used to compile.  If blank,
                      # than use the default SSE settings for the host.
-                     # Current default is to use SSE2.
+                     # Current default is to use SSE2 (SSE2 not there any more).
 
 COVERAGE =           # Add the code coverage compile options.
 
