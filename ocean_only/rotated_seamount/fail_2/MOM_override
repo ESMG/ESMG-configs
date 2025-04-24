@@ -1,4 +1,5 @@
 ! Blank file in which we can put "overrides" for parameters
 !DEBUG = True
 !DEBUG =_BT True
-#override OBC_SEGMENT_036 = "J=40,I=8:0,FLATHER, OBLIQUE" !
+#override OBC_SEGMENT_036 = "J=40,I=0:8,FLATHER, OBLIQUE, OBLIQUE_TAN" !
+
