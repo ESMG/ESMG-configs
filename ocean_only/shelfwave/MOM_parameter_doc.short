@@ -122,6 +122,9 @@ USE_SHELFWAVE_OBC = True        !   [Boolean] default = False
                                 ! If true, use the shelfwave open boundary.
 SHELFWAVE_Y_MODE = 2.0          !   [nondim] default = 1.0
                                 ! Cross-shore wave mode.
+SHELFWAVE_CORRECT_AMPLITUDE = True !   [Boolean] default = False
+                                ! If true, SHELFWAVE_AMPLITUDE gives the actual inflow velocity, rather than
+                                ! giving an overall scaling factor for the flow.
 
 ! === module MOM_coord_initialization ===
 COORD_CONFIG = "linear"         ! default = "none"
