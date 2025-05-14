@@ -332,77 +332,77 @@ OBC_TIDE_N_CONSTITUENTS = 0     ! default = 0
 EXTERIOR_OBC_BUG = True         !   [Boolean] default = True
                                 ! If true, recover a bug in barotropic solver and other routines when boundary
                                 ! contitions interior to the domain are used.
-OBC_SEGMENT_001 = "I=0,J=40:32,FLATHER, OBLIQUE, OBLIQUE_TAN" !
+OBC_SEGMENT_001 = "I=0,J=40:32,FLATHER, OBLIQUE, OBLIQUE_TAN, OBLIQUE_H" !
                                 ! Documentation needs to be dynamic?????
-OBC_SEGMENT_002 = "J=32,I=0:1,FLATHER, OBLIQUE, OBLIQUE_TAN" !
+OBC_SEGMENT_002 = "J=32,I=0:1,FLATHER, OBLIQUE, OBLIQUE_TAN, OBLIQUE_H" !
                                 ! Documentation needs to be dynamic?????
-OBC_SEGMENT_003 = "I=1,J=32:24,FLATHER, OBLIQUE, OBLIQUE_TAN" !
+OBC_SEGMENT_003 = "I=1,J=32:24,FLATHER, OBLIQUE, OBLIQUE_TAN, OBLIQUE_H" !
                                 ! Documentation needs to be dynamic?????
-OBC_SEGMENT_004 = "J=24,I=1:2,FLATHER, OBLIQUE, OBLIQUE_TAN" !
+OBC_SEGMENT_004 = "J=24,I=1:2,FLATHER, OBLIQUE, OBLIQUE_TAN, OBLIQUE_H" !
                                 ! Documentation needs to be dynamic?????
-OBC_SEGMENT_005 = "I=2,J=24:16,FLATHER, OBLIQUE, OBLIQUE_TAN" !
+OBC_SEGMENT_005 = "I=2,J=24:16,FLATHER, OBLIQUE, OBLIQUE_TAN, OBLIQUE_H" !
                                 ! Documentation needs to be dynamic?????
-OBC_SEGMENT_006 = "J=16,I=2:3,FLATHER, OBLIQUE, OBLIQUE_TAN" !
+OBC_SEGMENT_006 = "J=16,I=2:3,FLATHER, OBLIQUE, OBLIQUE_TAN, OBLIQUE_H" !
                                 ! Documentation needs to be dynamic?????
-OBC_SEGMENT_007 = "I=3,J=16:8,FLATHER, OBLIQUE, OBLIQUE_TAN" !
+OBC_SEGMENT_007 = "I=3,J=16:8,FLATHER, OBLIQUE, OBLIQUE_TAN, OBLIQUE_H" !
                                 ! Documentation needs to be dynamic?????
-OBC_SEGMENT_008 = "J=8,I=3:4,FLATHER, OBLIQUE, OBLIQUE_TAN" !
+OBC_SEGMENT_008 = "J=8,I=3:4,FLATHER, OBLIQUE, OBLIQUE_TAN, OBLIQUE_H" !
                                 ! Documentation needs to be dynamic?????
-OBC_SEGMENT_009 = "I=4,J=8:0,FLATHER, OBLIQUE, OBLIQUE_TAN" !
+OBC_SEGMENT_009 = "I=4,J=8:0,FLATHER, OBLIQUE, OBLIQUE_TAN, OBLIQUE_H" !
                                 ! Documentation needs to be dynamic?????
-OBC_SEGMENT_010 = "J=0,I=4:12,FLATHER, OBLIQUE, OBLIQUE_TAN" !
+OBC_SEGMENT_010 = "J=0,I=4:12,FLATHER, OBLIQUE, OBLIQUE_TAN, OBLIQUE_H" !
                                 ! Documentation needs to be dynamic?????
-OBC_SEGMENT_011 = "I=12,J=0:1,FLATHER, OBLIQUE, OBLIQUE_TAN" !
+OBC_SEGMENT_011 = "I=12,J=0:1,FLATHER, OBLIQUE, OBLIQUE_TAN, OBLIQUE_H" !
                                 ! Documentation needs to be dynamic?????
-OBC_SEGMENT_012 = "J=1,I=12:20,FLATHER, OBLIQUE, OBLIQUE_TAN" !
+OBC_SEGMENT_012 = "J=1,I=12:20,FLATHER, OBLIQUE, OBLIQUE_TAN, OBLIQUE_H" !
                                 ! Documentation needs to be dynamic?????
-OBC_SEGMENT_013 = "I=20,J=1:2,FLATHER, OBLIQUE, OBLIQUE_TAN" !
+OBC_SEGMENT_013 = "I=20,J=1:2,FLATHER, OBLIQUE, OBLIQUE_TAN, OBLIQUE_H" !
                                 ! Documentation needs to be dynamic?????
-OBC_SEGMENT_014 = "J=2,I=20:28,FLATHER, OBLIQUE, OBLIQUE_TAN" !
+OBC_SEGMENT_014 = "J=2,I=20:28,FLATHER, OBLIQUE, OBLIQUE_TAN, OBLIQUE_H" !
                                 ! Documentation needs to be dynamic?????
-OBC_SEGMENT_015 = "I=28,J=2:3,FLATHER, OBLIQUE, OBLIQUE_TAN" !
+OBC_SEGMENT_015 = "I=28,J=2:3,FLATHER, OBLIQUE, OBLIQUE_TAN, OBLIQUE_H" !
                                 ! Documentation needs to be dynamic?????
-OBC_SEGMENT_016 = "J=3,I=28:36,FLATHER, OBLIQUE, OBLIQUE_TAN" !
+OBC_SEGMENT_016 = "J=3,I=28:36,FLATHER, OBLIQUE, OBLIQUE_TAN, OBLIQUE_H" !
                                 ! Documentation needs to be dynamic?????
-OBC_SEGMENT_017 = "I=36,J=3:4,FLATHER, OBLIQUE, OBLIQUE_TAN" !
+OBC_SEGMENT_017 = "I=36,J=3:4,FLATHER, OBLIQUE, OBLIQUE_TAN, OBLIQUE_H" !
                                 ! Documentation needs to be dynamic?????
-OBC_SEGMENT_018 = "J=4,I=36:44,FLATHER, OBLIQUE, OBLIQUE_TAN" !
+OBC_SEGMENT_018 = "J=4,I=36:44,FLATHER, OBLIQUE, OBLIQUE_TAN, OBLIQUE_H" !
                                 ! Documentation needs to be dynamic?????
-OBC_SEGMENT_019 = "I=44,J=4:12,FLATHER, OBLIQUE, OBLIQUE_TAN" !
+OBC_SEGMENT_019 = "I=44,J=4:12,FLATHER, OBLIQUE, OBLIQUE_TAN, OBLIQUE_H" !
                                 ! Documentation needs to be dynamic?????
-OBC_SEGMENT_020 = "J=12,I=44:43,FLATHER, OBLIQUE, OBLIQUE_TAN" !
+OBC_SEGMENT_020 = "J=12,I=44:43,FLATHER, OBLIQUE, OBLIQUE_TAN, OBLIQUE_H" !
                                 ! Documentation needs to be dynamic?????
-OBC_SEGMENT_021 = "I=43,J=12:20,FLATHER, OBLIQUE, OBLIQUE_TAN" !
+OBC_SEGMENT_021 = "I=43,J=12:20,FLATHER, OBLIQUE, OBLIQUE_TAN, OBLIQUE_H" !
                                 ! Documentation needs to be dynamic?????
-OBC_SEGMENT_022 = "J=20,I=43:42,FLATHER, OBLIQUE, OBLIQUE_TAN" !
+OBC_SEGMENT_022 = "J=20,I=43:42,FLATHER, OBLIQUE, OBLIQUE_TAN, OBLIQUE_H" !
                                 ! Documentation needs to be dynamic?????
-OBC_SEGMENT_023 = "I=42,J=20:28,FLATHER, OBLIQUE, OBLIQUE_TAN" !
+OBC_SEGMENT_023 = "I=42,J=20:28,FLATHER, OBLIQUE, OBLIQUE_TAN, OBLIQUE_H" !
                                 ! Documentation needs to be dynamic?????
-OBC_SEGMENT_024 = "J=28,I=42:41,FLATHER, OBLIQUE, OBLIQUE_TAN" !
+OBC_SEGMENT_024 = "J=28,I=42:41,FLATHER, OBLIQUE, OBLIQUE_TAN, OBLIQUE_H" !
                                 ! Documentation needs to be dynamic?????
-OBC_SEGMENT_025 = "I=41,J=28:36,FLATHER, OBLIQUE, OBLIQUE_TAN" !
+OBC_SEGMENT_025 = "I=41,J=28:36,FLATHER, OBLIQUE, OBLIQUE_TAN, OBLIQUE_H" !
                                 ! Documentation needs to be dynamic?????
-OBC_SEGMENT_026 = "J=36,I=41:40,FLATHER, OBLIQUE, OBLIQUE_TAN" !
+OBC_SEGMENT_026 = "J=36,I=41:40,FLATHER, OBLIQUE, OBLIQUE_TAN, OBLIQUE_H" !
                                 ! Documentation needs to be dynamic?????
-OBC_SEGMENT_027 = "I=40,J=36:44,FLATHER, OBLIQUE, OBLIQUE_TAN" !
+OBC_SEGMENT_027 = "I=40,J=36:44,FLATHER, OBLIQUE, OBLIQUE_TAN, OBLIQUE_H" !
                                 ! Documentation needs to be dynamic?????
-OBC_SEGMENT_028 = "J=44,I=40:32,FLATHER, OBLIQUE, OBLIQUE_TAN" !
+OBC_SEGMENT_028 = "J=44,I=40:32,FLATHER, OBLIQUE, OBLIQUE_TAN, OBLIQUE_H" !
                                 ! Documentation needs to be dynamic?????
-OBC_SEGMENT_029 = "I=32,J=44:43,FLATHER, OBLIQUE, OBLIQUE_TAN" !
+OBC_SEGMENT_029 = "I=32,J=44:43,FLATHER, OBLIQUE, OBLIQUE_TAN, OBLIQUE_H" !
                                 ! Documentation needs to be dynamic?????
-OBC_SEGMENT_030 = "J=43,I=32:24,FLATHER, OBLIQUE, OBLIQUE_TAN" !
+OBC_SEGMENT_030 = "J=43,I=32:24,FLATHER, OBLIQUE, OBLIQUE_TAN, OBLIQUE_H" !
                                 ! Documentation needs to be dynamic?????
-OBC_SEGMENT_031 = "I=24,J=43:42,FLATHER, OBLIQUE, OBLIQUE_TAN" !
+OBC_SEGMENT_031 = "I=24,J=43:42,FLATHER, OBLIQUE, OBLIQUE_TAN, OBLIQUE_H" !
                                 ! Documentation needs to be dynamic?????
-OBC_SEGMENT_032 = "J=42,I=24:16,FLATHER, OBLIQUE, OBLIQUE_TAN" !
+OBC_SEGMENT_032 = "J=42,I=24:16,FLATHER, OBLIQUE, OBLIQUE_TAN, OBLIQUE_H" !
                                 ! Documentation needs to be dynamic?????
-OBC_SEGMENT_033 = "I=16,J=42:41,FLATHER, OBLIQUE, OBLIQUE_TAN" !
+OBC_SEGMENT_033 = "I=16,J=42:41,FLATHER, OBLIQUE, OBLIQUE_TAN, OBLIQUE_H" !
                                 ! Documentation needs to be dynamic?????
-OBC_SEGMENT_034 = "J=41,I=16:8,FLATHER, OBLIQUE, OBLIQUE_TAN" !
+OBC_SEGMENT_034 = "J=41,I=16:8,FLATHER, OBLIQUE, OBLIQUE_TAN, OBLIQUE_H" !
                                 ! Documentation needs to be dynamic?????
-OBC_SEGMENT_035 = "I=8,J=41:40,FLATHER, OBLIQUE, OBLIQUE_TAN" !
+OBC_SEGMENT_035 = "I=8,J=41:40,FLATHER, OBLIQUE, OBLIQUE_TAN, OBLIQUE_H" !
                                 ! Documentation needs to be dynamic?????
-OBC_SEGMENT_036 = "J=40,I=8:0,FLATHER, OBLIQUE, OBLIQUE_TAN" !
+OBC_SEGMENT_036 = "J=40,I=8:0,FLATHER, OBLIQUE, OBLIQUE_TAN, OBLIQUE_H" !
                                 ! Documentation needs to be dynamic?????
 OBC_RADIATION_MAX = 1.0         !   [nondim] default = 1.0
                                 ! The maximum magnitude of the baroclinic radiation velocity (or speed of
@@ -500,20 +500,28 @@ EQN_OF_STATE = "LINEAR"         ! default = "WRIGHT"
                                 ! Currently, the valid choices are "LINEAR", "UNESCO", "JACKETT_MCD", "WRIGHT",
                                 ! "WRIGHT_REDUCED", "WRIGHT_FULL", "NEMO", "ROQUET_RHO", "ROQUET_SPV" and
                                 ! "TEOS10".  This is only used if USE_EOS is true.
-RHO_TREF_SREF = 1000.0          !   [kg m-3] default = 1000.0
-                                ! When EQN_OF_STATE=LINEAR, this is the density at T=TREF, S=SREF.
-TREF = 0.0                      !   [degC] default = 0.0
+RHO_REF_LINEAR_EOS = 1000.0     !   [kg m-3] default = 1000.0
+                                ! When EQN_OF_STATE=LINEAR, this is the density at T=T_REF_LINEAR_EOS,
+                                ! S=S_REF_LINEAR_EOS and p=P_REF_LINEAR_EOS
+T_REF_LINEAR_EOS = 0.0          !   [degC] default = 0.0
                                 ! When EQN_OF_STATE=LINEAR, this is the reference temperature.
-SREF = 0.0                      !   [psu] default = 0.0
+S_REF_LINEAR_EOS = 0.0          !   [psu] default = 0.0
                                 ! When EQN_OF_STATE=LINEAR, this is the reference salinity.
+P_REF_LINEAR_EOS = 0.0          !   [Pa] default = 0.0
+                                ! When EQN_OF_STATE=LINEAR, this is the reference pressure.
 DRHO_DT = 0.0                   !   [kg m-3 K-1] default = -0.2
                                 ! When EQN_OF_STATE=LINEAR, this is the partial derivative of density with
                                 ! temperature.
 DRHO_DS = 1.0                   !   [kg m-3 ppt-1] default = 0.8
                                 ! When EQN_OF_STATE=LINEAR, this is the partial derivative of density with
                                 ! salinity.
+DRHO_DP = 0.0                   !   [s2 m-2] default = 0.0
+                                ! When EQN_OF_STATE=LINEAR, this is the partial derivative of density with
+                                ! pressure (the inverse of sound speed squared).
 RHO_T0_S0 = 1000.0              !   [kg m-3] default = 1000.0
-                                ! When EQN_OF_STATE=LINEAR, this is the density at T=0, S=0.
+                                ! When EQN_OF_STATE=LINEAR, this is the density at T=0, S=0 and p=0.  If
+                                ! RHO_TO_SO is specified, RHO_REF_LINEAR_EOS, T_REF_LINEAR_EOS, S_REF_LINEAR_EOS
+                                ! and P_REF_LINEAR_EOS are not used.
 EOS_QUADRATURE = False          !   [Boolean] default = False
                                 ! If true, always use the generic (quadrature) code code for the integrals of
                                 ! density.
@@ -530,6 +538,13 @@ DTFREEZE_DS = -0.054            !   [degC ppt-1] default = -0.054
 DTFREEZE_DP = 0.0               !   [degC Pa-1] default = 0.0
                                 ! When TFREEZE_FORM=LINEAR, this is the derivative of the freezing potential
                                 ! temperature with pressure.
+TFREEZE_S_IS_PRACS = True       !   [Boolean] default = True
+                                ! When True, the model will check if the model internal salinity is practical
+                                ! salinity.  If the model uses absolute salinity, a conversion will be applied.
+TFREEZE_T_IS_POTT = True        !   [Boolean] default = True
+                                ! When True, the model will check if the model internal temperature is potential
+                                ! temperature.  If the model uses conservative temperature, a conversion will be
+                                ! applied.
 
 ! === module MOM_restart ===
 PARALLEL_RESTARTFILES = False   !   [Boolean] default = False
