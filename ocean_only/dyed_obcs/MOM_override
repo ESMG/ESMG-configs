@@ -1,3 +1,4 @@
 ! Blank file in which we can put "overrides" for parameters
 !DEBUG=True
 !#override DAYMAX = 20.0                    !   [hours]
+OBC_HOR_INDEXING_BUG = False

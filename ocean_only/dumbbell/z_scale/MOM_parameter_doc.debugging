@@ -36,6 +36,8 @@ DEBUG = False                   !   [Boolean] default = False
                                 ! If true, write out verbose debugging data.
 DEBUG_TRUNCATIONS = False       !   [Boolean] default = False
                                 ! If true, calculate all diagnostics that are useful for debugging truncations.
+DEBUG_OBCS = False              !   [Boolean] default = False
+                                ! If true, write out verbose debugging data about OBCs.
 ROTATE_INDEX = False            !   [Boolean] default = False
                                 ! Enable rotation of the horizontal indices.
 DEBUG_CHKSUMS = False           !   [Boolean] default = False

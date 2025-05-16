@@ -47,3 +47,4 @@ RAMP_OBCS = False
 #override DYNAMIC_SURFACE_PRESSURE = False
 #override MAX_P_SURF = 0.0
 #
+OBC_HOR_INDEXING_BUG = False

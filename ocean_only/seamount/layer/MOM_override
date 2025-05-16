@@ -2,7 +2,11 @@
 !#override F_0 = 0.0E-04                   !   [s-1] default = 0.0
                                 ! The reference value of the Coriolis parameter with the
                                 ! betaplane option.
-#override OBC_SEGMENT_001 = "J=N,I=N:0,FLATHER, OBLIQUE, OBLIQUE_GRAD, OBLIQUE_H" !
-#override OBC_SEGMENT_002 = "J=0,I=0:N,FLATHER, OBLIQUE, OBLIQUE_GRAD, OBLIQUE_H" !
-#override OBC_SEGMENT_003 = "I=N,J=0:N,FLATHER, OBLIQUE, OBLIQUE_GRAD, OBLIQUE_H" !
-#override OBC_SEGMENT_004 = "I=0,J=N:0,FLATHER, OBLIQUE, OBLIQUE_GRAD, OBLIQUE_H" !
+#override OBC_SEGMENT_001 = "J=N,I=N:0,FLATHER, OBLIQUE, OBLIQUE_GRAD" !
+#override OBC_SEGMENT_002 = "J=0,I=0:N,FLATHER, OBLIQUE, OBLIQUE_GRAD" !
+#override OBC_SEGMENT_003 = "I=N,J=0:N,FLATHER, OBLIQUE, OBLIQUE_GRAD" !
+#override OBC_SEGMENT_004 = "I=0,J=N:0,FLATHER, OBLIQUE, OBLIQUE_GRAD" !
+!#override OBC_SEGMENT_001 = "J=N,I=N:0,FLATHER, OBLIQUE, OBLIQUE_GRAD, OBLIQUE_H" !
+!#override OBC_SEGMENT_002 = "J=0,I=0:N,FLATHER, OBLIQUE, OBLIQUE_GRAD, OBLIQUE_H" !
+!#override OBC_SEGMENT_003 = "I=N,J=0:N,FLATHER, OBLIQUE, OBLIQUE_GRAD, OBLIQUE_H" !
+!#override OBC_SEGMENT_004 = "I=0,J=N:0,FLATHER, OBLIQUE, OBLIQUE_GRAD, OBLIQUE_H" !
