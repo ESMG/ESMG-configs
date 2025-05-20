@@ -4,3 +4,6 @@
 #override CHANNEL_DRAG = True
 #override CHANNEL_DRAG_MAX_BBL_THICK = 1
 #override BBL_THICK_MIM = 0.1
+ROTATE_INDEX = True
+INDEX_TURNS = 0
+DEBUG_OBCS = True
