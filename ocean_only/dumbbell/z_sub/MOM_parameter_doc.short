@@ -276,3 +276,187 @@ TS_CONFIG = "dumbbell"          !
                                 !     adjustment2d - 2d lock exchange T/S ICs.
                                 !     sloshing - sloshing mode T/S ICs.
                                 !     seamount - no motion test with seamount ICs.
+                                !     dumbbell - sloshing channel ICs.
+                                !     rossby_front - a mixed layer front in thermal wind balance.
+                                !     SCM_CVMix_tests - used in the SCM CVMix tests.
+                                !     USER - call a user modified routine.
+DUMBBELL_SREF = 35.0            !   [ppt] default = 34.0
+                                ! DUMBBELL REFERENCE SALINITY
+OBC_SEGMENT_001_DATA = "U=file:../z/west.nc(u),V=file:../z/west.nc(v),SSH=file:../z/west.nc(zeta),SALT=file:../z/west.nc(salt),DVDX=file:../z/west.nc(dvdx)" !
+                                ! OBC segment docs
+OBC_SEGMENT_002_DATA = "U=file:../z/east.nc(u),V=file:../z/east.nc(v),SSH=file:../z/east.nc(zeta),SALT=file:../z/east.nc(salt),DVDX=file:../z/east.nc(dvdx)" !
+                                ! OBC segment docs
+
+! === module MOM_diag_mediator ===
+
+! === module MOM_lateral_mixing_coeffs ===
+
+! === module MOM_set_visc ===
+LINEAR_DRAG = True              !   [Boolean] default = False
+                                ! If LINEAR_DRAG and BOTTOMDRAGLAW are defined the drag law is
+                                ! cdrag*DRAG_BG_VEL*u.
+HBBL = 10.0                     !   [m]
+                                ! The thickness of a bottom boundary layer with a viscosity increased by
+                                ! KV_EXTRA_BBL if BOTTOMDRAGLAW is not defined, or the thickness over which
+                                ! near-bottom velocities are averaged for the drag law if BOTTOMDRAGLAW is
+                                ! defined but LINEAR_DRAG is not.
+CDRAG = 0.002                   !   [nondim] default = 0.003
+                                ! CDRAG is the drag coefficient relating the magnitude of the velocity field to
+                                ! the bottom stress. CDRAG is only used if BOTTOMDRAGLAW is defined.
+DRAG_BG_VEL = 0.05              !   [m s-1] default = 0.0
+                                ! DRAG_BG_VEL is either the assumed bottom velocity (with LINEAR_DRAG) or an
+                                ! unresolved  velocity that is combined with the resolved velocity to estimate
+                                ! the velocity magnitude.  DRAG_BG_VEL is only used when BOTTOMDRAGLAW is
+                                ! defined.
+BBL_THICK_MIN = 0.1             !   [m] default = 0.0
+                                ! The minimum bottom boundary layer thickness that can be used with
+                                ! BOTTOMDRAGLAW. This might be Kv/(cdrag*drag_bg_vel) to give Kv as the minimum
+                                ! near-bottom viscosity.
+KV = 1.0E-04                    !   [m2 s-1]
+                                ! The background kinematic viscosity in the interior. The molecular value, ~1e-6
+                                ! m2 s-1, may be used.
+
+! === module MOM_thickness_diffuse ===
+KHTH = 500.0                    !   [m2 s-1] default = 0.0
+                                ! The background horizontal thickness diffusivity.
+
+! === module MOM_dynamics_split_RK2 ===
+BE = 0.7                        !   [nondim] default = 0.6
+                                ! If SPLIT is true, BE determines the relative weighting of a  2nd-order
+                                ! Runga-Kutta baroclinic time stepping scheme (0.5) and a backward Euler scheme
+                                ! (1) that is used for the Coriolis and inertial terms.  BE may be from 0.5 to
+                                ! 1, but instability may occur near 0.5. BE is also applicable if SPLIT is false
+                                ! and USE_RK2 is true.
+VISC_REM_BUG = False            !   [Boolean] default = True
+                                ! If true, visc_rem_[uv] in split mode is incorrectly calculated or accounted
+                                ! for in two places. This parameter controls the defaults of two individual
+                                ! flags, VISC_REM_TIMESTEP_BUG in MOM_dynamics_split_RK2(b) and
+                                ! VISC_REM_BT_WEIGHT_BUG in MOM_barotropic.
+
+! === module MOM_continuity_PPM ===
+ETA_TOLERANCE = 1.0E-12         !   [m] default = 1.0E-10
+                                ! The tolerance for the differences between the barotropic and baroclinic
+                                ! estimates of the sea surface height due to the fluxes through each face.  The
+                                ! total tolerance for SSH is 4 times this value.  The default is
+                                ! 0.5*NK*ANGSTROM, and this should not be set less than about
+                                ! 10^-15*MAXIMUM_DEPTH.
+
+! === module MOM_CoriolisAdv ===
+CORIOLIS_EN_DIS = True          !   [Boolean] default = False
+                                ! If true, two estimates of the thickness fluxes are used to estimate the
+                                ! Coriolis term, and the one that dissipates energy relative to the other one is
+                                ! used.
+BOUND_CORIOLIS = True           !   [Boolean] default = False
+                                ! If true, the Coriolis terms at u-points are bounded by the four estimates of
+                                ! (f+rv)v from the four neighboring v-points, and similarly at v-points.  This
+                                ! option is always effectively false with CORIOLIS_EN_DIS defined and
+                                ! CORIOLIS_SCHEME set to SADOURNY75_ENERGY.
+
+! === module MOM_PressureForce ===
+
+! === module MOM_PressureForce_FV ===
+
+! === module MOM_Zanna_Bolton ===
+
+! === module MOM_hor_visc ===
+SMAGORINSKY_AH = True           !   [Boolean] default = False
+                                ! If true, use a biharmonic Smagorinsky nonlinear eddy viscosity.
+SMAG_BI_CONST = 0.03            !   [nondim] default = 0.0
+                                ! The nondimensional biharmonic Smagorinsky constant, typically 0.015 - 0.06.
+FRICTWORK_BUG = False           !   [Boolean] default = True
+                                ! If true, retain an answer-changing bug in calculating the FrictWork, which
+                                ! cancels the h in thickness flux and the h at velocity point. This isnot
+                                ! recommended.
+
+! === module MOM_vert_friction ===
+DIRECT_STRESS = True            !   [Boolean] default = False
+                                ! If true, the wind stress is distributed over the topmost HMIX_STRESS of fluid
+                                ! (like in HYCOM), and an added mixed layer viscosity or a physically based
+                                ! boundary layer turbulence parameterization is not needed for stability.
+HMIX_FIXED = 20.0               !   [m]
+                                ! The prescribed depth over which the near-surface viscosity and diffusivity are
+                                ! elevated when the bulk mixed layer is not used.
+KV_ML_INVZ2 = 0.01              !   [m2 s-1] default = 0.0
+                                ! An extra kinematic viscosity in a mixed layer of thickness HMIX_FIXED, with
+                                ! the actual viscosity scaling as 1/(z*HMIX_FIXED)^2, where z is the distance
+                                ! from the surface, to allow for finite wind stresses to be transmitted through
+                                ! infinitesimally thin surface layers.  This is an older option for numerical
+                                ! convenience without a strong physical basis, and its use is now discouraged.
+MAXVEL = 10.0                   !   [m s-1] default = 3.0E+08
+                                ! The maximum velocity allowed before the velocity components are truncated.
+
+! === module MOM_barotropic ===
+BOUND_BT_CORRECTION = True      !   [Boolean] default = False
+                                ! If true, the corrective pseudo mass-fluxes into the barotropic solver are
+                                ! limited to values that require less than maxCFL_BT_cont to be accommodated.
+BEBT = 0.2                      !   [nondim] default = 0.1
+                                ! BEBT determines whether the barotropic time stepping uses the forward-backward
+                                ! time-stepping scheme or a backward Euler scheme. BEBT is valid in the range
+                                ! from 0 (for a forward-backward treatment of nonrotating gravity waves) to 1
+                                ! (for a backward Euler treatment). In practice, BEBT must be greater than about
+                                ! 0.05.
+DTBT = 10.0                     !   [s or nondim] default = -0.98
+                                ! The barotropic time step, in s. DTBT is only used with the split explicit time
+                                ! stepping. To set the time step automatically based the maximum stable value
+                                ! use 0, or a negative value gives the fraction of the stable value. Setting
+                                ! DTBT to 0 is the same as setting it to -0.98. The value of DTBT that will
+                                ! actually be used is an integer fraction of DT, rounding down.
+
+! === module MOM_diagnostics ===
+
+! === module MOM_diabatic_driver ===
+! The following parameters are used for diabatic processes.
+
+! === module MOM_set_diffusivity ===
+BBL_EFFIC = 0.0                 !   [nondim] default = 0.2
+                                ! The efficiency with which the energy extracted by bottom drag drives BBL
+                                ! diffusion.  This is only used if BOTTOMDRAGLAW is true.
+
+! === module MOM_bkgnd_mixing ===
+! Adding static vertical background mixing coefficients
+
+! === module MOM_diabatic_aux ===
+! The following parameters are used for auxiliary diabatic processes.
+
+! === module MOM_opacity ===
+
+! === module MOM_tracer_advect ===
+
+! === module MOM_tracer_hor_diff ===
+
+! === module MOM_sum_output ===
+MAXTRUNC = 5000                 !   [truncations save_interval-1] default = 0
+                                ! The run will be stopped, and the day set to a very large value if the velocity
+                                ! is truncated more than MAXTRUNC times between energy saves.  Set MAXTRUNC to 0
+                                ! to stop if there is any truncation of velocities.
+DATE_STAMPED_STDOUT = False     !   [Boolean] default = True
+                                ! If true, use dates (not times) in messages to stdout
+
+! === module ocean_stochastics_init ===
+
+! === module MOM_surface_forcing ===
+VARIABLE_WINDS = False          !   [Boolean] default = True
+                                ! If true, the winds vary in time after the initialization.
+VARIABLE_BUOYFORCE = False      !   [Boolean] default = True
+                                ! If true, the buoyancy forcing varies in time after the initialization of the
+                                ! model.
+
+! === module MOM_main (MOM_driver) ===
+DAYMAX = 2.0                    !   [days]
+                                ! The final time of the whole simulation, in units of TIMEUNIT seconds.  This
+                                ! also sets the potential end time of the present run segment if the end time is
+                                ! not set via ocean_solo_nml in input.nml.
+RESTART_CONTROL = 3             ! default = 1
+                                ! An integer whose bits encode which restart files are written. Add 2 (bit 1)
+                                ! for a time-stamped file, and odd (bit 0) for a non-time-stamped file. A
+                                ! non-time-stamped restart file is saved at the end of the run segment for any
+                                ! non-negative value.
+
+! === module MOM_write_cputime ===
+MAXCPU = 2.88E+04               !   [wall-clock seconds] default = -1.0
+                                ! The maximum amount of cpu time per processor for which MOM should run before
+                                ! saving a restart file and quitting with a return value that indicates that a
+                                ! further run is required to complete the simulation. If automatic restarts are
+                                ! not desired, use a negative value for MAXCPU.  MAXCPU has units of wall-clock
+                                ! seconds, so the actual CPU time used is larger by a factor of the number of
+                                ! processors used.
