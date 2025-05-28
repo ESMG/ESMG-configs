@@ -106,6 +106,8 @@ OBC_NUMBER_OF_SEGMENTS = 3      ! default = 0
 OBC_ZERO_BIHARMONIC = True      !   [Boolean] default = False
                                 ! If true, zeros the Laplacian of flow on open boundaries in the biharmonic
                                 ! viscosity term.
+OBC_HOR_INDEXING_BUG = False    !   [Boolean] default = True
+                                ! If true, recover set of a horizontal indexing bugs in the OBC code.
 OBC_SEGMENT_001 = "I=N,J=0:N,FLATHER" !
                                 ! Documentation needs to be dynamic?????
 OBC_SEGMENT_002 = "J=N,I=N:0,FLATHER,OBLIQUE,OBLIQUE_TAN,NUDGED_TAN" !

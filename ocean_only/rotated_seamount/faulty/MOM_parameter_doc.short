@@ -123,6 +123,8 @@ OBC_ZERO_BIHARMONIC = True      !   [Boolean] default = False
                                 ! viscosity term.
 MASK_OUTSIDE_OBCS = True        !   [Boolean] default = False
                                 ! If true, set the areas outside open boundaries to be land.
+OBC_HOR_INDEXING_BUG = False    !   [Boolean] default = True
+                                ! If true, recover set of a horizontal indexing bugs in the OBC code.
 OBC_SEGMENT_001 = "I=0,J=40:32,FLATHER, OBLIQUE, OBLIQUE_TAN" !
                                 ! Documentation needs to be dynamic?????
 OBC_SEGMENT_002 = "J=32,I=1:0,FLATHER, OBLIQUE" !
@@ -164,6 +166,4 @@ OBC_SEGMENT_019 = "I=44,J=4:12,FLATHER, OBLIQUE, OBLIQUE_TAN" !
 OBC_SEGMENT_020 = "J=12,I=44:43,FLATHER, OBLIQUE, OBLIQUE_TAN" !
                                 ! Documentation needs to be dynamic?????
 OBC_SEGMENT_021 = "I=43,J=12:20,FLATHER, OBLIQUE, OBLIQUE_TAN" !
-                                ! Documentation needs to be dynamic?????
-OBC_SEGMENT_022 = "J=20,I=43:42,FLATHER, OBLIQUE, OBLIQUE_TAN" !
                                 ! Documentation needs to be dynamic?????

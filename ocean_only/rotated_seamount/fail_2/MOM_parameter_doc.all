@@ -332,6 +332,8 @@ OBC_TIDE_N_CONSTITUENTS = 0     ! default = 0
 EXTERIOR_OBC_BUG = True         !   [Boolean] default = True
                                 ! If true, recover a bug in barotropic solver and other routines when boundary
                                 ! contitions interior to the domain are used.
+OBC_HOR_INDEXING_BUG = False    !   [Boolean] default = True
+                                ! If true, recover set of a horizontal indexing bugs in the OBC code.
 OBC_SEGMENT_001 = "I=0,J=40:32,FLATHER, OBLIQUE, OBLIQUE_TAN" !
                                 ! Documentation needs to be dynamic?????
 OBC_SEGMENT_002 = "J=32,I=0:1,FLATHER, OBLIQUE, OBLIQUE_TAN" !
@@ -418,4 +420,3 @@ OBC_TRACER_RESERVOIR_LENGTH_SCALE_OUT = 1000.0 !   [m] default = 0.0
                                 ! boundaries to externally imposed values when the flow is exiting the domain.
 OBC_TRACER_RESERVOIR_LENGTH_SCALE_IN = 1000.0 !   [m] default = 0.0
                                 ! An effective length scale for restoring the tracer concentration at the
-                                ! boundaries to values from the interior when the flow is entering the domain.

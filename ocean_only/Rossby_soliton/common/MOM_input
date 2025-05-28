@@ -315,3 +315,4 @@ DAYMAX = 120.0                  !   [seconds]
 RESTINT = 1800.0                !   [seconds] default = 0.0
                                 ! The interval between saves of the restart file in units of TIMEUNIT.  Use 0
                                 ! (the default) to not save incremental restart files at all.
+OBC_HOR_INDEXING_BUG = False

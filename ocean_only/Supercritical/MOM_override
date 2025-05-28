@@ -2,3 +2,4 @@
 !SUPERCRITICAL_COAST_ANGLE = 0.
 !! #override DAYMAX = 10000.0                !   [s] For convergence...
 #override DEBUG = False
+OBC_HOR_INDEXING_BUG = False

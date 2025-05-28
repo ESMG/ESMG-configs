@@ -5,3 +5,4 @@
 !DEBUG = True
 DEBUG_BT = False
 !VERBOSITY = 9
+OBC_HOR_INDEXING_BUG = False
