@@ -303,6 +303,10 @@ SURFACE_HEIGHT_IC_FILE = "CCS1-IC_SODA3.3.3.1_1980-01-23.nc" !
                                 ! The initial condition file for the surface height.
 SURFACE_HEIGHT_IC_VAR = "ssh"   ! default = "SSH"
                                 ! The initial condition variable for the surface height.
+OBC_RESERVOIR_INIT_BUG = False  !   [Boolean] default = True
+                                ! If true, set the OBC tracer reservoirs at the startup of a new run from the
+                                ! interior tracer concentrations regardless of properties that may be explicitly
+                                ! specified for the reservoir concentrations.
 OBC_SEGMENT_001_DATA = "U=file:obc_CCS1_1980-1990.nc(u),V=file:obc_CCS1_1980-1990.nc(v),SSH=file:obc_CCS1_1980-1990.nc(zeta),TEMP=file:obc_CCS1_1980-1990.nc(temp),SALT=file:obc_CCS1_1980-1990.nc(salt)" !
                                 ! OBC segment docs
 OBC_SEGMENT_002_DATA = "U=file:obc_CCS1_1980-1990.nc(u),V=file:obc_CCS1_1980-1990.nc(v),SSH=file:obc_CCS1_1980-1990.nc(zeta),TEMP=file:obc_CCS1_1980-1990.nc(temp),SALT=file:obc_CCS1_1980-1990.nc(salt)" !
@@ -334,6 +338,10 @@ USE_STORED_SLOPES = True        !   [Boolean] default = False
                                 ! If true, the isopycnal slopes are calculated once and stored for re-use. This
                                 ! uses more memory but avoids calling the equation of state more times than
                                 ! should be necessary.
+MIXING_COEFS_OBC_BUG = False    !   [Boolean] default = True
+                                ! If false, use only interior data for thickness weighting in lateral mixing
+                                ! coefficient calculations and to calculate stratification and other fields at
+                                ! open boundary condition faces.
 KH_RES_FN_POWER = 100           ! default = 2
                                 ! The power of dx/Ld in the Kh resolution function.  Any positive integer may be
                                 ! used, although even integers are more efficient to calculate.  Setting this

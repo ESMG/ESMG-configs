@@ -149,6 +149,10 @@ COORD_CONFIG = "linear"         ! default = "none"
                                 !     USER - call a user modified routine.
 
 ! === module MOM_state_initialization ===
+OBC_RESERVOIR_INIT_BUG = False  !   [Boolean] default = True
+                                ! If true, set the OBC tracer reservoirs at the startup of a new run from the
+                                ! interior tracer concentrations regardless of properties that may be explicitly
+                                ! specified for the reservoir concentrations.
 OBC_USER_CONFIG = "shelfwave"   ! default = "none"
                                 ! A string that sets how the user code is invoked to set open boundary data:
                                 !    DOME - specified inflow on northern boundary
@@ -166,6 +170,10 @@ NUM_DIAG_COORDS = 0             ! default = 1
                                 ! entry in DIAG_COORDS must be provided.
 
 ! === module MOM_lateral_mixing_coeffs ===
+MIXING_COEFS_OBC_BUG = False    !   [Boolean] default = True
+                                ! If false, use only interior data for thickness weighting in lateral mixing
+                                ! coefficient calculations and to calculate stratification and other fields at
+                                ! open boundary condition faces.
 
 ! === module MOM_set_visc ===
 BOTTOMDRAGLAW = False           !   [Boolean] default = True

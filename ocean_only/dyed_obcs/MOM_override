@@ -2,3 +2,5 @@
 !DEBUG=True
 !#override DAYMAX = 20.0                    !   [hours]
 OBC_HOR_INDEXING_BUG = False
+OBC_RESERVOIR_INIT_BUG = False
+MIXING_COEFS_OBC_BUG = False

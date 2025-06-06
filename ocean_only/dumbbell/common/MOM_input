@@ -424,3 +424,5 @@ MAXCPU = 2.88E+04               !   [wall-clock seconds] default = -1.0
                                 ! seconds, so the actual CPU time used is larger by a factor of the number of
                                 ! processors used.
 OBC_HOR_INDEXING_BUG = False
+OBC_RESERVOIR_INIT_BUG = False
+MIXING_COEFS_OBC_BUG = False

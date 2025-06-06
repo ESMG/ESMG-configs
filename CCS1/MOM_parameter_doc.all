@@ -770,6 +770,10 @@ ODA_INCUPD = False              !   [Boolean] default = False
 SPONGE = False                  !   [Boolean] default = False
                                 ! If true, sponges may be applied anywhere in the domain. The exact location and
                                 ! properties of those sponges are specified via SPONGE_CONFIG.
+OBC_RESERVOIR_INIT_BUG = False  !   [Boolean] default = True
+                                ! If true, set the OBC tracer reservoirs at the startup of a new run from the
+                                ! interior tracer concentrations regardless of properties that may be explicitly
+                                ! specified for the reservoir concentrations.
 OBC_SEGMENT_001_DATA = "U=file:obc_CCS1_1980-1990.nc(u),V=file:obc_CCS1_1980-1990.nc(v),SSH=file:obc_CCS1_1980-1990.nc(zeta),TEMP=file:obc_CCS1_1980-1990.nc(temp),SALT=file:obc_CCS1_1980-1990.nc(salt)" !
                                 ! OBC segment docs
 OBC_SEGMENT_002_DATA = "U=file:obc_CCS1_1980-1990.nc(u),V=file:obc_CCS1_1980-1990.nc(v),SSH=file:obc_CCS1_1980-1990.nc(zeta),TEMP=file:obc_CCS1_1980-1990.nc(temp),SALT=file:obc_CCS1_1980-1990.nc(salt)" !
@@ -900,6 +904,10 @@ VERY_SMALL_FREQUENCY = 1.0E-17  !   [s-1] default = 1.0E-17
 USE_STANLEY_ISO = False         !   [Boolean] default = False
                                 ! If true, turn on Stanley SGS T variance parameterization in isopycnal slope
                                 ! code.
+MIXING_COEFS_OBC_BUG = False    !   [Boolean] default = True
+                                ! If false, use only interior data for thickness weighting in lateral mixing
+                                ! coefficient calculations and to calculate stratification and other fields at
+                                ! open boundary condition faces.
 VISBECK_MAX_SLOPE = 0.0         !   [nondim] default = 0.0
                                 ! If non-zero, is an upper bound on slopes used in the Visbeck formula for
                                 ! diffusivity. This does not affect the isopycnal slope calculation used within
