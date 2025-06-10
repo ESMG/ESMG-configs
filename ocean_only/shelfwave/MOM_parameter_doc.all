@@ -385,6 +385,9 @@ H_TO_M = 1.0                    !   [m H-1] default = 1.0
 NK = 1                          !   [nondim]
                                 ! The number of model layers.
 
+! === module MOM_grid ===
+! Parameters providing information about the lateral grid.
+
 ! === module MOM_tracer_registry ===
 
 ! === module MOM_restart ===

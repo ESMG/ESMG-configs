@@ -1,8 +1,8 @@
 ! Blank file in which we can put "overrides" for parameters
 SHELFWAVE_CORRECT_AMPLITUDE = True
 
-!ROTATE_INDEX = True
-!INDEX_TURNS = 1
+ROTATE_INDEX = True
+INDEX_TURNS = 3
 OBC_HOR_INDEXING_BUG = False
 
 OBC_RESERVOIR_INIT_BUG = False

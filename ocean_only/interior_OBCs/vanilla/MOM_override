@@ -6,4 +6,4 @@
 #override BBL_THICK_MIM = 0.1
 !ROTATE_INDEX = True
 !INDEX_TURNS = 0
-DEBUG_OBCS = True
+DEBUG_OBCS = False

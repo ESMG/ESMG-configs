@@ -38,8 +38,10 @@ DEBUG_TRUNCATIONS = False       !   [Boolean] default = False
                                 ! If true, calculate all diagnostics that are useful for debugging truncations.
 DEBUG_OBCS = False              !   [Boolean] default = False
                                 ! If true, write out verbose debugging data about OBCs.
-ROTATE_INDEX = False            !   [Boolean] default = False
+ROTATE_INDEX = True             !   [Boolean] default = False
                                 ! Enable rotation of the horizontal indices.
+INDEX_TURNS = 3                 ! default = 1
+                                ! Number of counterclockwise quarter-turn index rotations.
 DEBUG_CHKSUMS = False           !   [Boolean] default = False
                                 ! If true, checksums are performed on arrays in the various vec_chksum routines.
 DEBUG_REDUNDANT = False         !   [Boolean] default = False

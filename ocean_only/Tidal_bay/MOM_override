@@ -1,3 +1,6 @@
 ! Blank file in which we can put "overrides" for parameters
 !DEBUG = True
 OBC_HOR_INDEXING_BUG = False
+!ROTATE_INDEX = True
+!INDEX_TURNS = 3
+

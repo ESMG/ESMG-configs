@@ -55,6 +55,9 @@ NIBLOCK = 1                     ! default = 1
 NJBLOCK = 1                     ! default = 1
                                 ! The number of blocks in the y-direction on each processor (for openmp).
 
+! === module MOM_grid ===
+! Parameters providing information about the lateral grid.
+
 ! === module MOM_barotropic ===
 BT_USE_WIDE_HALOS = True        !   [Boolean] default = True
                                 ! If true, use wide halos and march in during the barotropic time stepping for

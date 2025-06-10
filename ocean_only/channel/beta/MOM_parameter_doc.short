@@ -128,6 +128,9 @@ USE_DYED_CHANNEL_OBC = True     !   [Boolean] default = False
                                 ! If true, use the dyed channel open boundary.
 CHANNEL_MEAN_FLOW = 1.0         !   [m/s] default = 8.57
                                 ! Mean zonal flow imposed at upstream open boundary.
+CHANNEL_FLOW_OBC_TRANSPORT_BUG = False !   [Boolean] default = True
+                                ! If true and specified open boundary conditions are being used, use a 1 m (if
+                                ! Boussienesq) or 1 kg m-2 layer thickness instead of the actual thickness.
 
 ! === module MOM_coord_initialization ===
 COORD_CONFIG = "linear"         ! default = "none"

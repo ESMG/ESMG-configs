@@ -484,7 +484,7 @@ CHANNEL_TIDAL_AMP = 0.0         !   [m/s] default = 0.0
                                 ! Sloshing amplitude imposed at upstream open boundary.
 CHANNEL_FLOW_FREQUENCY = 0.0    !   [s-1] default = 0.0
                                 ! Frequency of oscillating zonal flow.
-CHANNEL_FLOW_OBC_TRANSPORT_BUG = True !   [Boolean] default = True
+CHANNEL_FLOW_OBC_TRANSPORT_BUG = False !   [Boolean] default = True
                                 ! If true and specified open boundary conditions are being used, use a 1 m (if
                                 ! Boussienesq) or 1 kg m-2 layer thickness instead of the actual thickness.
 
