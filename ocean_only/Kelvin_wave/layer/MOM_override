@@ -33,3 +33,5 @@ OBC_COMPUTED_VORTICITY = True  !   [Boolean] default = False
 !#override Z_RESCALE_POWER=11
 !#override Q_RESCALE_POWER=11
 !#override R_RESCALE_POWER=11
+!ROTATE_INDEX = True
+!INDEX_TURNS = 1

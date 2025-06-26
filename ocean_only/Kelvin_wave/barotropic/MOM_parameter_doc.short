@@ -137,6 +137,9 @@ USE_KELVIN_WAVE_OBC = True      !   [Boolean] default = False
                                 ! If true, use the Kelvin wave open boundary.
 
 ! === module register_Kelvin_OBC ===
+KELVIN_SET_OBC_INDEXING_BUGS = False !   [Boolean] default = True
+                                ! If true, retain several horizontal indexing bugs that were in the original
+                                ! version of Kelvin_set_OBC_data.
 
 ! === module MOM_coord_initialization ===
 COORD_CONFIG = "linear"         ! default = "none"

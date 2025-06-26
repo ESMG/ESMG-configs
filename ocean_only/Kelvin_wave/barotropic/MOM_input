@@ -318,3 +318,4 @@ RESTINT = 365.0                 !   [days] default = 0.0
 OBC_HOR_INDEXING_BUG = False
 OBC_RESERVOIR_INIT_BUG = False
 MIXING_COEFS_OBC_BUG = False
+KELVIN_SET_OBC_INDEXING_BUGS = False
