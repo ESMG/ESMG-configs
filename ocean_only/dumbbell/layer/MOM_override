@@ -1,0 +1,15 @@
+#override USE_REGRIDDING = False
+#override REGRIDDING_COORDINATE_MODE = "LAYER"
+#override BULKMIXEDLAYER = False
+#override DIRECT_STRESS = True
+#overrideHMIX_FIXED = 20.0
+#override TS_CONFIG = "fit"
+#override T_REF = 20.0
+#override S_REF = 34.0
+!#override NK = 6
+#override TS_RANGE_S_LIGHT = 34.10
+#override TS_RANGE_S_DENSE = 35.90
+#override FIT_SALINITY = True
+#override VARIABLE_WINDS = False
+#override VARIABLE_BUOYFORCE = False
+#override BUOY_CONFIG = "NONE"
