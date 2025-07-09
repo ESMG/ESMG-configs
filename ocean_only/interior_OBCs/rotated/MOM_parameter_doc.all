@@ -765,7 +765,7 @@ ODA_INCUPD = False              !   [Boolean] default = False
 SPONGE = False                  !   [Boolean] default = False
                                 ! If true, sponges may be applied anywhere in the domain. The exact location and
                                 ! properties of those sponges are specified via SPONGE_CONFIG.
-OBC_RESERVOIR_INIT_BUG = True   !   [Boolean] default = True
+OBC_RESERVOIR_INIT_BUG = False  !   [Boolean] default = True
                                 ! If true, set the OBC tracer reservoirs at the startup of a new run from the
                                 ! interior tracer concentrations regardless of properties that may be explicitly
                                 ! specified for the reservoir concentrations.
@@ -864,9 +864,6 @@ BACKSCAT_EBT_POWER = 0.0        !   [nondim] default = 0.0
 BS_USE_SQG_STRUCT = False       !   [Boolean] default = False
                                 ! If true, the SQG vertical structure is used for backscatter on the condition
                                 ! that BS_EBT_power=0
-SQG_EXPO = 1.0                  !   [nondim] default = 1.0
-                                ! Nondimensional exponent coeffecient of the SQG mode that is used for the
-                                ! vertical struture of diffusivities.
 KHTH_USE_EBT_STRUCT = False     !   [Boolean] default = False
                                 ! If true, uses the equivalent barotropic structure as the vertical structure of
                                 ! thickness diffusivity.
