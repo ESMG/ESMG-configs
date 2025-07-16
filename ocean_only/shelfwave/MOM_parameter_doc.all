@@ -51,7 +51,7 @@ BATHYMETRY_AT_VEL = False       !   [Boolean] default = False
                                 ! If true, there are separate values for the basin depths at velocity points.
                                 ! Otherwise the effects of topography are entirely determined from thickness
                                 ! points.
-ENABLE_BUGS_BY_DEFAULT = True   !   [Boolean] default = True
+ENABLE_BUGS_BY_DEFAULT = False  !   [Boolean] default = True
                                 ! If true, the defaults for certain recently added bug-fix flags are set to
                                 ! recreate the bugs so that the code can be moved forward without changing
                                 ! answers for existing configurations.  The defaults for groups of bug-fix flags
@@ -296,10 +296,10 @@ OBC_RAMP_TIMESCALE = 1.0        !   [days] default = 1.0
                                 ! If RAMP_OBCS is true, this sets the ramping timescale.
 OBC_TIDE_N_CONSTITUENTS = 0     ! default = 0
                                 ! Number of tidal constituents being added to the open boundary.
-EXTERIOR_OBC_BUG = True         !   [Boolean] default = True
+EXTERIOR_OBC_BUG = False        !   [Boolean] default = False
                                 ! If true, recover a bug in barotropic solver and other routines when boundary
                                 ! contitions interior to the domain are used.
-OBC_HOR_INDEXING_BUG = False    !   [Boolean] default = True
+OBC_HOR_INDEXING_BUG = False    !   [Boolean] default = False
                                 ! If true, recover set of a horizontal indexing bugs in the OBC code.
 OBC_SEGMENT_001 = "I=N,J=0:N,FLATHER" !
                                 ! Documentation needs to be dynamic?????
@@ -320,6 +320,12 @@ OBC_TRACER_RESERVOIR_LENGTH_SCALE_OUT = 0.0 !   [m] default = 0.0
 OBC_TRACER_RESERVOIR_LENGTH_SCALE_IN = 0.0 !   [m] default = 0.0
                                 ! An effective length scale for restoring the tracer concentration at the
                                 ! boundaries to values from the interior when the flow is entering the domain.
+OBC_THICKNESS_RESERVOIR_LENGTH_SCALE_OUT = 0.0 !   [m] default = 0.0
+                                ! An effective length scale for restoring the layer thickness at the boundaries
+                                ! to externally imposed values when the flow is exiting the domain.
+OBC_THICKNESS_RESERVOIR_LENGTH_SCALE_IN = 0.0 !   [m] default = 0.0
+                                ! An effective length scale for restoring the layer thickness at the boundaries
+                                ! to values from the interior when the flow is entering the domain.
 OBC_REMAPPING_SCHEME = "PLM"    ! default = "PLM"
                                 ! This sets the reconstruction scheme used for OBC vertical remapping for all
                                 ! variables. It can be one of the following schemes:
@@ -569,7 +575,7 @@ ODA_INCUPD = False              !   [Boolean] default = False
 SPONGE = False                  !   [Boolean] default = False
                                 ! If true, sponges may be applied anywhere in the domain. The exact location and
                                 ! properties of those sponges are specified via SPONGE_CONFIG.
-OBC_RESERVOIR_INIT_BUG = False  !   [Boolean] default = True
+OBC_RESERVOIR_INIT_BUG = False  !   [Boolean] default = False
                                 ! If true, set the OBC tracer reservoirs at the startup of a new run from the
                                 ! interior tracer concentrations regardless of properties that may be explicitly
                                 ! specified for the reservoir concentrations.
@@ -674,7 +680,7 @@ VERY_SMALL_FREQUENCY = 1.0E-17  !   [s-1] default = 1.0E-17
 USE_STANLEY_ISO = False         !   [Boolean] default = False
                                 ! If true, turn on Stanley SGS T variance parameterization in isopycnal slope
                                 ! code.
-MIXING_COEFS_OBC_BUG = False    !   [Boolean] default = True
+MIXING_COEFS_OBC_BUG = False    !   [Boolean] default = False
                                 ! If false, use only interior data for thickness weighting in lateral mixing
                                 ! coefficient calculations and to calculate stratification and other fields at
                                 ! open boundary condition faces.
@@ -809,7 +815,7 @@ STORE_CORIOLIS_ACCEL = True     !   [Boolean] default = True
 FPMIX = False                   !   [Boolean] default = False
                                 ! If true, add non-local momentum flux increments and diffuse down the Eulerian
                                 ! gradient.
-VISC_REM_BUG = False            !   [Boolean] default = True
+VISC_REM_BUG = False            !   [Boolean] default = False
                                 ! If true, visc_rem_[uv] in split mode is incorrectly calculated or accounted
                                 ! for in two places. This parameter controls the defaults of two individual
                                 ! flags, VISC_REM_TIMESTEP_BUG in MOM_dynamics_split_RK2(b) and
@@ -905,7 +911,7 @@ RHO_PGF_REF = 1035.0            !   [kg m-3] default = 1035.0
                                 ! The reference density that is subtracted off when calculating pressure
                                 ! gradient forces.  Its inverse is subtracted off of specific volumes when in
                                 ! non-Boussinesq mode.  The default is RHO_0.
-RHO_PGF_REF_BUG = True          !   [Boolean] default = True
+RHO_PGF_REF_BUG = False         !   [Boolean] default = False
                                 ! If true, recover a bug that RHO_0 (the mean seawater density in Boussinesq
                                 ! mode) and RHO_PGF_REF (the subtracted reference density in finite volume
                                 ! pressure gradient forces) are incorrectly interchanged in several instances in
@@ -966,7 +972,7 @@ USE_LAND_MASK_FOR_HVISC = True  !   [Boolean] default = True
                                 ! If true, use the land mask for the computation of thicknesses at velocity
                                 ! locations. This eliminates the dependence on arbitrary values over land or
                                 ! outside of the domain.
-FRICTWORK_BUG = False           !   [Boolean] default = True
+FRICTWORK_BUG = False           !   [Boolean] default = False
                                 ! If true, retain an answer-changing bug in calculating the FrictWork, which
                                 ! cancels the h in thickness flux and the h at velocity point. This isnot
                                 ! recommended.
@@ -1262,6 +1268,8 @@ ENERGYFILE = "ocean.stats"      ! default = "ocean.stats"
                                 ! The file to use to write the energies and globally summed diagnostics.
 DATE_STAMPED_STDOUT = False     !   [Boolean] default = True
                                 ! If true, use dates (not times) in messages to stdout
+ISO_DATE_STAMPED_STDOUT = False !   [Boolean] default = False
+                                ! If true, use ISO formatted dates in messages to stdout
 TIMEUNIT = 8.64E+04             !   [s] default = 8.64E+04
                                 ! The time unit in seconds a number of input fields
 READ_DEPTH_LIST = False         !   [Boolean] default = False

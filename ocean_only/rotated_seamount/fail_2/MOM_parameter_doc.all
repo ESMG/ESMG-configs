@@ -51,7 +51,7 @@ BATHYMETRY_AT_VEL = False       !   [Boolean] default = False
                                 ! If true, there are separate values for the basin depths at velocity points.
                                 ! Otherwise the effects of topography are entirely determined from thickness
                                 ! points.
-ENABLE_BUGS_BY_DEFAULT = True   !   [Boolean] default = True
+ENABLE_BUGS_BY_DEFAULT = False  !   [Boolean] default = True
                                 ! If true, the defaults for certain recently added bug-fix flags are set to
                                 ! recreate the bugs so that the code can be moved forward without changing
                                 ! answers for existing configurations.  The defaults for groups of bug-fix flags
@@ -337,10 +337,10 @@ OBC_RAMP_TIMESCALE = 1.0        !   [days] default = 1.0
                                 ! If RAMP_OBCS is true, this sets the ramping timescale.
 OBC_TIDE_N_CONSTITUENTS = 0     ! default = 0
                                 ! Number of tidal constituents being added to the open boundary.
-EXTERIOR_OBC_BUG = True         !   [Boolean] default = True
+EXTERIOR_OBC_BUG = False        !   [Boolean] default = False
                                 ! If true, recover a bug in barotropic solver and other routines when boundary
                                 ! contitions interior to the domain are used.
-OBC_HOR_INDEXING_BUG = False    !   [Boolean] default = True
+OBC_HOR_INDEXING_BUG = False    !   [Boolean] default = False
                                 ! If true, recover set of a horizontal indexing bugs in the OBC code.
 OBC_SEGMENT_001 = "I=0,J=40:32,FLATHER, OBLIQUE, OBLIQUE_TAN" !
                                 ! Documentation needs to be dynamic?????

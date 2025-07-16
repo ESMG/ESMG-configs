@@ -51,7 +51,7 @@ BATHYMETRY_AT_VEL = False       !   [Boolean] default = False
                                 ! If true, there are separate values for the basin depths at velocity points.
                                 ! Otherwise the effects of topography are entirely determined from thickness
                                 ! points.
-ENABLE_BUGS_BY_DEFAULT = True   !   [Boolean] default = True
+ENABLE_BUGS_BY_DEFAULT = False  !   [Boolean] default = True
                                 ! If true, the defaults for certain recently added bug-fix flags are set to
                                 ! recreate the bugs so that the code can be moved forward without changing
                                 ! answers for existing configurations.  The defaults for groups of bug-fix flags
@@ -852,7 +852,7 @@ STORE_CORIOLIS_ACCEL = True     !   [Boolean] default = True
 FPMIX = False                   !   [Boolean] default = False
                                 ! If true, add non-local momentum flux increments and diffuse down the Eulerian
                                 ! gradient.
-VISC_REM_BUG = False            !   [Boolean] default = True
+VISC_REM_BUG = False            !   [Boolean] default = False
                                 ! If true, visc_rem_[uv] in split mode is incorrectly calculated or accounted
                                 ! for in two places. This parameter controls the defaults of two individual
                                 ! flags, VISC_REM_TIMESTEP_BUG in MOM_dynamics_split_RK2(b) and
@@ -948,7 +948,7 @@ RHO_PGF_REF = 1035.0            !   [kg m-3] default = 1035.0
                                 ! The reference density that is subtracted off when calculating pressure
                                 ! gradient forces.  Its inverse is subtracted off of specific volumes when in
                                 ! non-Boussinesq mode.  The default is RHO_0.
-RHO_PGF_REF_BUG = True          !   [Boolean] default = True
+RHO_PGF_REF_BUG = False         !   [Boolean] default = False
                                 ! If true, recover a bug that RHO_0 (the mean seawater density in Boussinesq
                                 ! mode) and RHO_PGF_REF (the subtracted reference density in finite volume
                                 ! pressure gradient forces) are incorrectly interchanged in several instances in
@@ -1054,7 +1054,7 @@ USE_LAND_MASK_FOR_HVISC = True  !   [Boolean] default = True
 HORVISC_BOUND_COEF = 0.8        !   [nondim] default = 0.8
                                 ! The nondimensional coefficient of the ratio of the viscosity bounds to the
                                 ! theoretical maximum for stability without considering other terms.
-FRICTWORK_BUG = False           !   [Boolean] default = True
+FRICTWORK_BUG = False           !   [Boolean] default = False
                                 ! If true, retain an answer-changing bug in calculating the FrictWork, which
                                 ! cancels the h in thickness flux and the h at velocity point. This isnot
                                 ! recommended.
@@ -1612,6 +1612,8 @@ ENERGYFILE = "ocean.stats"      ! default = "ocean.stats"
                                 ! The file to use to write the energies and globally summed diagnostics.
 DATE_STAMPED_STDOUT = False     !   [Boolean] default = True
                                 ! If true, use dates (not times) in messages to stdout
+ISO_DATE_STAMPED_STDOUT = False !   [Boolean] default = False
+                                ! If true, use ISO formatted dates in messages to stdout
 TIMEUNIT = 8.64E+04             !   [s] default = 8.64E+04
                                 ! The time unit in seconds a number of input fields
 READ_DEPTH_LIST = False         !   [Boolean] default = False

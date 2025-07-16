@@ -7,6 +7,14 @@ ADIABATIC = True                !   [Boolean] default = False
                                 ! There are no diapycnal mass fluxes if ADIABATIC is true.  This assumes that KD
                                 ! = 0.0 and that there is no buoyancy forcing, but makes the model faster by
                                 ! eliminating subroutine calls.
+ENABLE_BUGS_BY_DEFAULT = False  !   [Boolean] default = True
+                                ! If true, the defaults for certain recently added bug-fix flags are set to
+                                ! recreate the bugs so that the code can be moved forward without changing
+                                ! answers for existing configurations.  The defaults for groups of bug-fix flags
+                                ! are periodcially changed to correct the bugs, at which point this parameter
+                                ! will no longer be used to set their default.  Setting this to false means that
+                                ! bugs are only used if they are actively selected, but it also means that
+                                ! answers may change when code is updated due to newly found bugs.
 DT = 0.2                        !   [s]
                                 ! The (baroclinic) dynamics time step.  The time-step that is actually used will
                                 ! be an integer fraction of the forcing time-step (DT_FORCING in ocean-only mode
@@ -194,11 +202,6 @@ KV = 1.0E-06                    !   [m2 s-1]
 ! === module MOM_thickness_diffuse ===
 
 ! === module MOM_dynamics_split_RK2 ===
-VISC_REM_BUG = False            !   [Boolean] default = True
-                                ! If true, visc_rem_[uv] in split mode is incorrectly calculated or accounted
-                                ! for in two places. This parameter controls the defaults of two individual
-                                ! flags, VISC_REM_TIMESTEP_BUG in MOM_dynamics_split_RK2(b) and
-                                ! VISC_REM_BT_WEIGHT_BUG in MOM_barotropic.
 
 ! === module MOM_continuity_PPM ===
 ETA_TOLERANCE = 1.0E-06         !   [m] default = 5.0E-11
@@ -228,10 +231,6 @@ BOUND_CORIOLIS = True           !   [Boolean] default = False
 BIHARMONIC = False              !   [Boolean] default = True
                                 ! If true, use a biharmonic horizontal viscosity. BIHARMONIC may be used with
                                 ! LAPLACIAN.
-FRICTWORK_BUG = False           !   [Boolean] default = True
-                                ! If true, retain an answer-changing bug in calculating the FrictWork, which
-                                ! cancels the h in thickness flux and the h at velocity point. This isnot
-                                ! recommended.
 
 ! === module MOM_vert_friction ===
 HMIX_FIXED = 20.0               !   [m]

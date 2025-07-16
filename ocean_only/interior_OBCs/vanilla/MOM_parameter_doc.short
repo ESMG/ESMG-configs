@@ -4,6 +4,14 @@
 USE_REGRIDDING = True           !   [Boolean] default = False
                                 ! If True, use the ALE algorithm (regridding/remapping). If False, use the
                                 ! layered isopycnal algorithm.
+ENABLE_BUGS_BY_DEFAULT = False  !   [Boolean] default = True
+                                ! If true, the defaults for certain recently added bug-fix flags are set to
+                                ! recreate the bugs so that the code can be moved forward without changing
+                                ! answers for existing configurations.  The defaults for groups of bug-fix flags
+                                ! are periodcially changed to correct the bugs, at which point this parameter
+                                ! will no longer be used to set their default.  Setting this to false means that
+                                ! bugs are only used if they are actively selected, but it also means that
+                                ! answers may change when code is updated due to newly found bugs.
 DT = 600.0                      !   [s]
                                 ! The (baroclinic) dynamics time step.  The time-step that is actually used will
                                 ! be an integer fraction of the forcing time-step (DT_FORCING in ocean-only mode
@@ -128,11 +136,6 @@ OBC_ZERO_BIHARMONIC = True      !   [Boolean] default = False
                                 ! viscosity term.
 MASK_OUTSIDE_OBCS = True        !   [Boolean] default = False
                                 ! If true, set the areas outside open boundaries to be land.
-EXTERIOR_OBC_BUG = False        !   [Boolean] default = True
-                                ! If true, recover a bug in barotropic solver and other routines when boundary
-                                ! contitions interior to the domain are used.
-OBC_HOR_INDEXING_BUG = False    !   [Boolean] default = True
-                                ! If true, recover set of a horizontal indexing bugs in the OBC code.
 OBC_SEGMENT_001 = "I=2,J=N-2:3,FLATHER,ORLANSKI" !
                                 ! Documentation needs to be dynamic?????
 OBC_SEGMENT_002 = "I=N,J=3:N-2,FLATHER,ORLANSKI" !
@@ -155,6 +158,14 @@ MASKING_DEPTH = 0.0             !   [m] default = -9999.0
 ! Parameters providing information about the vertical grid.
 NK = 10                         !   [nondim]
                                 ! The number of model layers.
+OBC_SEGMENT_001_DATA = "SSH=value:0.1,U=value:0.1,V=value:0,TEMP=value:7.0,SALT=value:33.0" !
+                                ! OBC segment docs
+OBC_SEGMENT_002_DATA = "SSH=value:0.1,U=value:0.1,V=value:0,TEMP=value:7.0,SALT=value:33.0" !
+                                ! OBC segment docs
+OBC_SEGMENT_003_DATA = "SSH=value:0.15,U=value:0.0,V=value:0.1,TEMP=value:7.0,SALT=value:33.0" !
+                                ! OBC segment docs
+OBC_SEGMENT_004_DATA = "SSH=value:0.15,U=value:0.0,V=value:0.1,TEMP=value:7.0,SALT=value:33.0" !
+                                ! OBC segment docs
 
 ! === module MOM_EOS ===
 TFREEZE_FORM = "TEOS10"         ! default = "LINEAR"
@@ -265,18 +276,6 @@ S_TOP = 20.0                    !   [ppt]
                                 ! Initial salinity of the top surface.
 S_RANGE = 5.0                   !   [ppt]
                                 ! Initial salinity difference (top-bottom).
-OBC_RESERVOIR_INIT_BUG = False  !   [Boolean] default = True
-                                ! If true, set the OBC tracer reservoirs at the startup of a new run from the
-                                ! interior tracer concentrations regardless of properties that may be explicitly
-                                ! specified for the reservoir concentrations.
-OBC_SEGMENT_001_DATA = "SSH=value:0.1,U=value:0.1,V=value:0,TEMP=value:7.0,SALT=value:33.0" !
-                                ! OBC segment docs
-OBC_SEGMENT_002_DATA = "SSH=value:0.1,U=value:0.1,V=value:0,TEMP=value:7.0,SALT=value:33.0" !
-                                ! OBC segment docs
-OBC_SEGMENT_003_DATA = "SSH=value:0.15,U=value:0.0,V=value:0.1,TEMP=value:7.0,SALT=value:33.0" !
-                                ! OBC segment docs
-OBC_SEGMENT_004_DATA = "SSH=value:0.15,U=value:0.0,V=value:0.1,TEMP=value:7.0,SALT=value:33.0" !
-                                ! OBC segment docs
 
 ! === module MOM_diag_mediator ===
 
@@ -339,11 +338,6 @@ KHTH_MAX_CFL = 0.1              !   [nondimensional] default = 0.8
                                 ! models.
 
 ! === module MOM_dynamics_split_RK2 ===
-VISC_REM_BUG = False            !   [Boolean] default = True
-                                ! If true, visc_rem_[uv] in split mode is incorrectly calculated or accounted
-                                ! for in two places. This parameter controls the defaults of two individual
-                                ! flags, VISC_REM_TIMESTEP_BUG in MOM_dynamics_split_RK2(b) and
-                                ! VISC_REM_BT_WEIGHT_BUG in MOM_barotropic.
 
 ! === module MOM_continuity_PPM ===
 ETA_TOLERANCE = 1.0E-06         !   [m] default = 5.0E-10

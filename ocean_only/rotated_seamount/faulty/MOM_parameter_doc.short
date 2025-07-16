@@ -6,6 +6,14 @@ BULKMIXEDLAYER = False          !   [Boolean] default = True
                                 ! layers.  Layers 1 through NKML+NKBL have variable densities. There must be at
                                 ! least NKML+NKBL+1 layers if BULKMIXEDLAYER is true. BULKMIXEDLAYER can not be
                                 ! used with USE_REGRIDDING. The default is influenced by ENABLE_THERMODYNAMICS.
+ENABLE_BUGS_BY_DEFAULT = False  !   [Boolean] default = True
+                                ! If true, the defaults for certain recently added bug-fix flags are set to
+                                ! recreate the bugs so that the code can be moved forward without changing
+                                ! answers for existing configurations.  The defaults for groups of bug-fix flags
+                                ! are periodcially changed to correct the bugs, at which point this parameter
+                                ! will no longer be used to set their default.  Setting this to false means that
+                                ! bugs are only used if they are actively selected, but it also means that
+                                ! answers may change when code is updated due to newly found bugs.
 DT = 900.0                      !   [s]
                                 ! The (baroclinic) dynamics time step.  The time-step that is actually used will
                                 ! be an integer fraction of the forcing time-step (DT_FORCING in ocean-only mode
@@ -123,8 +131,6 @@ OBC_ZERO_BIHARMONIC = True      !   [Boolean] default = False
                                 ! viscosity term.
 MASK_OUTSIDE_OBCS = True        !   [Boolean] default = False
                                 ! If true, set the areas outside open boundaries to be land.
-OBC_HOR_INDEXING_BUG = False    !   [Boolean] default = True
-                                ! If true, recover set of a horizontal indexing bugs in the OBC code.
 OBC_SEGMENT_001 = "I=0,J=40:32,FLATHER, OBLIQUE, OBLIQUE_TAN" !
                                 ! Documentation needs to be dynamic?????
 OBC_SEGMENT_002 = "J=32,I=1:0,FLATHER, OBLIQUE" !
@@ -158,12 +164,3 @@ OBC_SEGMENT_015 = "I=28,J=2:3,FLATHER, OBLIQUE, OBLIQUE_TAN" !
 OBC_SEGMENT_016 = "J=3,I=28:36,FLATHER, OBLIQUE, OBLIQUE_TAN" !
                                 ! Documentation needs to be dynamic?????
 OBC_SEGMENT_017 = "I=36,J=3:4,FLATHER, OBLIQUE, OBLIQUE_TAN" !
-                                ! Documentation needs to be dynamic?????
-OBC_SEGMENT_018 = "J=4,I=36:44,FLATHER, OBLIQUE, OBLIQUE_TAN" !
-                                ! Documentation needs to be dynamic?????
-OBC_SEGMENT_019 = "I=44,J=4:12,FLATHER, OBLIQUE, OBLIQUE_TAN" !
-                                ! Documentation needs to be dynamic?????
-OBC_SEGMENT_020 = "J=12,I=44:43,FLATHER, OBLIQUE, OBLIQUE_TAN" !
-                                ! Documentation needs to be dynamic?????
-OBC_SEGMENT_021 = "I=43,J=12:20,FLATHER, OBLIQUE, OBLIQUE_TAN" !
-                                ! Documentation needs to be dynamic?????
