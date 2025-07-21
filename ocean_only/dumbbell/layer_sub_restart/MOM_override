@@ -16,7 +16,6 @@
 #override BUOY_CONFIG = "NONE"
 
 ! subgrid stuff
-!#override DAYMAX = 30.
 #override WESTLON = -100
 #override LENLON = 200
 #override NIGLOBAL = 40
@@ -39,3 +38,8 @@ OBC_COMPUTED_STRAIN = True
 OBC_ZERO_BIHARMONIC = True
 OBC_THICKNESS_RESERVOIR_LENGTH_SCALE_OUT = 5000
 OBC_THICKNESS_RESERVOIR_LENGTH_SCALE_IN = 5000
+
+! Debugging stuff
+#override DAYMAX = 2.
+TIMEUNIT = 3600.0               !   [s] default = 8.64E+04
+ENERGYSAVEDAYS = 1.0            !   [days] default = 1.0

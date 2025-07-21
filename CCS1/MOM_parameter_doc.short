@@ -556,10 +556,10 @@ EPBL_MSTAR_SCHEME = "REICHL_H18" ! default = "CONSTANT"
                                 !    REICHL_H18 - Use the scheme documented in Reichl & Hallberg, 2018.
 MSTAR_CAP = 10.0                !   [nondim] default = -1.0
                                 ! If this value is positive, it sets the maximum value of mstar allowed in ePBL.
-                                ! (This is not used if EPBL_MSTAR_SCHEME = CONSTANT).
+                                ! (This is not used if EPBL_mstar_scheme = CONSTANT).
 RH18_MSTAR_CN3 = -6.0           !   [nondim] default = -5.0
                                 ! MSTAR_N coefficient 3 (exponential decay coefficient). The value of -5.0 is
-                                ! given in RH18.  Increasing this increases how quickly the value of MSTAR
+                                ! given in RH18.  Increasing this increases how quickly the value of mstar
                                 ! decreases as Hf/ust increases.
 NSTAR = 0.06                    !   [nondim] default = 0.2
                                 ! The portion of the buoyant potential energy imparted by surface fluxes that is

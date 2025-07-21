@@ -359,10 +359,10 @@ OBC_TRACER_RESERVOIR_LENGTH_SCALE_OUT = 5000.0 !   [m] default = 0.0
 OBC_TRACER_RESERVOIR_LENGTH_SCALE_IN = 5000.0 !   [m] default = 0.0
                                 ! An effective length scale for restoring the tracer concentration at the
                                 ! boundaries to values from the interior when the flow is entering the domain.
-OBC_THICKNESS_RESERVOIR_LENGTH_SCALE_OUT = 0.0 !   [m] default = 0.0
+OBC_THICKNESS_RESERVOIR_LENGTH_SCALE_OUT = 5000.0 !   [m] default = 0.0
                                 ! An effective length scale for restoring the layer thickness at the boundaries
                                 ! to externally imposed values when the flow is exiting the domain.
-OBC_THICKNESS_RESERVOIR_LENGTH_SCALE_IN = 0.0 !   [m] default = 0.0
+OBC_THICKNESS_RESERVOIR_LENGTH_SCALE_IN = 5000.0 !   [m] default = 0.0
                                 ! An effective length scale for restoring the layer thickness at the boundaries
                                 ! to values from the interior when the flow is entering the domain.
 OBC_REMAPPING_SCHEME = "PPM_IH4" ! default = "PPM_IH4"
@@ -569,6 +569,8 @@ USE_DYED_CHANNEL_OBC = False    !   [Boolean] default = False
                                 ! If true, use the dyed channel open boundary.
 
 ! === module segment_tracer_registry_init ===
+
+! === module segment_thickness_reservoir_init ===
 
 ! === module MOM_coord_initialization ===
 COORD_CONFIG = "ts_range"       ! default = "none"
@@ -1454,6 +1456,9 @@ EVAP_CFL_LIMIT = 0.8            !   [nondim] default = 0.8
 MLD_EN_VALS = 25.0, 2500.0, 2.5E+05 !   [J/m2] default = 25.0, 2500.0, 2.5E+05
                                 ! The energy values used to compute MLDs.  If not set (or all set to 0.), the
                                 ! default will overwrite to 25., 2500., 250000.
+BMLD_EN_VALS = 25.0, 2500.0, 2.5E+05 !   [J/m2] default = 25.0, 2500.0, 2.5E+05
+                                ! The energy values used to compute Bottom MLDs.  If not set (or all set to 0.),
+                                ! the default will overwrite to 25., 2500., 250000.
 DIAG_MLD_DENSITY_DIFF = 0.1     !   [kg/m3] default = 0.1
                                 ! The density difference used to determine a diagnostic mixed layer depth,
                                 ! MLD_user, following the definition of Levitus 1982. The MLD is the depth at

@@ -220,64 +220,6 @@ TS_RANGE_S_DENSE = 35.9         !   [ppt] default = 34.0
                                 ! The initial densest salinities when COORD_CONFIG is set to ts_range.
 
 ! === module MOM_state_initialization ===
-THICKNESS_CONFIG = "dumbbell"   ! default = "uniform"
-                                ! A string that determines how the initial layer thicknesses are specified for a
-                                ! new run:
-                                !     file - read interface heights from the file specified
-                                !       by (THICKNESS_FILE).
-                                !     thickness_file - read thicknesses from the file specified
-                                !       by (THICKNESS_FILE).
-                                !     mass_file - read thicknesses in units of mass per unit area from the file
-                                !       specified by (THICKNESS_FILE).
-                                !     coord - determined by ALE coordinate.
-                                !     uniform - uniform thickness layers evenly distributed
-                                !       between the surface and MAXIMUM_DEPTH.
-                                !     list - read a list of positive interface depths.
-                                !     param - use thicknesses from parameter THICKNESS_INIT_VALUES.
-                                !     DOME - use a slope and channel configuration for the
-                                !       DOME sill-overflow test case.
-                                !     ISOMIP - use a configuration for the
-                                !       ISOMIP test case.
-                                !     benchmark - use the benchmark test case thicknesses.
-                                !     Neverworld - use the Neverworld test case thicknesses.
-                                !     search - search a density profile for the interface
-                                !       densities. This is not yet implemented.
-                                !     circle_obcs - the circle_obcs test case is used.
-                                !     DOME2D - 2D version of DOME initialization.
-                                !     adjustment2d - 2D lock exchange thickness ICs.
-                                !     sloshing - sloshing gravity thickness ICs.
-                                !     seamount - no motion test with seamount ICs.
-                                !     dumbbell - sloshing channel ICs.
-                                !     soliton - Equatorial Rossby soliton.
-                                !     rossby_front - a mixed layer front in thermal wind balance.
-                                !     USER - call a user modified routine.
-
-! === module dumbbell_initialization ===
-MIN_THICKNESS = 0.1             !   [m] default = 0.001
-                                ! Minimum thickness for layer
-TS_CONFIG = "fit"               !
-                                ! A string that determines how the initial temperatures and salinities are
-                                ! specified for a new run:
-                                !     file - read velocities from the file specified
-                                !       by (TS_FILE).
-                                !     fit - find the temperatures that are consistent with
-                                !       the layer densities and salinity S_REF.
-                                !     TS_profile - use temperature and salinity profiles
-                                !       (read from TS_FILE) to set layer densities.
-                                !     benchmark - use the benchmark test case T & S.
-                                !     linear - linear in logical layer space.
-                                !     DOME2D - 2D DOME initialization.
-                                !     ISOMIP - ISOMIP initialization.
-                                !     adjustment2d - 2d lock exchange T/S ICs.
-                                !     sloshing - sloshing mode T/S ICs.
-                                !     seamount - no motion test with seamount ICs.
-                                !     dumbbell - sloshing channel ICs.
-                                !     rossby_front - a mixed layer front in thermal wind balance.
-                                !     SCM_CVMix_tests - used in the SCM CVMix tests.
-                                !     USER - call a user modified routine.
-FIT_SALINITY = True             !   [Boolean] default = False
-                                ! If true, accept the prescribed temperature and fit the salinity; otherwise
-                                ! take salinity and fit temperature.
 
 ! === module MOM_diag_mediator ===
 
@@ -416,6 +358,11 @@ MAXTRUNC = 5000                 !   [truncations save_interval-1] default = 0
                                 ! to stop if there is any truncation of velocities.
 DATE_STAMPED_STDOUT = False     !   [Boolean] default = True
                                 ! If true, use dates (not times) in messages to stdout
+TIMEUNIT = 3600.0               !   [s] default = 8.64E+04
+                                ! The time unit in seconds a number of input fields
+ENERGYSAVEDAYS = 1.0            !   [hours] default = 24.0
+                                ! The interval in units of TIMEUNIT between saves of the energies of the run and
+                                ! other globally summed diagnostics.
 
 ! === module ocean_stochastics_init ===
 
@@ -431,7 +378,7 @@ BUOY_CONFIG = "NONE"            ! default = "zero"
                                 ! (SCM_CVmix_tests), (BFB), (dumbbell), (USER) and (NONE).
 
 ! === module MOM_main (MOM_driver) ===
-DAYMAX = 2.0                    !   [days]
+DAYMAX = 2.0                    !   [hours]
                                 ! The final time of the whole simulation, in units of TIMEUNIT seconds.  This
                                 ! also sets the potential end time of the present run segment if the end time is
                                 ! not set via ocean_solo_nml in input.nml.
