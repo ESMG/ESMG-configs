@@ -9,16 +9,15 @@
 #override MAXIMUM_DEPTH = 1000.0          !   [m]
 #override NIGLOBAL = 80                   !
 #override OBC_SEGMENT_001 = "I=N,J=0:N,FLATHER,ORLANSKI"
-#override OBC_SEGMENT_002 = "I=0,J=N:0,FLATHER,ORLANSKI,NUDGED"
-!#override OBC_SEGMENT_002 = "I=0,J=N:0,FLATHER,SIMPLE"
+!#override OBC_SEGMENT_002 = "I=0,J=N:0,FLATHER,ORLANSKI,NUDGED"
+#override OBC_SEGMENT_002 = "I=0,J=N:0,FLATHER,SIMPLE"
 #override LAPLACIAN = True                !   [Boolean] default = False
-#override KH = 2000.0                     !   [m2 s-1] default = 0.0
+#override KH = 1000.0                     !   [m2 s-1] default = 0.0
 ! === module MOM_vert_friction ===
-#override DIRECT_STRESS = True            !   [Boolean] default = False
-#override HARMONIC_VISC = True            !   [Boolean] default = False
-#override HMIX_FIXED = 20.0               !   [m]
+!#override DIRECT_STRESS = True            !   [Boolean] default = False
+!#override HARMONIC_VISC = True            !   [Boolean] default = False
+!#override HMIX_FIXED = 20.0               !   [m]
 #override KV = 0.0                        !   [m2 s-1]
-#override KV_ML_INVZ2 = 1.0E-04           !   [m2 s-1] default = 1.0E-04
 #override HBBL = 10.0                     !   [m]
 #override KH_VEL_SCALE = 0.003            !   [m s-1] default = 0.0
 #override SMAGORINSKY_KH = True           !   [Boolean] default = False
@@ -26,7 +25,7 @@
 !
 OBC_SEGMENT_002_VELOCITY_NUDGING_TIMESCALES = 1, 10
 #override OBC_FREESLIP_VORTICITY = False  !   [Boolean] default = False
-#override KELVIN_WAVE_INFLOW_AMP = 0.5    !   [m s-1] default = 1.0
+#override KELVIN_WAVE_INFLOW_AMP = 0.25    !   [m s-1] default = 1.0
 OBC_COMPUTED_VORTICITY = True  !   [Boolean] default = False
 !#override T_RESCALE_POWER=11
 !#override L_RESCALE_POWER=11
@@ -35,3 +34,6 @@ OBC_COMPUTED_VORTICITY = True  !   [Boolean] default = False
 !#override R_RESCALE_POWER=11
 !ROTATE_INDEX = True
 !INDEX_TURNS = 1
+OBC_THICKNESS_RESERVOIR_LENGTH_SCALE_IN = 5000
+OBC_THICKNESS_RESERVOIR_LENGTH_SCALE_OUT = 5000
+!KHTH_SLOPE_MAX = 0.01           !   [nondim] default = 0.01
