@@ -1,0 +1,134 @@
+# Magic: LR-70-3595585-9ER
+# Generated file -- DO NOT EDIT
+# Breakpoint list saved by Linux x86_64 TotalView 2023.1.6
+
+dset TV::Private::saved_breakpoint_actual_format 4
+dset TV::Private::saved_breakpoint_actual_revision 0
+
+namespace eval TV::Private {
+
+BP_start 1
+BP_set	ContextPath {//import/c1/AKWATERS/kate/ESMG/ESMG-configs/src/MOM6/config_src/drivers/solo_driver/MOM_driver.F90#1}
+BP_set	LinePath {/import/c1/AKWATERS/kate/ESMG/ESMG-configs/src/MOM6/config_src/drivers/solo_driver/MOM_driver.F90#485}
+BP_set	InnerUnitPath {##/import/c1/AKWATERS/kshedstrom/MOM6_22/build/gnu/ocean_only/debug/MOM6#//import/c1/AKWATERS/kate/ESMG/ESMG-configs/src/MOM6/config_src/drivers/solo_driver/MOM_driver.F90#mom6}
+BP_set	InnerUnitLineOffset {484}
+BP_set	Flags {g 1 p g g}
+BP_set	SatSet {C}
+BP_set	SourceText {    if (offline_tracer_mode) then}
+BP_set	Instruction {mov      -200(%rbp),%eax}
+BP_done 1
+
+BP_start 2
+BP_set	ContextPath {//import/c1/AKWATERS/kate/ESMG/ESMG-configs/src/MOM6/config_src/drivers/solo_driver/MOM_driver.F90#1}
+BP_set	LinePath {/import/c1/AKWATERS/kate/ESMG/ESMG-configs/src/MOM6/src/core/MOM.F90#1317}
+BP_set	InnerUnitPath {##/import/c1/AKWATERS/kshedstrom/MOM6_22/build/gnu/ocean_only/debug/MOM6#//import/c1/AKWATERS/kate/ESMG/ESMG-configs/src/MOM6/src/core/MOM.F90#mom`step_mom_dynamics}
+BP_set	InnerUnitLineOffset {108}
+BP_set	Flags {g 1 p g g}
+BP_set	SatSet {C}
+BP_set	BlockCount {6}
+BP_set	BlocksEnabled {0x1}
+BP_set	BlockAddress {0x01eb9b21}
+BP_set	SourceText {                  CS%MEKE, CS%thickness_diffuse_CSp, CS%pbv, CS%stoch_CS, waves=waves)}
+BP_set	Instruction {movl     $0x41b8760,%edi}
+BP_done 2
+
+BP_start 3
+BP_set	ContextPath {//import/c1/AKWATERS/kate/ESMG/ESMG-configs/src/MOM6/config_src/drivers/solo_driver/MOM_driver.F90#1}
+BP_set	LinePath {/import/c1/AKWATERS/kate/ESMG/ESMG-configs/src/MOM6/src/core/MOM.F90#2915}
+BP_set	InnerUnitPath {##/import/c1/AKWATERS/kshedstrom/MOM6_22/build/gnu/ocean_only/debug/MOM6#//import/c1/AKWATERS/kate/ESMG/ESMG-configs/src/MOM6/src/core/MOM.F90#mom`initialize_mom#$b1}
+BP_set	InnerUnitLineOffset {563}
+BP_set	Flags {g 1 p g g}
+BP_set	SatSet {C}
+BP_set	SourceText {    if (associated(OBC_in)) then}
+BP_set	Instruction {mov      overlaplist.31+0xa519,%rax}
+BP_done 3
+
+BP_start 4
+BP_set	ContextPath {//import/c1/AKWATERS/kate/ESMG/ESMG-configs/src/MOM6/config_src/drivers/solo_driver/MOM_driver.F90#1}
+BP_set	LinePath {/import/c1/AKWATERS/kate/ESMG/ESMG-configs/src/MOM6/src/core/MOM.F90#3236}
+BP_set	InnerUnitPath {##/import/c1/AKWATERS/kshedstrom/MOM6_22/build/gnu/ocean_only/debug/MOM6#//import/c1/AKWATERS/kate/ESMG/ESMG-configs/src/MOM6/src/core/MOM.F90#mom`initialize_mom#$b1#$b97}
+BP_set	InnerUnitLineOffset {50}
+BP_set	Flags {g 1 p g g}
+BP_set	SatSet {C}
+BP_set	SourceText {          sponge_in_CSp, ALE_sponge_in_CSp, oda_incupd_in_CSp, OBC_in, Time_in)}
+BP_set	Instruction {mov      0xfffec588(%rbp),%rax}
+BP_done 4
+
+BP_start 5
+BP_set	ContextPath {//import/c1/AKWATERS/kate/ESMG/ESMG-configs/src/MOM6/config_src/drivers/solo_driver/MOM_driver.F90#1}
+BP_set	LinePath {/import/c1/AKWATERS/kate/ESMG/ESMG-configs/src/MOM6/src/core/MOM.F90#3290}
+BP_set	InnerUnitPath {##/import/c1/AKWATERS/kshedstrom/MOM6_22/build/gnu/ocean_only/debug/MOM6#//import/c1/AKWATERS/kate/ESMG/ESMG-configs/src/MOM6/src/core/MOM.F90#mom`initialize_mom#$b1}
+BP_set	InnerUnitLineOffset {938}
+BP_set	Flags {g 1 p g g}
+BP_set	SatSet {C}
+BP_set	SourceText {          CS%sponge_CSp, CS%ALE_sponge_CSp, CS%oda_incupd_CSp, CS%OBC, Time_in)}
+BP_set	Instruction {mov      0xfffec588(%rbp),%rax}
+BP_done 5
+
+BP_start 6
+BP_set	ContextPath {//import/c1/AKWATERS/kate/ESMG/ESMG-configs/src/MOM6/config_src/drivers/solo_driver/MOM_driver.F90#1}
+BP_set	LinePath {/import/c1/AKWATERS/kate/ESMG/ESMG-configs/src/MOM6/src/core/MOM.F90#3678}
+BP_set	InnerUnitPath {##/import/c1/AKWATERS/kshedstrom/MOM6_22/build/gnu/ocean_only/debug/MOM6#//import/c1/AKWATERS/kate/ESMG/ESMG-configs/src/MOM6/src/core/MOM.F90#mom`initialize_mom#$b1}
+BP_set	InnerUnitLineOffset {1326}
+BP_set	Flags {g 1 p g g}
+BP_set	SatSet {C}
+BP_set	SourceText {    call setup_OBC_thickness_reservoirs(G, GV, CS%OBC, restart_CSp)}
+BP_set	Instruction {mov      __data_override_r8_MOD_ocn_domain+0x11,%rcx}
+BP_done 6
+
+BP_start 7
+BP_set	ContextPath {//import/c1/AKWATERS/kate/ESMG/ESMG-configs/src/MOM6/config_src/drivers/solo_driver/MOM_driver.F90#1}
+BP_set	LinePath {/import/c1/AKWATERS/kate/ESMG/ESMG-configs/src/MOM6/src/core/MOM_open_boundary.F90#5944}
+BP_set	InnerUnitPath {##/import/c1/AKWATERS/kshedstrom/MOM6_22/build/gnu/ocean_only/debug/MOM6#//import/c1/AKWATERS/kate/ESMG/ESMG-configs/src/MOM6/src/core/MOM_open_boundary.F90#mom_open_boundary`update_segment_thickness_reservoirs}
+BP_set	InnerUnitLineOffset {32}
+BP_set	Flags {g 1 p g g}
+BP_set	SatSet {C}
+BP_set	SourceText {  nz = GV%ke}
+BP_set	Instruction {mov      -336(%rbp),%rax}
+BP_done 7
+
+BP_start 8
+BP_set	ContextPath {//import/c1/AKWATERS/kate/ESMG/ESMG-configs/src/MOM6/config_src/drivers/solo_driver/MOM_driver.F90#1}
+BP_set	LinePath {/import/c1/AKWATERS/kate/ESMG/ESMG-configs/src/MOM6/src/core/MOM_dynamics_split_RK2.F90#545}
+BP_set	InnerUnitPath {##/import/c1/AKWATERS/kshedstrom/MOM6_22/build/gnu/ocean_only/debug/MOM6#//import/c1/AKWATERS/kate/ESMG/ESMG-configs/src/MOM6/src/core/MOM_dynamics_split_RK2.F90#mom_dynamics_split_rk2`step_mom_dyn_split_rk2}
+BP_set	InnerUnitLineOffset {249}
+BP_set	Flags {g 1 p g g}
+BP_set	SatSet {C}
+BP_set	SourceText {    call update_OBC_data(CS%OBC, G, GV, US, tv, h, CS%update_OBC_CSp, Time_local)}
+BP_set	Instruction {mov      112(%rbp),%rax}
+BP_done 8
+
+BP_start 9
+BP_set	ContextPath {//import/c1/AKWATERS/kate/ESMG/ESMG-configs/src/MOM6/config_src/drivers/solo_driver/MOM_driver.F90#1}
+BP_set	LinePath {/import/c1/AKWATERS/kate/ESMG/ESMG-configs/src/MOM6/src/core/MOM_boundary_update.F90#165}
+BP_set	InnerUnitPath {##/import/c1/AKWATERS/kshedstrom/MOM6_22/build/gnu/ocean_only/debug/MOM6#//import/c1/AKWATERS/kate/ESMG/ESMG-configs/src/MOM6/src/core/MOM_boundary_update.F90#mom_boundary_update`update_obc_data}
+BP_set	InnerUnitLineOffset {13}
+BP_set	Flags {g 1 p g g}
+BP_set	SatSet {C}
+BP_set	SourceText {      call Kelvin_set_OBC_data(OBC, CS%Kelvin_OBC_CSp, G, GV, US, h, Time)}
+BP_set	Instruction {mov      16(%rbp),%rax}
+BP_done 9
+
+BP_start 10
+BP_set	ContextPath {//import/c1/AKWATERS/kate/ESMG/ESMG-configs/src/MOM6/config_src/drivers/solo_driver/MOM_driver.F90#1}
+BP_set	LinePath {/import/c1/AKWATERS/kate/ESMG/ESMG-configs/src/MOM6/src/user/Kelvin_initialization.F90#283}
+BP_set	InnerUnitPath {##/import/c1/AKWATERS/kshedstrom/MOM6_22/build/gnu/ocean_only/debug/MOM6#//import/c1/AKWATERS/kate/ESMG/ESMG-configs/src/MOM6/src/user/Kelvin_initialization.F90#kelvin_initialization`kelvin_set_obc_data}
+BP_set	InnerUnitLineOffset {81}
+BP_set	Flags {g 1 p g g}
+BP_set	SatSet {C}
+BP_set	SourceText {  sina = sin(CS%coast_angle)}
+BP_set	Instruction {mov      -464(%rbp),%rax}
+BP_done 10
+
+BP_start 11
+BP_set	ContextPath {//import/c1/AKWATERS/kate/ESMG/ESMG-configs/src/MOM6/config_src/drivers/solo_driver/MOM_driver.F90#1}
+BP_set	LinePath {/import/c1/AKWATERS/kate/ESMG/ESMG-configs/src/MOM6/src/user/Kelvin_initialization.F90#398}
+BP_set	InnerUnitPath {##/import/c1/AKWATERS/kshedstrom/MOM6_22/build/gnu/ocean_only/debug/MOM6#//import/c1/AKWATERS/kate/ESMG/ESMG-configs/src/MOM6/src/user/Kelvin_initialization.F90#kelvin_initialization`kelvin_set_obc_data}
+BP_set	InnerUnitLineOffset {196}
+BP_set	Flags {g 1 p g g}
+BP_set	SatSet {C}
+BP_set	SourceText {    if (unrot_dir == OBC_DIRECTION_S) then}
+BP_set	Instruction {cmpl     $200,-196(%rbp)}
+BP_done 11
+
+}

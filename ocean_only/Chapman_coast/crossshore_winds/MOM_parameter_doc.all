@@ -127,9 +127,6 @@ SURFACE_ANSWER_DATE = 99991231  ! default = 99991231
                                 ! The vintage of the expressions for the surface properties.  Values below
                                 ! 20190101 recover the answers from the end of 2018, while higher values use
                                 ! updated and more robust forms of the same expressions.
-USE_DIABATIC_TIME_BUG = False   !   [Boolean] default = False
-                                ! If true, uses the wrong calendar time for diabatic processes, as was done in
-                                ! MOM6 versions prior to February 2018. This is not recommended.
 SAVE_INITIAL_CONDS = True       !   [Boolean] default = False
                                 ! If true, write the initial conditions to a file given by IC_OUTPUT_FILE.
 IC_OUTPUT_FILE = "MOM_IC"       ! default = "MOM_IC"
@@ -330,12 +327,6 @@ OBC_TRACER_RESERVOIR_LENGTH_SCALE_OUT = 0.0 !   [m] default = 0.0
 OBC_TRACER_RESERVOIR_LENGTH_SCALE_IN = 0.0 !   [m] default = 0.0
                                 ! An effective length scale for restoring the tracer concentration at the
                                 ! boundaries to values from the interior when the flow is entering the domain.
-OBC_THICKNESS_RESERVOIR_LENGTH_SCALE_OUT = 0.0 !   [m] default = 0.0
-                                ! An effective length scale for restoring the layer thickness at the boundaries
-                                ! to externally imposed values when the flow is exiting the domain.
-OBC_THICKNESS_RESERVOIR_LENGTH_SCALE_IN = 0.0 !   [m] default = 0.0
-                                ! An effective length scale for restoring the layer thickness at the boundaries
-                                ! to values from the interior when the flow is entering the domain.
 OBC_REMAPPING_SCHEME = "PLM"    ! default = "PLM"
                                 ! This sets the reconstruction scheme used for OBC vertical remapping for all
                                 ! variables. It can be one of the following schemes:
@@ -1041,10 +1032,6 @@ KV_ML_INVZ2 = 0.0               !   [m2 s-1] default = 0.0
                                 ! from the surface, to allow for finite wind stresses to be transmitted through
                                 ! infinitesimally thin surface layers.  This is an older option for numerical
                                 ! convenience without a strong physical basis, and its use is now discouraged.
-MAXVEL = 3.0E+08                !   [m s-1] default = 3.0E+08
-                                ! The maximum velocity allowed before the velocity components are truncated.
-CFL_BASED_TRUNCATIONS = True    !   [Boolean] default = True
-                                ! If true, base truncations on the CFL number, and not an absolute speed.
 CFL_TRUNCATE = 0.5              !   [nondim] default = 0.5
                                 ! The value of the CFL number that will cause velocity components to be
                                 ! truncated; instability can occur past 0.5.
@@ -1285,6 +1272,8 @@ MAX_ENERGY = 0.0                !   [m2 s-2] default = 0.0
                                 ! The maximum permitted average energy per unit mass; the model will be stopped
                                 ! if there is more energy than this.  If zero or negative, this is set to
                                 ! 10*MAXVEL^2.
+MAXVEL = 3.0E+08                !   [m s-1] default = 3.0E+08
+                                ! The maximum velocity allowed before the velocity components are truncated.
 ENERGYFILE = "ocean.stats"      ! default = "ocean.stats"
                                 ! The file to use to write the energies and globally summed diagnostics.
 DATE_STAMPED_STDOUT = False     !   [Boolean] default = True

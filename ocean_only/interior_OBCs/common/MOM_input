@@ -487,3 +487,4 @@ DAYMAX = 7.26483E+05            !   [days]
                                 ! The final time of the whole simulation, in units of TIMEUNIT seconds.  This
                                 ! also sets the potential end time of the present run segment if the end time is
                                 ! not set via ocean_solo_nml in input.nml.
+OBC_REVERSE_SEGMENT_ORDER = True

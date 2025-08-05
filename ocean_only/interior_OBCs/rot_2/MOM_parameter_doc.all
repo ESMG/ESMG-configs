@@ -178,9 +178,6 @@ SURFACE_ANSWER_DATE = 99991231  ! default = 99991231
                                 ! The vintage of the expressions for the surface properties.  Values below
                                 ! 20190101 recover the answers from the end of 2018, while higher values use
                                 ! updated and more robust forms of the same expressions.
-USE_DIABATIC_TIME_BUG = False   !   [Boolean] default = False
-                                ! If true, uses the wrong calendar time for diabatic processes, as was done in
-                                ! MOM6 versions prior to February 2018. This is not recommended.
 SAVE_INITIAL_CONDS = True       !   [Boolean] default = False
                                 ! If true, write the initial conditions to a file given by IC_OUTPUT_FILE.
 IC_OUTPUT_FILE = "MOM_IC"       ! default = "MOM_IC"
@@ -365,12 +362,6 @@ OBC_TRACER_RESERVOIR_LENGTH_SCALE_OUT = 9000.0 !   [m] default = 0.0
 OBC_TRACER_RESERVOIR_LENGTH_SCALE_IN = 100.0 !   [m] default = 0.0
                                 ! An effective length scale for restoring the tracer concentration at the
                                 ! boundaries to values from the interior when the flow is entering the domain.
-OBC_THICKNESS_RESERVOIR_LENGTH_SCALE_OUT = 0.0 !   [m] default = 0.0
-                                ! An effective length scale for restoring the layer thickness at the boundaries
-                                ! to externally imposed values when the flow is exiting the domain.
-OBC_THICKNESS_RESERVOIR_LENGTH_SCALE_IN = 0.0 !   [m] default = 0.0
-                                ! An effective length scale for restoring the layer thickness at the boundaries
-                                ! to values from the interior when the flow is entering the domain.
 OBC_REMAPPING_SCHEME = "PLM"    ! default = "PLM"
                                 ! This sets the reconstruction scheme used for OBC vertical remapping for all
                                 ! variables. It can be one of the following schemes:
@@ -454,15 +445,11 @@ OBC_SEGMENT_004_DATA = "SSH=value:0.15,U=value:0.0,V=value:0.1,TEMP=value:7.0,SA
 ! === module MOM_tracer_registry ===
 
 ! === module MOM_EOS ===
-EQN_OF_STATE = "WRIGHT"         ! default = "WRIGHT"
+EQN_OF_STATE = "WRIGHT_FULL"    ! default = "WRIGHT_FULL"
                                 ! EQN_OF_STATE determines which ocean equation of state should be used.
                                 ! Currently, the valid choices are "LINEAR", "UNESCO", "JACKETT_MCD", "WRIGHT",
                                 ! "WRIGHT_REDUCED", "WRIGHT_FULL", "NEMO", "ROQUET_RHO", "ROQUET_SPV" and
                                 ! "TEOS10".  This is only used if USE_EOS is true.
-USE_WRIGHT_2ND_DERIV_BUG = False !   [Boolean] default = False
-                                ! If true, use a bug in the calculation of the second derivatives of density
-                                ! with temperature and with temperature and pressure that causes some terms to
-                                ! be only 2/3 of what they should be.
 EOS_QUADRATURE = False          !   [Boolean] default = False
                                 ! If true, always use the generic (quadrature) code code for the integrals of
                                 ! density.
@@ -1220,7 +1207,7 @@ SSH_IN_EOS_PRESSURE_FOR_PGF = False !   [Boolean] default = False
 MASS_WEIGHT_IN_PRESSURE_GRADIENT = True !   [Boolean] default = False
                                 ! If true, use mass weighting when interpolating T/S for integrals near the
                                 ! bathymetry in FV pressure gradient calculations.
-MASS_WEIGHT_IN_PRESSURE_GRADIENT_TOP = False !   [Boolean] default = False
+MASS_WEIGHT_IN_PRESSURE_GRADIENT_TOP = True !   [Boolean] default = True
                                 ! If true and MASS_WEIGHT_IN_PRESSURE_GRADIENT is true, use mass weighting when
                                 ! interpolating T/S for integrals near the top of the water column in FV
                                 ! pressure gradient calculations.
@@ -1285,9 +1272,6 @@ LEITH_KH = False                !   [Boolean] default = False
                                 ! If true, use a Leith nonlinear eddy viscosity.
 BOUND_KH = True                 !   [Boolean] default = True
                                 ! If true, the Laplacian coefficient is locally limited to be stable.
-BETTER_BOUND_KH = True          !   [Boolean] default = True
-                                ! If true, the Laplacian coefficient is locally limited to be stable with a
-                                ! better bounding than just BOUND_KH.
 EY24_EBT_BS = False             !   [Boolean] default = False
                                 ! If true, use the the backscatter scheme (EBT mode with kill switch)developed
                                 ! by Yankovsky et al. (2024).
@@ -1362,10 +1346,6 @@ KV_ML_INVZ2 = 0.0               !   [m2 s-1] default = 0.0
                                 ! from the surface, to allow for finite wind stresses to be transmitted through
                                 ! infinitesimally thin surface layers.  This is an older option for numerical
                                 ! convenience without a strong physical basis, and its use is now discouraged.
-MAXVEL = 6.0                    !   [m s-1] default = 3.0E+08
-                                ! The maximum velocity allowed before the velocity components are truncated.
-CFL_BASED_TRUNCATIONS = True    !   [Boolean] default = True
-                                ! If true, base truncations on the CFL number, and not an absolute speed.
 CFL_TRUNCATE = 0.5              !   [nondim] default = 0.5
                                 ! The value of the CFL number that will cause velocity components to be
                                 ! truncated; instability can occur past 0.5.
@@ -1685,7 +1665,7 @@ USE_KPP_LT_VT2 = False          !   [Boolean] default = False
                                 ! Flag for Langmuir turbulence enhancement of Vt2in Bulk Richardson Number.
 KPP_CVt2 = 1.6                  !   [nondim] default = 1.6
                                 ! Parameter for Stokes MOST convection entrainment
-ANSWER_DATE = 20240101          ! default = 20240101
+ANSWER_DATE = 99991231          ! default = 99991231
                                 ! The vintage of the order of arithmetic in the CVMix KPP calculations.  Values
                                 ! below 20240501 recover the answers from early in 2024, while higher values use
                                 ! expressions that have been refactored for rotational symmetry.
@@ -1751,7 +1731,7 @@ LOTW_BBL_USE_OMEGA = True       !   [Boolean] default = True
                                 ! Otherwise, N is N.
 VON_KARMAN_BBL = 0.41           !   [nondim] default = 0.41
                                 ! The value the von Karman constant as used in calculating the BBL diffusivity.
-LOTW_BBL_ANSWER_DATE = 20190101 ! default = 20190101
+LOTW_BBL_ANSWER_DATE = 99991231 ! default = 99991231
                                 ! The vintage of the order of arithmetic and expressions in the LOTW_BBL
                                 ! calculations.  Values below 20240630 recover the original answers, while
                                 ! higher values use more accurate expressions.  This only applies when
@@ -1983,6 +1963,8 @@ MAX_ENERGY = 0.0                !   [m2 s-2] default = 0.0
                                 ! The maximum permitted average energy per unit mass; the model will be stopped
                                 ! if there is more energy than this.  If zero or negative, this is set to
                                 ! 10*MAXVEL^2.
+MAXVEL = 6.0                    !   [m s-1] default = 3.0E+08
+                                ! The maximum velocity allowed before the velocity components are truncated.
 ENERGYFILE = "ocean.stats"      ! default = "ocean.stats"
                                 ! The file to use to write the energies and globally summed diagnostics.
 DATE_STAMPED_STDOUT = True      !   [Boolean] default = True

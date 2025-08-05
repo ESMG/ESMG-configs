@@ -509,3 +509,4 @@ MAXCPU = 2.88E+04               !   [wall-clock seconds] default = -1.0
                                 ! seconds, so the actual CPU time used is larger by a factor of the number of
                                 ! processors used.
 ENABLE_BUGS_BY_DEFAULT = False
+OBC_REVERSE_SEGMENT_ORDER = True
