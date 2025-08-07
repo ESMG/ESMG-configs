@@ -459,6 +459,7 @@ KHTH = 500.0                    !   [m2 s-1] default = 0.0
 ! === module MOM_dynamics_split_RK2 ===
 TIDES = True                    !   [Boolean] default = False
                                 ! If true, apply tidal momentum forcing.
+TIDES_ANSWER_DATE = 99991231
 BE = 0.7                        !   [nondim] default = 0.6
                                 ! If SPLIT is true, BE determines the relative weighting of a  2nd-order
                                 ! Runga-Kutta baroclinic time stepping scheme (0.5) and a backward Euler scheme
@@ -645,3 +646,4 @@ MAXCPU = 2.88E+04               !   [wall-clock seconds] default = -1.0
                                 ! processors used.
 ENABLE_BUGS_BY_DEFAULT = False
 OBC_REVERSE_SEGMENT_ORDER = True
+OBC_PROJECTION_BUG = True

@@ -104,6 +104,13 @@ OBC_SEGMENT_001 = "I=N,J=0:N,FLATHER" !
                                 ! Documentation needs to be dynamic?????
 OBC_SEGMENT_002 = "I=0,J=N:0,FLATHER" !
                                 ! Documentation needs to be dynamic?????
+OBC_PROJECTION_BUG = True       !   [Boolean] default = False
+                                ! If false, use only interior ocean points at OBCs to specify several
+                                ! calculations at OBC points, and it avoids applying a land mask at the bay-like
+                                ! intersection of orthogonal OBC segments.  Otherwise the calculation of terms
+                                ! like the potential vorticity used in the barotropic solver relies on
+                                ! bathymetry or other fields being projected outward across OBCs.  This option
+                                ! changes answers for some configurations that use OBCs.
 MASKING_DEPTH = 0.5             !   [m] default = -9999.0
                                 ! The depth below which to mask points as land points, for which all fluxes are
                                 ! zeroed out. MASKING_DEPTH is ignored if it has the special default value.
@@ -130,6 +137,9 @@ USE_SHELFWAVE_OBC = True        !   [Boolean] default = False
                                 ! If true, use the shelfwave open boundary.
 SHELFWAVE_Y_MODE = 2.0          !   [nondim] default = 1.0
                                 ! Cross-shore wave mode.
+SHELFWAVE_CORRECT_AMPLITUDE = True !   [Boolean] default = False
+                                ! If true, SHELFWAVE_AMPLITUDE gives the actual inflow velocity, rather than
+                                ! giving an overall scaling factor for the flow.
 
 ! === module MOM_coord_initialization ===
 COORD_CONFIG = "linear"         ! default = "none"

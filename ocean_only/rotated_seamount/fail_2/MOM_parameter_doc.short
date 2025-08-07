@@ -164,3 +164,57 @@ OBC_SEGMENT_015 = "I=28,J=2:3,FLATHER, OBLIQUE, OBLIQUE_TAN" !
 OBC_SEGMENT_016 = "J=3,I=28:36,FLATHER, OBLIQUE, OBLIQUE_TAN" !
                                 ! Documentation needs to be dynamic?????
 OBC_SEGMENT_017 = "I=36,J=3:4,FLATHER, OBLIQUE, OBLIQUE_TAN" !
+                                ! Documentation needs to be dynamic?????
+OBC_SEGMENT_018 = "J=4,I=36:44,FLATHER, OBLIQUE, OBLIQUE_TAN" !
+                                ! Documentation needs to be dynamic?????
+OBC_SEGMENT_019 = "I=44,J=4:12,FLATHER, OBLIQUE, OBLIQUE_TAN" !
+                                ! Documentation needs to be dynamic?????
+OBC_SEGMENT_020 = "J=12,I=44:43,FLATHER, OBLIQUE, OBLIQUE_TAN" !
+                                ! Documentation needs to be dynamic?????
+OBC_SEGMENT_021 = "I=43,J=12:20,FLATHER, OBLIQUE, OBLIQUE_TAN" !
+                                ! Documentation needs to be dynamic?????
+OBC_SEGMENT_022 = "J=20,I=43:42,FLATHER, OBLIQUE, OBLIQUE_TAN" !
+                                ! Documentation needs to be dynamic?????
+OBC_SEGMENT_023 = "I=42,J=20:28,FLATHER, OBLIQUE, OBLIQUE_TAN" !
+                                ! Documentation needs to be dynamic?????
+OBC_SEGMENT_024 = "J=28,I=42:41,FLATHER, OBLIQUE, OBLIQUE_TAN" !
+                                ! Documentation needs to be dynamic?????
+OBC_SEGMENT_025 = "I=41,J=28:36,FLATHER, OBLIQUE, OBLIQUE_TAN" !
+                                ! Documentation needs to be dynamic?????
+OBC_SEGMENT_026 = "J=36,I=41:40,FLATHER, OBLIQUE, OBLIQUE_TAN" !
+                                ! Documentation needs to be dynamic?????
+OBC_SEGMENT_027 = "I=40,J=36:44,FLATHER, OBLIQUE, OBLIQUE_TAN" !
+                                ! Documentation needs to be dynamic?????
+OBC_SEGMENT_028 = "J=44,I=40:32,FLATHER, OBLIQUE, OBLIQUE_TAN" !
+                                ! Documentation needs to be dynamic?????
+OBC_SEGMENT_029 = "I=32,J=44:43,FLATHER, OBLIQUE, OBLIQUE_TAN" !
+                                ! Documentation needs to be dynamic?????
+OBC_SEGMENT_030 = "J=43,I=32:24,FLATHER, OBLIQUE, OBLIQUE_TAN" !
+                                ! Documentation needs to be dynamic?????
+OBC_SEGMENT_031 = "I=24,J=43:42,FLATHER, OBLIQUE, OBLIQUE_TAN" !
+                                ! Documentation needs to be dynamic?????
+OBC_SEGMENT_032 = "J=42,I=24:16,FLATHER, OBLIQUE, OBLIQUE_TAN" !
+                                ! Documentation needs to be dynamic?????
+OBC_SEGMENT_033 = "I=16,J=42:41,FLATHER, OBLIQUE, OBLIQUE_TAN" !
+                                ! Documentation needs to be dynamic?????
+OBC_SEGMENT_034 = "J=41,I=16:8,FLATHER, OBLIQUE, OBLIQUE_TAN" !
+                                ! Documentation needs to be dynamic?????
+OBC_SEGMENT_035 = "I=8,J=41:40,FLATHER, OBLIQUE, OBLIQUE_TAN" !
+                                ! Documentation needs to be dynamic?????
+OBC_SEGMENT_036 = "J=40,I=0:8,FLATHER, OBLIQUE, OBLIQUE_TAN" !
+                                ! Documentation needs to be dynamic?????
+OBC_RAD_VEL_WT = 1.0            !   [nondim] default = 0.3
+                                ! The relative weighting for the baroclinic radiation velocities (or speed of
+                                ! characteristics) at the new time level (1) or the running mean (0) for
+                                ! velocities. Valid values range from 0 to 1. This is only used if one of the
+                                ! open boundary segments is using Orlanski.
+OBC_TRACER_RESERVOIR_LENGTH_SCALE_OUT = 1000.0 !   [m] default = 0.0
+                                ! An effective length scale for restoring the tracer concentration at the
+                                ! boundaries to externally imposed values when the flow is exiting the domain.
+OBC_TRACER_RESERVOIR_LENGTH_SCALE_IN = 1000.0 !   [m] default = 0.0
+                                ! An effective length scale for restoring the tracer concentration at the
+                                ! boundaries to values from the interior when the flow is entering the domain.
+OBC_PROJECTION_BUG = True       !   [Boolean] default = False
+                                ! If false, use only interior ocean points at OBCs to specify several
+                                ! calculations at OBC points, and it avoids applying a land mask at the bay-like
+                                ! intersection of orthogonal OBC segments.  Otherwise the calculation of terms

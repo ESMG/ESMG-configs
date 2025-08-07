@@ -127,6 +127,7 @@ NK = 10                         !   [nondim]
                                 ! The number of model layers.
 
 ! === module MOM_EOS ===
+EQN_OF_STATE = "WRIGHT_FULL"
 TFREEZE_FORM = "TEOS10"         ! default = "LINEAR"
                                 ! TFREEZE_FORM determines which expression should be used for the freezing
                                 ! point.  Currently, the valid choices are "LINEAR", "MILLERO_78", "TEOS_POLY",
@@ -488,3 +489,5 @@ DAYMAX = 7.26483E+05            !   [days]
                                 ! also sets the potential end time of the present run segment if the end time is
                                 ! not set via ocean_solo_nml in input.nml.
 OBC_REVERSE_SEGMENT_ORDER = True
+ANSWER_DATE = 99991231
+OBC_PROJECTION_BUG = True

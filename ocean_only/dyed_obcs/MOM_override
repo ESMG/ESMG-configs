@@ -2,3 +2,4 @@
 !DEBUG=True
 !#override DAYMAX = 20.0                    !   [hours]
 OBC_REVERSE_SEGMENT_ORDER = True
+#override DRAG_DIFFUSIVITY_ANSWER_DATE = 99991231

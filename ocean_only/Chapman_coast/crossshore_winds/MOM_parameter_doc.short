@@ -128,6 +128,13 @@ OBC_SEGMENT_002 = "J=N,I=N:0,FLATHER" !
                                 ! Documentation needs to be dynamic?????
 OBC_SEGMENT_003 = "J=0,I=0:N,FLATHER" !
                                 ! Documentation needs to be dynamic?????
+OBC_PROJECTION_BUG = True       !   [Boolean] default = False
+                                ! If false, use only interior ocean points at OBCs to specify several
+                                ! calculations at OBC points, and it avoids applying a land mask at the bay-like
+                                ! intersection of orthogonal OBC segments.  Otherwise the calculation of terms
+                                ! like the potential vorticity used in the barotropic solver relies on
+                                ! bathymetry or other fields being projected outward across OBCs.  This option
+                                ! changes answers for some configurations that use OBCs.
 ROTATION = "betaplane"          ! default = "2omegasinlat"
                                 ! This specifies how the Coriolis parameter is specified:
                                 !     2omegasinlat - Use twice the planetary rotation rate
