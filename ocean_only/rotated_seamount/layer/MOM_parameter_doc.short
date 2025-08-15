@@ -214,13 +214,12 @@ OBC_TRACER_RESERVOIR_LENGTH_SCALE_OUT = 1000.0 !   [m] default = 0.0
 OBC_TRACER_RESERVOIR_LENGTH_SCALE_IN = 1000.0 !   [m] default = 0.0
                                 ! An effective length scale for restoring the tracer concentration at the
                                 ! boundaries to values from the interior when the flow is entering the domain.
-OBC_PROJECTION_BUG = True       !   [Boolean] default = False
-                                ! If false, use only interior ocean points at OBCs to specify several
-                                ! calculations at OBC points, and it avoids applying a land mask at the bay-like
-                                ! intersection of orthogonal OBC segments.  Otherwise the calculation of terms
-                                ! like the potential vorticity used in the barotropic solver relies on
-                                ! bathymetry or other fields being projected outward across OBCs.  This option
-                                ! changes answers for some configurations that use OBCs.
+OBC_THICKNESS_RESERVOIR_LENGTH_SCALE_OUT = 5000.0 !   [m] default = 0.0
+                                ! An effective length scale for restoring the layer thickness at the boundaries
+                                ! to externally imposed values when the flow is exiting the domain.
+OBC_THICKNESS_RESERVOIR_LENGTH_SCALE_IN = 5000.0 !   [m] default = 0.0
+                                ! An effective length scale for restoring the layer thickness at the boundaries
+                                ! to values from the interior when the flow is entering the domain.
 ROTATION = "betaplane"          ! default = "2omegasinlat"
                                 ! This specifies how the Coriolis parameter is specified:
                                 !     2omegasinlat - Use twice the planetary rotation rate
@@ -332,6 +331,8 @@ NUM_DYE_TRACERS = 3             ! default = 0
 ! === module MOM_boundary_update ===
 
 ! === module segment_tracer_registry_init ===
+
+! === module segment_thickness_reservoir_init ===
 
 ! === module MOM_coord_initialization ===
 COORD_CONFIG = "ts_range"       ! default = "none"

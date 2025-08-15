@@ -321,6 +321,12 @@ OBC_TRACER_RESERVOIR_LENGTH_SCALE_OUT = 0.0 !   [m] default = 0.0
 OBC_TRACER_RESERVOIR_LENGTH_SCALE_IN = 0.0 !   [m] default = 0.0
                                 ! An effective length scale for restoring the tracer concentration at the
                                 ! boundaries to values from the interior when the flow is entering the domain.
+OBC_THICKNESS_RESERVOIR_LENGTH_SCALE_OUT = 0.0 !   [m] default = 0.0
+                                ! An effective length scale for restoring the layer thickness at the boundaries
+                                ! to externally imposed values when the flow is exiting the domain.
+OBC_THICKNESS_RESERVOIR_LENGTH_SCALE_IN = 0.0 !   [m] default = 0.0
+                                ! An effective length scale for restoring the layer thickness at the boundaries
+                                ! to values from the interior when the flow is entering the domain.
 OBC_REMAPPING_SCHEME = "PLM"    ! default = "PLM"
                                 ! This sets the reconstruction scheme used for OBC vertical remapping for all
                                 ! variables. It can be one of the following schemes:
@@ -344,13 +350,6 @@ OBC_REMAPPING_USE_OM4_SUBCELLS = False !   [Boolean] default = False
                                 ! If true, use the OM4 remapping-via-subcells algorithm for neutral diffusion.
                                 ! See REMAPPING_USE_OM4_SUBCELLS for more details. We recommend setting this
                                 ! option to false.
-OBC_PROJECTION_BUG = False      !   [Boolean] default = False
-                                ! If false, use only interior ocean points at OBCs to specify several
-                                ! calculations at OBC points, and it avoids applying a land mask at the bay-like
-                                ! intersection of orthogonal OBC segments.  Otherwise the calculation of terms
-                                ! like the potential vorticity used in the barotropic solver relies on
-                                ! bathymetry or other fields being projected outward across OBCs.  This option
-                                ! changes answers for some configurations that use OBCs.
 MASKING_DEPTH = -9999.0         !   [m] default = -9999.0
                                 ! The depth below which to mask points as land points, for which all fluxes are
                                 ! zeroed out. MASKING_DEPTH is ignored if it has the special default value.
@@ -876,6 +875,11 @@ SPLIT_BOTTOM_STRESS = False     !   [Boolean] default = False
 BT_USE_LAYER_FLUXES = True      !   [Boolean] default = True
                                 ! If true, use the summed layered fluxes plus an adjustment due to the change in
                                 ! the barotropic velocity in the barotropic continuity equation.
+BT_ADJ_CORR_MASS_SRC = True     !   [Boolean] default = True
+                                ! If true, recalculates the barotropic mass source after predictor step. This
+                                ! should make little difference in the deep ocean but appears to help for
+                                ! vanished layers. If false, uses the same mass source as from the predictor
+                                ! step.
 STORE_CORIOLIS_ACCEL = True     !   [Boolean] default = True
                                 ! If true, calculate the Coriolis accelerations at the end of each timestep for
                                 ! use in the predictor step of the next split RK2 timestep.
