@@ -127,9 +127,6 @@ SURFACE_ANSWER_DATE = 99991231  ! default = 99991231
                                 ! The vintage of the expressions for the surface properties.  Values below
                                 ! 20190101 recover the answers from the end of 2018, while higher values use
                                 ! updated and more robust forms of the same expressions.
-USE_DIABATIC_TIME_BUG = False   !   [Boolean] default = False
-                                ! If true, uses the wrong calendar time for diabatic processes, as was done in
-                                ! MOM6 versions prior to February 2018. This is not recommended.
 SAVE_INITIAL_CONDS = False      !   [Boolean] default = False
                                 ! If true, write the initial conditions to a file given by IC_OUTPUT_FILE.
 IC_OUTPUT_FILE = "MOM_IC"       ! default = "MOM_IC"
@@ -481,7 +478,7 @@ SHELFWAVE_Y_LENGTH_SCALE = 50.0 !   [km] default = 50.0
                                 ! Length scale of exponential dropoff of topography in the y-direction.
 SHELFWAVE_Y_MODE = 2.0          !   [nondim] default = 1.0
                                 ! Cross-shore wave mode.
-SHELFWAVE_CORRECT_AMPLITUDE = True !   [Boolean] default = False
+SHELFWAVE_CORRECT_AMPLITUDE = True !   [Boolean] default = True
                                 ! If true, SHELFWAVE_AMPLITUDE gives the actual inflow velocity, rather than
                                 ! giving an overall scaling factor for the flow.
 SHELFWAVE_AMPLITUDE = 0.1       !   [m s-1] default = 0.1
@@ -1030,10 +1027,6 @@ KV_ML_INVZ2 = 0.0               !   [m2 s-1] default = 0.0
 KV_EXTRA_BBL = 0.0              !   [m2 s-1] default = 0.0
                                 ! An extra kinematic viscosity in the benthic boundary layer. KV_EXTRA_BBL is
                                 ! not used if BOTTOMDRAGLAW is true.
-MAXVEL = 3.0E+08                !   [m s-1] default = 3.0E+08
-                                ! The maximum velocity allowed before the velocity components are truncated.
-CFL_BASED_TRUNCATIONS = True    !   [Boolean] default = True
-                                ! If true, base truncations on the CFL number, and not an absolute speed.
 CFL_TRUNCATE = 0.5              !   [nondim] default = 0.5
                                 ! The value of the CFL number that will cause velocity components to be
                                 ! truncated; instability can occur past 0.5.
@@ -1274,6 +1267,8 @@ MAX_ENERGY = 0.0                !   [m2 s-2] default = 0.0
                                 ! The maximum permitted average energy per unit mass; the model will be stopped
                                 ! if there is more energy than this.  If zero or negative, this is set to
                                 ! 10*MAXVEL^2.
+MAXVEL = 3.0E+08                !   [m s-1] default = 3.0E+08
+                                ! The maximum velocity allowed before the velocity components are truncated.
 ENERGYFILE = "ocean.stats"      ! default = "ocean.stats"
                                 ! The file to use to write the energies and globally summed diagnostics.
 DATE_STAMPED_STDOUT = False     !   [Boolean] default = True

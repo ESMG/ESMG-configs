@@ -234,13 +234,6 @@ SMAG_LAP_CONST = 0.15           !   [nondim] default = 0.0
                                 ! The nondimensional Laplacian Smagorinsky constant, often 0.15.
 SMAGORINSKY_AH = True           !   [Boolean] default = False
                                 ! If true, use a biharmonic Smagorinsky nonlinear eddy viscosity.
-BACKSCATTER_UNDERBOUND = False  !   [Boolean] default = True
-                                ! If true, the bounds on the biharmonic viscosity are allowed to increase where
-                                ! the Laplacian viscosity is negative (due to backscatter parameterizations)
-                                ! beyond the largest timestep-dependent stable values of biharmonic viscosity
-                                ! when no Laplacian viscosity is applied.  The default is true for historical
-                                ! reasons, but this option probably should not be used because it can contribute
-                                ! to numerical instabilities.
 SMAG_BI_CONST = 0.6             !   [nondim] default = 0.0
                                 ! The nondimensional biharmonic Smagorinsky constant, typically 0.015 - 0.06.
 
@@ -261,8 +254,6 @@ KV_ML_INVZ2 = 0.01              !   [m2 s-1] default = 0.0
                                 ! from the surface, to allow for finite wind stresses to be transmitted through
                                 ! infinitesimally thin surface layers.  This is an older option for numerical
                                 ! convenience without a strong physical basis, and its use is now discouraged.
-MAXVEL = 10.0                   !   [m s-1] default = 3.0E+08
-                                ! The maximum velocity allowed before the velocity components are truncated.
 
 ! === module MOM_barotropic ===
 BOUND_BT_CORRECTION = True      !   [Boolean] default = False
@@ -297,6 +288,8 @@ DTBT = -0.9                     !   [s or nondim] default = -0.98
 ! === module MOM_tracer_hor_diff ===
 
 ! === module MOM_sum_output ===
+MAXVEL = 10.0                   !   [m s-1] default = 3.0E+08
+                                ! The maximum velocity allowed before the velocity components are truncated.
 DATE_STAMPED_STDOUT = False     !   [Boolean] default = True
                                 ! If true, use dates (not times) in messages to stdout
 READ_DEPTH_LIST = True          !   [Boolean] default = False

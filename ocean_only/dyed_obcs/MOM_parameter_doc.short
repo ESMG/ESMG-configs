@@ -280,13 +280,6 @@ AH_VEL_SCALE = 0.003            !   [m s-1] default = 0.0
                                 ! scaled viscosity, the Smagorinsky and Leith viscosities, and AH.
 SMAGORINSKY_AH = True           !   [Boolean] default = False
                                 ! If true, use a biharmonic Smagorinsky nonlinear eddy viscosity.
-BACKSCATTER_UNDERBOUND = False  !   [Boolean] default = True
-                                ! If true, the bounds on the biharmonic viscosity are allowed to increase where
-                                ! the Laplacian viscosity is negative (due to backscatter parameterizations)
-                                ! beyond the largest timestep-dependent stable values of biharmonic viscosity
-                                ! when no Laplacian viscosity is applied.  The default is true for historical
-                                ! reasons, but this option probably should not be used because it can contribute
-                                ! to numerical instabilities.
 SMAG_BI_CONST = 0.06            !   [nondim] default = 0.0
                                 ! The nondimensional biharmonic Smagorinsky constant, typically 0.015 - 0.06.
 
@@ -301,8 +294,6 @@ HARMONIC_VISC = True            !   [Boolean] default = False
 HMIX_FIXED = 20.0               !   [m]
                                 ! The prescribed depth over which the near-surface viscosity and diffusivity are
                                 ! elevated when the bulk mixed layer is not used.
-MAXVEL = 10.0                   !   [m s-1] default = 3.0E+08
-                                ! The maximum velocity allowed before the velocity components are truncated.
 
 ! === module MOM_barotropic ===
 BOUND_BT_CORRECTION = True      !   [Boolean] default = False
@@ -340,10 +331,6 @@ TOLERANCE_ENT = 1.0E-05         !   [m] default = 1.095445115010332E-05
                                 ! The tolerance with which to solve for entrainment values.
 
 ! === module MOM_set_diffusivity ===
-DRAG_DIFFUSIVITY_ANSWER_DATE = 99991231 ! default = 20250101
-                                ! The vintage of the order of arithmetic in the drag diffusivity calculations.
-                                ! Values above 20250301 use less confusing expressions to set the bottom-drag
-                                ! generated diffusivity when USE_LOTW_BBL_DIFFUSIVITY is false.
 
 ! === module MOM_bkgnd_mixing ===
 ! Adding static vertical background mixing coefficients
@@ -377,6 +364,8 @@ MAXTRUNC = 10                   !   [truncations save_interval-1] default = 0
                                 ! The run will be stopped, and the day set to a very large value if the velocity
                                 ! is truncated more than MAXTRUNC times between energy saves.  Set MAXTRUNC to 0
                                 ! to stop if there is any truncation of velocities.
+MAXVEL = 10.0                   !   [m s-1] default = 3.0E+08
+                                ! The maximum velocity allowed before the velocity components are truncated.
 DATE_STAMPED_STDOUT = False     !   [Boolean] default = True
                                 ! If true, use dates (not times) in messages to stdout
 TIMEUNIT = 3600.0               !   [s] default = 8.64E+04
