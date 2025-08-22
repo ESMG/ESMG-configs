@@ -646,4 +646,3 @@ MAXCPU = 2.88E+04               !   [wall-clock seconds] default = -1.0
                                 ! processors used.
 ENABLE_BUGS_BY_DEFAULT = False
 OBC_REVERSE_SEGMENT_ORDER = True
-OBC_PROJECTION_BUG = True

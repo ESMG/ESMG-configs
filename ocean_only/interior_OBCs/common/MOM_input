@@ -490,4 +490,3 @@ DAYMAX = 7.26483E+05            !   [days]
                                 ! not set via ocean_solo_nml in input.nml.
 OBC_REVERSE_SEGMENT_ORDER = True
 ANSWER_DATE = 99991231
-OBC_PROJECTION_BUG = True

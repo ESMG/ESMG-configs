@@ -512,4 +512,3 @@ MAXCPU = 2.88E+04               !   [wall-clock seconds] default = -1.0
 ENABLE_BUGS_BY_DEFAULT = False
 OBC_REVERSE_SEGMENT_ORDER = True
 REGRIDDING_ANSWER_DATE = 99991231
-OBC_PROJECTION_BUG = True
