@@ -446,12 +446,6 @@ H_TO_M = 1.0                    !   [m H-1] default = 1.0
                                 ! A constant that translates the model's internal units of thickness into m.
 NK = 50                         !   [nondim]
                                 ! The number of model layers.
-OBC_SEGMENT_001_DATA = "U=file:obc_CCS1_1980-1990.nc(u),V=file:obc_CCS1_1980-1990.nc(v),SSH=file:obc_CCS1_1980-1990.nc(zeta),TEMP=file:obc_CCS1_1980-1990.nc(temp),SALT=file:obc_CCS1_1980-1990.nc(salt)" !
-                                ! OBC segment docs
-OBC_SEGMENT_002_DATA = "U=file:obc_CCS1_1980-1990.nc(u),V=file:obc_CCS1_1980-1990.nc(v),SSH=file:obc_CCS1_1980-1990.nc(zeta),TEMP=file:obc_CCS1_1980-1990.nc(temp),SALT=file:obc_CCS1_1980-1990.nc(salt)" !
-                                ! OBC segment docs
-OBC_SEGMENT_003_DATA = "U=file:obc_CCS1_1980-1990.nc(u),V=file:obc_CCS1_1980-1990.nc(v),SSH=file:obc_CCS1_1980-1990.nc(zeta),TEMP=file:obc_CCS1_1980-1990.nc(temp),SALT=file:obc_CCS1_1980-1990.nc(salt)" !
-                                ! OBC segment docs
 
 ! === module MOM_tracer_registry ===
 
@@ -558,6 +552,12 @@ USE_DYED_CHANNEL_OBC = False    !   [Boolean] default = False
                                 ! If true, use the dyed channel open boundary.
 
 ! === module segment_tracer_registry_init ===
+OBC_SEGMENT_001_DATA = "U=file:obc_CCS1_1980-1990.nc(u),V=file:obc_CCS1_1980-1990.nc(v),SSH=file:obc_CCS1_1980-1990.nc(zeta),TEMP=file:obc_CCS1_1980-1990.nc(temp),SALT=file:obc_CCS1_1980-1990.nc(salt)" !
+                                ! OBC segment docs
+OBC_SEGMENT_002_DATA = "U=file:obc_CCS1_1980-1990.nc(u),V=file:obc_CCS1_1980-1990.nc(v),SSH=file:obc_CCS1_1980-1990.nc(zeta),TEMP=file:obc_CCS1_1980-1990.nc(temp),SALT=file:obc_CCS1_1980-1990.nc(salt)" !
+                                ! OBC segment docs
+OBC_SEGMENT_003_DATA = "U=file:obc_CCS1_1980-1990.nc(u),V=file:obc_CCS1_1980-1990.nc(v),SSH=file:obc_CCS1_1980-1990.nc(zeta),TEMP=file:obc_CCS1_1980-1990.nc(temp),SALT=file:obc_CCS1_1980-1990.nc(salt)" !
+                                ! OBC segment docs
 
 ! === module MOM_coord_initialization ===
 COORD_CONFIG = "gprime"         ! default = "none"
@@ -610,8 +610,23 @@ ALE_COORDINATE_CONFIG = "FILE:vgrid_50_10m.nc,dz" ! default = "UNIFORM"
                                 !  FNC1:string - FNC1:dz_min,H_total,power,precision
                                 !  HYBRID:string - read from a file. The string specifies
                                 !                the filename and two variable names, separated
-                                !                by a comma or space, for sigma-2 and dz. e.g.
-                                !                HYBRID:vgrid.nc,sigma2,dz
+                                !                by a comma or space, for sigma-2 and dz.
+                                !                e.g. HYBRID:vgrid.nc,sigma2,dz
+                                !  HYBRID_3D:string - read from a file. The string specifies
+                                !                the filename and two 3D variable names, separated
+                                !                by a comma or space, for sigma-2 and dz. The
+                                !                latter can be FNC1:string which is used everywhere.
+                                !                e.g. HYBRID_3D:vgrid.nc,sigma2,dz
+                                !  HYBRID_MAP:string - read from a file. The string specifies
+                                !                the filename and three variable names, separated
+                                !                by a comma or space, for map, sigma-2 and dz.
+                                !                Map is a spatial index array with, maxval(map)=N,
+                                !                and the others are 2D arrays containing N profiles.
+                                !                Map typically contains integer values, but it can
+                                !                contain real values, I+w, which imply using
+                                !                the weighted sum of profiles I and I+1.
+                                !                Dz can be FNC1:string which is used everywhere.
+                                !                e.g. HYBRID_MAP:vgrid.nc,map,sigma2,dz
 !ALE_RESOLUTION = 10.067100048065186, 10.118700981140137, 10.139101028442383, 10.217899322509766, 10.276897430419922, 10.408500671386719, 10.541099548339844, 10.774101257324219, 11.046302795410156, 11.472900390625, 12.010498046875, 12.801902770996094, 13.838088989257812, 15.307113647460938, 17.258697509765625, 19.95050048828125, 23.514297485351562, 28.2908935546875, 34.482696533203125, 42.4569091796875, 52.3572998046875, 64.36129760742188, 78.25607299804688, 93.720703125, 109.98895263671875, 126.30145263671875, 141.72174072265625, 155.66082763671875, 167.62060546875, 177.565185546875, 185.495361328125, 191.73095703125, 196.4637451171875, 200.0712890625, 202.7197265625, 204.714111328125, 206.140869140625, 207.21923828125, 207.96875, 208.547119140625, 208.93408203125, 209.24560546875, 209.438720703125, 209.6123046875, 209.7021484375, 209.802734375, 209.8408203125, 209.9013671875, 2*209.912109375 !   [m]
                                 ! The distribution of vertical resolution for the target
                                 ! grid used for Eulerian-like coordinates. For example,
@@ -845,8 +860,23 @@ DIAG_COORD_DEF_Z = "WOA09"      ! default = "WOA09"
                                 !  FNC1:string - FNC1:dz_min,H_total,power,precision
                                 !  HYBRID:string - read from a file. The string specifies
                                 !                the filename and two variable names, separated
-                                !                by a comma or space, for sigma-2 and dz. e.g.
-                                !                HYBRID:vgrid.nc,sigma2,dz
+                                !                by a comma or space, for sigma-2 and dz.
+                                !                e.g. HYBRID:vgrid.nc,sigma2,dz
+                                !  HYBRID_3D:string - read from a file. The string specifies
+                                !                the filename and two 3D variable names, separated
+                                !                by a comma or space, for sigma-2 and dz. The
+                                !                latter can be FNC1:string which is used everywhere.
+                                !                e.g. HYBRID_3D:vgrid.nc,sigma2,dz
+                                !  HYBRID_MAP:string - read from a file. The string specifies
+                                !                the filename and three variable names, separated
+                                !                by a comma or space, for map, sigma-2 and dz.
+                                !                Map is a spatial index array with, maxval(map)=N,
+                                !                and the others are 2D arrays containing N profiles.
+                                !                Map typically contains integer values, but it can
+                                !                contain real values, I+w, which imply using
+                                !                the weighted sum of profiles I and I+1.
+                                !                Dz can be FNC1:string which is used everywhere.
+                                !                e.g. HYBRID_MAP:vgrid.nc,map,sigma2,dz
 
 ! === module MOM_MEKE ===
 USE_MEKE = False                !   [Boolean] default = False
@@ -923,6 +953,9 @@ MIXING_COEFS_OBC_BUG = False    !   [Boolean] default = False
                                 ! If false, use only interior data for thickness weighting in lateral mixing
                                 ! coefficient calculations and to calculate stratification and other fields at
                                 ! open boundary condition faces.
+RESOLN_FUNCTION_OBC_BUG = False !   [Boolean] default = False
+                                ! If false, use only interior data for calculating the resolution functions at
+                                ! open boundary condition faces and vertices.
 VISBECK_MAX_SLOPE = 0.0         !   [nondim] default = 0.0
                                 ! If non-zero, is an upper bound on slopes used in the Visbeck formula for
                                 ! diffusivity. This does not affect the isopycnal slope calculation used within
@@ -1114,6 +1147,8 @@ TIDES = False                   !   [Boolean] default = False
                                 ! If true, apply tidal momentum forcing.
 CALCULATE_SAL = False           !   [Boolean] default = False
                                 ! If true, calculate self-attraction and loading.
+USE_HA = False                  !   [Boolean] default = False
+                                ! If true, perform inline harmonic analysis.
 BE = 0.6                        !   [nondim] default = 0.6
                                 ! If SPLIT is true, BE determines the relative weighting of a  2nd-order
                                 ! Runga-Kutta baroclinic time stepping scheme (0.5) and a backward Euler scheme
@@ -1214,6 +1249,9 @@ CORIOLIS_SCHEME = "SADOURNY75_ENERGY" ! default = "SADOURNY75_ENERGY"
                                 !    ARAKAWA_LAMB81    - Arakawa & Lamb, 1981; En. + Enst.
                                 !    ARAKAWA_LAMB_BLEND - A blend of Arakawa & Lamb with
                                 !                         Arakawa & Hsu and Sadourny energy
+                                !    WENOVI5TH_PV_ENSTRO   - 5th-order WENO PV enstrophy
+                                !    WENOVI3RD_PV_ENSTRO   - 3rd-order WENO PV enstrophy
+                                !    WENOVI7TH_PV_ENSTRO  - 7th-order WENO PV enstrophy
 BOUND_CORIOLIS = True           !   [Boolean] default = False
                                 ! If true, the Coriolis terms at u-points are bounded by the four estimates of
                                 ! (f+rv)v from the four neighboring v-points, and similarly at v-points.  This
@@ -1222,7 +1260,7 @@ BOUND_CORIOLIS = True           !   [Boolean] default = False
 KE_SCHEME = "KE_ARAKAWA"        ! default = "KE_ARAKAWA"
                                 ! KE_SCHEME selects the discretization for acceleration due to the kinetic
                                 ! energy gradient. Valid values are:
-                                !    KE_ARAKAWA, KE_SIMPLE_GUDONOV, KE_GUDONOV
+                                !    KE_ARAKAWA, KE_SIMPLE_GUDONOV, KE_GUDONOV, KE_UP3
 PV_ADV_SCHEME = "PV_ADV_CENTERED" ! default = "PV_ADV_CENTERED"
                                 ! PV_ADV_SCHEME selects the discretization for PV advection. Valid values are:
                                 !    PV_ADV_CENTERED - centered (aka Sadourny, 75)
@@ -1294,6 +1332,9 @@ USE_ZB2020 = False              !   [Boolean] default = False
                                 ! mesoscale eddies.
 
 ! === module MOM_hor_visc ===
+USE_CIRCULATION_IN_HORVISC = False !   [Boolean] default = False
+                                ! Use circulation theorem to compute vorticity in horvisc module (for ZB20 or
+                                ! Leith)
 USE_CONT_THICKNESS = False      !   [Boolean] default = False
                                 ! If true, use thickness at velocity points from continuity solver. This option
                                 ! currently only works with split mode.

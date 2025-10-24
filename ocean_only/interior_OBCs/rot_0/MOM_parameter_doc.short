@@ -158,14 +158,6 @@ MASKING_DEPTH = 0.0             !   [m] default = -9999.0
 ! Parameters providing information about the vertical grid.
 NK = 10                         !   [nondim]
                                 ! The number of model layers.
-OBC_SEGMENT_001_DATA = "SSH=value:0.1,U=value:0.1,V=value:0,TEMP=value:7.0,SALT=value:33.0" !
-                                ! OBC segment docs
-OBC_SEGMENT_002_DATA = "SSH=value:0.1,U=value:0.1,V=value:0,TEMP=value:7.0,SALT=value:33.0" !
-                                ! OBC segment docs
-OBC_SEGMENT_003_DATA = "SSH=value:0.15,U=value:0.0,V=value:0.1,TEMP=value:7.0,SALT=value:33.0" !
-                                ! OBC segment docs
-OBC_SEGMENT_004_DATA = "SSH=value:0.15,U=value:0.0,V=value:0.1,TEMP=value:7.0,SALT=value:33.0" !
-                                ! OBC segment docs
 
 ! === module MOM_EOS ===
 TFREEZE_FORM = "TEOS10"         ! default = "LINEAR"
@@ -184,6 +176,14 @@ PARALLEL_RESTARTFILES = True    !   [Boolean] default = False
 ! === module MOM_boundary_update ===
 
 ! === module segment_tracer_registry_init ===
+OBC_SEGMENT_001_DATA = "SSH=value:0.1,U=value:0.1,V=value:0,TEMP=value:7.0,SALT=value:33.0" !
+                                ! OBC segment docs
+OBC_SEGMENT_002_DATA = "SSH=value:0.1,U=value:0.1,V=value:0,TEMP=value:7.0,SALT=value:33.0" !
+                                ! OBC segment docs
+OBC_SEGMENT_003_DATA = "SSH=value:0.15,U=value:0.0,V=value:0.1,TEMP=value:7.0,SALT=value:33.0" !
+                                ! OBC segment docs
+OBC_SEGMENT_004_DATA = "SSH=value:0.15,U=value:0.0,V=value:0.1,TEMP=value:7.0,SALT=value:33.0" !
+                                ! OBC segment docs
 
 ! === module MOM_coord_initialization ===
 COORD_CONFIG = "ALE"            ! default = "none"
@@ -228,8 +228,23 @@ ALE_COORDINATE_CONFIG = "UNIFORM:10" ! default = "UNIFORM"
                                 !  FNC1:string - FNC1:dz_min,H_total,power,precision
                                 !  HYBRID:string - read from a file. The string specifies
                                 !                the filename and two variable names, separated
-                                !                by a comma or space, for sigma-2 and dz. e.g.
-                                !                HYBRID:vgrid.nc,sigma2,dz
+                                !                by a comma or space, for sigma-2 and dz.
+                                !                e.g. HYBRID:vgrid.nc,sigma2,dz
+                                !  HYBRID_3D:string - read from a file. The string specifies
+                                !                the filename and two 3D variable names, separated
+                                !                by a comma or space, for sigma-2 and dz. The
+                                !                latter can be FNC1:string which is used everywhere.
+                                !                e.g. HYBRID_3D:vgrid.nc,sigma2,dz
+                                !  HYBRID_MAP:string - read from a file. The string specifies
+                                !                the filename and three variable names, separated
+                                !                by a comma or space, for map, sigma-2 and dz.
+                                !                Map is a spatial index array with, maxval(map)=N,
+                                !                and the others are 2D arrays containing N profiles.
+                                !                Map typically contains integer values, but it can
+                                !                contain real values, I+w, which imply using
+                                !                the weighted sum of profiles I and I+1.
+                                !                Dz can be FNC1:string which is used everywhere.
+                                !                e.g. HYBRID_MAP:vgrid.nc,map,sigma2,dz
 !ALE_RESOLUTION = 10*1.0        !   [m]
                                 ! The distribution of vertical resolution for the target
                                 ! grid used for Eulerian-like coordinates. For example,
@@ -357,6 +372,9 @@ CORIOLIS_SCHEME = "SADOURNY75_ENSTRO" ! default = "SADOURNY75_ENERGY"
                                 !    ARAKAWA_LAMB81    - Arakawa & Lamb, 1981; En. + Enst.
                                 !    ARAKAWA_LAMB_BLEND - A blend of Arakawa & Lamb with
                                 !                         Arakawa & Hsu and Sadourny energy
+                                !    WENOVI5TH_PV_ENSTRO   - 5th-order WENO PV enstrophy
+                                !    WENOVI3RD_PV_ENSTRO   - 3rd-order WENO PV enstrophy
+                                !    WENOVI7TH_PV_ENSTRO  - 7th-order WENO PV enstrophy
 BOUND_CORIOLIS = True           !   [Boolean] default = False
                                 ! If true, the Coriolis terms at u-points are bounded by the four estimates of
                                 ! (f+rv)v from the four neighboring v-points, and similarly at v-points.  This

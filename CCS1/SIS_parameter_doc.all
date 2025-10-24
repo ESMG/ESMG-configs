@@ -447,6 +447,11 @@ LEMIEUX_LANDFAST = False        !   [Boolean] default = False
                                 ! If true, turn on Lemieux landfast ice parameterization.
 ITD_LANDFAST = False            !   [Boolean] default = False
                                 ! If true, turn on probabilistic landfast ice parameterization.
+NEGLECT_MASSLESS_ICE_SNOW_POND = False !   [Boolean] default = False
+                                ! If True, category ice, snow or pond mass per ocean cell area less than
+                                ! CONTINUITY_H_NEGLECT are not transported out of a cell. The default value is
+                                ! set to retain previous answers, but new experiments should set to True with a
+                                ! suitably small value of CONTINUITY_H_NEGLECT.
 RECATEGORIZE_ICE = True         !   [Boolean] default = True
                                 ! If true, readjust the distribution into ice thickness categories after
                                 ! advection.

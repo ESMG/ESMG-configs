@@ -143,16 +143,16 @@ G_EARTH = 9.81                  !   [m s-2] default = 9.8
                                 ! The gravitational acceleration of the Earth.
 NK = 1                          !   [nondim]
                                 ! The number of model layers.
+
+! === module MOM_tracer_flow_control ===
+
+! === module MOM_boundary_update ===
 OBC_SEGMENT_001_DATA = "U=value:0.0,V=value:0.0,SSH=value:0.0" !
                                 ! OBC segment docs
 OBC_SEGMENT_002_DATA = "U=file:north.nc(u),V=file:north.nc(v),SSH=file:north.nc(zeta)" !
                                 ! OBC segment docs
 OBC_SEGMENT_003_DATA = "U=file:south.nc(u),V=file:south.nc(v),SSH=file:south.nc(zeta)" !
                                 ! OBC segment docs
-
-! === module MOM_tracer_flow_control ===
-
-! === module MOM_boundary_update ===
 
 ! === module MOM_coord_initialization ===
 COORD_CONFIG = "layer_ref"      ! default = "none"
